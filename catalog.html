@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Каталог — NIK-ЕЛЕКТРОНІКА (прототип)</title>
+<meta name="robots" content="noindex">
+
+<style>
+@font-face{font-family:'Geologica';font-style:normal;font-weight:300 800;font-display:swap;src:url(assets/58ce8622-Geologica-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Geologica';font-style:normal;font-weight:300 800;font-display:swap;src:url(assets/129ad3ba-Geologica-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+</style>
+<style>
+body{margin:0;background:#ffffff}
+::selection{background:#13385d;color:#ffffff}
+a{color:#13385d}a:not(.btn):hover{color:#b8031f}
+.wrap{max-width:1280px;margin:0 auto;padding:0 32px;box-sizing:border-box}
+.num{font-variant-numeric:tabular-nums}
+.nav a{color:#13385d;text-decoration:none;font-weight:500;font-size:15px;padding:10px 0;transition:color .15s ease}
+.nav a:hover{color:#b8031f}
+.nav a[aria-current="page"]{color:#e30427;box-shadow:inset 0 -2px 0 #e30427}
+.btn{display:inline-flex;align-items:center;gap:14px;min-height:56px;padding:0 28px;border-radius:999px;font-weight:600;font-size:17px;text-decoration:none;box-sizing:border-box;border:0;cursor:pointer;font-family:inherit;transition:background-color .15s ease,color .15s ease,transform .16s cubic-bezier(.23,1,.32,1)}
+.btn:active{transform:scale(.97)}
+.btn:has(.arr){padding-right:8px}
+.btn-red{background:#e30427;color:#ffffff}.btn-red:hover{background:#b8031f;color:#ffffff}
+.btn-line{box-shadow:inset 0 0 0 1.5px #13385d;color:#13385d;background:transparent}.btn-line:hover{background:#13385d;color:#ffffff}
+.btn-navy{background:#13385d;color:#ffffff}.btn-navy:hover{background:#0f2d4b;color:#ffffff}
+.btn-white{background:#ffffff;color:#13385d}.btn-white .arr{background:#e30427;color:#ffffff}.btn-white:hover{background:#13385d;color:#ffffff}
+.btn-ghost{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.8);color:#ffffff;background:transparent}.btn-ghost:hover{background:#ffffff;color:#b8031f}
+.arr{width:40px;height:40px;border-radius:50%;display:inline-grid;place-items:center;background:rgba(255,255,255,.2);transition:background-color .2s ease,color .2s ease}
+.arr svg{transition:transform .25s cubic-bezier(.23,1,.32,1)}
+.btn-line .arr{background:#dbe3eb}
+@media (hover:hover) and (pointer:fine){.btn:hover .arr svg{transform:translateX(3px)}.btn-red:hover .arr{background:#ffffff;color:#b8031f}.btn-line:hover .arr{background:#ffffff;color:#13385d}}
+.icon-btn{width:44px;height:44px;border-radius:50%;border:1px solid #c3ccd6;background:#ffffff;color:#13385d;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .15s ease,transform .16s cubic-bezier(.23,1,.32,1)}
+.icon-btn:hover{border-color:#13385d}.icon-btn:active{transform:scale(.95)}
+.skip{position:absolute;left:16px;top:-80px;z-index:100;background:#13385d;color:#ffffff;padding:12px 16px;border-radius:8px;text-decoration:none;font-weight:600}.skip:focus{top:12px;color:#ffffff}.skip:hover{color:#ffffff}
+:focus-visible{outline:3px solid #007ac2;outline-offset:3px}
+.burger{display:none}
+@media (max-width:900px){.nav{display:none !important}.burger{display:inline-flex}}
+.h1p{margin:0;font-size:clamp(48px,6.4vw,92px);line-height:.95;font-weight:700;color:#13385d;letter-spacing:-0.04em;text-wrap:balance}
+.h2x{margin:0;font-size:clamp(36px,4.6vw,64px);line-height:1;font-weight:700;color:#13385d;letter-spacing:-0.035em;text-wrap:balance}
+.h3x{margin:0;font-size:clamp(26px,2.4vw,34px);line-height:1.1;font-weight:700;color:#13385d;letter-spacing:-0.02em}
+.lead{font-size:clamp(18px,1.5vw,21px);line-height:1.5;color:#21272e}
+.crumbs{display:flex;gap:10px;flex-wrap:wrap;font-size:15px;color:#59636e}
+.crumbs a{color:#59636e;text-decoration:none}.crumbs a:hover{color:#b8031f}
+.crumbs [aria-current]{color:#13385d;font-weight:600}
+.phead{position:relative;overflow:hidden;background:radial-gradient(50% 80% at 85% 30%,#ffffff 0%,rgba(255,255,255,0) 70%),linear-gradient(180deg,#f3f6f9 0%,#dbe3eb 100%)}
+.phead .net{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.phead .net path{fill:none;stroke:#13385d;stroke-opacity:.08;stroke-width:1.5}
+.phead .net .pulse{stroke:#007ac2;stroke-opacity:.7;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:3 97;stroke-dashoffset:100;animation:pulseRun 6s linear infinite}
+@keyframes pulseRun{to{stroke-dashoffset:0}}
+.phead .wrap{position:relative}
+.pills{display:flex;gap:6px;flex-wrap:wrap;background:#ffffff;border-radius:28px;padding:5px;width:max-content;max-width:100%;box-sizing:border-box;box-shadow:0 8px 24px rgba(19,56,93,.08)}
+.pills a,.pills button{min-height:46px;display:inline-flex;align-items:center;gap:8px;padding:0 22px;border-radius:999px;border:0;background:transparent;text-decoration:none;font:600 16px Geologica,sans-serif;color:#13385d;cursor:pointer;transition:background-color .2s ease,color .2s ease}
+.pills a:hover{background:#e6eaeb;color:#13385d}
+.pills [aria-current],.pills [aria-selected="true"]{background:#13385d;color:#ffffff}
+.pills [aria-current]:hover{background:#13385d;color:#ffffff}
+.pills .n{font-size:13px;opacity:.7}
+.chip-s{display:inline-flex;align-items:center;font-size:14px;font-weight:600;padding:7px 12px;border-radius:999px;background:#e6eaeb;color:#13385d}
+.chip-c{background:#cce4f4}
+.chip-g{background:#cceae0;color:#006b44}
+.stagebg{background:radial-gradient(70% 70% at 50% 45%,#ffffff 0%,#eef2f6 100%)}
+.devimg{filter:drop-shadow(0 22px 22px rgba(19,56,93,.18))}
+.flat{mix-blend-mode:multiply}
+.card3{display:flex;flex-direction:column;background:#ffffff;border-radius:24px;overflow:hidden;text-decoration:none;color:#13385d;transition:box-shadow .3s ease,transform .3s cubic-bezier(.23,1,.32,1)}
+.card3 .ci{transition:transform .5s cubic-bezier(.23,1,.32,1)}
+@media (hover:hover) and (pointer:fine){.card3:hover{box-shadow:0 24px 48px rgba(19,56,93,.14);transform:translateY(-4px)}.card3:hover .ci{transform:scale(1.05)}.card3:hover .go{background:#e30427;color:#ffffff;transform:rotate(-45deg)}}
+.go{flex:0 0 auto;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#e6eaeb;color:#13385d;transition:background-color .2s ease,color .2s ease,transform .3s cubic-bezier(.23,1,.32,1)}
+.pg{display:flex;gap:8px;flex-wrap:wrap}
+.pg a{min-width:48px;height:48px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;text-decoration:none;font-size:16px;font-weight:600;color:#13385d;background:#ffffff}
+.pg a[aria-current]{background:#13385d;color:#ffffff}
+.foot a{color:#dbe3eb;text-decoration:none;font-size:15px;transition:color .15s ease}.foot a:hover{color:#ffffff}
+.line{display:block;overflow:hidden;padding-bottom:.06em}
+.line>span{display:block;animation:rise 900ms cubic-bezier(.16,1,.3,1) both}
+@keyframes rise{from{transform:translateY(108%)}}
+.fade-in{animation:fadeUp 700ms cubic-bezier(.16,1,.3,1) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}}
+@media (prefers-reduced-motion:no-preference){@supports (animation-timeline: view()){
+  .reveal{animation:reveal linear both;animation-timeline:view();animation-range:entry 0% cover 35%}
+  @keyframes reveal{from{clip-path:inset(14% 0 0 0 round 24px);transform:scale(1.06)}to{clip-path:inset(0 0 0 0 round 24px);transform:none}}
+  .rise{animation:riseIn linear both;animation-timeline:view();animation-range:entry 0% cover 25%}
+  @keyframes riseIn{from{opacity:0;transform:translateY(40px)}}
+}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition-duration:.01ms !important}}
+@media (max-width:900px){.foot .fgrid{grid-template-columns:1fr 1fr !important}}
+@media (max-width:600px){.wrap{padding:0 16px}.foot .fgrid{grid-template-columns:1fr !important}.lang3{display:none !important}.pills a,.pills button{padding:0 16px;font-size:15px}}
+
+.inds{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:48px}
+.ind{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:168px;padding:22px 24px;border-radius:24px;background:#ffffff;text-decoration:none;color:#13385d;overflow:hidden;isolation:isolate;box-shadow:0 0 0 1.5px transparent;transition:box-shadow .2s ease,transform .3s cubic-bezier(.23,1,.32,1)}
+.ind img{position:absolute;right:4%;top:14%;height:100%;width:52%;object-fit:contain;object-position:right top;z-index:-2;transition:transform .5s cubic-bezier(.23,1,.32,1)}
+.ind::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#ffffff 38%,rgba(255,255,255,0) 70%)}
+.ind b{font-size:24px;letter-spacing:-0.015em}
+.ind span{font-size:15px;color:#59636e}
+.ind::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--acc)}
+.ind[aria-current="true"]{box-shadow:0 0 0 2px #13385d}
+@media (hover:hover) and (pointer:fine){.ind:hover{transform:translateY(-3px)}.ind:hover img{transform:translateY(-6px) rotate(-3deg)}}
+.cat{background:#e6eaeb;padding:56px 0 112px}
+.cat-grid{display:grid;grid-template-columns:300px minmax(0,1fr);gap:32px;align-items:start}
+.filters{background:#ffffff;border-radius:24px;padding:28px;position:sticky;top:96px}
+.fgroup{border:0;margin:0;padding:20px 0;border-top:1px solid #e6eaeb}
+.fgroup legend{float:left;width:100%;padding:0 0 12px;font-size:17px;font-weight:700;color:#13385d}
+.chk{display:flex;align-items:center;gap:12px;min-height:40px;font-size:16px;color:#21272e;cursor:pointer;clear:both}
+.chk input{width:20px;height:20px;accent-color:#13385d;margin:0}
+.tog{display:inline-flex;align-items:center;min-height:40px;padding:0 16px;border-radius:999px;font-size:15px;font-weight:600;color:#13385d;background:#ffffff;box-shadow:inset 0 0 0 1.5px #c3ccd6;cursor:pointer}
+.tog.on{background:#13385d;color:#ffffff;box-shadow:none}
+.search{display:flex;align-items:center;gap:8px;background:#ffffff;border-radius:999px;padding:6px 6px 6px 24px}
+.search input{flex:1 1 auto;min-width:0;min-height:52px;border:0;outline:0;font:17px Geologica,sans-serif;color:#21272e;background:transparent}
+.search:focus-within{box-shadow:0 0 0 3px #007ac2}
+.sel{min-height:48px;border:0;border-radius:999px;padding:0 18px;font:600 15px Geologica,sans-serif;color:#13385d;background:#ffffff}
+.ftag{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:0 6px 0 14px;border-radius:999px;background:#ffffff;font-size:14px;font-weight:600;color:#13385d}
+.ftag i{width:24px;height:24px;border-radius:50%;background:#e6eaeb;display:grid;place-items:center;font-style:normal;font-size:13px}
+.items{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:24px}
+.it-img{position:relative;aspect-ratio:1/1;display:grid;place-items:center;overflow:hidden}
+.it-img img{max-width:66%;max-height:74%;object-fit:contain}
+.it-b{padding:20px 24px 24px;display:flex;flex-direction:column;gap:8px;flex:1 1 auto}
+.it-m{font-size:24px;font-weight:700;letter-spacing:-0.015em}
+.it-t{font-size:16px;line-height:1.4;color:#21272e}
+.eol{position:absolute;top:16px;left:16px;font-size:13px;font-weight:600;background:#21272e;color:#ffffff;padding:7px 12px;border-radius:999px}
+.apply{display:none}
+@media (max-width:1000px){.cat-grid{grid-template-columns:minmax(0,1fr)}.filters{position:static}.inds{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.inds{grid-template-columns:1fr 1fr;gap:10px}.ind{min-height:130px;padding:16px}.ind b{font-size:19px}.ind span{display:none}.cat{padding:32px 0 72px}.filters{padding:20px}.items{grid-template-columns:1fr 1fr;gap:10px}.it-b{padding:14px}.it-m{font-size:18px}.it-t{font-size:14px}.go{display:none}.search{padding-left:16px}}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
+<script src="runtime.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/x-template" id="tpl">
+
+<div style="font-family: Geologica, sans-serif; color: #21272e; background: #ffffff; overflow-x: hidden">
+
+<a href="#main" class="skip">Перейти до змісту</a>
+<header style="position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.88); backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid rgba(19,56,93,.08)">
+  <div class="wrap" style="display: flex; align-items: center; gap: 40px; min-height: 76px">
+    <a href="index.html" aria-label="НІК-ЕЛЕКТРОНІКА, на головну" style="display: flex"><img src="assets/4acb50f3-nik-logo.svg" alt="NIK" style="height: 34px; width: auto; display: block"></a>
+    <nav class="nav" aria-label="Головне меню" style="display: flex; gap: 32px; flex: 1 1 auto">
+      <a href="catalog.html" aria-current="page">Каталог</a>
+      <a href="about.html">Про нас</a>
+      <a href="where-to-buy.html">Контакти</a>
+      <a href="news.html">Прес-центр</a>
+      <a href="#">Електронні документи</a>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 8px; margin-left: auto">
+      <button class="icon-btn burger" aria-label="Відкрити меню"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+      <button class="icon-btn" aria-label="Пошук"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></button>
+      <button class="icon-btn" aria-label="Особистий кабінет"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
+      <div class="lang3" style="display: flex; margin-left: 8px; font-size: 14px; font-weight: 600">
+        <a href="#" aria-current="true" style="padding: 12px 6px; color: #e30427; text-decoration: none">UA</a>
+        <a href="#" style="padding: 12px 6px; color: #59636e; text-decoration: none">EN</a>
+        <a href="#" style="padding: 12px 6px; color: #59636e; text-decoration: none">RU</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="main" class="phead">
+  <svg class="net" viewBox="0 0 1440 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path d="M-20 330 L240 270 L460 310 L700 240 L940 300 L1180 220 L1460 270"></path>
+    <path d="M700 240 L820 90 L1060 60 L1180 220 M240 270 L330 120"></path>
+    <path class="pulse" pathLength="100" d="M-20 330 L240 270 L460 310 L700 240 L940 300 L1180 220 L1460 270"></path>
+    <path class="pulse" pathLength="100" d="M700 240 L820 90 L1060 60 L1180 220" style="animation-duration: 4.5s; animation-delay: 1s"></path>
+  </svg>
+  <div class="wrap" style="padding-top: 40px; padding-bottom: 56px">
+    <nav aria-label="Хлібні крихти" class="crumbs"><a href="index.html">Головна</a><span aria-hidden="true">/</span><span aria-current="page">Каталог</span></nav>
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; margin-top: 28px">
+      <h1 class="h1p"><span class="line"><span>Каталог</span></span></h1>
+      <div class="pills" role="tablist" aria-label="Розділ каталогу">
+        <a href="#" aria-current="page">Продукти <span class="n">30</span></a>
+        <a href="#">Послуги</a>
+        <a href="#">Цифрові продукти</a>
+      </div>
+    </div>
+    <div class="inds">
+      <sc-for list="{{inds}}" as="g" hint-placeholder-count="4">
+        <a href="#" class="ind" aria-current="{{g.cur}}" style="--acc: {{g.acc}}">
+          <img class="{{g.cls}}" src="{{g.img}}" alt="">
+          <b>{{g.t}}</b>
+          <span>{{g.n}}</span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section class="cat">
+  <div class="wrap cat-grid">
+    <form class="filters" aria-label="Фільтри каталогу">
+      <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px">
+        <span class="h3x" style="font-size: 26px">Фільтри</span>
+        <a href="#" style="font-size: 15px; font-weight: 600">Скинути</a>
+      </div>
+      <fieldset class="fgroup">
+        <legend>Тип</legend>
+        <label class="chk"><input type="checkbox"> Однофазні</label>
+        <label class="chk"><input type="checkbox" checked> Трифазні</label>
+      </fieldset>
+      <fieldset class="fgroup">
+        <legend>Канали передачі даних</legend>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; clear: both">
+          <span class="tog on">PLC</span><span class="tog">G3-PLC</span><span class="tog">RF</span><span class="tog">GSM</span><span class="tog">NB-IoT</span><span class="tog">RS-485</span>
+        </div>
+      </fieldset>
+      <fieldset class="fgroup">
+        <legend>Клас точності</legend>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; clear: both"><span class="tog">0,5S</span><span class="tog">1</span><span class="tog">2</span></div>
+      </fieldset>
+      <fieldset class="fgroup">
+        <legend>Реле й сертифікати</legend>
+        <label class="chk"><input type="checkbox"> З реле навантаження</label>
+        <label class="chk"><input type="checkbox"> MID</label>
+        <label class="chk"><input type="checkbox"> CE</label>
+        <label class="chk"><input type="checkbox"> ДСТУ</label>
+      </fieldset>
+      <fieldset class="fgroup">
+        <legend>Номінальний струм, А</legend>
+        <select class="sel" aria-label="Номінальний струм" style="width: 100%; background: #e6eaeb; clear: both">
+          <option>Усі значення</option><option>5(10) А</option><option>5(60) А</option><option>5(100) А</option>
+        </select>
+      </fieldset>
+      <fieldset class="fgroup" style="padding-bottom: 0">
+        <label class="chk"><input type="checkbox"> Показати зняті з виробництва</label>
+      </fieldset>
+    </form>
+
+    <div style="min-width: 0">
+      <form role="search" class="search">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#59636e" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+        <label for="q" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Пошук у каталозі</label>
+        <input id="q" type="search" placeholder="Модель, артикул, протокол — напр. NIK 2307, DLMS">
+        <button type="submit" class="btn btn-navy" style="min-height: 52px">Знайти</button>
+      </form>
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 20px">
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center">
+          <span style="font-size: 16px; color: #21272e; margin-right: 6px">Знайдено <b class="num" style="color: #13385d">12</b> моделей</span>
+          <span class="ftag">Електрика <i aria-label="Прибрати">×</i></span>
+          <span class="ftag">Трифазні <i aria-label="Прибрати">×</i></span>
+          <span class="ftag">PLC <i aria-label="Прибрати">×</i></span>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap">
+          <a href="#" style="font-size: 15px; font-weight: 600">Таблиця взаємозамінності →</a>
+          <select class="sel" aria-label="Сортування"><option>За наявністю</option><option>За категорією</option><option>За алфавітом</option></select>
+        </div>
+      </div>
+
+      <div class="items">
+        <sc-for list="{{items}}" as="p" hint-placeholder-count="9">
+          <a href="product.html" class="card3 rise">
+            <div class="it-img stagebg">
+              <img class="{{p.cls}}" src="{{p.img}}" alt="{{p.model}}">
+              <sc-if value="{{p.eol}}" hint-placeholder-val="{{false}}"><span class="eol">Знято з виробництва</span></sc-if>
+            </div>
+            <div class="it-b">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px">
+                <div><div class="it-m">{{p.model}}</div><div class="it-t" style="margin-top: 6px">{{p.type}}</div></div>
+                <span class="go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+              </div>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto; padding-top: 10px">
+                <sc-for list="{{p.ch}}" as="c" hint-placeholder-count="2"><span class="chip-s chip-c">{{c}}</span></sc-for>
+              </div>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+
+      <nav class="pg" aria-label="Сторінки" style="margin-top: 40px">
+        <a href="#" aria-label="Попередня сторінка">←</a>
+        <a href="#" aria-current="page">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#" aria-label="Наступна сторінка">→</a>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<section style="background: #13385d; color: #ffffff">
+  <div class="wrap" style="display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap; padding-top: 72px; padding-bottom: 72px">
+    <div>
+      <h2 class="h2x" style="color: #ffffff">Не знайшли потрібну модель?</h2>
+      <p class="lead" style="margin: 16px 0 0; color: #dbe3eb">Технічний спеціаліст допоможе підібрати прилад або заміну.</p>
+    </div>
+    <a href="#" class="btn btn-red">Отримати консультацію<span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+  </div>
+</section>
+
+<footer class="foot" style="background: #13385d; color: #dbe3eb">
+  <div class="wrap fgrid" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px; padding-top: 72px; padding-bottom: 48px">
+    <div>
+      <img src="assets/0fb4110e-nik-logo-white.svg" alt="NIK" style="height: 32px; width: auto; display: block">
+      <p style="margin: 20px 0 0; font-size: 15px; line-height: 1.6">ТОВ «НІК-ЕЛЕКТРОНІКА»<br>вул. Левка Лук'яненка, 13А, Київ, 04212</p>
+      <p class="num" style="margin: 12px 0 0; font-size: 15px; line-height: 1.8"><a href="#">+380 (44) 498-06-19</a><br><a href="#">info@nikel.com.ua</a></p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <div style="font-size: 16px; font-weight: 700; color: #ffffff">Каталог</div>
+      <a href="#">Облік електроенергії</a><a href="#">Облік води й тепла</a><a href="#">Облік газу</a><a href="#">АСКОЕ</a><a href="#">Послуги</a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <div style="font-size: 16px; font-weight: 700; color: #ffffff">Компанія</div>
+      <a href="#">Про компанію</a><a href="#">Історія</a><a href="#">Кар'єра</a><a href="#">Центр оцінки відповідності</a><a href="#">Наші партнери</a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <div style="font-size: 16px; font-weight: 700; color: #ffffff">Зв'язок</div>
+      <a href="#">Форма зворотного зв'язку</a><a href="#">Де купити</a><a href="#">Сервісний центр</a><a href="#">Facebook</a><a href="#">YouTube</a><a href="#">LinkedIn</a>
+    </div>
+  </div>
+  <div class="wrap" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-top: 24px; padding-bottom: 32px; border-top: 1px solid rgba(255,255,255,.16); font-size: 14px">
+    <span>© 2005–2026 ТОВ «НІК-ЕЛЕКТРОНІКА»</span>
+    <span style="display: flex; gap: 24px; flex-wrap: wrap"><a href="#">Юридична інформація</a><a href="#">Політика конфіденційності</a><a href="#">Фінансова звітність</a></span>
+  </div>
+</footer>
+
+</div>
+</script>
+<script>
+window.DC_BLOBS = {"d3153f2f5ed8d9965f5fb1e49ae07ad9":"assets/d3153f2f-cut-2300.webp","c4241830221490918fd0d48d83d56297":"assets/c4241830-cut-7071.webp","2bbc2afc7b05132fc37db958a1efe7a4":"assets/2bbc2afc-t-5500.jpg","4e3e1ef59dd050762514eb1b6bc902b0":"assets/4e3e1ef5-cut-kc02.webp","f0a2363fd4057897cae4831524ce270e":"assets/f0a2363f-cut-2303.webp","d44b48d010a937c9048712bd27b4b807":"assets/d44b48d0-cut-2104.webp","9b13e5f6913676cc93140685ba7b1bc0":"assets/9b13e5f6-cut-2100.webp","1bc2c60e4fa2f82c5d311ace163765cc":"assets/1bc2c60e-cut-kk01.webp","d157d6c6177c3e8d49093a281d0d118d":"assets/d157d6c6-t-7021.jpg","07c44668a5a79d699210918f2ee79e65":"assets/07c44668-cut-stv.webp"};
+
+class Component extends DCLogic {
+  renderVals() {
+    const B = '/_blob/';
+    const cut = (id) => ({ img: B + id, cls: 'devimg' });
+    const flat = (id) => ({ img: B + id, cls: 'flat' });
+    return {
+      inds: [
+        { t: 'Електрика', n: '18 моделей', acc: '#ffb300', cur: 'true', ...cut('d3153f2f5ed8d9965f5fb1e49ae07ad9') },
+        { t: 'Вода й тепло', n: '6 моделей', acc: '#007ac2', cur: 'false', ...cut('c4241830221490918fd0d48d83d56297') },
+        { t: 'Газ', n: '2 моделі', acc: '#f26500', cur: 'false', ...flat('2bbc2afc7b05132fc37db958a1efe7a4') },
+        { t: 'Менеджмент', n: 'АСКОЕ та IoT', acc: '#00a86b', cur: 'false', ...cut('4e3e1ef59dd050762514eb1b6bc902b0') }
+      ],
+      items: [
+        { model: 'NIK 2300', type: 'Лічильник електроенергії трифазний', ch: ['PLC', 'G3-PLC'], eol: false, ...cut('d3153f2f5ed8d9965f5fb1e49ae07ad9') },
+        { model: 'NIK 2303', type: 'Лічильник електроенергії трифазний', ch: ['PLC'], eol: false, ...cut('f0a2363fd4057897cae4831524ce270e') },
+        { model: 'NIK 2104', type: 'Лічильник електроенергії однофазний', ch: ['[канал]'], eol: false, ...cut('d44b48d010a937c9048712bd27b4b807') },
+        { model: 'NIK 2100', type: 'Лічильник електроенергії однофазний', ch: ['[канал]'], eol: true, ...cut('9b13e5f6913676cc93140685ba7b1bc0') },
+        { model: 'KC-02', type: 'Концентратор даних АСКОЕ', ch: ['[канал]'], eol: false, ...cut('4e3e1ef59dd050762514eb1b6bc902b0') },
+        { model: 'KK-01', type: 'Комунікаційний контролер АСКОЕ', ch: ['[канал]'], eol: false, ...cut('1bc2c60e4fa2f82c5d311ace163765cc') },
+        { model: 'NIK 7021', type: 'Лічильник води', ch: ['M-Bus'], eol: false, ...flat('d157d6c6177c3e8d49093a281d0d118d') },
+        { model: 'NIK 7071', type: 'Теплолічильник', ch: ['M-Bus'], eol: false, ...cut('c4241830221490918fd0d48d83d56297') },
+        { model: 'NIK STV-01M', type: 'Стабілізатор напруги', ch: ['—'], eol: false, ...cut('07c44668a5a79d699210918f2ee79e65') }
+      ]
+    };
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Прес-центр — NIK-ЕЛЕКТРОНІКА (прототип)</title>
+<meta name="robots" content="noindex">
+
+<style>
+@font-face{font-family:'Geologica';font-style:normal;font-weight:300 800;font-display:swap;src:url(assets/58ce8622-Geologica-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Geologica';font-style:normal;font-weight:300 800;font-display:swap;src:url(assets/129ad3ba-Geologica-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+</style>
+<style>
+body{margin:0;background:#ffffff}
+::selection{background:#13385d;color:#ffffff}
+a{color:#13385d}a:not(.btn):hover{color:#b8031f}
+.wrap{max-width:1280px;margin:0 auto;padding:0 32px;box-sizing:border-box}
+.num{font-variant-numeric:tabular-nums}
+.nav a{color:#13385d;text-decoration:none;font-weight:500;font-size:15px;padding:10px 0;transition:color .15s ease}
+.nav a:hover{color:#b8031f}
+.nav a[aria-current="page"]{color:#e30427;box-shadow:inset 0 -2px 0 #e30427}
+.btn{display:inline-flex;align-items:center;gap:14px;min-height:56px;padding:0 28px;border-radius:999px;font-weight:600;font-size:17px;text-decoration:none;box-sizing:border-box;border:0;cursor:pointer;font-family:inherit;transition:background-color .15s ease,color .15s ease,transform .16s cubic-bezier(.23,1,.32,1)}
+.btn:active{transform:scale(.97)}
+.btn:has(.arr){padding-right:8px}
+.btn-red{background:#e30427;color:#ffffff}.btn-red:hover{background:#b8031f;color:#ffffff}
+.btn-line{box-shadow:inset 0 0 0 1.5px #13385d;color:#13385d;background:transparent}.btn-line:hover{background:#13385d;color:#ffffff}
+.btn-navy{background:#13385d;color:#ffffff}.btn-navy:hover{background:#0f2d4b;color:#ffffff}
+.btn-white{background:#ffffff;color:#13385d}.btn-white .arr{background:#e30427;color:#ffffff}.btn-white:hover{background:#13385d;color:#ffffff}
+.btn-ghost{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.8);color:#ffffff;background:transparent}.btn-ghost:hover{background:#ffffff;color:#b8031f}
+.arr{width:40px;height:40px;border-radius:50%;display:inline-grid;place-items:center;background:rgba(255,255,255,.2);transition:background-color .2s ease,color .2s ease}
+.arr svg{transition:transform .25s cubic-bezier(.23,1,.32,1)}
+.btn-line .arr{background:#dbe3eb}
+@media (hover:hover) and (pointer:fine){.btn:hover .arr svg{transform:translateX(3px)}.btn-red:hover .arr{background:#ffffff;color:#b8031f}.btn-line:hover .arr{background:#ffffff;color:#13385d}}
+.icon-btn{width:44px;height:44px;border-radius:50%;border:1px solid #c3ccd6;background:#ffffff;color:#13385d;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .15s ease,transform .16s cubic-bezier(.23,1,.32,1)}
+.icon-btn:hover{border-color:#13385d}.icon-btn:active{transform:scale(.95)}
+.skip{position:absolute;left:16px;top:-80px;z-index:100;background:#13385d;color:#ffffff;padding:12px 16px;border-radius:8px;text-decoration:none;font-weight:600}.skip:focus{top:12px;color:#ffffff}.skip:hover{color:#ffffff}
+:focus-visible{outline:3px solid #007ac2;outline-offset:3px}
+.burger{display:none}
+@media (max-width:900px){.nav{display:none !important}.burger{display:inline-flex}}
+.h1p{margin:0;font-size:clamp(48px,6.4vw,92px);line-height:.95;font-weight:700;color:#13385d;letter-spacing:-0.04em;text-wrap:balance}
+.h2x{margin:0;font-size:clamp(36px,4.6vw,64px);line-height:1;font-weight:700;color:#13385d;letter-spacing:-0.035em;text-wrap:balance}
+.h3x{margin:0;font-size:clamp(26px,2.4vw,34px);line-height:1.1;font-weight:700;color:#13385d;letter-spacing:-0.02em}
+.lead{font-size:clamp(18px,1.5vw,21px);line-height:1.5;color:#21272e}
+.crumbs{display:flex;gap:10px;flex-wrap:wrap;font-size:15px;color:#59636e}
+.crumbs a{color:#59636e;text-decoration:none}.crumbs a:hover{color:#b8031f}
+.crumbs [aria-current]{color:#13385d;font-weight:600}
+.phead{position:relative;overflow:hidden;background:radial-gradient(50% 80% at 85% 30%,#ffffff 0%,rgba(255,255,255,0) 70%),linear-gradient(180deg,#f3f6f9 0%,#dbe3eb 100%)}
+.phead .net{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.phead .net path{fill:none;stroke:#13385d;stroke-opacity:.08;stroke-width:1.5}
+.phead .net .pulse{stroke:#007ac2;stroke-opacity:.7;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:3 97;stroke-dashoffset:100;animation:pulseRun 6s linear infinite}
+@keyframes pulseRun{to{stroke-dashoffset:0}}
+.phead .wrap{position:relative}
+.pills{display:flex;gap:6px;flex-wrap:wrap;background:#ffffff;border-radius:28px;padding:5px;width:max-content;max-width:100%;box-sizing:border-box;box-shadow:0 8px 24px rgba(19,56,93,.08)}
+.pills a,.pills button{min-height:46px;display:inline-flex;align-items:center;gap:8px;padding:0 22px;border-radius:999px;border:0;background:transparent;text-decoration:none;font:600 16px Geologica,sans-serif;color:#13385d;cursor:pointer;transition:background-color .2s ease,color .2s ease}
+.pills a:hover{background:#e6eaeb;color:#13385d}
+.pills [aria-current],.pills [aria-selected="true"]{background:#13385d;color:#ffffff}
+.pills [aria-current]:hover{background:#13385d;color:#ffffff}
+.pills .n{font-size:13px;opacity:.7}
+.chip-s{display:inline-flex;align-items:center;font-size:14px;font-weight:600;padding:7px 12px;border-radius:999px;background:#e6eaeb;color:#13385d}
+.chip-c{background:#cce4f4}
+.chip-g{background:#cceae0;color:#006b44}
+.stagebg{background:radial-gradient(70% 70% at 50% 45%,#ffffff 0%,#eef2f6 100%)}
+.devimg{filter:drop-shadow(0 22px 22px rgba(19,56,93,.18))}
+.flat{mix-blend-mode:multiply}
+.card3{display:flex;flex-direction:column;background:#ffffff;border-radius:24px;overflow:hidden;text-decoration:none;color:#13385d;transition:box-shadow .3s ease,transform .3s cubic-bezier(.23,1,.32,1)}
+.card3 .ci{transition:transform .5s cubic-bezier(.23,1,.32,1)}
+@media (hover:hover) and (pointer:fine){.card3:hover{box-shadow:0 24px 48px rgba(19,56,93,.14);transform:translateY(-4px)}.card3:hover .ci{transform:scale(1.05)}.card3:hover .go{background:#e30427;color:#ffffff;transform:rotate(-45deg)}}
+.go{flex:0 0 auto;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#e6eaeb;color:#13385d;transition:background-color .2s ease,color .2s ease,transform .3s cubic-bezier(.23,1,.32,1)}
+.pg{display:flex;gap:8px;flex-wrap:wrap}
+.pg a{min-width:48px;height:48px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;text-decoration:none;font-size:16px;font-weight:600;color:#13385d;background:#ffffff}
+.pg a[aria-current]{background:#13385d;color:#ffffff}
+.foot a{color:#dbe3eb;text-decoration:none;font-size:15px;transition:color .15s ease}.foot a:hover{color:#ffffff}
+.line{display:block;overflow:hidden;padding-bottom:.06em}
+.line>span{display:block;animation:rise 900ms cubic-bezier(.16,1,.3,1) both}
+@keyframes rise{from{transform:translateY(108%)}}
+.fade-in{animation:fadeUp 700ms cubic-bezier(.16,1,.3,1) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}}
+@media (prefers-reduced-motion:no-preference){@supports (animation-timeline: view()){
+  .reveal{animation:reveal linear both;animation-timeline:view();animation-range:entry 0% cover 35%}
+  @keyframes reveal{from{clip-path:inset(14% 0 0 0 round 24px);transform:scale(1.06)}to{clip-path:inset(0 0 0 0 round 24px);transform:none}}
+  .rise{animation:riseIn linear both;animation-timeline:view();animation-range:entry 0% cover 25%}
+  @keyframes riseIn{from{opacity:0;transform:translateY(40px)}}
+}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition-duration:.01ms !important}}
+@media (max-width:900px){.foot .fgrid{grid-template-columns:1fr 1fr !important}}
+@media (max-width:600px){.wrap{padding:0 16px}.foot .fgrid{grid-template-columns:1fr !important}.lang3{display:none !important}.pills a,.pills button{padding:0 16px;font-size:15px}}
+
+.feat3{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);background:#ffffff;border-radius:32px;overflow:hidden;text-decoration:none;color:#13385d;margin-top:56px;box-shadow:0 24px 48px rgba(19,56,93,.08)}
+.feat3 .fi{overflow:hidden;min-height:440px}
+.feat3 .fi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.23,1,.32,1)}
+.feat3 .fb{padding:48px;display:flex;flex-direction:column;gap:16px}
+.feat3 h2{margin:0;font-size:clamp(28px,2.8vw,40px);line-height:1.1;letter-spacing:-0.025em;transition:color .15s ease}
+@media (hover:hover) and (pointer:fine){.feat3:hover .fi img{transform:scale(1.04)}.feat3:hover h2{color:#b8031f}}
+.badge{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#13385d;background:#e6eaeb;padding:8px 14px;border-radius:999px}
+.badge i{width:8px;height:8px;border-radius:50%;background:#e30427}
+.posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.post3 .pi{aspect-ratio:16/10;overflow:hidden;background:#e6eaeb}
+.post3 .pi img{width:100%;height:100%;object-fit:cover;display:block}
+.post3 .pb{padding:22px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1 1 auto}
+.post3 .d{font-size:15px;color:#59636e;font-variant-numeric:tabular-nums}
+.post3 .t{font-size:21px;font-weight:700;line-height:1.25;letter-spacing:-0.01em;color:#13385d}
+.post3 .x{font-size:16px;line-height:1.5;color:#21272e}
+@media (max-width:1000px){.feat3{grid-template-columns:1fr}.feat3 .fi{min-height:0;aspect-ratio:16/9}.posts{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.posts{grid-template-columns:1fr}.feat3 .fb{padding:24px}.feat3{border-radius:20px}}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
+<script src="runtime.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/x-template" id="tpl">
+
+<div style="font-family: Geologica, sans-serif; color: #21272e; background: #ffffff; overflow-x: hidden">
+
+<a href="#main" class="skip">Перейти до змісту</a>
+<header style="position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.88); backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid rgba(19,56,93,.08)">
+  <div class="wrap" style="display: flex; align-items: center; gap: 40px; min-height: 76px">
+    <a href="index.html" aria-label="НІК-ЕЛЕКТРОНІКА, на головну" style="display: flex"><img src="assets/4acb50f3-nik-logo.svg" alt="NIK" style="height: 34px; width: auto; display: block"></a>
+    <nav class="nav" aria-label="Головне меню" style="display: flex; gap: 32px; flex: 1 1 auto">
+      <a href="catalog.html">Каталог</a>
+      <a href="about.html">Про нас</a>
+      <a href="where-to-buy.html">Контакти</a>
+      <a href="news.html" aria-current="page">Прес-центр</a>
+      <a href="#">Електронні документи</a>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 8px; margin-left: auto">
+      <button class="icon-btn burger" aria-label="Відкрити меню"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+      <button class="icon-btn" aria-label="Пошук"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></button>
+      <button class="icon-btn" aria-label="Особистий кабінет"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
+      <div class="lang3" style="display: flex; margin-left: 8px; font-size: 14px; font-weight: 600">
+        <a href="#" aria-current="true" style="padding: 12px 6px; color: #e30427; text-decoration: none">UA</a>
+        <a href="#" style="padding: 12px 6px; color: #59636e; text-decoration: none">EN</a>
+        <a href="#" style="padding: 12px 6px; color: #59636e; text-decoration: none">RU</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="main" class="phead">
+  <svg class="net" viewBox="0 0 1440 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path d="M-20 330 L240 270 L460 310 L700 240 L940 300 L1180 220 L1460 270"></path>
+    <path d="M700 240 L820 90 L1060 60 L1180 220 M240 270 L330 120"></path>
+    <path class="pulse" pathLength="100" d="M-20 330 L240 270 L460 310 L700 240 L940 300 L1180 220 L1460 270"></path>
+    <path class="pulse" pathLength="100" d="M700 240 L820 90 L1060 60 L1180 220" style="animation-duration: 4.5s; animation-delay: 1s"></path>
+  </svg>
+  <div class="wrap" style="padding-top: 40px; padding-bottom: 72px">
+    <nav aria-label="Хлібні крихти" class="crumbs"><a href="index.html">Головна</a><span aria-hidden="true">/</span><a href="#">Прес-центр</a><span aria-hidden="true">/</span><span aria-current="page">Новини</span></nav>
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; margin-top: 28px">
+      <h1 class="h1p"><span class="line"><span>Прес-центр</span></span></h1>
+      <div class="pills">
+        <a href="#" aria-current="page">Новини</a>
+        <a href="#">НІКіпедія</a>
+        <a href="#">Ми у ЗМІ</a>
+      </div>
+    </div>
+    <a href="#" class="feat3">
+      <div class="fi"><img class="reveal" src="assets/2d5e93a9-c-robot.jpg" alt=""></div>
+      <div class="fb">
+        <span class="badge"><i></i>Головне · 26.08.2026</span>
+        <h2>Звіт незалежного аудитора щодо фінансової звітності ТОВ «НІК-ЕЛЕКТРОНІКА» за 2025 рік</h2>
+        <p class="lead" style="margin: 0">[Коротке прев'ю новини — 2–3 речення. Перехід на повну статтю за кліком.]</p>
+        <span class="btn btn-red" style="margin-top: auto; align-self: flex-start">Читати<span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section style="background: #e6eaeb; padding: 80px 0 104px">
+  <div class="wrap">
+    <div class="posts">
+      <sc-for list="{{posts}}" as="p" hint-placeholder-count="9">
+        <a href="#" class="card3 post3 rise">
+          <div class="pi"><img class="ci" src="{{p.img}}" alt=""></div>
+          <div class="pb">
+            <div class="d">{{p.d}}</div>
+            <div class="t">{{p.t}}</div>
+            <div class="x">[Коротке прев'ю новини в один-два рядки]</div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+    <nav class="pg" aria-label="Сторінки" style="margin-top: 48px; justify-content: center">
+      <a href="#" aria-label="Попередня сторінка">←</a>
+      <a href="#" aria-current="page">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">…</a>
+      <a href="#">8</a>
+      <a href="#" aria-label="Наступна сторінка">→</a>
+    </nav>
+  </div>
+</section>
+
+<section style="background: #ffffff">
+  <div class="wrap" style="display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap; padding-top: 88px; padding-bottom: 88px">
+    <div>
+      <h2 class="h2x">Для журналістів</h2>
+      <p class="lead" style="margin: 16px 0 0">Логотипи, фото продукції й коментарі експертів — за запитом.</p>
+    </div>
+    <a href="#" class="btn btn-line">Написати в прес-службу<span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+  </div>
+</section>
+
+<footer class="foot" style="background: #13385d; color: #dbe3eb">
+  <div class="wrap fgrid" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px; padding-top: 72px; padding-bottom: 48px">
+    <div>
+      <img src="assets/0fb4110e-nik-logo-white.svg" alt="NIK" style="height: 32px; width: auto; display: block">
+      <p style="margin: 20px 0 0; font-size: 15px; line-height: 1.6">ТОВ «НІК-ЕЛЕКТРОНІКА»<br>вул. Левка Лук'яненка, 13А, Київ, 04212</p>
+      <p class="num" style="margin: 12px 0 0; font-size: 15px; line-height: 1.8"><a href="#">+380 (44) 498-06-19</a><br><a href="#">info@nikel.com.ua</a></p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <div style="font-size: 16px; font-weight: 700; color: #ffffff">Каталог</div>
+      <a href="#">Облік електроенергії</a><a href="#">Облік води й тепла</a><a href="#">Облік газу</a><a href="#">АСКОЕ</a><a href="#">Послуги</a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <div style="font-size: 16px; font-weight: 700; color: #ffffff">Компанія</div>
+      <a href="#">Про компанію</a><a href="#">Історія</a><a href="#">Кар'єра</a><a href="#">Центр оцінки відповідності</a><a href="#">Наші партнери</a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <div style="font-size: 16px; font-weight: 700; color: #ffffff">Зв'язок</div>
+      <a href="#">Форма зворотного зв'язку</a><a href="#">Де купити</a><a href="#">Сервісний центр</a><a href="#">Facebook</a><a href="#">YouTube</a><a href="#">LinkedIn</a>
+    </div>
+  </div>
+  <div class="wrap" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-top: 24px; padding-bottom: 32px; border-top: 1px solid rgba(255,255,255,.16); font-size: 14px">
+    <span>© 2005–2026 ТОВ «НІК-ЕЛЕКТРОНІКА»</span>
+    <span style="display: flex; gap: 24px; flex-wrap: wrap"><a href="#">Юридична інформація</a><a href="#">Політика конфіденційності</a><a href="#">Фінансова звітність</a></span>
+  </div>
+</footer>
+
+</div>
+</script>
+<script>
+window.DC_BLOBS = {"c78a58ccbebb1066392f86ffe8a8c1f2":"assets/c78a58cc-prod-line.jpg","64d3854c808afc98f555fddf056f74b8":"assets/64d3854c-h-2024.webp","2ccf31fa5a1b515e3050b040abee4fb2":"assets/2ccf31fa-p-2300-g.jpg","4ee835b35f0ce1c5b4662a723809ed42":"assets/4ee835b3-h-2023.webp","ea5a942ba9f38ea4590615924d2a72ed":"assets/ea5a942b-p-7021-g.jpg","c0704521db1416ec66e4d8545678ba60":"assets/c0704521-prod-molding.jpg","6567fc3b643335bde19852dd0048394a":"assets/6567fc3b-p-7071-g.jpg","cf8e2f1dd66b397312a466e40c80f839":"assets/cf8e2f1d-h-2018.webp","1695fc08e5d7c1a2fcd4fbc761e00a02":"assets/1695fc08-c-tampo.jpg"};
+
+class Component extends DCLogic {
+  renderVals() {
+    const B = '/_blob/';
+    return {
+      posts: [
+        { d: '29.09.2025', t: 'Звіт незалежного аудитора щодо фінансової звітності за 2024 рік', img: B + 'c78a58ccbebb1066392f86ffe8a8c1f2' },
+        { d: '05.11.2024', t: 'НІК-ЕЛЕКТРОНІКА подовжила членство в ICC', img: B + '64d3854c808afc98f555fddf056f74b8' },
+        { d: '01.10.2023', t: 'НІК-ЕЛЕКТРОНІКА бере участь у виставці «Енергетика в промисловості»', img: B + '2ccf31fa5a1b515e3050b040abee4fb2' },
+        { d: '01.02.2023', t: 'НІК-ЕЛЕКТРОНІКА успішно пройшла ресертифікацію за ISO 27001', img: B + '4ee835b35f0ce1c5b4662a723809ed42' },
+        { d: '10.12.2021', t: 'Лічильник 7021 сертифіковано', img: B + 'ea5a942ba9f38ea4590615924d2a72ed' },
+        { d: '25.03.2021', t: 'Розробка пересувних електротехнічних лабораторій від NIK', img: B + 'c0704521db1416ec66e4d8545678ba60' },
+        { d: '27.01.2021', t: 'Київська торгово-промислова палата про новий теплолічильник NIK 7071', img: B + '6567fc3b643335bde19852dd0048394a' },
+        { d: '08.12.2020', t: 'Сертифікат експертизи типу для KC-02', img: B + 'cf8e2f1dd66b397312a466e40c80f839' },
+        { d: '17.07.2020', t: 'Запуск автоматизованого тамподруку', img: B + '1695fc08e5d7c1a2fcd4fbc761e00a02' }
+      ]
+    };
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>

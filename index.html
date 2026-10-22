@@ -1,0 +1,964 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Головна — NIK-ЕЛЕКТРОНІКА (прототип)</title>
+<meta name="robots" content="noindex">
+
+<style>
+@font-face{font-family:'Geologica';font-style:normal;font-weight:300 800;font-display:swap;src:url(assets/58ce8622-Geologica-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Geologica';font-style:normal;font-weight:300 800;font-display:swap;src:url(assets/129ad3ba-Geologica-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+</style>
+<style>
+body{margin:0;background:#ffffff}
+::selection{background:#13385d;color:#ffffff}
+a{color:#13385d}a:not(.btn):hover{color:#b8031f}
+.wrap{max-width:1280px;margin:0 auto;padding:0 32px;box-sizing:border-box}
+.num{font-variant-numeric:tabular-nums}
+.nav a{color:#13385d;text-decoration:none;font-weight:500;font-size:15px;padding:10px 0;transition:color .15s ease}
+.nav a:hover{color:#b8031f}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 26px;border-radius:8px;font-weight:600;font-size:16px;text-decoration:none;box-sizing:border-box;border:0;cursor:pointer;font-family:inherit;transition:background-color .15s ease,color .15s ease,transform .16s cubic-bezier(.23,1,.32,1)}
+.btn:active{transform:scale(.97)}
+.btn-red{background:#e30427;color:#ffffff}.btn-red:hover{background:#b8031f;color:#ffffff}
+.btn-line{box-shadow:inset 0 0 0 1.5px #13385d;color:#13385d;background:transparent}.btn-line:hover{background:#13385d;color:#ffffff}
+.icon-btn{width:44px;height:44px;border-radius:8px;border:1px solid #c3ccd6;background:#ffffff;color:#13385d;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .15s ease,transform .16s cubic-bezier(.23,1,.32,1)}
+.icon-btn:hover{border-color:#13385d}.icon-btn:active{transform:scale(.95)}
+.h2{margin:0;font-size:clamp(36px,4vw,56px);line-height:1.04;font-weight:700;color:#13385d;letter-spacing:-0.025em;text-wrap:balance}
+.skip{position:absolute;left:16px;top:-80px;z-index:100;background:#13385d;color:#ffffff;padding:12px 16px;border-radius:8px;text-decoration:none;font-weight:600}.skip:focus{top:12px;color:#ffffff}.skip:hover{color:#ffffff}
+:focus-visible{outline:3px solid #007ac2;outline-offset:3px}
+.burger{display:none}
+@media (max-width:900px){.nav{display:none !important}.burger{display:inline-flex}}
+
+/* hero load sequence */
+.line{display:block;overflow:hidden;padding-bottom:.06em}
+.line>span{display:block;animation:rise 900ms cubic-bezier(.16,1,.3,1) both}
+@keyframes rise{from{transform:translateY(108%)}}
+.fade-in{animation:fadeUp 700ms cubic-bezier(.16,1,.3,1) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}}
+.stage-img{animation:stageIn 1100ms cubic-bezier(.16,1,.3,1) 150ms both}
+@keyframes stageIn{from{opacity:0;transform:scale(1.05)}}
+
+/* hotspots */
+.hs{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border:0;padding:0;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;animation:fadeUp 500ms cubic-bezier(.16,1,.3,1) both}
+.hs-dot{position:relative;width:16px;height:16px;border-radius:50%;background:#e30427;box-shadow:0 0 0 4px rgba(255,255,255,.95),0 2px 8px rgba(11,15,20,.25);transition:transform .2s cubic-bezier(.23,1,.32,1),background-color .2s ease}
+.hs-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid #e30427;animation:ping 2.6s cubic-bezier(.16,1,.3,1) infinite}
+@keyframes ping{0%{transform:scale(.8);opacity:.9}70%,100%{transform:scale(2.4);opacity:0}}
+.hs[aria-pressed="true"] .hs-dot{background:#13385d;transform:scale(1.25)}
+.hs[aria-pressed="true"] .hs-dot::after{border-color:#13385d}
+.hs-card{position:absolute;left:24px;bottom:24px;max-width:340px;background:#ffffff;border-radius:12px;padding:20px 22px;box-shadow:0 10px 28px rgba(11,15,20,.14);transition:opacity .25s ease,transform .3s cubic-bezier(.23,1,.32,1);opacity:0;transform:translateY(10px);pointer-events:none}
+.hs-card.on{opacity:1;transform:none;pointer-events:auto}
+
+/* role switcher */
+.role-tab{min-height:44px;padding:0 18px;border-radius:999px;border:0;background:transparent;color:#13385d;font:600 15px Geologica,sans-serif;cursor:pointer;transition:background-color .2s ease,color .2s ease}
+.role-tab:hover{background:#c3ccd6}
+.role-tab[aria-selected="true"]{background:#13385d;color:#ffffff}
+.role-body{animation:fadeUp 350ms cubic-bezier(.16,1,.3,1) both}
+
+/* catalog rail */
+.rail{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:32px;padding:4px 32px 24px;margin:0 -32px;scrollbar-width:thin;scrollbar-color:#13385d #e6eaeb}
+.tile{flex:0 0 280px;scroll-snap-align:start;text-decoration:none;color:#13385d;display:flex;flex-direction:column;gap:16px}
+.tile-img{border-radius:12px;overflow:hidden;background:#e6eaeb;aspect-ratio:4/5}
+.tile-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.23,1,.32,1)}
+.tile-name{font-size:20px;font-weight:600;line-height:1.25;transition:color .15s ease}
+@media (hover:hover) and (pointer:fine){.tile:hover .tile-img img{transform:scale(1.05)}.tile:hover .tile-name{color:#b8031f}}
+
+/* key figures: number size follows column width, so any length fits on one line */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:40px 48px;align-items:start}
+.stat{container-type:inline-size;min-width:0}
+.stat-num{font-size:clamp(44px,18cqi,104px);font-weight:700;line-height:1;color:#13385d;letter-spacing:-0.035em;white-space:nowrap;font-variant-numeric:tabular-nums}
+.stat-iso{min-height:clamp(44px,18cqi,104px);display:flex;flex-wrap:wrap;gap:8px;align-content:center}
+.stat-cap{margin-top:14px;font-size:18px;line-height:1.4;color:#21272e;max-width:24ch;text-wrap:balance}
+@media (max-width:1000px){.ruler-years{display:none}}
+/* ruler */
+.ruler{display:flex;align-items:flex-end;justify-content:space-between;height:120px;border-bottom:2px solid #13385d}
+.tick{width:2px;background:#8699b0;height:28px;transform-origin:bottom}
+.tick.major{background:#13385d;height:56px}
+.tick.mile{background:#e30427;height:104px;width:3px}
+.mile-card{padding-top:20px}
+
+/* gallery */
+.thumb{padding:0;border:0;border-radius:8px;overflow:hidden;aspect-ratio:1/1;cursor:pointer;background:#e6eaeb;outline:2px solid transparent;outline-offset:2px;transition:outline-color .2s ease,opacity .2s ease}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb[aria-current="true"]{outline-color:#e30427}
+
+.logo-slot{height:104px;transition:transform .2s cubic-bezier(.23,1,.32,1);border-radius:12px;background:#ffffff;display:flex;align-items:center;justify-content:center;color:#59636e;font-size:13px}
+
+/* news */
+.tab{min-height:44px;padding:0 20px;border:0;border-radius:999px;font:600 15px Geologica,sans-serif;cursor:pointer;transition:background-color .2s ease,color .2s ease}
+.news-body{animation:fadeUp 350ms cubic-bezier(.16,1,.3,1) both}
+.post{text-decoration:none;color:inherit;display:flex;flex-direction:column}
+.post-img{border-radius:12px;overflow:hidden;background:#e6eaeb}
+.post-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.23,1,.32,1)}
+@media (hover:hover) and (pointer:fine){.post:hover .post-img img{transform:scale(1.04)}.post:hover .post-title{color:#b8031f}}
+.post-title{transition:color .15s ease}
+
+.foot a{color:#c3ccd6;text-decoration:none;font-size:15px;transition:color .15s ease}.foot a:hover{color:#ffffff}
+
+/* scroll-driven: images reveal, ruler ticks grow, CTA mark turns */
+@media (prefers-reduced-motion:no-preference){
+  @supports (animation-timeline: view()){
+    .reveal{animation:reveal linear both;animation-timeline:view();animation-range:entry 0% cover 35%}
+    @keyframes reveal{from{clip-path:inset(14% 0 0 0 round 12px);transform:scale(1.06)}to{clip-path:inset(0 0 0 0 round 12px);transform:none}}
+    .tick{animation:grow linear both;animation-timeline:view();animation-range:entry 20% cover 45%}
+    @keyframes grow{from{transform:scaleY(.15)}}
+    .mark{animation:turn linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
+    @keyframes turn{from{transform:rotate(-14deg) scale(.9)}to{transform:rotate(10deg) scale(1.04)}}
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition-duration:.01ms !important}
+  .hs-card{transition:opacity .2s ease !important}
+}
+</style>
+<style>
+/* ===== v3: кольоровий ритм, масштаб, глибина ===== */
+@property --d1{syntax:'<integer>';inherits:false;initial-value:0}
+@property --d2{syntax:'<integer>';inherits:false;initial-value:0}
+.btn{min-height:56px;padding:0 28px;border-radius:999px;gap:14px;font-size:17px}
+.btn:has(.arr){padding-right:8px}
+.arr{width:40px;height:40px;border-radius:50%;display:inline-grid;place-items:center;background:rgba(255,255,255,.2);transition:background-color .2s ease,color .2s ease}
+.arr svg{transition:transform .25s cubic-bezier(.23,1,.32,1)}
+.btn-line .arr{background:#dbe3eb}
+.btn-white{background:#ffffff;color:#13385d}.btn-white .arr{background:#e30427;color:#ffffff}
+.btn-white:hover{background:#13385d;color:#ffffff}
+.btn-ghost{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.8);color:#ffffff;background:transparent}.btn-ghost:hover{background:#ffffff;color:#b8031f}
+@media (hover:hover) and (pointer:fine){.btn:hover .arr svg{transform:translateX(3px)}.btn-red:hover .arr{background:#ffffff;color:#b8031f}.btn-line:hover .arr{background:#ffffff;color:#13385d}}
+.h2x{margin:0;font-size:clamp(40px,5.2vw,76px);line-height:.98;font-weight:700;color:#13385d;letter-spacing:-0.035em;text-wrap:balance}
+.lead{font-size:clamp(18px,1.5vw,21px);line-height:1.5;color:#21272e}
+
+/* hero */
+.hero3{position:relative;overflow:hidden;background:radial-gradient(60% 70% at 74% 46%,#ffffff 0%,rgba(255,255,255,0) 70%),linear-gradient(180deg,#f3f6f9 0%,#dbe3eb 100%)}
+.net{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.net .ln{fill:none;stroke:#13385d;stroke-opacity:.09;stroke-width:1.5}
+.net .nd{fill:#13385d;fill-opacity:.16}
+.net .pulse{fill:none;stroke:#007ac2;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:3 97;stroke-dashoffset:100;opacity:.75}
+.hero3-grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 560px;gap:0;align-items:center;min-height:780px;padding-top:24px;padding-bottom:40px}
+.h1x{margin:0;font-size:clamp(40px,12cqi,92px);line-height:.94;font-weight:700;color:#13385d;letter-spacing:-0.04em;position:relative;z-index:2}
+.h1x .red{color:#e30427}
+.hero3-text{position:relative;z-index:2;padding-bottom:24px;container-type:inline-size}
+.h1x .line>span{white-space:nowrap}
+.stage3{position:relative;height:780px;display:flex;align-items:center;justify-content:center;perspective:1400px}
+.stage3::before{content:"";position:absolute;left:50%;top:48%;width:120%;aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,255,255,.95) 0%,rgba(255,255,255,.5) 35%,rgba(255,255,255,0) 66%);pointer-events:none}
+.floor{position:absolute;left:50%;bottom:34px;width:78%;height:46px;transform:translateX(-50%);background:radial-gradient(50% 50% at 50% 50%,rgba(19,56,93,.32),rgba(19,56,93,0));filter:blur(6px)}
+.dev{position:relative;width:560px;aspect-ratio:894/1100;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.23,1,.32,1);animation:devIn 1200ms cubic-bezier(.16,1,.3,1) 120ms both}
+@keyframes devIn{from{opacity:0;transform:translateY(40px) rotateX(8deg)}}
+.dev img{position:absolute;inset:0;width:100%;height:100%;display:block;filter:drop-shadow(0 40px 40px rgba(19,56,93,.22)) drop-shadow(0 8px 10px rgba(19,56,93,.12))}
+.dev .shine{position:absolute;inset:6% 2% 0 2%;border-radius:4% 4% 8% 8%;background:linear-gradient(115deg,rgba(255,255,255,0) 30%,rgba(255,255,255,.55) 45%,rgba(255,255,255,0) 60%);background-size:250% 100%;mix-blend-mode:soft-light;animation:shine 7s cubic-bezier(.45,0,.55,1) 1.4s infinite;pointer-events:none}
+@keyframes shine{0%{background-position:120% 0}40%,100%{background-position:-60% 0}}
+.led{position:absolute;left:34.4%;top:29.6%;width:2.6%;height:1.8%;border-radius:2px;background:#9dff7a;box-shadow:0 0 10px 3px rgba(120,255,90,.75);animation:led 1.15s steps(1) infinite}
+@keyframes led{0%,12%{opacity:1}13%,100%{opacity:.15}}
+.chip{position:absolute;z-index:3;display:flex;flex-direction:column;gap:4px;padding:14px 18px;border-radius:16px;background:rgba(255,255,255,.86);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);box-shadow:0 18px 40px rgba(19,56,93,.16),0 0 0 1px rgba(19,56,93,.06);animation:fadeUp 700ms cubic-bezier(.16,1,.3,1) both;white-space:nowrap}
+.chip-k{font-size:14px;color:#59636e;display:flex;align-items:center;gap:8px}
+.chip-v{font-size:24px;font-weight:700;color:#13385d;letter-spacing:-0.02em;font-variant-numeric:tabular-nums}
+.chip-v small{font-size:15px;font-weight:600;color:#59636e;margin-left:4px}
+.chip::after{content:"";position:absolute;width:var(--lw,60px);height:1.5px;background:#13385d;opacity:.35;top:50%}
+.chip.nolead::after{display:none}
+.chip.to-r::after{left:100%}
+.chip.to-l::after{right:100%}
+.chip .pin{position:absolute;top:calc(50% - 5px);width:10px;height:10px;border-radius:50%;background:#e30427;box-shadow:0 0 0 4px rgba(227,4,39,.18)}
+.chip.to-r .pin{left:calc(100% + var(--lw,60px) - 5px)}
+.chip.to-l .pin{right:calc(100% + var(--lw,60px) - 5px)}
+.cnt{display:inline-block}
+.cnt .d2{counter-reset:d2 var(--d2);animation:dig 100s steps(10,jump-none) infinite}
+.cnt .d1{counter-reset:d1 var(--d1);animation:dig1 10s steps(10,jump-none) infinite}
+.cnt .d2::after{content:counter(d2)}.cnt .d1::after{content:counter(d1)}
+@keyframes dig{from{--d2:0}to{--d2:9}}
+@keyframes dig1{from{--d1:0}to{--d1:9}}
+.bars{display:inline-flex;gap:2px;align-items:flex-end;height:12px}
+.bars i{width:3px;background:#00a86b;border-radius:1px;animation:bar 1.6s ease-in-out infinite}
+.bars i:nth-child(1){height:5px}.bars i:nth-child(2){height:8px;animation-delay:.15s}.bars i:nth-child(3){height:12px;animation-delay:.3s}
+@keyframes bar{0%,100%{opacity:1}50%{opacity:.3}}
+.live{width:8px;height:8px;border-radius:50%;background:#00a86b;box-shadow:0 0 0 0 rgba(0,168,107,.5);animation:live 2s ease-out infinite}
+@keyframes live{0%{box-shadow:0 0 0 0 rgba(0,168,107,.5)}80%,100%{box-shadow:0 0 0 8px rgba(0,168,107,0)}}
+.hero3-facts{display:flex;gap:40px;margin-top:48px;flex-wrap:wrap}
+.hero3-facts b{display:block;font-size:40px;line-height:1;color:#13385d;letter-spacing:-0.03em;font-variant-numeric:tabular-nums}
+.hero3-facts span{display:block;margin-top:8px;font-size:16px;color:#59636e}
+
+/* roles */
+.roles3{padding:120px 0 120px;background:#ffffff}
+.roles3-h{display:flex;align-items:baseline;gap:.25em;flex-wrap:wrap;margin:0;font-size:clamp(40px,6vw,88px);line-height:1;font-weight:700;color:#13385d;letter-spacing:-0.04em}
+.roles3-h .w{color:#e30427;animation:fadeUp 450ms cubic-bezier(.16,1,.3,1) both}
+.rcards{display:flex;gap:12px;height:520px;margin-top:48px}
+.rcard{position:relative;flex:1 1 0;min-width:0;border:0;padding:0;border-radius:24px;overflow:hidden;cursor:pointer;text-align:left;background:#13385d;font-family:inherit;transition:flex-grow .6s cubic-bezier(.23,1,.32,1)}
+.rcard[aria-expanded="true"]{flex-grow:1.9;cursor:default}
+.rcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.23,1,.32,1)}
+.rcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(19,56,93,0) 30%,rgba(19,56,93,.9) 100%)}
+.rcard[aria-expanded="false"]::after{background:linear-gradient(180deg,rgba(19,56,93,.25) 0%,rgba(19,56,93,.88) 100%)}
+.rcard-in{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:28px 24px;color:#ffffff}
+.rcard-l{font-size:clamp(18px,1.55vw,22px);font-weight:700;line-height:1.15;letter-spacing:-0.01em}
+.rcard-t{margin-top:12px;font-size:18px;line-height:1.5;color:#e6eaeb;max-width:34ch}
+.rcard-b{margin-top:22px}
+.rcard-more{animation:fadeUp 500ms cubic-bezier(.16,1,.3,1) 150ms both}
+@media (hover:hover) and (pointer:fine){.rcard:hover img{transform:scale(1.05)}}
+
+/* bento */
+.bento-sec{background:#e6eaeb;padding:120px 0}
+.bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:300px;gap:16px;margin-top:48px}
+.cell{position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:24px;border-radius:24px;background:radial-gradient(80% 70% at 50% 45%,#ffffff 0%,#f4f7f9 100%);text-decoration:none;color:#13385d;overflow:hidden;isolation:isolate;transition:box-shadow .3s ease,transform .3s cubic-bezier(.23,1,.32,1)}
+.cell::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--acc);transition:height .3s cubic-bezier(.23,1,.32,1)}
+.cell-tag{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:#59636e}
+.cell-tag::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--acc)}
+.cell-img{position:absolute;left:50%;top:50%;width:var(--w,58%);height:auto;max-height:66%;object-fit:contain;transform:translate(-50%,-52%);transition:transform .5s cubic-bezier(.23,1,.32,1);z-index:-1;filter:drop-shadow(0 22px 22px rgba(19,56,93,.18))}
+.cell-img.flat{mix-blend-mode:multiply;filter:none}
+.cell-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.cell-name{font-size:clamp(18px,1.55vw,22px);font-weight:700;line-height:1.15;letter-spacing:-0.01em;max-width:14ch}
+.cell-go{flex:0 0 auto;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#e6eaeb;color:#13385d;transition:background-color .2s ease,color .2s ease,transform .3s cubic-bezier(.23,1,.32,1)}
+.cell-big{grid-column:span 2;grid-row:span 2;padding:36px}
+.cell-big .cell-name{font-size:40px;max-width:12ch}
+.cell-big .trio{position:absolute;left:4%;right:4%;top:15%;bottom:20%;z-index:-1;display:flex;align-items:flex-end;justify-content:center;gap:0}
+.cell-big .trio img{height:88%;width:auto;filter:drop-shadow(0 30px 30px rgba(19,56,93,.2));transition:transform .6s cubic-bezier(.23,1,.32,1)}
+.cell-big .trio img:nth-child(1){height:74%;transform:translateX(14%) rotate(-4deg)}
+.cell-big .trio img:nth-child(2){position:relative;z-index:1}
+.cell-big .trio img:nth-child(3){height:74%;transform:translateX(-14%) rotate(4deg)}
+.cell-wide{grid-column:span 2}
+@media (hover:hover) and (pointer:fine){
+  .cell:hover{box-shadow:0 24px 48px rgba(19,56,93,.14);transform:translateY(-4px)}
+  .cell:hover::after{height:8px}
+  .cell:hover .cell-img{transform:translate(-50%,-56%) scale(1.06) rotate(-2deg)}
+  .cell:hover .cell-go{background:#e30427;color:#ffffff;transform:rotate(-45deg)}
+  .cell-big:hover .trio img:nth-child(1){transform:translateX(4%) rotate(-7deg)}
+  .cell-big:hover .trio img:nth-child(3){transform:translateX(-4%) rotate(7deg)}
+  .cell-big:hover .trio img:nth-child(2){transform:translateY(-10px)}
+}
+
+/* own production */
+.own{padding:120px 0}
+.own-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:64px;align-items:end}
+.own-mosaic{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:260px 260px;gap:16px;margin-top:64px}
+.own-mosaic div{border-radius:24px;overflow:hidden;background:#e6eaeb}
+.own-mosaic div:first-child{grid-row:span 2}
+.own-mosaic img{width:100%;height:100%;object-fit:cover;display:block}
+.own-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin-top:64px}
+.own-3 b{display:block;font-size:28px;line-height:1.15;color:#13385d;letter-spacing:-0.015em}
+.own-3 span{display:block;margin-top:10px;font-size:18px;line-height:1.5;color:#21272e}
+.own-3 div{border-top:3px solid #13385d;padding-top:20px}
+.own-3 div:first-child{border-color:#e30427}
+
+/* system */
+.sys{background:#13385d;color:#ffffff;padding:120px 0;position:relative;overflow:hidden}
+.sys::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(70% 80% at 50% 50%,#000,transparent)}
+.flow{position:relative;display:flex;align-items:flex-start;margin-top:72px}
+.node{flex:0 0 200px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.node-v{position:relative;width:200px;height:220px;display:grid;place-items:center}
+.node-v::before{content:"";position:absolute;inset:-10%;border-radius:50%;background:radial-gradient(circle,rgba(0,122,194,.45),rgba(0,122,194,0) 65%)}
+.node-v img{position:relative;max-width:100%;max-height:100%;filter:drop-shadow(0 18px 24px rgba(0,0,0,.25))}
+.node-t{margin-top:20px;font-size:22px;font-weight:700}
+.node-d{margin-top:8px;font-size:17px;line-height:1.45;color:#c9d6e3;max-width:22ch}
+.conn{position:relative;flex:1 1 auto;height:220px;min-width:40px}
+.conn-l{position:absolute;left:0;right:0;top:50%;height:2px;background:rgba(255,255,255,.22)}
+.conn-k{position:absolute;left:-20px;right:-20px;top:calc(50% - 36px);text-align:center;white-space:nowrap;font-size:14px;font-weight:600;color:#c9d6e3}
+.conn-l i{position:absolute;top:-4px;left:0;width:10px;height:10px;border-radius:50%;background:#7fd0ff;box-shadow:0 0 12px 3px rgba(127,208,255,.7);animation:flowX 2.4s linear infinite}
+.conn-l i:nth-child(2){animation-delay:.8s}.conn-l i:nth-child(3){animation-delay:1.6s}
+@keyframes flowX{from{left:0;opacity:0}10%{opacity:1}90%{opacity:1}to{left:calc(100% - 10px);opacity:0}}
+.srv{width:150px;display:flex;flex-direction:column;gap:8px}
+.srv span{height:40px;border-radius:8px;background:linear-gradient(180deg,#2a5a8a,#1d4670);box-shadow:inset 0 1px 0 rgba(255,255,255,.15);display:flex;align-items:center;gap:6px;padding:0 12px}
+.srv em{width:6px;height:6px;border-radius:50%;background:#7fd0ff;animation:bar 1.4s ease-in-out infinite}
+.srv span:nth-child(2) em{animation-delay:.3s}.srv span:nth-child(3) em{animation-delay:.6s}
+.srv b{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.18);margin-left:8px}
+.dash{width:190px;border-radius:14px;background:#ffffff;padding:14px;box-shadow:0 20px 40px rgba(0,0,0,.25);text-align:left}
+.dash-k{font-size:12px;color:#59636e}.dash-v{font-size:20px;font-weight:700;color:#13385d;font-variant-numeric:tabular-nums}
+.dash-bars{display:flex;align-items:flex-end;gap:6px;height:70px;margin-top:10px}
+.dash-bars i{flex:1;border-radius:3px 3px 0 0;background:#c3ccd6;transform-origin:bottom;animation:grow2 2.8s cubic-bezier(.16,1,.3,1) infinite alternate}
+.dash-bars i:last-child{background:#e30427}
+@keyframes grow2{from{transform:scaleY(.55)}}
+
+/* history */
+.hist{background:#e9eef3;padding:120px 0;timeline-scope:--hist}
+.hrail{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:max(32px,calc((100% - 1216px)/2));padding:0 max(32px,calc((100% - 1216px)/2)) 8px;scrollbar-width:none;scroll-timeline:--hist inline;margin-top:48px}
+.hrail::-webkit-scrollbar{display:none}
+.ep{flex:0 0 440px;scroll-snap-align:start;background:#ffffff;border-radius:24px;overflow:hidden;display:flex;flex-direction:column}
+.ep-img{aspect-ratio:16/10;overflow:hidden;background:#dbe3eb}
+.ep-img img{width:100%;height:100%;object-fit:cover;display:block}
+.ep-b{padding:28px 32px 36px;position:relative}
+.ep-y{font-size:96px;line-height:.85;font-weight:700;letter-spacing:-0.05em;color:#13385d;font-variant-numeric:tabular-nums;margin-top:-76px;text-shadow:0 2px 0 #ffffff}
+.ep-y span{color:#e30427}
+.ep-t{margin-top:18px;font-size:24px;font-weight:700;line-height:1.2;color:#13385d}
+.ep-d{margin-top:10px;font-size:18px;line-height:1.5;color:#21272e}
+.hbar{height:3px;background:#c3ccd6;border-radius:2px;margin-top:40px;overflow:hidden}
+.hbar i{display:block;height:100%;background:#e30427;transform-origin:left}
+@supports (animation-timeline: --a){.hbar i{animation:hb linear both;animation-timeline:--hist}}
+@keyframes hb{from{transform:scaleX(.18)}to{transform:scaleX(1)}}
+
+/* video v3 */
+.vplay{position:relative}
+.vplay::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid rgba(255,255,255,.7);animation:ping 2.6s cubic-bezier(.16,1,.3,1) infinite}
+
+@media (prefers-reduced-motion:no-preference){@supports (animation-timeline: view()){
+  .ep{animation:epIn linear both;animation-timeline:view(inline);animation-range:entry 0% cover 40%}
+  @keyframes epIn{from{opacity:.4;transform:scale(.94)}}
+  .cell{animation:cellIn linear both;animation-timeline:view();animation-range:entry 0% cover 25%}
+  @keyframes cellIn{from{opacity:0;transform:translateY(40px)}}
+  .dev-wrap{animation:float linear both;animation-timeline:scroll(root);animation-range:0 900px}
+  @keyframes float{to{transform:translateY(80px) rotate(-3deg)}}
+}}
+@media (prefers-reduced-motion:reduce){
+  .dev,.chip,.cell,.ep,.rcard-more,.roles3-h .w{animation:none !important}
+}
+
+
+.news3{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px;margin-top:48px;align-items:stretch}
+.news3-lead{background:#ffffff;border-radius:24px;overflow:hidden}
+.news3-lead .post-img{aspect-ratio:16/9;border-radius:0}
+.news3-list{display:flex;flex-direction:column;gap:16px}
+.news3-row{flex-direction:row;gap:20px;align-items:center;background:#ffffff;border-radius:20px;padding:12px 24px 12px 12px}
+.news3-row .post-img{flex:0 0 150px;height:112px;border-radius:12px}
+@media (max-width:900px){.news3{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:600px){.news3-row{padding:10px}.news3-row .post-img{flex-basis:96px;height:80px}.news3-lead .post-title{font-size:24px !important}.cta3{grid-template-columns:minmax(0,1fr) !important;padding-top:72px !important;padding-bottom:72px !important}.cta3 .mark{max-width:160px !important;justify-self:start !important}}
+
+/* responsive */
+@media (max-width:1100px){
+  .hero3-grid{grid-template-columns:minmax(0,1fr) 420px}
+  .dev{width:420px}.stage3{height:620px}
+  .flow{flex-wrap:wrap;justify-content:center;gap:24px}
+}
+@media (max-width:900px){
+  .hero3-grid{grid-template-columns:minmax(0,1fr);min-height:0;padding-top:40px}
+  .stage3{height:auto;padding:40px 0 60px}
+  .dev{width:min(78vw,420px)}
+  .chip::after,.chip .pin{display:none}
+  .chip.to-r{right:auto !important;left:-4% !important;top:4% !important}
+  .conn{margin:16px 0}
+  .rcards{flex-direction:column;height:auto}
+  .rcard{flex:0 0 96px;transition:flex-basis .5s cubic-bezier(.23,1,.32,1)}
+  .rcard[aria-expanded="true"]{flex:0 0 400px}
+  .bento{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:230px}
+  .cell-big{grid-column:span 2;grid-row:span 2}
+  .cell-wide{grid-column:span 2}
+  .own-grid{grid-template-columns:minmax(0,1fr);gap:24px}
+  .own-mosaic{grid-template-columns:1fr 1fr;grid-template-rows:240px 160px 160px}
+  .own-mosaic div:first-child{grid-column:span 2;grid-row:auto}
+  .own-3{grid-template-columns:minmax(0,1fr);gap:28px}
+  .flow{flex-direction:column;align-items:center;gap:0}
+  .conn{flex:0 0 96px;width:2px;min-width:0;height:96px}
+  .conn-l{left:50%;right:auto;top:0;bottom:0;width:2px;height:auto}
+  .conn-l i{left:-4px;animation-name:flowY}
+  @keyframes flowY{from{top:0;opacity:0}10%{opacity:1}90%{opacity:1}to{top:calc(100% - 10px);opacity:0}}
+  .conn-k{left:calc(50% + 18px);right:auto;top:calc(50% - 10px);text-align:left;white-space:nowrap}
+  .ep{flex-basis:300px}.ep-y{font-size:72px;margin-top:-58px}
+  .foot .wrap{grid-template-columns:1fr 1fr !important}
+}
+@media (max-width:600px){
+  .wrap{padding:0 16px}
+  .wrap.hero3-grid{padding-top:32px;padding-bottom:8px}
+  .stage3{padding:24px 0 48px}
+  .roles3,.bento-sec,.own,.sys,.hist{padding:72px 0}
+  .hero3-facts{gap:24px}.hero3-facts b{font-size:32px}
+  .chip{padding:10px 12px;border-radius:12px}.chip-v{font-size:18px}.chip-k{font-size:13px}
+  .chip.hide-s{display:none}
+  .bento{gap:10px;grid-auto-rows:200px}
+  .cell{padding:16px;border-radius:18px}.cell-big{padding:20px}
+  .cell-name{font-size:18px}.cell-big .cell-name{font-size:28px}
+  .cell-tag{font-size:13px}.cell-go{width:36px;height:36px}
+  .cell:not(.cell-big) .cell-go{display:none}
+  .logos3{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:0 16px !important}.logos3 .logo-slot{height:64px !important}
+  .video3{height:540px !important}.video3 .wrap{padding-bottom:48px !important}.vplay{width:88px !important;height:88px !important}
+  .rcard-in{padding:20px}.rcard-l{font-size:22px}
+  .own-mosaic{margin-top:40px}
+  .hrail{padding:0 16px 8px;scroll-padding-left:16px}
+  .ep{flex-basis:84%}
+  .foot .wrap{grid-template-columns:1fr !important}
+  .lang3{display:none !important}
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
+<script src="runtime.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/x-template" id="tpl">
+
+<div style="font-family: Geologica, sans-serif; color: #21272e; background: #ffffff; overflow-x: hidden">
+
+<a href="#main" class="skip">Перейти до змісту</a>
+<header style="position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.88); backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid rgba(19,56,93,.08)">
+  <div class="wrap" style="display: flex; align-items: center; gap: 40px; min-height: 76px">
+    <a href="index.html" aria-label="НІК-ЕЛЕКТРОНІКА, на головну" style="display: flex"><img src="assets/4acb50f3-nik-logo.svg" alt="NIK" style="height: 34px; width: auto; display: block"></a>
+    <nav class="nav" aria-label="Головне меню" style="display: flex; gap: 32px; flex: 1 1 auto">
+      <a href="catalog.html">Каталог</a>
+      <a href="about.html">Про нас</a>
+      <a href="where-to-buy.html">Контакти</a>
+      <a href="news.html">Прес-центр</a>
+      <a href="#">Електронні документи</a>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 8px; margin-left: auto">
+      <button class="icon-btn burger" aria-label="Відкрити меню"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+      <button class="icon-btn" aria-label="Пошук"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></button>
+      <button class="icon-btn" aria-label="Особистий кабінет"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
+      <div class="lang3" style="display: flex; margin-left: 8px; font-size: 14px; font-weight: 600">
+        <a href="#" aria-current="true" style="padding: 12px 6px; color: #e30427; text-decoration: none">UA</a>
+        <a href="#" style="padding: 12px 6px; color: #59636e; text-decoration: none">EN</a>
+        <a href="#" style="padding: 12px 6px; color: #59636e; text-decoration: none">RU</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- 1. HERO -->
+<sc-if value="{{n1}}" hint-placeholder-val="{{true}}">
+<section id="main" class="hero3">
+  <svg class="net" viewBox="0 0 1440 820" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path class="ln" d="M-20 640 L220 560 L420 610 L640 520 L880 590 L1120 500 L1460 560"></path>
+    <path class="ln" d="M-20 300 L160 250 L330 330 L520 270"></path>
+    <path class="ln" d="M220 560 L330 330 M640 520 L520 270 M1120 500 L1240 300 L1460 260"></path>
+    <path class="ln" d="M60 760 L220 560 M880 590 L980 760"></path>
+    <path class="pulse" pathLength="100" d="M-20 640 L220 560 L420 610 L640 520 L880 590 L1120 500 L1460 560" style="animation: pulseRun 7s linear infinite"></path>
+    <path class="pulse" pathLength="100" d="M-20 300 L160 250 L330 330 L520 270" style="animation: pulseRun 5s linear 1.5s infinite"></path>
+    <path class="pulse" pathLength="100" d="M1120 500 L1240 300 L1460 260" style="animation: pulseRun 4s linear .6s infinite"></path>
+    <g class="nd"><circle cx="220" cy="560" r="5"></circle><circle cx="420" cy="610" r="4"></circle><circle cx="640" cy="520" r="5"></circle><circle cx="880" cy="590" r="4"></circle><circle cx="1120" cy="500" r="5"></circle><circle cx="160" cy="250" r="4"></circle><circle cx="330" cy="330" r="5"></circle><circle cx="520" cy="270" r="4"></circle><circle cx="1240" cy="300" r="4"></circle></g>
+    <style>@keyframes pulseRun{to{stroke-dashoffset:0}}</style>
+  </svg>
+  <div class="wrap hero3-grid">
+    <div class="hero3-text">
+      <h1 class="h1x">
+        <span class="line"><span style="animation-delay: 80ms">Точні</span></span>
+        <span class="line"><span style="animation-delay: 160ms">вимірювання.</span></span>
+        <span class="line"><span style="animation-delay: 240ms">Надійні рішення<span class="red">.</span></span></span>
+      </h1>
+      <p class="lead fade-in" style="animation-delay: 420ms; margin: 32px 0 0; max-width: 36ch">Лічильники електроенергії, води, тепла й газу та системи АСКОЕ. Розробляємо й виготовляємо в Україні з 2005 року.</p>
+      <div class="fade-in" style="animation-delay: 520ms; display: flex; gap: 12px; margin-top: 40px; flex-wrap: wrap">
+        <a href="catalog.html" class="btn btn-red">Перейти до каталогу<span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+        <a href="#contact" class="btn btn-line">Зв'язатися з нами</a>
+      </div>
+    </div>
+    <div class="stage3" onMouseMove="{{tilt}}" onMouseLeave="{{untilt}}">
+      <div class="floor" aria-hidden="true"></div>
+      <div class="dev-wrap">
+        <div class="dev" style="transform: rotateY({{ry}}deg) rotateX({{rx}}deg)">
+          <img src="assets/d3153f2f-cut-2300.webp" alt="Трифазний лічильник електроенергії NIK 2300 з модулем G3-PLC">
+          <span class="shine" aria-hidden="true"></span>
+          <span class="led" aria-hidden="true"></span>
+          <div class="chip to-r" style="right: 74%; top: 15%; --lw: 70px; animation-delay: 900ms"><span class="chip-k"><span class="live"></span>Активна енергія</span><span class="chip-v"><span class="cnt">12 345,6<span class="d2"></span><span class="d1"></span></span><small>кВт·год</small></span><span class="pin"></span></div>
+          <div class="chip nolead" style="left: 58%; top: 74%; animation-delay: 1050ms"><span class="chip-k"><span class="bars"><i></i><i></i><i></i></span>G3-PLC · 2 с тому</span><span class="chip-v">Дані передано</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</sc-if>
+<sc-if value="{{n1off}}" hint-placeholder-val="{{false}}">
+<section id="main" style="padding: 56px 0 0">
+  <div class="wrap" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 56px; align-items: center">
+    <div>
+      <h1 style="margin: 0; font-size: clamp(46px, 5.3vw, 78px); line-height: 1; font-weight: 700; color: #13385d; letter-spacing: -0.03em">
+        <span class="line"><span style="animation-delay: 80ms">Точні</span></span>
+        <span class="line"><span style="animation-delay: 170ms">вимірювання.</span></span>
+        <span class="line"><span style="animation-delay: 260ms">Надійні рішення.</span></span>
+      </h1>
+      <p class="fade-in" style="animation-delay: 420ms; margin: 28px 0 0; font-size: 19px; line-height: 1.55; color: #21272e; max-width: 34ch">Розробляємо й виготовляємо прилади обліку електроенергії, води, тепла й газу в Україні з 2005 року.</p>
+      <div class="fade-in" style="animation-delay: 520ms; display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap">
+        <a href="catalog.html" class="btn btn-red">Перейти до каталогу</a>
+        <a href="#contact" class="btn btn-line">Зв'язатися з нами</a>
+      </div>
+    </div>
+
+    <div class="fade-in" style="animation-delay: 100ms">
+    <div style="{{stageStyle}}">
+      <img class="stage-img" src="{{heroSrc}}" alt="Трифазний лічильник електроенергії NIK 2300" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain">
+      <sc-for list="{{hotspots}}" as="h" hint-placeholder-count="6">
+        <button class="hs" aria-pressed="{{h.pressed}}" aria-label="{{h.title}}" onClick="{{h.pick}}" style="left: {{h.x}}%; top: {{h.y}}%; animation-delay: {{h.delay}}ms"><span class="hs-dot"></span></button>
+      </sc-for>
+      <sc-for list="{{hotspots}}" as="h" hint-placeholder-count="6">
+        <div class="{{h.cardClass}}" aria-live="polite">
+          <div style="font-size: 18px; font-weight: 700; color: #13385d">{{h.title}}</div>
+          <div style="margin-top: 6px; font-size: 15px; line-height: 1.5; color: #21272e">{{h.text}}</div>
+        </div>
+      </sc-for>
+      <sc-if value="{{oldHero}}" hint-placeholder-val="{{false}}">
+        <div style="position: absolute; left: 24px; top: 20px; font-size: 14px; font-weight: 600; color: #13385d">NIK 2300 · натисніть на точки</div>
+      </sc-if>
+    </div>
+    <sc-if value="{{newHero}}" hint-placeholder-val="{{true}}">
+      <sc-for list="{{hsActive}}" as="a" hint-placeholder-count="1">
+        <div class="role-body" aria-live="polite" style="display: flex; gap: 14px; align-items: baseline; margin-top: 4px; padding-left: 8%; min-height: 56px">
+          <span style="flex: 0 0 auto; font-size: 16px; font-weight: 700; color: #13385d">{{a.title}}</span>
+          <span style="font-size: 15px; line-height: 1.5; color: #21272e">{{a.text}}</span>
+        </div>
+      </sc-for>
+    </sc-if>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<!-- 2. РОЛІ -->
+<sc-if value="{{n2}}" hint-placeholder-val="{{true}}">
+<section class="roles3" aria-labelledby="roles-h">
+  <div class="wrap">
+    <h2 class="roles3-h" id="roles-h">Я —<sc-for list="{{roleActive}}" as="a" hint-placeholder-count="1"><span class="w">{{a.word}}</span></sc-for></h2>
+    <div class="rcards">
+      <sc-for list="{{rcards}}" as="r" hint-placeholder-count="4">
+        <div class="rcard" role="button" tabindex="0" aria-expanded="{{r.open}}" onClick="{{r.pick}}" onMouseEnter="{{r.pick}}" onFocus="{{r.pick}}">
+          <img src="{{r.img}}" alt="">
+          <div class="rcard-in">
+            <div class="rcard-l">{{r.label}}</div>
+            <sc-if value="{{r.isOpen}}" hint-placeholder-val="{{false}}">
+              <div class="rcard-more">
+                <div class="rcard-t">{{r.text}}</div>
+                <a href="{{r.href}}" class="btn btn-white rcard-b">{{r.cta}}<span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+</sc-if>
+<sc-if value="{{n2off}}" hint-placeholder-val="{{false}}">
+<section style="padding: 48px 0 0">
+  <div class="wrap" style="margin-top: 48px">
+    <div style="background: #e6eaeb; border-radius: 20px; padding: 10px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; align-items: center">
+      <div style="display: flex; align-items: center; gap: 16px; padding-left: 18px; flex-wrap: wrap">
+      <span style="font-size: 17px; font-weight: 600; color: #13385d">Я —</span>
+      <div role="tablist" aria-label="Оберіть, хто ви" style="display: flex; gap: 4px; flex-wrap: wrap">
+        <sc-for list="{{roles}}" as="r" hint-placeholder-count="4">
+          <button class="role-tab" role="tab" aria-selected="{{r.selected}}" onClick="{{r.pick}}">{{r.label}}</button>
+        </sc-for>
+      </div>
+      </div>
+      <sc-for list="{{roleActive}}" as="a" hint-placeholder-count="1">
+        <div class="role-body" role="tabpanel" style="display: flex; align-items: center; gap: 20px; justify-content: space-between; background: #ffffff; border-radius: 14px; padding: 10px 10px 10px 22px; min-height: 68px; box-sizing: border-box">
+          <span style="font-size: 15px; line-height: 1.45; color: #21272e">{{a.text}}</span>
+          <a href="{{a.href}}" class="btn btn-red" style="min-height: 48px; flex: 0 0 auto">{{a.cta}}</a>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<!-- 3. ПРОДУКЦІЯ -->
+<sc-if value="{{n3}}" hint-placeholder-val="{{true}}">
+<section class="bento-sec">
+  <div class="wrap">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap">
+      <h2 class="h2x">Продукція<br>та рішення</h2>
+      <a href="catalog.html" class="btn btn-line">Увесь каталог<span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+    </div>
+    <div class="bento">
+      <a href="catalog.html" class="cell cell-big" style="--acc: #ffb300">
+        <span class="cell-tag">Електрика</span>
+        <div class="trio" aria-hidden="true">
+          <img src="assets/d44b48d0-cut-2104.webp" alt="">
+          <img src="assets/d3153f2f-cut-2300.webp" alt="">
+          <img src="assets/9b13e5f6-cut-2100.webp" alt="">
+        </div>
+        <div class="cell-foot"><span class="cell-name">Лічильники електро&shy;енергії</span><span class="cell-go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div>
+      </a>
+      <sc-for list="{{cells}}" as="c" hint-placeholder-count="7">
+        <a href="catalog.html" class="{{c.cls}}" style="--acc: {{c.acc}}">
+          <span class="cell-tag">{{c.tag}}</span>
+          <img class="{{c.imgCls}}" src="{{c.src}}" alt="" style="--w: {{c.w}}">
+          <div class="cell-foot"><span class="cell-name">{{c.name}}</span><span class="cell-go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+</sc-if>
+<sc-if value="{{n3off}}" hint-placeholder-val="{{false}}">
+<!-- 2. КАТАЛОГ -->
+<section style="padding: 120px 0 64px">
+  <div class="wrap">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap">
+      <h2 class="h2">Продукція та рішення</h2>
+      <div style="display: flex; gap: 8px; align-items: center">
+        <a href="catalog.html" style="font-weight: 600; font-size: 16px; margin-right: 16px">Увесь каталог</a>
+        <button class="icon-btn" aria-label="Гортати назад"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button>
+        <button class="icon-btn" aria-label="Гортати вперед"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button>
+      </div>
+    </div>
+    <div class="rail" style="margin-top: 40px">
+      <sc-for list="{{categories}}" as="c" hint-placeholder-count="8">
+        <a href="catalog.html" class="tile">
+          <div class="tile-img" style="{{tileImgStyle}}"><img src="{{c.src}}" alt="{{c.name}}"></div>
+          <div>
+            <div class="tile-name">{{c.name}}</div>
+            <div style="margin-top: 4px; font-size: 15px; color: #59636e">{{c.note}}</div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<!-- 4. ВЛАСНА РОЗРОБКА -->
+<sc-if value="{{n4}}" hint-placeholder-val="{{true}}">
+<section class="own">
+  <div class="wrap">
+    <div class="own-grid">
+      <h2 class="h2x">Від схеми до пломби — у&nbsp;власних цехах</h2>
+      <div>
+        <p class="lead" style="margin: 0">Нам довіряють енергокомпанії, комунальні служби й промислові підприємства в Україні, Європі, Середній Азії та на Близькому Сході.</p>
+        <a href="about.html" class="btn btn-line" style="margin-top: 32px">Про компанію<span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+      </div>
+    </div>
+    <div class="own-mosaic">
+      <div><img class="reveal" src="assets/e3a26a87-c-calibration.jpg" alt="Фахівчиня перевіряє лічильники на стенді повірки"></div>
+      <div><img class="reveal" src="assets/2d5e93a9-c-robot.jpg" alt="Маніпулятор на лінії збирання"></div>
+      <div><img class="reveal" src="assets/1695fc08-c-tampo.jpg" alt="Автомат тамподруку для маркування корпусів"></div>
+      <div><img class="reveal" src="assets/91d9cc8d-c-automation.jpg" alt="Вузол автоматизованої лінії збирання"></div>
+      <div><img class="reveal" src="assets/c0704521-prod-molding.jpg" alt="Термопластавтомат у цеху виробів із пластмаси"></div>
+    </div>
+    <div class="own-3">
+      <div><b>Власна розробка</b><span>Апаратна й програмна частина, від техзавдання до сертифікації.</span></div>
+      <div><b>Власне виробництво</b><span>Лиття корпусів, автоматизоване збирання й маркування.</span></div>
+      <div><b>Власна метрологія</b><span>Кожен прилад калібруємо на власних стендах повірки.</span></div>
+    </div>
+  </div>
+</section>
+</sc-if>
+<sc-if value="{{n4off}}" hint-placeholder-val="{{false}}">
+<!-- 3. ПРО КОМПАНІЮ: галерея + текст -->
+<section style="padding: 64px 0 120px">
+  <div class="wrap" style="display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 64px; align-items: start">
+    <div>
+      <div style="border-radius: 12px; overflow: hidden; aspect-ratio: 16 / 11; background: #e6eaeb">
+        <img class="reveal" src="{{gallery.main}}" alt="{{gallery.alt}}" style="width: 100%; height: 100%; object-fit: cover; display: block">
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin-top: 12px">
+        <sc-for list="{{gallery.thumbs}}" as="t" hint-placeholder-count="5">
+          <button class="thumb" aria-label="{{t.label}}" aria-current="{{t.current}}" onClick="{{t.pick}}"><img src="{{t.src}}" alt=""></button>
+        </sc-for>
+      </div>
+    </div>
+    <div style="padding-top: 12px">
+      <h2 class="h2">Власна розробка й виробництво</h2>
+      <p style="margin: 28px 0 0; font-size: 18px; line-height: 1.65; color: #21272e">Ми проєктуємо апаратну й програмну частину, виготовляємо прилади у власних цехах і калібруємо їх на власному метрологічному обладнанні.</p>
+      <p style="margin: 16px 0 0; font-size: 18px; line-height: 1.65; color: #21272e">Нам довіряють енергопостачальні компанії, комунальні служби та промислові підприємства в Україні, Європі, Середній Азії та на Близькому Сході.</p>
+      <a href="about.html" class="btn btn-line" style="margin-top: 36px">Дізнатися більше</a>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<!-- 4а. ЯК ПРАЦЮЄ СИСТЕМА -->
+<sc-if value="{{n5}}" hint-placeholder-val="{{true}}">
+<section class="sys">
+  <div class="wrap" style="position: relative">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap">
+      <h2 class="h2x" style="color: #ffffff; max-width: 13ch">Від лічильника до рішення</h2>
+      <p class="lead" style="margin: 0; color: #dbe3eb; max-width: 40ch">АСКОЕ NIK збирає показання тисяч приладів автоматично — без обходів і ручного введення.</p>
+    </div>
+    <div class="flow">
+      <div class="node"><div class="node-v"><img src="assets/d3153f2f-cut-2300.webp" alt="" style="height: 200px"></div><div class="node-t">Лічильник</div><div class="node-d">Вимірює й зберігає профіль навантаження</div></div>
+      <div class="conn" aria-hidden="true"><div class="conn-k">PLC · G3-PLC · RF</div><div class="conn-l"><i></i><i></i><i></i></div></div>
+      <div class="node"><div class="node-v"><img src="assets/4e3e1ef5-cut-kc02.webp" alt="" style="width: 200px"></div><div class="node-t">Концентратор</div><div class="node-d">Збирає дані з усіх приладів будинку чи підстанції</div></div>
+      <div class="conn" aria-hidden="true"><div class="conn-k">GSM · Ethernet</div><div class="conn-l"><i></i><i></i><i></i></div></div>
+      <div class="node"><div class="node-v"><div class="srv" aria-hidden="true"><span><em></em><em></em><b></b></span><span><em></em><em></em><b></b></span><span><em></em><em></em><b></b></span></div></div><div class="node-t">Сервер АСКОЕ</div><div class="node-d">Зберігає й перевіряє показання за протоколом DLMS/COSEM</div></div>
+      <div class="conn" aria-hidden="true"><div class="conn-k">API · звіти</div><div class="conn-l"><i></i><i></i><i></i></div></div>
+      <div class="node"><div class="node-v"><div class="dash" aria-hidden="true"><div class="dash-k">Споживання, кВт·год</div><div class="dash-v">48 210</div><div class="dash-bars"><i style="height: 40%"></i><i style="height: 62%; animation-delay: .2s"></i><i style="height: 48%; animation-delay: .4s"></i><i style="height: 80%; animation-delay: .6s"></i><i style="height: 66%; animation-delay: .8s"></i><i style="height: 92%; animation-delay: 1s"></i></div></div></div><div class="node-t">Кабінет і звіти</div><div class="node-d">Баланс, втрати й рахунки — для енергокомпанії та споживача</div></div>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<!-- 5. ЦИФРИ ТА ІСТОРІЯ -->
+<section class="hist" style="{{histStyle}}">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">20</div>
+        <div class="stat-cap">років на ринку приладів обліку</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">{{statN}}</div>
+        <div class="stat-cap">клієнтів і партнерів в Україні та за кордоном</div>
+      </div>
+      <div class="stat">
+        <div class="stat-iso">
+          <span style="font-size: 16px; font-weight: 700; color: #13385d; background: #ffffff; border-radius: 999px; padding: 12px 18px">ISO 9001</span>
+          <span style="font-size: 16px; font-weight: 700; color: #13385d; background: #ffffff; border-radius: 999px; padding: 12px 18px">ISO 14001</span>
+          <span style="font-size: 16px; font-weight: 700; color: #13385d; background: #ffffff; border-radius: 999px; padding: 12px 18px">ISO 27001</span>
+        </div>
+        <div class="stat-cap">сертифіковані системи менеджменту</div>
+      </div>
+    </div>
+    <sc-if value="{{n6off}}" hint-placeholder-val="{{false}}">
+    <div style="margin-top: 72px">
+      <div class="ruler" aria-hidden="true">
+        <sc-for list="{{ticks}}" as="k" hint-placeholder-count="22">
+          <span class="{{k.cls}}"></span>
+        </sc-for>
+      </div>
+      <div class="ruler-years" style="position: relative; height: 40px">
+        <sc-for list="{{milestones}}" as="m" hint-placeholder-count="6">
+          <span class="num" style="position: absolute; top: 12px; left: {{m.pos}}%; transform: translateX({{m.shift}}%); font-size: 18px; font-weight: 700; color: #b8031f">{{m.year}}</span>
+        </sc-for>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 24px; margin-top: 20px">
+        <sc-for list="{{milestones}}" as="m" hint-placeholder-count="6">
+          <div style="border-top: 1px solid #c3ccd6; padding-top: 14px">
+            <div class="num" style="font-size: 15px; font-weight: 700; color: #13385d">{{m.year}}</div>
+            <div style="margin-top: 4px; font-size: 15px; line-height: 1.45; color: #21272e">{{m.text}}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+  </div>
+  <sc-if value="{{n6}}" hint-placeholder-val="{{true}}">
+    <div class="wrap" style="margin-top: 112px; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap">
+      <h2 class="h2x">Двадцять років<br>історії NIK</h2>
+      <div style="display: flex; gap: 8px">
+        <button class="icon-btn" aria-label="Попередня подія" onClick="{{histPrev}}" style="width: 56px; height: 56px; border-radius: 50%; border-color: #13385d"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button>
+        <button class="icon-btn" aria-label="Наступна подія" onClick="{{histNext}}" style="width: 56px; height: 56px; border-radius: 50%; background: #13385d; color: #ffffff; border-color: #13385d"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button>
+      </div>
+    </div>
+    <div class="hrail" tabindex="0" aria-label="Історія компанії">
+      <sc-for list="{{episodes}}" as="e" hint-placeholder-count="6">
+        <article class="ep">
+          <div class="ep-img"><img src="{{e.img}}" alt=""></div>
+          <div class="ep-b">
+            <div class="ep-y">{{e.y1}}<span>{{e.y2}}</span></div>
+            <div class="ep-t">{{e.t}}</div>
+            <div class="ep-d">{{e.d}}</div>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+    <div class="wrap"><div class="hbar" aria-hidden="true"><i></i></div></div>
+  </sc-if>
+</section>
+
+<!-- 6. ВІДЕО -->
+<section class="video3" style="position: relative; height: 680px; background: #13385d; overflow: hidden">
+  <img src="assets/57d2b284-c-video.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+  <div aria-hidden="true" style="{{videoShade}}"></div>
+  <div class="wrap" style="position: relative; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 80px">
+    <div style="display: flex; align-items: center; gap: 36px; flex-wrap: wrap">
+      <button aria-label="Відтворити відео «Компанія за 3 хвилини»" class="btn vplay" style="width: 128px; height: 128px; padding: 0; justify-content: center; border-radius: 50%; background: #e30427; color: #ffffff"><svg width="44" height="44" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></button>
+      <div>
+        <h2 class="h2x" style="color: #ffffff">Компанія за 3 хвилини</h2>
+        <div style="margin-top: 12px; font-size: 19px; color: #e6eaeb">Цехи, лабораторія й люди, які створюють прилади NIK</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. КЛІЄНТИ -->
+<section style="padding: 112px 0 80px; background: #ffffff">
+  <div class="wrap">
+    <h2 class="h2x">Клієнти та партнери</h2>
+  </div>
+  <div class="wrap" style="margin-top: 48px">
+    <div class="logos3" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px 40px">
+      <sc-for list="{{logos}}" as="l" hint-placeholder-count="10">
+        <div class="logo-slot" style="background: transparent; border-radius: 0; height: 88px; color: #8699b0; font-size: 15px; font-weight: 600">{{l}}</div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- 8. НОВИНИ -->
+<section style="padding: 112px 0; background: #e6eaeb">
+  <div class="wrap">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap">
+      <h2 class="h2x">Новини та статті</h2>
+      <div role="tablist" aria-label="Тип матеріалів" style="display: flex; background: #ffffff; border-radius: 999px; padding: 4px">
+        <button class="tab" role="tab" aria-selected="{{isNews}}" onClick="{{showNews}}" style="{{newsTabStyle}}">Новини</button>
+        <button class="tab" role="tab" aria-selected="{{isArticles}}" onClick="{{showArticles}}" style="{{artTabStyle}}">Статті</button>
+      </div>
+    </div>
+    <sc-for list="{{feed}}" as="f" hint-placeholder-count="1">
+      <div class="news-body news3" role="tabpanel">
+        <a href="news.html" class="post news3-lead">
+          <div class="post-img"><img src="{{f.lead.img}}" alt=""></div>
+          <div style="padding: 28px 32px 32px">
+            <div class="num" style="font-size: 15px; color: #59636e">{{f.lead.date}}</div>
+            <div class="post-title" style="margin-top: 10px; font-size: 32px; font-weight: 700; line-height: 1.15; color: #13385d; letter-spacing: -0.02em">{{f.lead.title}}</div>
+          </div>
+        </a>
+        <div class="news3-list">
+          <sc-for list="{{f.rest}}" as="p" hint-placeholder-count="3">
+            <a href="news.html" class="post news3-row">
+              <div class="post-img"><img src="{{p.img}}" alt=""></div>
+              <div>
+                <div class="num" style="font-size: 15px; color: #59636e">{{p.date}}</div>
+                <div class="post-title" style="margin-top: 6px; font-size: 20px; font-weight: 600; line-height: 1.3; color: #13385d">{{p.title}}</div>
+              </div>
+            </a>
+          </sc-for>
+          <a href="news.html" class="btn btn-line" style="align-self: flex-start">Усі матеріали<span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- 9. CTA -->
+<section id="contact" style="{{ctaStyle}}">
+  <div class="wrap cta3" style="position: relative; display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 40px; align-items: center; padding-top: 120px; padding-bottom: 120px">
+    <div style="position: relative; z-index: 1">
+      <h2 class="h2x" style="color: #ffffff">Підберемо прилади під ваш об'єкт</h2>
+      <p class="lead" style="margin: 24px 0 0; color: #ffffff; max-width: 40ch">Опишіть задачу, і менеджер вашого регіону підготує пропозицію.</p>
+      <div style="display: flex; gap: 12px; margin-top: 40px; flex-wrap: wrap">
+        <a href="#" class="{{ctaBtn}}">Залишити заявку<span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+        <a href="where-to-buy.html" class="btn btn-ghost">Знайти дилера</a>
+      </div>
+    </div>
+    <svg class="mark" viewBox="141 0 92 92" aria-hidden="true" style="width: 100%; max-width: 400px; justify-self: end"><path fill="{{markFill}}" d="M224.94 7.79C217.16 0.00 204.35 0.09 196.66 7.79C188.97 15.48 192.78 37.55 185.09 45.24C181.31 49.01 174.71 50.98 166.74 50.98L141.12 50.98L141.12 91.55L181.61 91.55L181.61 66.78C181.61 59.21 183.73 51.43 187.50 47.650C194.91 40.25 217.13 43.72 224.96 36.070C232.77 28.41 232.74 15.58 224.94 7.79Z"></path></svg>
+  </div>
+</section>
+
+<!-- 10. FOOTER -->
+<footer class="foot" style="{{footStyle}}">
+  <div class="wrap" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px; padding-top: 72px; padding-bottom: 48px">
+    <div>
+      <img src="assets/0fb4110e-nik-logo-white.svg" alt="NIK" style="height: 32px; width: auto; display: block">
+      <p style="margin: 20px 0 0; font-size: 15px; line-height: 1.6">ТОВ «НІК-ЕЛЕКТРОНІКА»<br>вул. Левка Лук'яненка, 13А, Київ, 04212</p>
+      <p class="num" style="margin: 12px 0 0; font-size: 15px; line-height: 1.8"><a href="#">+380 (44) 498-06-19</a><br><a href="#">info@nikel.com.ua</a></p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <div style="font-size: 16px; font-weight: 700; color: #ffffff">Каталог</div>
+      <a href="#">Облік електроенергії</a><a href="#">Облік води й тепла</a><a href="#">Облік газу</a><a href="#">АСКОЕ</a><a href="#">Послуги</a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <div style="font-size: 16px; font-weight: 700; color: #ffffff">Компанія</div>
+      <a href="#">Про компанію</a><a href="#">Історія</a><a href="#">Кар'єра</a><a href="#">Центр оцінки відповідності</a><a href="#">Наші партнери</a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <div style="font-size: 16px; font-weight: 700; color: #ffffff">Зв'язок</div>
+      <a href="#">Форма зворотного зв'язку</a><a href="#">Де купити</a><a href="#">Сервісний центр</a><a href="#">Facebook</a><a href="#">YouTube</a><a href="#">LinkedIn</a>
+    </div>
+  </div>
+  <div class="wrap" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-top: 24px; padding-bottom: 32px; border-top: 1px solid rgba(255,255,255,.16); font-size: 14px">
+    <span>© 2005–2026 ТОВ «НІК-ЕЛЕКТРОНІКА»</span>
+    <span style="display: flex; gap: 24px; flex-wrap: wrap"><a href="#">Юридична інформація</a><a href="#">Політика конфіденційності</a><a href="#">Фінансова звітність</a></span>
+  </div>
+</footer>
+
+</div>
+</script>
+<script>
+window.DC_BLOBS = {"de1ec571973f47479cdfc5e1ddf2ab60":"assets/de1ec571-role-engineer.webp","8ca768a1407bd9b2f25799c8ec819559":"assets/8ca768a1-role-dealer.webp","32f89041e15ef99a7503c92b54ca4e90":"assets/32f89041-role-utility.webp","6a9934741a2195c99bb4ba3ec89f43e6":"assets/6a993474-role-home.webp","4e3e1ef59dd050762514eb1b6bc902b0":"assets/4e3e1ef5-cut-kc02.webp","d157d6c6177c3e8d49093a281d0d118d":"assets/d157d6c6-t-7021.jpg","c4241830221490918fd0d48d83d56297":"assets/c4241830-cut-7071.webp","2bbc2afc7b05132fc37db958a1efe7a4":"assets/2bbc2afc-t-5500.jpg","1bc2c60e4fa2f82c5d311ace163765cc":"assets/1bc2c60e-cut-kk01.webp","07c44668a5a79d699210918f2ee79e65":"assets/07c44668-cut-stv.webp","4628623403c91e31d2dc1e4b347c0b11":"assets/46286234-t-box.jpg","9bb3587e288fe3654d1b5a9b91c28df5":"assets/9bb3587e-h-2005.webp","cf8e2f1dd66b397312a466e40c80f839":"assets/cf8e2f1d-h-2018.webp","91d9cc8d1dd39ed30b472abf02be9d93":"assets/91d9cc8d-c-automation.jpg","4ee835b35f0ce1c5b4662a723809ed42":"assets/4ee835b3-h-2023.webp","64d3854c808afc98f555fddf056f74b8":"assets/64d3854c-h-2024.webp","e3a26a87fafda2aa0c87ff6cdb2b951e":"assets/e3a26a87-c-calibration.jpg","1695fc08e5d7c1a2fcd4fbc761e00a02":"assets/1695fc08-c-tampo.jpg","c0704521db1416ec66e4d8545678ba60":"assets/c0704521-prod-molding.jpg","2d5e93a952ee95766eb8b2734477ce42":"assets/2d5e93a9-c-robot.jpg","13d2bad07fe545f78489ff36c4e95ba1":"assets/13d2bad0-w-2300.jpg","a34e62c0df305c654037e7c0f0124a27":"assets/a34e62c0-w-kc02.jpg","52222d287955739150564337766823e4":"assets/52222d28-w-7021.jpg","c29e4ef9a5841195d3dc2794288539b5":"assets/c29e4ef9-w-7071.jpg","9a3958a063d514694440c4f65109348e":"assets/9a3958a0-w-5500.jpg","8723113e0118e7978462748e258e17e3":"assets/8723113e-w-kk01.jpg","fdd731f552330a039a525e5109ab5ee9":"assets/fdd731f5-w-stv01m.jpg","b76b763965df40d22e1607eab06daaab":"assets/b76b7639-w-box.jpg","1420523c3c574c7cf74e335770d3606e":"assets/1420523c-prod-render.jpg","2ccf31fa5a1b515e3050b040abee4fb2":"assets/2ccf31fa-p-2300-g.jpg","c78a58ccbebb1066392f86ffe8a8c1f2":"assets/c78a58cc-prod-line.jpg","8d593619af6d3a405650fa09eb25630c":"assets/8d593619-p-kk01-g.jpg","f4447aa7dfd3ac6ec51ef1d8dd067d7e":"assets/f4447aa7-p-2300c-g.jpg","86810065c3dbd6b0f4f256803ea6349e":"assets/86810065-p-2104-g.jpg","6567fc3b643335bde19852dd0048394a":"assets/6567fc3b-p-7071-g.jpg","e3f2a7b05635af9830fcd4ade5813599":"assets/e3f2a7b0-hero-w.jpg"};
+
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { tab: 'news', hs: 0, role: 0, img: 0, rx: 0, ry: 0 }; }
+  renderVals() {
+    const B = '/_blob/';
+    const s = this.state;
+    const on = (k) => this.props[k] !== false;
+    const n1 = on('Н1 Великий прилад на сцені'), n2 = on('Н2 Ролі фотокартками'), n3 = on('Н3 Продукція плиткою з глибиною'), n4 = on('Н4 Власна розробка — мозаїка'), n5 = on('Н5 Схема «Від лічильника до рішення»'), n6 = on('Н6 Історія епізодами'), n7 = on('Н7 Кольорові маси (червоний CTA, синій футер)');
+    const arrow = (dx) => (e) => { const sec = e && e.currentTarget && e.currentTarget.closest('section'); const r = sec && sec.querySelector('.hrail'); if (r) r.scrollBy({ left: dx, behavior: 'smooth' }); };
+    const vals = {
+      n1, n1off: !n1, n2, n2off: !n2, n3, n3off: !n3, n4, n4off: !n4, n5, n6, n6off: !n6,
+      statN: '300 000+',
+      rx: s.rx, ry: s.ry,
+      tilt: (e) => { const r = e.currentTarget.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5; this.setState({ ry: +(x * 14).toFixed(1), rx: +(-y * 10).toFixed(1) }); },
+      untilt: () => this.setState({ rx: 0, ry: 0 }),
+      histPrev: arrow(-460), histNext: arrow(460),
+      histStyle: n6 ? '' : 'background:#e6eaeb',
+      videoShade: 'position:absolute;inset:0;background:' + (n7 ? 'linear-gradient(180deg,rgba(19,56,93,0) 30%,rgba(19,56,93,.88) 100%)' : 'linear-gradient(180deg,rgba(11,15,20,0) 35%,rgba(11,15,20,.78) 100%)'),
+      ctaStyle: 'color:#ffffff;overflow:hidden;background:' + (n7 ? '#e30427' : '#13385d'),
+      ctaBtn: n7 ? 'btn btn-white' : 'btn btn-red',
+      markFill: n7 ? '#ffffff' : '#e30427',
+      footStyle: n7 ? 'background:#13385d;color:#dbe3eb' : 'background:#0b0f14;color:#c3ccd6'
+    };
+    const roleData = [
+      { label: 'Інженер', word: 'інженер', img: B + 'de1ec571973f47479cdfc5e1ddf2ab60', text: 'Характеристики, креслення й паспорти приладів — у каталозі, принципи роботи — у НІКіпедії.', cta: 'Відкрити каталог', href: 'Catalog.dc.html' },
+      { label: 'Дистриб’ютор чи дилер', word: 'дилер', img: B + '8ca768a1407bd9b2f25799c8ec819559', text: 'Умови співпраці, кабінет партнера й менеджер вашого регіону.', cta: 'Стати партнером', href: '#' },
+      { label: 'Енергокомпанія', word: 'енергокомпанія', img: B + '32f89041e15ef99a7503c92b54ca4e90', text: 'АСКОЕ, прорахунок високовольтних мереж і консультація технічного спеціаліста.', cta: 'Отримати консультацію', href: '#' },
+      { label: 'Купую для дому', word: 'купую для дому', img: B + '6a9934741a2195c99bb4ba3ec89f43e6', text: 'Прилади NIK продаються через мережу дилерів. Знайдіть найближчого.', cta: 'Де купити', href: 'WhereToBuy.dc.html' }
+    ];
+    const rcards = roleData.map((r, i) => ({ ...r, open: String(s.role === i), isOpen: s.role === i, pick: () => { if (s.role !== i) this.setState({ role: i }); } }));
+    const roles = roleData.map((r, i) => ({ label: r.label, selected: String(s.role === i), pick: () => this.setState({ role: i }) }));
+    const cells = [
+      { name: 'АСКОЕ', tag: 'Менеджмент', acc: '#00a86b', img: '4e3e1ef59dd050762514eb1b6bc902b0', w: '62%', wide: true },
+      { name: 'Лічильники води', tag: 'Вода', acc: '#007ac2', img: 'd157d6c6177c3e8d49093a281d0d118d', w: '44%', flat: true },
+      { name: 'Лічильники тепла', tag: 'Тепло', acc: '#007ac2', img: 'c4241830221490918fd0d48d83d56297', w: '52%' },
+      { name: 'Лічильники газу', tag: 'Газ', acc: '#f26500', img: '2bbc2afc7b05132fc37db958a1efe7a4', w: '46%', flat: true },
+      { name: 'IoT і зв’язок', tag: 'Менеджмент', acc: '#00a86b', img: '1bc2c60e4fa2f82c5d311ace163765cc', w: '34%' },
+      { name: 'Стабілізатори напруги', tag: 'Електрика', acc: '#ffb300', img: '07c44668a5a79d699210918f2ee79e65', w: '70%' },
+      { name: 'Електромонтаж', tag: 'Електрика', acc: '#ffb300', img: '4628623403c91e31d2dc1e4b347c0b11', w: '62%', flat: true }
+    ].map((c) => ({ ...c, src: B + c.img, cls: 'cell' + (c.wide ? ' cell-wide' : ''), imgCls: 'cell-img' + (c.flat ? ' flat' : '') }));
+    const episodes = [
+      { y: '2005', img: '9bb3587e288fe3654d1b5a9b91c28df5', t: 'Початок', d: 'Засновано НІК-ЕЛЕКТРОНІКА — перші лічильники й власна лабораторія.' },
+      { y: '2017', img: 'de1ec571973f47479cdfc5e1ddf2ab60', t: 'Власне ПЗ', d: 'Нова версія програмного забезпечення UNIK для обліку й налаштування приладів.' },
+      { y: '2018', img: 'cf8e2f1dd66b397312a466e40c80f839', t: 'Розумні мережі', d: 'Членство в асоціаціях PRIME PLC і G3-PLC — передача даних електромережею.' },
+      { y: '2020', img: '91d9cc8d1dd39ed30b472abf02be9d93', t: 'Автоматизація', d: 'Запуск автоматизованого збирання клемних колодок і тамподруку.' },
+      { y: '2023', img: '4ee835b35f0ce1c5b4662a723809ed42', t: 'Захист даних', d: 'Ресертифікація за ISO 27001 — безпека інформації клієнтів і мереж.' },
+      { y: '2024', img: '64d3854c808afc98f555fddf056f74b8', t: 'Міжнародний рівень', d: 'Подовжено членство в Міжнародній торговій палаті ICC.' }
+    ].map((e) => ({ ...e, img: B + e.img, y1: e.y.slice(0, 3), y2: e.y.slice(3) }));
+    // попередній варіант (для вимкнених перемикачів)
+    const hsData = [
+      { x: 50, y: 29, title: 'LCD-дисплей', text: 'Показує спожиту активну й реактивну енергію за кожним тарифом.' },
+      { x: 25, y: 30, title: 'Оптичний порт', text: 'Локальне зчитування й налаштування приладу без розкриття пломб.' },
+      { x: 44, y: 44, title: 'PLC і G3-PLC', text: 'Передає дані електромережею за протоколом DLMS/COSEM — без окремого каналу зв’язку.' },
+      { x: 67, y: 35, title: 'Датчики втручання', text: 'Фіксують спроби втручання в роботу приладу.' },
+      { x: 46, y: 73, title: 'Клемна колодка', text: 'Збирається на автоматизованій лінії NIK.' },
+      { x: 76, y: 57, title: 'Зроблено в Україні', text: 'Розробка, виробництво й калібрування — у власних цехах компанії.' }
+    ];
+    const hotspots = hsData.map((h, i) => ({ ...h, delay: 700 + i * 90, pressed: String(s.hs === i), cardClass: 'hs-card', pick: () => this.setState({ hs: i }) }));
+    const photos = [
+      { src: B + 'e3a26a87fafda2aa0c87ff6cdb2b951e', alt: 'Фахівчиня перевіряє лічильники на стенді повірки' },
+      { src: B + '1695fc08e5d7c1a2fcd4fbc761e00a02', alt: 'Автомат тамподруку для маркування корпусів' },
+      { src: B + '91d9cc8d1dd39ed30b472abf02be9d93', alt: 'Вузол автоматизованої лінії збирання' },
+      { src: B + 'c0704521db1416ec66e4d8545678ba60', alt: 'Термопластавтомат у цеху виробів із пластмаси' },
+      { src: B + '2d5e93a952ee95766eb8b2734477ce42', alt: 'Маніпулятор на лінії збирання' }
+    ];
+    const gallery = { main: photos[s.img].src, alt: photos[s.img].alt, thumbs: photos.map((p, i) => ({ src: p.src, label: 'Фото ' + (i + 1) + ' з 5', current: String(s.img === i), pick: () => this.setState({ img: i }) })) };
+    const years = []; for (let y = 2005; y <= 2026; y++) years.push(y);
+    const mileYears = [2005, 2017, 2018, 2020, 2023, 2024];
+    const ticks = years.map((y) => ({ cls: mileYears.indexOf(y) >= 0 ? 'tick mile' : (y % 5 === 0 ? 'tick major' : 'tick') }));
+    const milestones = [
+      { year: '2005', text: 'Засновано НІК-ЕЛЕКТРОНІКА' },
+      { year: '2017', text: 'Нова версія програмного забезпечення UNIK' },
+      { year: '2018', text: 'Членство в асоціаціях PRIME PLC і G3-PLC' },
+      { year: '2020', text: 'Автоматизоване збирання клемних колодок' },
+      { year: '2023', text: 'Ресертифікація за ISO 27001' },
+      { year: '2024', text: 'Подовжено членство в ICC' }
+    ].map((m) => { const p = (+m.year - 2005) / 21 * 100; return { ...m, pos: p.toFixed(2), shift: p < 2 ? 0 : -50 }; });
+    const categories = [
+      { name: 'Лічильники електроенергії', note: 'Однофазні й трифазні', w: '13d2bad07fe545f78489ff36c4e95ba1' },
+      { name: 'АСКОЕ', note: 'Концентратори й контролери', w: 'a34e62c0df305c654037e7c0f0124a27' },
+      { name: 'Лічильники води', note: 'Квартирні й будинкові', w: '52222d287955739150564337766823e4' },
+      { name: 'Лічильники тепла', note: 'Теплолічильники NIK 7071', w: 'c29e4ef9a5841195d3dc2794288539b5' },
+      { name: 'Лічильники газу', note: 'Побутові мембранні', w: '9a3958a063d514694440c4f65109348e' },
+      { name: 'IoT і зв’язок', note: 'Передача даних', w: '8723113e0118e7978462748e258e17e3' },
+      { name: 'Стабілізатори напруги', note: 'Лінійка NIK STV', w: 'fdd731f552330a039a525e5109ab5ee9' },
+      { name: 'Електромонтажне обладнання', note: 'Щити, DIN-рейки, пломби', w: 'b76b763965df40d22e1607eab06daaab' }
+    ].map((c) => ({ ...c, src: B + c.w }));
+    const news = [
+      { date: '26.08.2026', title: 'Звіт незалежного аудитора щодо фінансової звітності за 2025 рік', img: B + 'c0704521db1416ec66e4d8545678ba60' },
+      { date: '05.11.2024', title: 'НІК-ЕЛЕКТРОНІКА подовжила членство в ICC', img: B + '1420523c3c574c7cf74e335770d3606e' },
+      { date: '01.10.2023', title: 'Беремо участь у виставці «Енергетика в промисловості»', img: B + '2ccf31fa5a1b515e3050b040abee4fb2' },
+      { date: '01.02.2023', title: 'Успішно пройшли ресертифікацію за ISO 27001', img: B + 'c78a58ccbebb1066392f86ffe8a8c1f2' }
+    ];
+    const articles = [
+      { date: 'НІКіпедія', title: 'Сім способів передачі даних з лічильника: PLC, RF, GSM та інші', img: B + '8d593619af6d3a405650fa09eb25630c' },
+      { date: 'НІКіпедія', title: 'Протокол DLMS/COSEM: що це і навіщо він енергокомпанії', img: B + 'f4447aa7dfd3ac6ec51ef1d8dd067d7e' },
+      { date: 'НІКіпедія', title: 'Клас точності лічильника: як читати маркування', img: B + '86810065c3dbd6b0f4f256803ea6349e' },
+      { date: 'Ми у ЗМІ', title: 'Київська ТПП про новий теплолічильник NIK 7071', img: B + '6567fc3b643335bde19852dd0048394a' }
+    ];
+    const list = s.tab === 'news' ? news : articles;
+    const isNews = s.tab === 'news';
+    const tOn = 'background:#13385d;color:#ffffff';
+    const tOff = 'background:transparent;color:#13385d';
+    const logos = ['[обленерго]', '[обленерго]', '[дистриб’ютор]', '[партнер]', '[обленерго]', '[дистриб’ютор]', '[партнер]', '[партнер]', '[обленерго]', '[партнер]'];
+    return {
+      ...vals,
+      rcards, roles, cells, episodes,
+      roleActive: [roleData[s.role]],
+      hotspots, hsActive: [hsData[s.hs]], newHero: true, oldHero: false,
+      stageStyle: 'position:relative;aspect-ratio:1/1;background:#ffffff;overflow:hidden',
+      heroSrc: B + 'e3f2a7b05635af9830fcd4ade5813599',
+      tileImgStyle: 'background:#ffffff;border:1px solid #e6eaeb;box-sizing:border-box',
+      gallery, ticks, milestones, categories,
+      isNews: String(isNews), isArticles: String(!isNews),
+      newsTabStyle: isNews ? tOn : tOff, artTabStyle: isNews ? tOff : tOn,
+      showNews: () => this.setState({ tab: 'news' }),
+      showArticles: () => this.setState({ tab: 'articles' }),
+      feed: [{ key: s.tab, lead: list[0], rest: list.slice(1) }],
+      logos
+    };
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>
