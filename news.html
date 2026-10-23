@@ -53,6 +53,17 @@ a{color:var(--ink)}
 .lang a{padding:12px 6px;text-decoration:none;color:var(--muted)}
 .lang a[aria-current]{color:var(--red)}
 .burger{display:none}
+.mnav{display:none}
+@media (max-width:900px){
+  .mnav{display:block;position:fixed;left:0;right:0;top:81px;bottom:0;z-index:29;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;background:#ffffff;padding:8px 16px 40px;box-sizing:border-box;animation:mIn .35s var(--ease) both}
+  @keyframes mIn{from{opacity:0;transform:translateY(-12px)}}
+  .mnav .grp{padding:20px 0;border-bottom:1px solid var(--line)}
+  .mnav .grp>a{display:flex;justify-content:space-between;align-items:center;min-height:48px;font-size:28px;font-weight:700;letter-spacing:-0.02em;color:var(--ink);text-decoration:none}
+  .mnav .sub{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;margin-top:6px}
+  .mnav .sub a{display:flex;align-items:center;min-height:44px;font-size:16px;color:var(--text);text-decoration:none}
+  .mnav .foot{display:flex;flex-direction:column;gap:16px;padding-top:24px}
+  .mnav .lang{display:flex;font-size:16px}
+}
 
 /* hero slider */
 .hero{padding:16px 16px 0}
@@ -300,13 +311,28 @@ a{color:var(--ink)}
     </nav>
     <a href="#" class="btn btn-line docs">Електронні документи</a>
     <div style="display: flex; align-items: center; gap: 4px">
-      <button class="icon burger" aria-label="Відкрити меню"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+      <button class="icon burger" type="button" aria-label="{{menuLabel}}" aria-expanded="{{menuExp}}" aria-controls="mnav" onClick="{{toggleMenu}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="{{burgerPath}}"></path></svg></button>
       <button class="icon" aria-label="Пошук моделі, документа або статті" title="Пошук моделі, документа або статті"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></button>
       <a href="#" class="icon" aria-label="Увійти в особистий кабінет" title="Увійти в особистий кабінет"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></a>
       <div class="lang" aria-label="Мова сайту"><a href="#" aria-current="true">UA</a><a href="#">EN</a><a href="#">RU</a></div>
     </div>
   </div>
 </header>
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{false}}">
+  <nav class="mnav" id="mnav" aria-label="Мобільне меню" onClick="{{menuClick}}">
+    <sc-for list="{{menu}}" as="m" hint-placeholder-count="4">
+      <div class="grp">
+        <a href="{{m.href}}">{{m.t}}<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        <div class="sub"><sc-for list="{{m.items}}" as="i" hint-placeholder-count="4"><a href="{{i.href}}">{{i.t}}</a></sc-for></div>
+      </div>
+    </sc-for>
+    <div class="foot">
+      <a href="#" class="btn btn-line" style="width: 100%">Електронні документи</a>
+      <a href="#" class="btn btn-ink" style="width: 100%" onClick="{{openForm}}">Зв'язатися з нами</a>
+      <div class="lang" aria-label="Мова сайту"><a href="#" aria-current="true">UA</a><a href="#">EN</a><a href="#">RU</a></div>
+    </div>
+  </nav>
+</sc-if>
 
 <main id="main">
 <section class="sec">
@@ -396,9 +422,9 @@ window.DC_BLOBS = {"5a730fd2f1cb33a5b04465cf472e04b9":"assets/5a730fd2-hero-1.we
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { s: 0, paused: false, form: false, sent: false, tried: false, cookie: true };
+    this.state = { s: 0, paused: false, form: false, sent: false, tried: false, cookie: true, menu: false };
     if (typeof window !== 'undefined' && window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      this.timer = setInterval(() => { if (!this.state.paused && !this.state.form) this.setState({ s: (this.state.s + 1) % 4 }); }, 6500);
+      this.timer = setInterval(() => { if (!this.state.paused && !this.state.form && !this.state.menu) this.setState({ s: (this.state.s + 1) % 4 }); }, 6500);
     }
   }
   renderVals() {
@@ -453,11 +479,15 @@ class Component extends DCLogic {
         { d: '01.02.2023', t: 'Успішно пройшли ресертифікацію за ISO 27001', img: B + '4ee835b35f0ce1c5b4662a723809ed42' }
       ],
       formOpen: s.form, notSent: !s.sent, sent: s.sent, formCls: s.tried ? 'tried' : '',
-      openForm: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ form: true, sent: false, tried: false }); },
+      openForm: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ form: true, sent: false, tried: false, menu: false }); },
       closeForm: () => this.setState({ form: false }),
       closeOverlay: (e) => { if (e && e.target === e.currentTarget) this.setState({ form: false }); },
       submit: (e) => { e.preventDefault(); const f = e.currentTarget; if (!f.checkValidity()) { this.setState({ tried: true }); const bad = f.querySelector(':invalid'); if (bad) bad.focus(); return; } this.setState({ sent: true }); },
-      cookie: s.cookie,
+      cookie: s.cookie && !s.menu,
+      menuOpen: s.menu, menuExp: String(s.menu), menuLabel: s.menu ? 'Закрити меню' : 'Відкрити меню',
+      burgerPath: s.menu ? 'M6 6l12 12M18 6 6 18' : 'M4 7h16M4 12h16M4 17h16',
+      toggleMenu: () => this.setState({ menu: !s.menu }),
+      menuClick: (e) => { if (e && e.target && e.target.closest && e.target.closest('a')) this.setState({ menu: false }); },
       closeCookie: () => this.setState({ cookie: false }),
       openCookie: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ cookie: true }); }
     };
