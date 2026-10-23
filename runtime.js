@@ -40,7 +40,7 @@
     } else if (lookup(scope, attr(m[0], 'value').replace(/[{}]/g, ''))) out = expand(body, scope);
     return holes(html.slice(0, m.index), scope) + out + expand(html.slice(close.end), scope);
   }
-  var EVENTS = { click: 'click', mouseenter: 'mouseenter', mouseleave: 'mouseleave', mousemove: 'mousemove', focus: 'focus' };
+  var EVENTS = { click: 'click', mouseenter: 'mouseenter', mouseleave: 'mouseleave', mousemove: 'mousemove', focus: 'focus', submit: 'submit', change: 'change' };
   function bind(root) {
     Object.keys(EVENTS).forEach(function (ev) {
       root.querySelectorAll('[data-on-' + ev + ']').forEach(function (el) {
@@ -58,7 +58,7 @@
   window.DCLogic.prototype.setState = function (s) {
     Object.assign(this.state, s);
     var self = this;
-    if (!this.__q) { this.__q = true; requestAnimationFrame(function () { self.__q = false; self.__render(); }); }
+    if (!this.__q) { this.__q = true; Promise.resolve().then(function () { self.__q = false; self.__render(); }); }
   };
   window.DC = {
     mount: function (Component) {
@@ -70,7 +70,7 @@
         var next = document.createElement('div');
         next.id = 'app';
         next.innerHTML = expand(tpl, c.renderVals()).replace(/\/_blob\/([0-9a-f]{32})/g, function (m, id) { return (window.DC_BLOBS || {})[id] || m; });
-        if (window.morphdom) morphdom(app, next, { onBeforeElUpdated: function (from, to) { return !from.isEqualNode(to); } });
+        if (window.morphdom) morphdom(app, next, { onBeforeElUpdated: function (from, to) { if (/^(INPUT|TEXTAREA|SELECT)$/.test(from.tagName)) return false; return !from.isEqualNode(to); } });
         else app.innerHTML = next.innerHTML;
         bind(app);
       };
