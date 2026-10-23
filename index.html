@@ -283,7 +283,7 @@ a{color:var(--ink)}
 <a href="#main" class="skip">Перейти до змісту</a>
 <header class="hd">
   <div class="wrap">
-    <a href="index.html" aria-label="НІК-ЕЛЕКТРОНІКА — на головну" style="display: flex"><img src="assets/4acb50f3-nik-logo.svg" alt="НІК-ЕЛЕКТРОНІКА — на головну" style="height: 34px; width: auto; display: block"></a>
+    <a href="#" aria-label="НІК-ЕЛЕКТРОНІКА — на головну" style="display: flex"><img src="assets/4acb50f3-nik-logo.svg" alt="НІК-ЕЛЕКТРОНІКА — на головну" style="height: 34px; width: auto; display: block"></a>
     <nav aria-label="Головне меню" style="flex: 1 1 auto">
       <ul class="menu">
         <sc-for list="{{menu}}" as="m" hint-placeholder-count="4">
@@ -343,7 +343,7 @@ a{color:var(--ink)}
     <div class="shead">
       <h2 class="h2 rv" id="h-cat">Каталог</h2>
       <div class="side">
-        <a href="catalog.html" class="btn btn-line" style="margin-right: 8px">Увесь каталог<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        <a href="#" class="btn btn-line" style="margin-right: 8px">Увесь каталог<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
         <button class="round" aria-label="Попередні категорії" onClick="{{catPrev}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></button>
         <button class="round" aria-label="Наступні категорії" onClick="{{catNext}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
       </div>
@@ -352,7 +352,7 @@ a{color:var(--ink)}
   <div class="wrap">
     <div class="track" tabindex="0" aria-label="Категорії каталогу">
       <sc-for list="{{cats}}" as="c" hint-placeholder-count="9">
-        <a href="catalog.html" class="{{c.cls}}">
+        <a href="#" class="{{c.cls}}">
           <span class="cat-n">{{c.no}}</span>
           <img class="{{c.imgCls}}" src="{{c.img}}" alt="{{c.alt}}">
           <span style="display: flex; justify-content: space-between; align-items: flex-end; gap: 12px">
@@ -374,7 +374,7 @@ a{color:var(--ink)}
       <div>
         <p>НІК-ЕЛЕКТРОНІКА — український розробник і виробник приладів обліку енергоресурсів і систем автоматизованого обліку (AMI). Працюємо з 2005 року. Ми виробляємо лічильники електроенергії, води, тепла, стабілізатори напруги та програмне забезпечення для дистанційного збору даних.</p>
         <p style="margin-top: 20px">Лічильники NIK використовують оператори систем розподілу по всій Україні. Продукцію експортуємо до країн ЄС, Близького Сходу та Азії.</p>
-        <a href="about.html" class="btn btn-ink" style="margin-top: 36px">Дізнатися більше<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        <a href="#" class="btn btn-ink" style="margin-top: 36px">Дізнатися більше<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
       </div>
       <div class="gal">
         <sc-for list="{{gallery}}" as="g" hint-placeholder-count="5">
@@ -436,11 +436,11 @@ a{color:var(--ink)}
     <div class="rule" aria-hidden="true"></div>
     <div class="shead">
       <h2 class="h2 rv" id="h-news">Новини та статті</h2>
-      <div class="side"><a href="news.html" class="btn btn-line">Перейти до прес-центру<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+      <div class="side"><a href="#" class="btn btn-line">Перейти до прес-центру<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
     </div>
     <div class="news">
       <sc-for list="{{news}}" as="n" hint-placeholder-count="3">
-        <a href="news.html" class="post rv">
+        <a href="#" class="post rv">
           <div class="pi"><img src="{{n.img}}" alt=""></div>
           <div class="d">{{n.d}}</div>
           <div class="t">{{n.t}}</div>
@@ -478,7 +478,7 @@ a{color:var(--ink)}
       <div><b>Контакти</b><span>Тел./факс: <a href="#" class="num">+380 (44) 498-06-19</a></span><a href="#">info@nikel.com.ua</a><span>Пн–Пт, 8:00–17:00</span></div>
       <div><b>Ми в соцмережах</b><a href="#">LinkedIn</a><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">YouTube</a></div>
       <div><b>Юридична інформація</b><a href="#">Політика конфіденційності</a><a href="#">Політика використання файлів cookie</a><a href="#">Згода на обробку персональних даних</a><a href="#" onClick="{{openCookie}}">Налаштування cookie</a></div>
-      <div><b>Навігація</b><a href="catalog.html">Каталог</a><a href="about.html">Про нас</a><a href="where-to-buy.html">Контакти</a><a href="news.html">Прес-центр</a><a href="#" onClick="{{openForm}}">Зв'язатися з нами</a></div>
+      <div><b>Навігація</b><a href="#">Каталог</a><a href="#">Про нас</a><a href="#">Контакти</a><a href="#">Прес-центр</a><a href="#" onClick="{{openForm}}">Зв'язатися з нами</a></div>
     </div>
     <div style="padding: 28px 0 36px; border-top: 1px solid rgba(255,255,255,.16); font-size: 14px">© 2005–2026 ТОВ «НІК-ЕЛЕКТРОНІКА». Усі права захищено.</div>
   </div>
@@ -492,7 +492,7 @@ a{color:var(--ink)}
       <sc-if value="{{notSent}}" hint-placeholder-val="{{true}}">
         <h2 id="h-form">Напишіть нам</h2>
         <p style="margin: 16px 0 0; font-size: 17px; line-height: 1.55; color: #21272e">Оберіть тему звернення та коротко опишіть запит. Ми передамо його профільному фахівцю і відповімо протягом 1 робочого дня.</p>
-        <div class="warn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16.5v.5"></path></svg><span>Ми працюємо з компаніями та організаціями. Якщо ви побутовий споживач, зверніться до дилера у вашому регіоні — <a href="where-to-buy.html">Де купити</a> — або знайдіть відповідь на своє питання в чат-боті.</span></div>
+        <div class="warn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16.5v.5"></path></svg><span>Ми працюємо з компаніями та організаціями. Якщо ви побутовий споживач, зверніться до дилера у вашому регіоні — <a href="#">Де купити</a> — або знайдіть відповідь на своє питання в чат-боті.</span></div>
         <form class="{{formCls}}" novalidate onSubmit="{{submit}}">
           <div class="fgrid2">
             <div class="fld w"><label for="f-name">ПІБ*</label><input id="f-name" name="name" required autocomplete="name"><span class="err">Заповніть це поле</span></div>
@@ -578,10 +578,10 @@ class Component extends DCLogic {
     const isMenu = (t, href, items) => ({ t, href, items: items.map((x) => ({ t: x, href })) });
     return {
       menu: [
-        isMenu('Каталог', 'Catalog-v3.dc.html', ['Продукти', 'Послуги', 'Програмне забезпечення', 'Таблиця взаємозамінності', 'Порівняти товари']),
-        isMenu('Про нас', 'About-v3.dc.html', ['Про компанію', 'Історія компанії', 'Кар’єра', 'Центр оцінки відповідності', 'Наші партнери']),
-        isMenu('Контакти', 'WhereToBuy-v3.dc.html', ['Де купити', 'Сервісний центр']),
-        isMenu('Прес-центр', 'News-v3.dc.html', ['Новини', 'НІКіпедія', 'Ми у ЗМІ'])
+        isMenu('Каталог', '#', ['Продукти', 'Послуги', 'Програмне забезпечення', 'Таблиця взаємозамінності', 'Порівняти товари']),
+        isMenu('Про нас', '#', ['Про компанію', 'Історія компанії', 'Кар’єра', 'Центр оцінки відповідності', 'Наші партнери']),
+        isMenu('Контакти', '#', ['Де купити', 'Сервісний центр']),
+        isMenu('Прес-центр', '#', ['Новини', 'НІКіпедія', 'Ми у ЗМІ'])
       ],
       slides, curNo: '0' + (s.s + 1),
       c0: cap(0), c1: cap(1), c2: cap(2), c3: cap(3),
