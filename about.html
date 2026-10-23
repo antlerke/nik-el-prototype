@@ -90,7 +90,7 @@ a{color:var(--ink)}
 .sec{padding:120px 0}
 .rule{height:10px;border-top:1px solid var(--line);background:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px calc(100% / 12)) top left/100% 10px no-repeat}
 .shead{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:32px;align-items:end;margin-top:40px}
-.h2{margin:0;font-size:clamp(44px,6vw,96px);line-height:.92;font-weight:700;color:var(--ink);letter-spacing:-0.045em}
+.h2{margin:0;font-size:clamp(40px,4.6vw,72px);line-height:.95;font-weight:700;color:var(--ink);letter-spacing:-0.045em}
 .lead{margin:0;font-size:clamp(18px,1.5vw,21px);line-height:1.55;color:var(--text);max-width:46ch}
 .side{display:flex;justify-content:flex-end;align-items:center;gap:8px;flex-wrap:wrap}
 .round{width:56px;height:56px;border-radius:50%;border:0;display:grid;place-items:center;cursor:pointer;box-shadow:inset 0 0 0 1.5px var(--ink);background:transparent;color:var(--ink);transition:background-color .2s ease,color .2s ease,transform .16s var(--out)}
@@ -134,18 +134,18 @@ a{color:var(--ink)}
 /* figures */
 .figs{background:var(--ink);color:#ffffff}
 .figs .rule{border-color:rgba(255,255,255,.18);background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.18) 0 1px,transparent 1px calc(100% / 12))}
-.fgrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));margin-top:56px;border-top:1px solid rgba(255,255,255,.18)}
-.fig{container-type:inline-size;min-width:0;padding:36px 32px 44px 0;border-bottom:1px solid rgba(255,255,255,.18)}
+.fgrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));margin-top:40px;border-top:1px solid rgba(255,255,255,.18)}
+.fig{container-type:inline-size;min-width:0;padding:28px 32px 32px 0;border-bottom:1px solid rgba(255,255,255,.18)}
 .fig+.fig{padding-left:32px;border-left:1px solid rgba(255,255,255,.18)}
 .fig.big{grid-column:span 3}
 .fig.sm{grid-column:span 2}
 .fig.sm:nth-child(3){border-left:0;padding-left:0}
 .fig b{display:block;font-weight:700;line-height:.9;letter-spacing:-0.05em;white-space:nowrap;font-variant-numeric:tabular-nums}
-.fig.big b{font-size:clamp(56px,26cqi,168px)}
-.fig.sm b{font-size:clamp(48px,30cqi,120px)}
+.fig.big b{font-size:clamp(44px,14cqi,88px)}
+.fig.sm b{font-size:clamp(40px,16cqi,64px)}
 .fig b i{font-style:normal;counter-reset:n var(--n)}
 .fig b i::before{content:counter(n)}
-.fig span{display:block;margin-top:18px;font-size:19px;color:#c9d6e3}
+.fig span{display:block;margin-top:12px;font-size:18px;color:#c9d6e3}
 @media (prefers-reduced-motion:no-preference){@supports (animation-timeline:view()){
   .fig b i{animation:cnt linear both;animation-timeline:view();animation-range:entry 10% cover 45%}
   @keyframes cnt{from{--n:0}}
@@ -181,6 +181,7 @@ a{color:var(--ink)}
 
 /* cta */
 .cta{background:var(--paper);position:relative;overflow:hidden}
+.shead:has(> :only-child){grid-template-columns:minmax(0,1fr)}
 .cta .mark{position:absolute;right:-40px;bottom:-60px;width:420px;opacity:.05}
 
 /* modal form */
@@ -258,11 +259,12 @@ a{color:var(--ink)}
   .cap h1,.cap h2{font-size:40px}.cap p{font-size:16px;margin-top:18px}
   .capwrap{min-height:330px}
   .sec{padding:80px 0}
-  .h2{font-size:48px}
+  .h2{font-size:40px}
   .cat{flex-basis:78%;height:360px;padding:22px}.cat-t{font-size:22px}
   .gal{grid-template-columns:1fr 1fr;grid-template-rows:220px 140px 140px}
   .gal figure:nth-child(1){grid-column:span 2;grid-row:span 1}.gal figure:nth-child(5){grid-column:span 2}.gal figure:nth-child(4){display:none}
   .fig span{font-size:17px}
+  .fig.big b,.fig.sm b{font-size:56px}
   .logos div{height:96px}
   .vid{aspect-ratio:4/5;border-radius:22px}.play{width:96px;height:96px;margin:-48px 0 0 -48px}.vcap{left:20px;bottom:20px;font-size:18px}
   .dlg{padding:28px 20px;border-radius:22px}.dlg h2{font-size:36px}.fgrid2{grid-template-columns:1fr}
