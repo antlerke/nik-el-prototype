@@ -126,6 +126,19 @@ a{color:var(--ink)}
 .cimg img.photo{position:absolute;inset:0;width:100%;height:100%;max-width:none;max-height:none;object-fit:cover}
 .ct{margin-top:18px;font-size:22px;font-weight:700;letter-spacing:-0.02em;line-height:1.15}
 .cd{margin-top:8px;font-size:15px;line-height:1.5;color:var(--muted);flex:1 1 auto}
+.spec{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:14px}
+.cd+.spec{margin-top:16px}
+.spec span{color:var(--muted)}.spec b{font-weight:600;color:var(--ink);text-align:right}
+.card.more{justify-content:flex-end;padding:28px;background:linear-gradient(160deg,var(--red-a),rgba(227,4,39,.02));box-shadow:inset 0 0 0 1px var(--red-b);min-height:420px}
+.more .mk{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--red-t)}
+.more .mt{margin-top:10px;font-size:30px;line-height:1.1;font-weight:700;letter-spacing:-0.03em;max-width:12ch}
+.more .md{margin-top:14px;font-size:15px;line-height:1.55;color:var(--muted);max-width:34ch}
+.more .mgo{margin-top:28px;align-self:flex-start;display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 22px;border-radius:14px;background:var(--red);color:#ffffff;font-size:15px;font-weight:600;transition:background-color .2s ease}
+@media (hover:hover) and (pointer:fine){.card.more:hover .mgo{background:var(--red-h)}}
+.also{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:28px;font-size:15px;color:var(--muted)}
+.also span{margin-right:6px}
+.also a{padding:10px 16px;border-radius:999px;background:#ffffff;box-shadow:inset 0 0 0 1px var(--line);color:var(--ink);text-decoration:none;font-weight:500;transition:box-shadow .2s ease}
+.also a:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
 .cgo{margin-top:18px;height:48px;border-radius:14px;background:var(--paper);display:flex;align-items:center;justify-content:center;gap:10px;font-size:15px;font-weight:600;transition:background-color .25s ease,color .25s ease}
 @media (hover:hover) and (pointer:fine){
   .card:hover{transform:translateY(-6px);box-shadow:0 28px 56px -24px rgba(19,56,93,.35),0 0 0 1.5px var(--ink)}
@@ -321,14 +334,13 @@ a{color:var(--ink)}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition-duration:.01ms !important}.vf:first-of-type{opacity:1}}
 
 /* responsive */
-@media (max-width:1180px){.menu>li>a{padding:0 10px;font-size:15px}.docs{display:none}.cards{grid-template-columns:repeat(3,minmax(0,1fr))}.card.wide{grid-column:span 1}.steps{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:28px}.steps li::after{display:none}.fgrid{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:48px}.fig:nth-child(4){padding-left:0;border-left:0}}
+@media (max-width:1180px){.menu>li>a{padding:0 10px;font-size:15px}.docs{display:none}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.card.more{grid-column:span 2 !important;min-height:0}.steps{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:28px}.steps li::after{display:none}.fgrid{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:48px}.fig:nth-child(4){padding-left:0;border-left:0}}
 @media (max-width:900px){
   .menu,.seg.top{display:none}.burger{display:inline-grid}
   .hgrid{grid-template-columns:minmax(0,1fr);gap:8px;min-height:0;padding-top:28px}
   .stage{order:-1;height:420px;min-height:0}
   .cap h1,.cap h2{font-size:40px}
   .idx{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:32px}.idx .tt{display:none}
-  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
   .igrid,.cyc,.cgrid{grid-template-columns:minmax(0,1fr);gap:28px}
   .ibox{min-height:560px}
   .xleg{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -344,7 +356,8 @@ a{color:var(--ink)}
   .chip{display:none}
   .hbtns .btn{flex:1 1 100%}
   .idx button{font-size:0}.idx .no{font-size:13px}
-  .cards{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:28px -16px 0;padding:4px 16px 12px;scroll-padding:0 16px}.cards::-webkit-scrollbar{display:none}.card{flex:0 0 82%;scroll-snap-align:start}
+  .tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-left:-16px;margin-right:-16px;padding:2px 16px}.tabs::-webkit-scrollbar{display:none}.tabs button{flex:0 0 auto}
+  .cards{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:28px -16px 0;padding:4px 16px 12px;scroll-padding:0 16px}.cards::-webkit-scrollbar{display:none}.card{flex:0 0 82%;scroll-snap-align:start}.card.more{min-height:0;grid-column:auto !important}
   .xscroll{overflow-x:auto;margin:40px -16px 0;padding:0 16px;scrollbar-width:none}.xscroll .xstage{min-width:720px}
   .cimg,.card.wide .cimg{height:200px}
   .ibox{min-height:480px}.tilt{width:56%}
@@ -451,27 +464,36 @@ a{color:var(--ink)}
   </div>
 </section>
 
-<!-- 2. Каталог -->
+<!-- 2. Каталог: товари за категоріями -->
 <section class="sec" id="catalog" aria-labelledby="h-cat" style="background: var(--paper)">
   <div class="wrap">
     <div class="shead">
       <div><span class="kick">Продуктовий портфель</span><h2 class="h2 rv" id="h-cat">Каталог</h2></div>
       <a href="#" class="btn btn-line">Увесь каталог<svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
     </div>
-    <div class="tabs" role="tablist" aria-label="Напрям">
-      <sc-for list="{{tabs}}" as="t" hint-placeholder-count="4"><button type="button" role="tab" aria-selected="{{t.on}}" onClick="{{t.pick}}">{{t.label}}</button></sc-for>
+    <div class="tabs" role="tablist" aria-label="Категорії продукції">
+      <sc-for list="{{tabs}}" as="t" hint-placeholder-count="4"><button type="button" role="tab" aria-selected="{{t.on}}" aria-controls="cat-panel" onClick="{{t.pick}}">{{t.label}}</button></sc-for>
     </div>
-    <div class="cards">
-      <sc-for list="{{cats}}" as="c" hint-placeholder-count="9">
-        <a href="#" class="{{c.cls}}">
-          <span class="ctop"><span class="{{c.tagCls}}">{{c.g}}</span><span class="cno">{{c.no}}</span></span>
+    <div class="cards" id="cat-panel" role="tabpanel" aria-label="{{catName}}">
+      <sc-for list="{{prods}}" as="c" hint-placeholder-count="3">
+        <a href="#" class="card">
+          <span class="ctop"><span class="{{c.tagCls}}">{{c.tag}}</span></span>
           <span class="cimg"><img class="{{c.k}}" src="{{c.img}}" alt="{{c.alt}}"></span>
-          <span class="ct">{{c.t}}</span>
-          <span class="cd">{{c.alt}}</span>
-          <span class="cgo">Перейти до категорії<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+          <span class="ct">{{c.model}}</span>
+          <span class="cd">{{c.type}}</span>
+          <span class="spec"><span>{{c.k1}}</span><b>{{c.v1}}</b></span>
+          <span class="spec"><span>{{c.k2}}</span><b>{{c.v2}}</b></span>
+          <span class="cgo">Специфікація<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
         </a>
       </sc-for>
+      <a href="#" class="card more" style="{{moreSpan}}">
+        <span class="mk">Категорія</span>
+        <span class="mt">{{catName}}</span>
+        <span class="md">Усі моделі, характеристики, документація та сертифікати — у каталозі.</span>
+        <span class="mgo">Дивитися всі моделі<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+      </a>
     </div>
+    <div class="also"><span>Також у каталозі:</span><sc-for list="{{also}}" as="x" hint-placeholder-count="5"><a href="#">{{x}}</a></sc-for></div>
   </div>
 </section>
 
@@ -701,12 +723,12 @@ a{color:var(--ink)}
 </div>
 </script>
 <script>
-window.DC_BLOBS = {"f17070b288dd9e18e46b94068534e6a7":"assets/f17070b2-nik2306-ua.webp","c4241830221490918fd0d48d83d56297":"assets/c4241830-cut-7071.webp","4e3e1ef59dd050762514eb1b6bc902b0":"assets/4e3e1ef5-cut-kc02.webp","6c5854a5dadda834e83432d9bbe490f6":"assets/6c5854a5-nik2306-mid.webp","d3153f2f5ed8d9965f5fb1e49ae07ad9":"assets/d3153f2f-cut-2300.webp","07c44668a5a79d699210918f2ee79e65":"assets/07c44668-cut-stv.webp","fdc858a8d72eed867692c405b01b7e55":"assets/fdc858a8-p-space.jpg","f7fccb09fa506c70f87d6dad6abfc916":"assets/f7fccb09-p-ambus.jpg","4628623403c91e31d2dc1e4b347c0b11":"assets/46286234-t-box.jpg","1695fc08e5d7c1a2fcd4fbc761e00a02":"assets/1695fc08-c-tampo.jpg","5a730fd2f1cb33a5b04465cf472e04b9":"assets/5a730fd2-hero-1.webp","09712d8f2a0632ed5520ae989b4552e0":"assets/09712d8f-y0.webp","ad569d741727a2ebd68d3d39468bf68a":"assets/ad569d74-y1.webp","4fdc19aa0cd99b2610b022f84cd6169b":"assets/4fdc19aa-y2.webp","32ab23afb2162fd08017cb1eb47b9d42":"assets/32ab23af-y3.webp","eefa88a9c3dd72fe57a1df817af46b7e":"assets/eefa88a9-y4.webp","fe21750897b3ec821d9458f71f874d83":"assets/fe217508-y5.webp","5b396efcb8ce74e5d5921a110e5ca47c":"assets/5b396efc-y6.webp","14c1745388cb9f99de7e708a5c985f32":"assets/14c17453-y7.webp","b770a607cf6fa6949967e41dafb754c7":"assets/b770a607-y8.webp","de1ec571973f47479cdfc5e1ddf2ab60":"assets/de1ec571-role-engineer.webp","91d9cc8d1dd39ed30b472abf02be9d93":"assets/91d9cc8d-c-automation.jpg","2d5e93a952ee95766eb8b2734477ce42":"assets/2d5e93a9-c-robot.jpg","e3a26a87fafda2aa0c87ff6cdb2b951e":"assets/e3a26a87-c-calibration.jpg","c0704521db1416ec66e4d8545678ba60":"assets/c0704521-prod-molding.jpg","64d3854c808afc98f555fddf056f74b8":"assets/64d3854c-h-2024.webp","4ee835b35f0ce1c5b4662a723809ed42":"assets/4ee835b3-h-2023.webp"};
+window.DC_BLOBS = {"f17070b288dd9e18e46b94068534e6a7":"assets/f17070b2-nik2306-ua.webp","c4241830221490918fd0d48d83d56297":"assets/c4241830-cut-7071.webp","4e3e1ef59dd050762514eb1b6bc902b0":"assets/4e3e1ef5-cut-kc02.webp","6c5854a5dadda834e83432d9bbe490f6":"assets/6c5854a5-nik2306-mid.webp","d3153f2f5ed8d9965f5fb1e49ae07ad9":"assets/d3153f2f-cut-2300.webp","f0a2363fd4057897cae4831524ce270e":"assets/f0a2363f-cut-2303.webp","d157d6c6177c3e8d49093a281d0d118d":"assets/d157d6c6-t-7021.jpg","1bc2c60e4fa2f82c5d311ace163765cc":"assets/1bc2c60e-cut-kk01.webp","f7fccb09fa506c70f87d6dad6abfc916":"assets/f7fccb09-p-ambus.jpg","07c44668a5a79d699210918f2ee79e65":"assets/07c44668-cut-stv.webp","09712d8f2a0632ed5520ae989b4552e0":"assets/09712d8f-y0.webp","ad569d741727a2ebd68d3d39468bf68a":"assets/ad569d74-y1.webp","4fdc19aa0cd99b2610b022f84cd6169b":"assets/4fdc19aa-y2.webp","32ab23afb2162fd08017cb1eb47b9d42":"assets/32ab23af-y3.webp","eefa88a9c3dd72fe57a1df817af46b7e":"assets/eefa88a9-y4.webp","fe21750897b3ec821d9458f71f874d83":"assets/fe217508-y5.webp","5b396efcb8ce74e5d5921a110e5ca47c":"assets/5b396efc-y6.webp","14c1745388cb9f99de7e708a5c985f32":"assets/14c17453-y7.webp","b770a607cf6fa6949967e41dafb754c7":"assets/b770a607-y8.webp","de1ec571973f47479cdfc5e1ddf2ab60":"assets/de1ec571-role-engineer.webp","91d9cc8d1dd39ed30b472abf02be9d93":"assets/91d9cc8d-c-automation.jpg","1695fc08e5d7c1a2fcd4fbc761e00a02":"assets/1695fc08-c-tampo.jpg","2d5e93a952ee95766eb8b2734477ce42":"assets/2d5e93a9-c-robot.jpg","e3a26a87fafda2aa0c87ff6cdb2b951e":"assets/e3a26a87-c-calibration.jpg","c0704521db1416ec66e4d8545678ba60":"assets/c0704521-prod-molding.jpg","64d3854c808afc98f555fddf056f74b8":"assets/64d3854c-h-2024.webp","4ee835b35f0ce1c5b4662a723809ed42":"assets/4ee835b3-h-2023.webp"};
 
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { s: 0, paused: false, tab: 'all', spot: 0, sent: false, tried: false, cookie: true, menu: false, vid: true };
+    this.state = { s: 0, paused: false, tab: 'el', spot: 0, sent: false, tried: false, cookie: true, menu: false, vid: true };
     if (typeof window !== 'undefined' && window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       this.timer = setInterval(() => { if (!this.state.paused && !this.state.menu) this.setState({ s: (this.state.s + 1) % 4 }); }, 8000);
     }
@@ -719,28 +741,37 @@ class Component extends DCLogic {
     const slideData = [
       { img: 'f17070b288dd9e18e46b94068534e6a7', alt: 'Трифазний лічильник електроенергії NIK 2306 з модулем LTE', short: 'Від розробки до сервісу', name: 'NIK 2306', cat: 'Облік електроенергії', c1: 'DLMS / COSEM', c2: 'Модуль зв’язку LTE' },
       { img: 'c4241830221490918fd0d48d83d56297', alt: 'Лічильник тепла NIK', short: 'Повний цикл виробництва', name: 'NIK 7071', cat: 'Облік тепла та води', c1: 'Інтерфейс M-Bus', c2: 'Квартирний облік' },
-      { img: '4e3e1ef59dd050762514eb1b6bc902b0', alt: 'Концентратор даних для системи АСКОЕ', short: 'Акредитований випробувальний центр', name: 'Концентратор даних', cat: 'Компоненти АСКОЕ', c1: 'Збір даних з лічильників', c2: 'G3-PLC' },
+      { img: '4e3e1ef59dd050762514eb1b6bc902b0', alt: 'Концентратор даних для системи АСКОЕ', short: 'Акредитований випробувальний центр', name: 'KC-02', cat: 'Компоненти АСКОЕ', c1: 'Збір даних з лічильників', c2: 'G3-PLC' },
       { img: '6c5854a5dadda834e83432d9bbe490f6', alt: 'Лічильник NIK 2306 у виконанні для ЄС з маркуванням CE і MID', short: 'Від України до ЄС та Азії', name: 'NIK 2306 MID', cat: 'Виконання для ЄС', c1: 'Маркування CE / MID', c2: 'G3-PLC Alliance' }
     ];
     const slides = slideData.map((d, i) => ({ ...d, img: B + d.img, no: '0' + (i + 1), cls: 'prod' + (s.s === i ? ' on' : ''), chipCls: 'chip' + (s.s === i ? ' on' : ''), hidden: String(s.s !== i), cur: String(s.s === i), pick: go(i) }));
     const cap = (i) => 'cap' + (s.s === i ? ' on' : '');
 
-    const tabDefs = [['all', 'Усі напрямки'], ['m', 'Облік енергоресурсів'], ['a', 'АСКОЕ та ПЗ'], ['p', 'Виробництво та послуги']];
-    const tabs = tabDefs.map(([id, label]) => ({ label, on: String(s.tab === id), pick: () => this.setState({ tab: id }) }));
-    const G = { m: 'Облік', a: 'АСКОЕ та ПЗ', p: 'Послуги' };
-    const cats = [
-      { t: 'Облік електроенергії', alt: 'Однофазні та трифазні смарт-лічильники електроенергії', img: 'd3153f2f5ed8d9965f5fb1e49ae07ad9', k: 'cut', g: 'm', w: 1 },
-      { t: 'Облік тепла та води', alt: 'Лічильники тепла та води ультразвукові та механічні', img: 'c4241830221490918fd0d48d83d56297', k: 'cut', g: 'm' },
-      { t: 'Стабілізатори напруги', alt: 'Стабілізатори для захисту обладнання від перепадів напруги', img: '07c44668a5a79d699210918f2ee79e65', k: 'cut', g: 'm' },
-      { t: 'Компоненти АСКОЕ', alt: 'Обладнання для дистанційного збору даних', img: '4e3e1ef59dd050762514eb1b6bc902b0', k: 'cut', g: 'a' },
-      { t: 'Програмне забезпечення', alt: 'ПЗ для дистанційного збору та обробки даних', img: 'fdc858a8d72eed867692c405b01b7e55', k: 'flat', g: 'a', w: 1 },
-      { t: 'Мережеве обладнання', alt: 'Роутери та мережеве обладнання', img: 'f7fccb09fa506c70f87d6dad6abfc916', k: 'flat', g: 'a' },
-      { t: 'Аксесуари', alt: 'Комплектуючі та додаткове обладнання', img: '4628623403c91e31d2dc1e4b347c0b11', k: 'flat', g: 'a' },
-      { t: 'Контрактне виробництво', alt: 'SMT-монтаж, лиття корпусів, складання', img: '1695fc08e5d7c1a2fcd4fbc761e00a02', k: 'photo', g: 'p' },
-      { t: 'Високовольтні мережі', alt: 'Обладнання 0,4–35 кВ і реконструкція підстанцій', img: '5a730fd2f1cb33a5b04465cf472e04b9', k: 'photo', g: 'p', w: 1 }
-    ].map((c, i) => ({ ...c, no: String(i + 1).padStart(2, '0') }))
-      .filter((c) => s.tab === 'all' || c.g === s.tab)
-      .map((c) => ({ ...c, img: B + c.img, tagCls: 'tag' + (c.g === 'm' ? ' r' : ''), g: G[c.g], cls: 'card' + (c.w && s.tab === 'all' ? ' wide' : '') }));
+    // catalog on the home page: a few real models per category, then a link to the full category
+    const catDefs = [
+      { id: 'el', label: 'Облік електроенергії', tag: 'Електроенергія', red: 1, items: [
+        { model: 'NIK 2306', type: 'Лічильник електроенергії трифазний', img: 'f17070b288dd9e18e46b94068534e6a7', k: 'cut', k1: 'Мережа', v1: '3×230/400 В', k2: 'Зв’язок', v2: 'LTE, RS-485, PLC' },
+        { model: 'NIK 2300', type: 'Лічильник електроенергії трифазний', img: 'd3153f2f5ed8d9965f5fb1e49ae07ad9', k: 'cut', k1: 'Фази', v1: 'Трифазний', k2: 'Зв’язок', v2: 'PLC, G3-PLC' },
+        { model: 'NIK 2303', type: 'Лічильник електроенергії трифазний', img: 'f0a2363fd4057897cae4831524ce270e', k: 'cut', k1: 'Фази', v1: 'Трифазний', k2: 'Зв’язок', v2: 'PLC' }
+      ] },
+      { id: 'wh', label: 'Облік тепла та води', tag: 'Тепло та вода', items: [
+        { model: 'NIK 7071', type: 'Теплолічильник', img: 'c4241830221490918fd0d48d83d56297', k: 'cut', k1: 'Ресурс', v1: 'Тепло', k2: 'Інтерфейс', v2: 'M-Bus' },
+        { model: 'NIK 7021', type: 'Лічильник води', img: 'd157d6c6177c3e8d49093a281d0d118d', k: 'flat', k1: 'Ресурс', v1: 'Вода', k2: 'Інтерфейс', v2: 'M-Bus' }
+      ] },
+      { id: 'am', label: 'Компоненти АСКОЕ', tag: 'АСКОЕ', items: [
+        { model: 'KC-02', type: 'Концентратор даних АСКОЕ', img: '4e3e1ef59dd050762514eb1b6bc902b0', k: 'cut', k1: 'Призначення', v1: 'Збір даних', k2: 'Підключення', v2: 'Лічильники NIK' },
+        { model: 'KK-01', type: 'Комунікаційний контролер АСКОЕ', img: '1bc2c60e4fa2f82c5d311ace163765cc', k: 'cut', k1: 'Призначення', v1: 'Передача даних', k2: 'Система', v2: 'АСКОЕ' },
+        { model: 'NIK AMBUS', type: 'Модуль підключення приладів M-Bus', img: 'f7fccb09fa506c70f87d6dad6abfc916', k: 'flat', k1: 'Монтаж', v1: 'DIN-рейка', k2: 'Інтерфейс', v2: 'M-Bus' }
+      ] },
+      { id: 'st', label: 'Стабілізатори напруги', tag: 'Стабілізатори', items: [
+        { model: 'NIK STV-01M', type: 'Стабілізатор напруги', img: '07c44668a5a79d699210918f2ee79e65', k: 'cut', k1: 'Призначення', v1: 'Захист від перепадів', k2: 'Монтаж', v2: 'Настінний' }
+      ] }
+    ];
+    const cat = catDefs.find((c) => c.id === s.tab) || catDefs[0];
+    const tabs = catDefs.map((c) => ({ label: c.label, on: String(c.id === cat.id), pick: () => this.setState({ tab: c.id }) }));
+    const prods = cat.items.map((p) => ({ ...p, img: B + p.img, alt: p.model + ' — ' + p.type.toLowerCase(), tag: cat.tag, tagCls: 'tag' + (cat.red ? ' r' : '') }));
+    const moreSpan = 'grid-column: span ' + (4 - (prods.length % 4 || 4) || 4);
+    const also = ['Програмне забезпечення', 'Мережеве обладнання', 'Аксесуари', 'Контрактне виробництво', 'Високовольтні мережі'];
 
     // hotspots on the NIK 2306 render (positions in % of the image)
     const spotDefs = [
@@ -803,7 +834,7 @@ class Component extends DCLogic {
       slides, cur: slideData[s.s], curNo: '0' + (s.s + 1),
       c0: cap(0), c1: cap(1), c2: cap(2), c3: cap(3),
       pause: () => this.setState({ paused: true }), resume: () => this.setState({ paused: false }),
-      tabs, cats,
+      tabs, prods, catName: cat.label, moreSpan, also,
       spots, spot,
       tilt: (e) => { const el = e.currentTarget, t = el.querySelector('.tilt'); if (!t) return; const r = el.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5; t.style.transform = 'rotateY(' + (x * 22).toFixed(1) + 'deg) rotateX(' + (-y * 14).toFixed(1) + 'deg)'; },
       untilt: (e) => { const t = e.currentTarget.querySelector('.tilt'); if (t) t.style.transform = ''; },
