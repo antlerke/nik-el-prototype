@@ -301,14 +301,15 @@ a{color:var(--ink)}
 .ok i{width:72px;height:72px;margin:0 auto;border-radius:50%;display:grid;place-items:center;background:#cceae0;color:#006b44}
 
 /* footer */
-.ft{background:var(--ink);color:#c9d6e3}
-.ft a{color:#dbe3eb;text-decoration:none;transition:color .15s ease}.ft a:hover{color:#ffffff}
-.fcols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid rgba(255,255,255,.16)}
-.fcols>div{padding:36px 28px 44px 0;display:flex;flex-direction:column;gap:12px;font-size:16px;line-height:1.5}
-.fcols>div+div{padding-left:28px;border-left:1px solid rgba(255,255,255,.16)}
-.fcols b{color:#ffffff;font-size:16px;margin-bottom:6px}
-.fbrand{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;padding:88px 0 48px;flex-wrap:wrap}
-.fbrand .w{font-size:clamp(36px,4.4vw,64px);font-weight:700;line-height:.98;letter-spacing:-0.04em;color:#ffffff;max-width:14ch}
+.ft{background:linear-gradient(160deg,var(--ink) 0%,var(--ink-d) 100%);color:#dce5ee}
+.ft a{color:#dce5ee;text-decoration:none;transition:color .15s ease}.ft a:hover{color:#ffffff}
+.ftop{padding:72px 0 44px;border-bottom:1px solid rgba(255,255,255,.14)}
+.fcols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:36px;padding-top:44px}
+.fcols>div{display:flex;flex-direction:column;gap:10px;font-size:16px;line-height:1.45}
+.fcols b{margin-bottom:4px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#a9bbcf}
+.fbot{display:flex;justify-content:space-between;align-items:center;gap:16px 24px;flex-wrap:wrap;padding:56px 0 32px;font-size:14px;color:#a9bbcf}
+.fbot nav{display:flex;gap:24px;flex-wrap:wrap}
+.fbot a{color:#a9bbcf}
 
 /* cookie */
 .cookie{position:fixed;left:16px;right:16px;bottom:16px;z-index:50;max-width:1248px;margin:0 auto;display:flex;align-items:center;gap:24px;box-sizing:border-box;background:#ffffff;border-radius:20px;padding:16px 16px 16px 24px;box-shadow:0 24px 64px rgba(10,32,56,.22),0 0 0 1px rgba(19,56,93,.06);animation:pop .5s var(--ease) .8s both}
@@ -338,7 +339,7 @@ a{color:var(--ink)}
   .ibox{min-height:560px}
   .xleg{grid-template-columns:repeat(2,minmax(0,1fr))}
   .ngrid{grid-template-columns:minmax(0,1fr)}.nc.big{grid-row:auto}
-  .fcols{grid-template-columns:1fr 1fr}.fcols>div:nth-child(3){padding-left:0;border-left:0}
+  .fcols{grid-template-columns:1fr 1fr}
   .vtxt{left:24px;right:24px;bottom:28px}
 }
 @media (max-width:600px){
@@ -367,7 +368,7 @@ a{color:var(--ink)}
   .mname{gap:24px;padding-right:24px}.mseg span{font-size:14px;padding:10px 16px}
   .nc.sm{flex-direction:column}.nc.sm .pi{flex:none;height:200px;min-height:0}.nc .bd{padding:22px}.nc.big .t{font-size:24px}
   .fcard{padding:24px 18px;border-radius:22px}.fgrid2{grid-template-columns:1fr}
-  .fcols{grid-template-columns:1fr}.fcols>div,.fcols>div+div{padding:24px 0;border-left:0;border-bottom:1px solid rgba(255,255,255,.16)}
+  .ftop{padding:56px 0 32px}.fcols{gap:32px 20px;padding-top:32px}.fbot{flex-direction:column;align-items:flex-start;padding-top:40px}
   .cookie{left:8px;right:8px;bottom:8px;flex-direction:column;align-items:stretch;gap:14px;padding:18px}.cookie .row{flex-wrap:wrap}
 }
 </style>
@@ -441,17 +442,17 @@ a{color:var(--ink)}
 <!-- 11. Футер -->
 <footer class="ft">
   <div class="wrap">
-    <div class="fbrand">
-      <img src="assets/0fb4110e-nik-logo-white.svg" alt="НІК-ЕЛЕКТРОНІКА" style="height: 48px; width: auto">
-      <div class="w">Точний облік енергоресурсів з 2005 року</div>
-    </div>
+    <div class="ftop"><img src="assets/0fb4110e-nik-logo-white.svg" alt="НІК-ЕЛЕКТРОНІКА" style="height: 64px; width: auto; display: block"></div>
     <div class="fcols">
-      <div><b>Контакти</b><span>Тел./факс: <a href="#" class="num">+380 (44) 498-06-19</a></span><a href="#">info@nikel.com.ua</a><span>Пн–Пт, 8:00–17:00</span></div>
-      <div><b>Ми в соцмережах</b><a href="#">LinkedIn</a><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">YouTube</a></div>
-      <div><b>Юридична інформація</b><a href="#">Політика конфіденційності</a><a href="#">Політика використання файлів cookie</a><a href="#">Згода на обробку персональних даних</a><a href="#" onClick="{{openCookie}}">Налаштування cookie</a></div>
-      <div><b>Навігація</b><a href="catalog.html">Каталог</a><a href="about.html">Про нас</a><a href="where-to-buy.html">Контакти</a><a href="news.html">Прес-центр</a><a href="#contact">Зв'язатися з нами</a></div>
+      <div><b>Каталог</b><a href="catalog.html">Облік електроенергії</a><a href="catalog.html">Облік води й тепла</a><a href="catalog.html">АСКОЕ та контролери</a><a href="catalog.html">Стабілізатори напруги</a></div>
+      <div><b>Компанія</b><a href="about.html">Про нас</a><a href="about.html">Виробництво</a><a href="about.html">Кар’єра</a><a href="news.html">Прес-центр</a></div>
+      <div><b>Партнерам</b><a href="where-to-buy.html">Де купити</a><a href="#contact">Стати дилером</a><a href="#">Електронні документи</a><a href="where-to-buy.html">Сервісний центр</a></div>
+      <div><b>Контакти</b><a href="#" class="num">+380 (44) 498-06-19</a><a href="#">info@nikel.com.ua</a><span>Пн–Пт, 8:00–17:00</span></div>
     </div>
-    <div style="padding: 28px 0 36px; border-top: 1px solid rgba(255,255,255,.16); font-size: 14px">© 2005–2026 ТОВ «НІК-ЕЛЕКТРОНІКА». Усі права захищено.</div>
+    <div class="fbot">
+      <span>© 2005–2026 ТОВ «НІК-ЕЛЕКТРОНІКА»</span>
+      <nav aria-label="Правова інформація та соцмережі"><a href="#">Політика конфіденційності</a><a href="#" onClick="{{openCookie}}">Cookie</a><span><a href="#">LinkedIn</a> · <a href="#">Facebook</a> · <a href="#">YouTube</a></span></nav>
+    </div>
   </div>
 </footer>
 
