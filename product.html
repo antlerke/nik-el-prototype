@@ -18,6 +18,7 @@ body{margin:0;background:#ffffff}
 a{color:var(--ink)}
 .wrap{max-width:1280px;margin:0 auto;padding:0 32px;box-sizing:border-box}
 .num{font-variant-numeric:tabular-nums}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 :focus-visible{outline:3px solid #007ac2;outline-offset:3px}
 .skip{position:absolute;left:16px;top:-80px;z-index:100;background:var(--ink);color:#ffffff;padding:12px 16px;border-radius:8px;text-decoration:none;font-weight:600}.skip:focus{top:12px}
 
@@ -209,27 +210,17 @@ a{color:var(--ink)}
 .steps .lb b{flex:0 0 auto;width:28px;height:28px;border-radius:50%;background:var(--red-a);color:var(--red-t);display:grid;place-items:center;font-size:12px;font-variant-numeric:tabular-nums}
 
 /* figures */
-.figs{position:relative;background:linear-gradient(120deg,var(--ink) 0%,var(--ink-d) 100%);color:#ffffff;overflow:hidden}
-.fgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));margin-top:56px}
+.figs{position:relative;background:linear-gradient(120deg,var(--ink) 0%,var(--ink-d) 100%);color:#ffffff;overflow:hidden;padding:110px 0}
+.fgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
 .fig{container-type:inline-size;min-width:0;padding:0 28px}
 .fig:first-child{padding-left:0}
 .fig+.fig{border-left:1px solid rgba(255,255,255,.14)}
-.fbar{height:3px;border-radius:2px;background:rgba(255,255,255,.12);overflow:hidden;margin-bottom:28px}
+.fbar{height:3px;border-radius:2px;background:rgba(255,255,255,.12);overflow:hidden;margin-bottom:40px}
 .fbar i{display:block;height:100%;background:var(--red)}
-.fig b{display:block;font-size:min(60px,21cqi);font-weight:700;line-height:1;letter-spacing:-0.04em;white-space:nowrap;font-variant-numeric:tabular-nums}
+.fig b{display:block;font-size:clamp(56px,5.9vw,86px);font-weight:800;line-height:.9;letter-spacing:-0.055em;white-space:nowrap;font-variant-numeric:tabular-nums}
 .fig b em{font-style:normal;color:var(--red)}
-.fig b i{font-style:normal;counter-reset:n var(--n)}
-.fig b i::before{content:counter(n)}
-.fig span{display:block;margin-top:16px;font-size:17px;font-weight:600;white-space:nowrap}
-.fig small{display:block;margin-top:6px;font-size:14px;color:#a9bbcf;white-space:nowrap}
-.axis{margin-top:72px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:20px;align-items:center;font-size:14px;font-weight:600;color:#a9bbcf;font-variant-numeric:tabular-nums}
-.axis .ln{position:relative;height:2px;background:rgba(255,255,255,.14);border-radius:2px}
-.axis .ln i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,rgba(227,4,39,.35),var(--red));transform-origin:left;border-radius:2px}
-.axis .ln s{position:absolute;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 2px var(--red)}
-.axis .ln s::after{content:attr(data-y);position:absolute;left:50%;top:18px;transform:translateX(-50%);font-size:13px;color:#c9d6e3;text-decoration:none;white-space:nowrap}
-  .fbar i,.axis .ln i{animation:grow linear both;animation-timeline:view();animation-range:entry 10% cover 50%}
-  @keyframes grow{from{transform:scaleX(0)}}
-}}
+.fig span{display:block;margin-top:28px;font-size:20px;font-weight:600;white-space:nowrap}
+.fig small{display:block;margin-top:10px;font-size:15px;letter-spacing:.03em;color:#a9bbcf;white-space:nowrap}
 
 /* video (autoplay, muted) */
 .vsec{padding:16px 16px 0}
@@ -331,7 +322,7 @@ a{color:var(--ink)}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition-duration:.01ms !important}.vf:first-of-type{opacity:1}}
 
 /* responsive */
-@media (max-width:1180px){.menu>li>a{padding:0 10px;font-size:15px}.docs{display:none}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.card.more{grid-column:span 2 !important;min-height:0}.steps{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:28px}.steps li::after{display:none}.fgrid{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:48px}.fig:nth-child(4){padding-left:0;border-left:0}}
+@media (max-width:1180px){.menu>li>a{padding:0 10px;font-size:15px}.docs{display:none}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.card.more{grid-column:span 2 !important;min-height:0}.steps{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:28px}.steps li::after{display:none}.fgrid{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:56px}.fig:nth-child(3){padding-left:0;border-left:0}}
 @media (max-width:900px){
   .menu,.seg.top{display:none}.burger{display:inline-grid}
   .hgrid{grid-template-columns:minmax(0,1fr);gap:8px;min-height:0;padding-top:28px}
@@ -363,9 +354,8 @@ a{color:var(--ink)}
   .xstage{border-radius:20px}.xm{width:24px;height:24px;margin:-12px 0 0 -12px;font-size:11px;box-shadow:0 0 0 4px var(--red-b)}
   .xleg{grid-template-columns:minmax(0,1fr)}
   .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.fig{padding:0 16px !important;border-left:0 !important}.fig:nth-child(odd){padding-left:0 !important}.fig b{font-size:min(48px,22cqi)}
-  .fig span,.fig small{white-space:normal}
-  .axis{margin-top:48px}
+  .figs{padding:72px 0}.fgrid{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:48px}.fig{padding:0 16px !important;border-left:0 !important}.fig:nth-child(odd){padding-left:0 !important}.fig b{font-size:min(56px,30cqi)}.fbar{margin-bottom:24px}
+  .fig span{font-size:16px;margin-top:16px;white-space:normal}.fig small{font-size:13px;white-space:normal}
   .vtxt h2{font-size:40px}
   .vsec{padding:8px 8px 0}.vbox{border-radius:22px;height:640px}.vctl span{display:none}
   .mname{gap:24px;padding-right:24px}.mseg span{font-size:14px;padding:10px 16px}
@@ -590,16 +580,14 @@ class Component extends DCLogic {
 
     // key figures: count up with ease-out, columns start one after another
     const ease = (t) => 1 - Math.pow(1 - t, 3);
-    const fmt = (n) => Math.round(n).toLocaleString('uk-UA').replace(/\s/g, '\u202f');
     const stats = [
-      { n: 150000, label: 'приладів на місяць', sub: 'власне виробництво' },
-      { n: 10, suf: ' млн', plus: '+', label: 'приладів випущено', sub: 'з 2005 року' },
-      { n: 580, plus: '+', label: 'договорів Prozorro', sub: 'державні замовники' },
-      { n: 20, plus: '+', label: 'років на ринку', sub: 'український виробник' },
-      { n: 600, plus: '+', label: 'фахівців', sub: 'інженери, R&D, метрологи' }
+      { n: 150, suf: 'K', full: 'понад 150 тисяч', label: 'Приладів на місяць', sub: 'власне виробництво' },
+      { n: 10, suf: 'M', full: 'понад 10 мільйонів', label: 'Виготовлених приладів', sub: 'повний цикл складання' },
+      { n: 20, suf: '', full: 'понад 20', label: 'Років на ринку', sub: 'з 2005 року' },
+      { n: 600, suf: '', full: 'понад 600', label: 'Фахівців у команді', sub: 'інженери, R&D, метрологи' }
     ].map((d, i) => {
-      const k = ease(Math.max(0, Math.min(1, (s.p - i * 0.08) / 0.68)));
-      return { value: fmt(d.n * k) + (d.suf || ''), plus: d.plus || '', label: d.label, sub: d.sub, bar: 'width: ' + (k * 100).toFixed(1) + '%' };
+      const k = ease(Math.max(0, Math.min(1, (s.p - i * 0.08) / 0.76)));
+      return { value: Math.round(d.n * k) + d.suf, full: d.full, label: d.label, sub: d.sub, bar: 'width: ' + (k * 100).toFixed(1) + '%' };
     });
     const isMenu = (t, href, items) => ({ t, href, items: items.map((x) => ({ t: x, href })) });
     const tagN = 'tag', tagR = 'tag r';
@@ -617,7 +605,7 @@ class Component extends DCLogic {
       spots, spot,
       tilt: (e) => { const el = e.currentTarget, t = el.querySelector('.tilt'); if (!t) return; const r = el.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5; t.style.transform = 'rotateY(' + (x * 22).toFixed(1) + 'deg) rotateX(' + (-y * 14).toFixed(1) + 'deg)'; },
       untilt: (e) => { const t = e.currentTarget.querySelector('.tilt'); if (t) t.style.transform = ''; },
-      xparts, xmarks, steps, stats, axisBar: 'width: ' + (ease(s.p) * 100).toFixed(1) + '%',
+      xparts, xmarks, steps, stats,
       vidCls: 'vbox' + (s.vid ? '' : ' paused'), vidLabel: s.vid ? 'Зупинити відео' : 'Відтворити відео', vidText: s.vid ? 'Пауза' : 'Відтворити',
       vidIcon: s.vid ? 'M7 5h4v14H7zM13 5h4v14h-4z' : 'M8 5v14l11-7z',
       toggleVid: () => this.setState({ vid: !s.vid }),
