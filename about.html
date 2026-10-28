@@ -504,7 +504,7 @@ a{color:var(--ink)}
 <div class="wrap abody">
   <nav class="snav" aria-label="Розділ «Про нас»">
     <b>Про нас</b>
-    <a href="#" aria-current="page">Про компанію</a><a href="#">Історія компанії</a><a href="#">Кар’єра</a><a href="#">Центр оцінки відповідності</a><a href="#">Наші партнери</a><a href="#">Кейси та об’єкти</a>
+    <a href="about.html" aria-current="page">Про компанію</a><a href="history.html">Історія компанії</a><a href="career.html">Кар’єра</a><a href="conformity.html">Центр оцінки відповідності</a><a href="partners.html">Наші партнери</a><a href="cases.html">Кейси та об’єкти</a>
   </nav>
   <div>
     <span class="kick">Хто ми</span>
@@ -523,7 +523,7 @@ a{color:var(--ink)}
 
     <div style="margin-top: 96px"><span class="kick">Розділ «Про нас»</span><h2 class="h2">Більше про компанію</h2></div>
     <div class="subs">
-      <sc-for list="{{subs}}" as="x" hint-placeholder-count="5"><a href="#" class="sub2"><img src="{{x.img}}" alt=""><b>{{x.t}}<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></b></a></sc-for>
+      <sc-for list="{{subs}}" as="x" hint-placeholder-count="5"><a href="{{x.href}}" class="sub2"><img src="{{x.img}}" alt=""><b>{{x.t}}<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></b></a></sc-for>
       <a href="where-to-buy.html" class="sub2 cta"><b>Стати дилером<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></b><span>Партнерська програма для дистриб’юторів і дилерів у регіонах.</span></a>
     </div>
   </div>
@@ -537,8 +537,8 @@ a{color:var(--ink)}
     <div class="ftop"><img src="assets/0fb4110e-nik-logo-white.svg" alt="НІК-ЕЛЕКТРОНІКА" style="height: 64px; width: auto; display: block"></div>
     <div class="fcols">
       <div><b>Каталог</b><a href="catalog.html">Облік електроенергії</a><a href="catalog.html">Облік води й тепла</a><a href="catalog.html">АСКОЕ та контролери</a><a href="catalog.html">Стабілізатори напруги</a></div>
-      <div><b>Компанія</b><a href="about.html">Про нас</a><a href="about.html">Виробництво</a><a href="about.html">Кар’єра</a><a href="news.html">Прес-центр</a></div>
-      <div><b>Партнерам</b><a href="where-to-buy.html">Де купити</a><a href="#contact">Стати дилером</a><a href="#">Електронні документи</a><a href="where-to-buy.html">Сервісний центр</a></div>
+      <div><b>Компанія</b><a href="about.html">Про нас</a><a href="about.html">Виробництво</a><a href="career.html">Кар’єра</a><a href="news.html">Прес-центр</a></div>
+      <div><b>Партнерам</b><a href="where-to-buy.html">Де купити</a><a href="#contact">Стати дилером</a><a href="#">Електронні документи</a><a href="service-center.html">Сервісний центр</a></div>
       <div><b>Контакти</b><a href="#" class="num">+380 (44) 498-06-19</a><a href="#">info@nikel.com.ua</a><span>Пн–Пт, 8:00–17:00</span></div>
     </div>
     <div class="fbot">
@@ -571,12 +571,12 @@ class Component extends DCLogic {
     this.state = Object.assign({ cookie: true, menu: false }, {});
   }
   base(s) {
-    const isMenu = (t, href, items) => ({ t, href, items: items.map((x) => ({ t: x, href })) });
+    const isMenu = (t, href, items) => ({ t, href, items: items.map((x) => (Array.isArray(x) ? { t: x[0], href: x[1] } : { t: x, href })) });
     return {
       menu: [
         isMenu('Каталог', 'catalog.html', ['Продукти', 'Послуги', 'Програмне забезпечення', 'Таблиця взаємозамінності', 'Порівняти товари']),
-        isMenu('Про нас', 'about.html', ['Про компанію', 'Історія компанії', 'Кар’єра', 'Центр оцінки відповідності', 'Наші партнери']),
-        isMenu('Контакти', 'where-to-buy.html', ['Де купити', 'Сервісний центр']),
+        isMenu('Про нас', 'about.html', ['Про компанію', ['Історія компанії', 'history.html'], ['Кар’єра', 'career.html'], ['Центр оцінки відповідності', 'conformity.html'], ['Наші партнери', 'partners.html']]),
+        isMenu('Контакти', 'where-to-buy.html', ['Де купити', ['Сервісний центр', 'service-center.html']]),
         isMenu('Прес-центр', 'news.html', ['Новини', 'НІКіпедія', 'Ми у ЗМІ'])
       ],
       cookie: s.cookie && !s.menu,
@@ -594,11 +594,11 @@ class Component extends DCLogic {
     const icons = ['M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.6 6.7 19.4l1.2-6L3.4 9.3l6-.7z', 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z', 'M4 17l6-6 4 4 6-8', 'M5 12l5 5 9-10', 'M13 2 4 14h7l-1 8 9-12h-7z', 'M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z'];
     const vals = ['Професійність', 'Надійність', 'Прогресивність', 'Чесність', 'Ініціативність', 'Турбота'].map((t, i) => ({ t, icon: icons[i] }));
     const subs = [
-      { t: 'Історія компанії', img: B + 'c78a58ccbebb1066392f86ffe8a8c1f2' },
-      { t: 'Кар’єра', img: B + 'de1ec571973f47479cdfc5e1ddf2ab60' },
-      { t: 'Центр оцінки відповідності', img: B + 'e3a26a87fafda2aa0c87ff6cdb2b951e' },
-      { t: 'Наші партнери', img: B + 'd388df99ebf0c0b1f372c4851ac78d85' },
-      { t: 'Кейси та об’єкти', img: B + '5a730fd2f1cb33a5b04465cf472e04b9' }
+      { t: 'Історія компанії', href: 'history.html', img: B + 'c78a58ccbebb1066392f86ffe8a8c1f2' },
+      { t: 'Кар’єра', href: 'career.html', img: B + 'de1ec571973f47479cdfc5e1ddf2ab60' },
+      { t: 'Центр оцінки відповідності', href: 'conformity.html', img: B + 'e3a26a87fafda2aa0c87ff6cdb2b951e' },
+      { t: 'Наші партнери', href: 'partners.html', img: B + 'd388df99ebf0c0b1f372c4851ac78d85' },
+      { t: 'Кейси та об’єкти', href: 'cases.html', img: B + '5a730fd2f1cb33a5b04465cf472e04b9' }
     ];
     return Object.assign(this.base(s), { vals, subs });
   }

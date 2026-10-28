@@ -662,8 +662,8 @@ a.bdg:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
     <div class="ftop"><img src="assets/0fb4110e-nik-logo-white.svg" alt="НІК-ЕЛЕКТРОНІКА" style="height: 64px; width: auto; display: block"></div>
     <div class="fcols">
       <div><b>Каталог</b><a href="catalog.html">Облік електроенергії</a><a href="catalog.html">Облік води й тепла</a><a href="catalog.html">АСКОЕ та контролери</a><a href="catalog.html">Стабілізатори напруги</a></div>
-      <div><b>Компанія</b><a href="about.html">Про нас</a><a href="about.html">Виробництво</a><a href="about.html">Кар’єра</a><a href="news.html">Прес-центр</a></div>
-      <div><b>Партнерам</b><a href="where-to-buy.html">Де купити</a><a href="#contact">Стати дилером</a><a href="#">Електронні документи</a><a href="where-to-buy.html">Сервісний центр</a></div>
+      <div><b>Компанія</b><a href="about.html">Про нас</a><a href="about.html">Виробництво</a><a href="career.html">Кар’єра</a><a href="news.html">Прес-центр</a></div>
+      <div><b>Партнерам</b><a href="where-to-buy.html">Де купити</a><a href="#contact">Стати дилером</a><a href="#">Електронні документи</a><a href="service-center.html">Сервісний центр</a></div>
       <div><b>Контакти</b><a href="#" class="num">+380 (44) 498-06-19</a><a href="#">info@nikel.com.ua</a><span>Пн–Пт, 8:00–17:00</span></div>
     </div>
     <div class="fbot">
@@ -696,12 +696,12 @@ class Component extends DCLogic {
     this.state = Object.assign({ cookie: true, menu: false }, { g: 0, sec: 'p-desc' });
   }
   base(s) {
-    const isMenu = (t, href, items) => ({ t, href, items: items.map((x) => ({ t: x, href })) });
+    const isMenu = (t, href, items) => ({ t, href, items: items.map((x) => (Array.isArray(x) ? { t: x[0], href: x[1] } : { t: x, href })) });
     return {
       menu: [
         isMenu('Каталог', 'catalog.html', ['Продукти', 'Послуги', 'Програмне забезпечення', 'Таблиця взаємозамінності', 'Порівняти товари']),
-        isMenu('Про нас', 'about.html', ['Про компанію', 'Історія компанії', 'Кар’єра', 'Центр оцінки відповідності', 'Наші партнери']),
-        isMenu('Контакти', 'where-to-buy.html', ['Де купити', 'Сервісний центр']),
+        isMenu('Про нас', 'about.html', ['Про компанію', ['Історія компанії', 'history.html'], ['Кар’єра', 'career.html'], ['Центр оцінки відповідності', 'conformity.html'], ['Наші партнери', 'partners.html']]),
+        isMenu('Контакти', 'where-to-buy.html', ['Де купити', ['Сервісний центр', 'service-center.html']]),
         isMenu('Прес-центр', 'news.html', ['Новини', 'НІКіпедія', 'Ми у ЗМІ'])
       ],
       cookie: s.cookie && !s.menu,
