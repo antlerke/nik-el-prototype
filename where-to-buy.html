@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Контакти — НІК-ЕЛЕКТРОНІКА</title>
+<title>Де купити — НІК-ЕЛЕКТРОНІКА</title>
 <meta name="robots" content="noindex">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -386,6 +386,52 @@ a{color:var(--ink)}
   .cookie{left:8px;right:8px;bottom:8px;flex-direction:column;align-items:stretch;gap:14px;padding:18px}.cookie .row{flex-wrap:wrap}
 }
 </style>
+<style>
+/* inner pages */
+.phead{background:linear-gradient(180deg,#ffffff 0%,var(--paper) 100%);padding:36px 0 56px;border-bottom:1px solid var(--line)}
+.crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0;padding:0;list-style:none;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.crumbs li+li::before{content:"/";margin-right:10px;color:#a9b4bf}
+.crumbs a{color:var(--muted);text-decoration:none}.crumbs a:hover{color:var(--ink)}
+.crumbs [aria-current]{color:var(--ink)}
+.phead h1{margin:28px 0 0;font-size:clamp(44px,5vw,76px);line-height:1;letter-spacing:-0.045em;font-weight:700;color:var(--ink);text-wrap:balance}
+.phead .lead{margin-top:20px;max-width:56ch}
+.ptop{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+.ltabs{display:flex;gap:8px;flex-wrap:wrap}
+.ltabs a,.ltabs button{display:inline-flex;align-items:center;height:48px;padding:0 20px;border-radius:14px;border:0;background:#ffffff;box-shadow:inset 0 0 0 1.5px var(--line);font:600 15px Geologica,sans-serif;color:var(--ink);text-decoration:none;cursor:pointer;transition:background-color .2s ease,color .2s ease,box-shadow .2s ease}
+.ltabs a:hover,.ltabs button:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.ltabs [aria-current="page"],.ltabs [aria-selected="true"]{background:var(--ink);color:#ffffff;box-shadow:none}
+.band{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;padding:40px;border-radius:28px;background:linear-gradient(160deg,var(--red-a),rgba(227,4,39,.02));box-shadow:inset 0 0 0 1px var(--red-b)}
+.band h2{margin:12px 0 0;font-size:clamp(28px,2.6vw,40px);line-height:1.08;letter-spacing:-0.035em;color:var(--ink)}
+.band p{margin:12px 0 0;font-size:17px;line-height:1.55;color:var(--muted);max-width:52ch}
+.h3s{margin:0;font-size:clamp(28px,2.4vw,40px);line-height:1.05;letter-spacing:-0.035em;color:var(--ink)}
+.mono{font-family:var(--mono)}
+.ph{display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;box-sizing:border-box;border-radius:20px;background:repeating-linear-gradient(135deg,var(--paper) 0 12px,#ffffff 12px 24px);box-shadow:inset 0 0 0 1.5px var(--line);font-family:var(--mono);font-size:13px;color:var(--muted)}
+@media (max-width:600px){.phead{padding:24px 0 40px}.phead h1{font-size:40px;margin-top:20px}.band{padding:28px 20px;border-radius:22px}.band .btn{width:100%}}
+
+.map{position:relative;height:540px;border-radius:28px;overflow:hidden;margin-top:40px;background:radial-gradient(60% 80% at 50% 50%,#ffffff 0%,#e9eef3 100%);box-shadow:inset 0 0 0 1px var(--line)}
+.map::before{content:"";position:absolute;inset:0;background-image:radial-gradient(#b9c4cf 1.3px,transparent 1.5px);background-size:16px 16px;-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60'%3E%3Cpath d='M6 26 L14 18 L26 16 L34 10 L48 12 L58 8 L70 12 L82 14 L92 22 L96 32 L88 38 L80 44 L68 42 L60 50 L48 52 L40 46 L30 48 L20 42 L10 38 Z' fill='black'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 60'%3E%3Cpath d='M6 26 L14 18 L26 16 L34 10 L48 12 L58 8 L70 12 L82 14 L92 22 L96 32 L88 38 L80 44 L68 42 L60 50 L48 52 L40 46 L30 48 L20 42 L10 38 Z' fill='black'/%3E%3C/svg%3E");-webkit-mask-size:88% auto;mask-size:88% auto;-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.map .mlbl{position:absolute;left:24px;top:24px;padding:10px 14px;border-radius:12px;background:#ffffff;font-family:var(--mono);font-size:12px;color:var(--muted);box-shadow:0 0 0 1px var(--line)}
+.pin{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border:0;padding:0;background:transparent;cursor:pointer;display:grid;place-items:center}
+.pin span{width:16px;height:16px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 4px #ffffff,0 6px 14px rgba(19,56,93,.35);transition:transform .2s var(--out)}
+.pin:hover span{transform:scale(1.2)}
+.pin[aria-pressed="true"] span{background:var(--red);box-shadow:0 0 0 4px #ffffff,0 0 0 10px var(--red-b)}
+.mcard{position:absolute;right:24px;top:24px;width:320px;padding:24px;border-radius:20px;background:#ffffff;box-shadow:0 24px 48px -20px rgba(19,56,93,.4),0 0 0 1px var(--line)}
+.mcard b{display:block;font-size:20px;color:var(--ink)}
+.mcard .r{margin-top:6px;font-family:var(--mono);font-size:12px;color:var(--red-t)}
+.mrow2{display:flex;gap:12px;margin-top:14px;font-size:15px;color:var(--text)}
+.mrow2 svg{flex:0 0 20px;color:var(--muted)}
+.regs{display:flex;gap:8px;flex-wrap:wrap;margin-top:56px}
+.dlist{margin-top:24px;border-top:1px solid var(--line)}
+.dl{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr) auto;gap:20px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line);font-size:16px}
+.dl b{color:var(--ink)}
+.dl .r{display:block;margin-top:4px;font-family:var(--mono);font-size:12px;font-weight:400;color:var(--muted)}
+.dl .m{font-family:var(--mono);font-size:14px;color:var(--ink)}
+.dl a.go{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--ink);text-decoration:none}
+.pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;margin:96px 0 120px}
+.pair .band:last-child{background:var(--paper);box-shadow:inset 0 0 0 1px var(--line)}
+@media (max-width:900px){.dl{grid-template-columns:1fr auto}.dl>span:nth-child(2),.dl>span:nth-child(4){display:none}.pair{grid-template-columns:minmax(0,1fr)}.mcard{left:16px;right:16px;top:auto;bottom:16px;width:auto}}
+@media (max-width:600px){.map{height:460px;border-radius:22px}.dl{grid-template-columns:1fr}.dl>span:nth-child(3){display:none}}
+</style>
 
 <script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
 <script src="runtime.js"></script>
@@ -438,19 +484,44 @@ a{color:var(--ink)}
 </sc-if>
 
 <main id="main">
-<section class="sec">
+<section class="phead">
   <div class="wrap">
-    <div class="rule" aria-hidden="true"></div>
-    <div class="shead">
-      <h1 class="h2">Контакти</h1>
-      <p class="lead">Сторінка в розробці. Зараз погоджуємо концепцію дизайну на головній — після цього зробимо внутрішні сторінки в тому самому стилі.</p>
+    <nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a href="index.html">Головна</a></li><li><a href="#">Контакти</a></li><li><span aria-current="page">Де купити</span></li></ol></nav>
+    <div class="ptop">
+      <div><h1>Де купити</h1><p class="lead">Ми продаємо через мережу дилерів. Знайдіть найближчого на карті або в списку за регіонами.</p></div>
+      <div class="ltabs"><a href="#" aria-current="page">Де купити</a><a href="#">Сервісний центр</a></div>
     </div>
-    <div class="logos" style="grid-template-columns: repeat(2, minmax(0, 1fr))">
-      <div style="color: #13385d">Де купити</div><div style="color: #13385d">Сервісний центр</div>
-    </div>
-    <div style="margin-top: 48px"><a href="index.html" class="btn btn-ink">На головну</a></div>
   </div>
 </section>
+<div class="wrap">
+  <div class="map" aria-label="Карта дилерів">
+    <span class="mlbl">Google Maps · мітки дилерів</span>
+    <sc-for list="{{pins}}" as="p" hint-placeholder-count="9"><button type="button" class="pin" style="{{p.st}}" aria-pressed="{{p.on}}" aria-label="{{p.aria}}" onClick="{{p.pick}}"><span></span></button></sc-for>
+    <div class="mcard" aria-live="polite">
+      <b>{{dealer.n}}</b><div class="r">{{dealer.reg}}</div>
+      <div class="mrow2"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>[Адреса]</div>
+      <div class="mrow2"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"></path></svg><span class="mono">[Телефон]</span></div>
+      <div class="mrow2"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg><span class="mono">[Пн–Пт, графік]</span></div>
+      <a href="#" class="btn btn-ink" style="margin-top: 20px; width: 100%; min-height: 48px">Прокласти маршрут</a>
+    </div>
+  </div>
+
+  <div class="regs ltabs" role="tablist" aria-label="Регіон">
+    <sc-for list="{{regs}}" as="r" hint-placeholder-count="5"><button type="button" role="tab" aria-selected="{{r.on}}" onClick="{{r.pick}}">{{r.t}}</button></sc-for>
+  </div>
+  <div class="dlist">
+    <sc-for list="{{rows}}" as="d" hint-placeholder-count="6">
+      <div class="dl"><b>{{d.n}}<span class="r">{{d.reg}}</span></b><span>[Адреса]</span><span class="m">[Телефон]</span><span class="m">[Графік роботи]</span><a class="go" href="#">Маршрут<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+    </sc-for>
+  </div>
+  <p class="mono" style="margin: 16px 0 0; font-size: 12px; color: #59636e">Регіони 1–4 — як у маршрутизації заявок. Перелік областей і дані дилерів надасть замовник.</p>
+
+  <div class="pair">
+    <div class="band"><div><span class="kick">Партнерам</span><h2>Хочете стати дилером?</h2><p>Залиште заявку — менеджер вашого регіону зв’яжеться з вами.</p></div><a href="index.html#contact" class="btn btn-red">Стати дилером<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+    <div class="band"><div><span class="kick">Сервіс</span><h2>Сервісний центр</h2><p>Гарантійний і післягарантійний ремонт, консультації інженерів.</p></div><a href="#" class="btn btn-line">Детальніше<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+  </div>
+</div>
+
 </main>
 
 <!-- 11. Футер -->
@@ -485,160 +556,22 @@ a{color:var(--ink)}
 </div>
 </script>
 <script>
-window.DC_BLOBS = {"f17070b288dd9e18e46b94068534e6a7":"assets/f17070b2-nik2306-ua.webp","c4241830221490918fd0d48d83d56297":"assets/c4241830-cut-7071.webp","4e3e1ef59dd050762514eb1b6bc902b0":"assets/4e3e1ef5-cut-kc02.webp","6c5854a5dadda834e83432d9bbe490f6":"assets/6c5854a5-nik2306-mid.webp","d3153f2f5ed8d9965f5fb1e49ae07ad9":"assets/d3153f2f-cut-2300.webp","59c125130fc7c7750a7256ca7228fc69":"assets/59c12513-cut-7011.webp","1bc2c60e4fa2f82c5d311ace163765cc":"assets/1bc2c60e-cut-kk01.webp","07c44668a5a79d699210918f2ee79e65":"assets/07c44668-cut-stv.webp","f7fccb09fa506c70f87d6dad6abfc916":"assets/f7fccb09-p-ambus.jpg","f0a2363fd4057897cae4831524ce270e":"assets/f0a2363f-cut-2303.webp","09712d8f2a0632ed5520ae989b4552e0":"assets/09712d8f-y0.webp","ad569d741727a2ebd68d3d39468bf68a":"assets/ad569d74-y1.webp","4fdc19aa0cd99b2610b022f84cd6169b":"assets/4fdc19aa-y2.webp","32ab23afb2162fd08017cb1eb47b9d42":"assets/32ab23af-y3.webp","eefa88a9c3dd72fe57a1df817af46b7e":"assets/eefa88a9-y4.webp","fe21750897b3ec821d9458f71f874d83":"assets/fe217508-y5.webp","5b396efcb8ce74e5d5921a110e5ca47c":"assets/5b396efc-y6.webp","14c1745388cb9f99de7e708a5c985f32":"assets/14c17453-y7.webp","b770a607cf6fa6949967e41dafb754c7":"assets/b770a607-y8.webp","de1ec571973f47479cdfc5e1ddf2ab60":"assets/de1ec571-role-engineer.webp","91d9cc8d1dd39ed30b472abf02be9d93":"assets/91d9cc8d-c-automation.jpg","1695fc08e5d7c1a2fcd4fbc761e00a02":"assets/1695fc08-c-tampo.jpg","2d5e93a952ee95766eb8b2734477ce42":"assets/2d5e93a9-c-robot.jpg","e3a26a87fafda2aa0c87ff6cdb2b951e":"assets/e3a26a87-c-calibration.jpg","c0704521db1416ec66e4d8545678ba60":"assets/c0704521-prod-molding.jpg","64d3854c808afc98f555fddf056f74b8":"assets/64d3854c-h-2024.webp","4ee835b35f0ce1c5b4662a723809ed42":"assets/4ee835b3-h-2023.webp"};
+window.DC_BLOBS = {};
 
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { s: 0, paused: false, tab: 'all', spot: 0, sent: false, tried: false, cookie: true, menu: false, vid: true, p: 0 };
-    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) this.state.p = 1;
-    this.statsTimer = setTimeout(() => this.watchStats(), 300);
-    if (typeof window !== 'undefined' && window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      this.timer = setInterval(() => { if (!this.state.paused && !this.state.menu) this.setState({ s: (this.state.s + 1) % 4 }); }, 8000);
-    }
+    this.state = Object.assign({ cookie: true, menu: false }, { pin: 2, reg: 0 });
   }
-  watchStats() {
-    const run = () => {
-      if (this.statsOn) return;
-      this.statsOn = true;
-      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { this.setState({ p: 1 }); return; }
-      const t0 = Date.now();
-      const step = () => {
-        const t = Math.min(1, (Date.now() - t0) / 2200);
-        this.setState({ p: t });
-        if (t < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    };
-    const el = document.getElementById('h-figs');
-    if (!el || typeof IntersectionObserver === 'undefined') { run(); return; }
-    const io = new IntersectionObserver((es) => { if (es.some((x) => x.isIntersecting)) { io.disconnect(); run(); } }, { threshold: 0.35 });
-    io.observe(el.closest('section'));
-  }
-  renderVals() {
-    const B = '/_blob/';
-    const s = this.state;
-    const go = (i) => () => this.setState({ s: (i + 4) % 4 });
-    // hero: each approved slide text is paired with a product from a different category
-    const slideData = [
-      { img: 'f17070b288dd9e18e46b94068534e6a7', alt: 'Трифазний лічильник електроенергії NIK 2306 з модулем LTE', short: 'Від розробки до сервісу', name: 'NIK 2306', cat: 'Облік електроенергії', c1: 'DLMS / COSEM', c2: 'Модуль зв’язку LTE' },
-      { img: 'c4241830221490918fd0d48d83d56297', alt: 'Лічильник тепла NIK', short: 'Повний цикл виробництва', name: 'NIK 7071', cat: 'Облік тепла та води', c1: 'Інтерфейс M-Bus', c2: 'Квартирний облік' },
-      { img: '4e3e1ef59dd050762514eb1b6bc902b0', alt: 'Концентратор даних для системи АСКОЕ', short: 'Акредитований випробувальний центр', name: 'KC-02', cat: 'Компоненти АСКОЕ', c1: 'Збір даних з лічильників', c2: 'G3-PLC' },
-      { img: '6c5854a5dadda834e83432d9bbe490f6', alt: 'Лічильник NIK 2306 у виконанні для ЄС з маркуванням CE і MID', short: 'Від України до ЄС та Азії', name: 'NIK 2306 MID', cat: 'Виконання для ЄС', c1: 'Маркування CE / MID', c2: 'G3-PLC Alliance' }
-    ];
-    const slides = slideData.map((d, i) => ({ ...d, img: B + d.img, no: '0' + (i + 1), cls: 'prod' + (s.s === i ? ' on' : ''), chipCls: 'chip' + (s.s === i ? ' on' : ''), hidden: String(s.s !== i), cur: String(s.s === i), pick: go(i) }));
-    const cap = (i) => 'cap' + (s.s === i ? ' on' : '');
-
-    // catalog on the home page: 8 models across 4 tabs (as in the client's concept); a filtered tab adds a link tile to fill its row
-    const C = { el: 'Електроенергія', wh: 'Вода та тепло', am: 'АСКОЕ' };
-    const all = [
-      { c: 'el', model: 'NIK 2306', type: 'Лічильник електроенергії трифазний', img: 'f17070b288dd9e18e46b94068534e6a7', k: 'cut', k1: 'Мережа', v1: '3×230/400 В', k2: 'Зв’язок', v2: 'LTE, RS-485, PLC' },
-      { c: 'wh', model: 'NIK 7071', type: 'Теплолічильник', img: 'c4241830221490918fd0d48d83d56297', k: 'cut', k1: 'Ресурс', v1: 'Тепло', k2: 'Інтерфейс', v2: 'M-Bus' },
-      { c: 'am', model: 'KC-02', type: 'Концентратор даних АСКОЕ', img: '4e3e1ef59dd050762514eb1b6bc902b0', k: 'cut', k1: 'Призначення', v1: 'Збір даних', k2: 'Підключення', v2: 'Лічильники NIK' },
-      { c: 'el', model: 'NIK 2300', type: 'Лічильник електроенергії трифазний', img: 'd3153f2f5ed8d9965f5fb1e49ae07ad9', k: 'cut', k1: 'Фази', v1: 'Трифазний', k2: 'Зв’язок', v2: 'PLC, G3-PLC' },
-      { c: 'wh', model: 'NIK 7011', type: 'Лічильник холодної води', img: '59c125130fc7c7750a7256ca7228fc69', k: 'cut', k1: 'Витрата Q3', v1: '1,6 м³/год', k2: 'Маркування', v2: 'CE / MID' },
-      { c: 'am', model: 'KK-01', type: 'Комунікаційний контролер АСКОЕ', img: '1bc2c60e4fa2f82c5d311ace163765cc', k: 'cut', k1: 'Призначення', v1: 'Передача даних', k2: 'Система', v2: 'АСКОЕ' },
-      { c: 'el', model: 'NIK STV-01M', type: 'Стабілізатор напруги', img: '07c44668a5a79d699210918f2ee79e65', k: 'cut', k1: 'Призначення', v1: 'Захист від перепадів', k2: 'Монтаж', v2: 'Настінний' },
-      { c: 'am', model: 'NIK AMBUS', type: 'Модуль підключення приладів M-Bus', img: 'f7fccb09fa506c70f87d6dad6abfc916', k: 'flat', k1: 'Монтаж', v1: 'DIN-рейка', k2: 'Інтерфейс', v2: 'M-Bus' },
-      { c: 'el', model: 'NIK 2303', type: 'Лічильник електроенергії трифазний', img: 'f0a2363fd4057897cae4831524ce270e', k: 'cut', k1: 'Фази', v1: 'Трифазний', k2: 'Зв’язок', v2: 'PLC', only: 1 }
-    ];
-    const tabDefs = [['all', 'Усі напрямки'], ['el', 'Електроенергія'], ['wh', 'Вода та тепло'], ['am', 'АСКОЕ та контролери']];
-    const tabs = tabDefs.map(([id, label]) => ({ label, on: String(s.tab === id), pick: () => this.setState({ tab: id }) }));
-    const prods = all.filter((p) => (s.tab === 'all' ? !p.only : p.c === s.tab))
-      .map((p) => ({ ...p, img: B + p.img, alt: p.model + ' — ' + p.type.toLowerCase(), tag: C[p.c], tagCls: 'tag' + (p.c === 'el' ? ' r' : '') }));
-    const rest = 4 - (prods.length % 4);
-    const catName = (tabDefs.find(([id]) => id === s.tab) || tabDefs[0])[1];
-    const also = ['Програмне забезпечення', 'Мережеве обладнання', 'Аксесуари', 'Контрактне виробництво', 'Високовольтні мережі'];
-
-    // hotspots on the NIK 2306 render (positions in % of the image)
-    const spotDefs = [
-      { x: 47.6, y: 16.9, short: 'LCD-дисплей', title: 'Багатотарифний LCD-дисплей', sub: 'Інтерфейс користувача', text: 'Показує спожиту активну й реактивну енергію за тарифами, параметри мережі по фазах L1–L3 і стан зв’язку.', k1: 'Мережа', v1: '3×230/400 В, 50 Гц', k2: 'Струм', v2: '0,25–5(80) А' },
-      { x: 15.9, y: 16.9, short: 'Оптичний порт', title: 'Оптичний порт', sub: 'Локальне зчитування', text: 'Дозволяє зчитати дані й налаштувати лічильник на місці без розкриття корпусу.', k1: 'Протокол', v1: 'DLMS / COSEM', k2: 'Сумісність', v2: 'IDIS' },
-      { x: 50, y: 24.2, short: 'Індикатори', title: 'Імпульсні індикатори', sub: 'Повірка та діагностика', text: 'Світлодіоди 8000 імп/кВт·год і 8000 імп/квар·год для перевірки точності та індикатор зв’язку Link.', k1: 'Клас точності', v1: 'B / 2', k2: 'Стандарти', v2: 'EN 50470-3, EN 62053-23' },
-      { x: 62, y: 52, short: 'Модуль LTE', title: 'Змінний модуль зв’язку', sub: 'NIK LTE Module', text: 'Встановлюється під кришку і передає показання в АСКОЕ мобільною мережею. Крім LTE, лічильник має інтерфейси RS-485 і PLC.', k1: 'Інтерфейси', v1: 'RS-485, PLC', k2: 'Технологія PLC', v2: 'G3-PLC' },
-      { x: 26, y: 51, short: 'Батарея', title: 'Резервна батарея', sub: 'Годинник реального часу', text: 'Живить внутрішній годинник, щоб тарифні зони й журнал подій зберігалися навіть без напруги в мережі.', k1: 'Робоча температура', v1: '−40…+70 °C', k2: 'Захист корпусу', v2: 'IP54' },
-      { x: 47.6, y: 75.8, short: 'Клемна колодка', title: 'Пломбована клемна колодка', sub: 'Захист від втручання', text: 'Клемна кришка пломбується, а її відкриття фіксується в журналі подій лічильника.', k1: 'Схема', v1: 'Трифазна, 4-провідна', k2: 'Реле навантаження', v2: 'Вбудоване' }
-    ];
-    const spots = spotDefs.map((p, i) => ({ title: p.title, short: p.short, on: String(s.spot === i), pick: () => this.setState({ spot: i }), pos: 'left: ' + p.x + '%; top: ' + p.y + '%' }));
-    const a = spotDefs[s.spot];
-    const spot = { ...a, num: '0' + (s.spot + 1) };
-
-    // exploded view: layers cut from one render; ax/ay pull each part towards the centre (assembled state)
-    const X = [
-      ['09712d8f2a0632ed5520ae989b4552e0', 74.84, 5.41, 16.41, 33.05, -5.31],
-      ['ad569d741727a2ebd68d3d39468bf68a', 50.31, 15.88, 12.34, 6.48, -3.83],
-      ['4fdc19aa0cd99b2610b022f84cd6169b', 20.62, 16.89, 16.09, -21.33, -1.56],
-      ['32ab23afb2162fd08017cb1eb47b9d42', 36.72, 17.23, 7.97, -9.3, -7.81],
-      ['eefa88a9c3dd72fe57a1df817af46b7e', 93.44, 28.04, 2.19, 44.53, -0.94],
-      ['fe21750897b3ec821d9458f71f874d83', 65.0, 28.04, 13.12, 21.56, -2.58],
-      ['5b396efcb8ce74e5d5921a110e5ca47c', 4.69, 41.22, 16.72, -36.95, 0.55],
-      ['14c1745388cb9f99de7e708a5c985f32', 5.47, 61.15, 20.94, -34.06, 13.44],
-      ['b770a607cf6fa6949967e41dafb754c7', 51.56, 73.99, 11.72, 7.42, 16.25]
-    ];
-    const xparts = X.map(([id, x, y, w, cx, cy]) => ({ img: B + id, st: 'left: ' + x + '%; top: ' + y + '%; width: ' + w + '%; --ax: ' + (-cx * 0.8).toFixed(2) + '; --ay: ' + (-cy * 0.8).toFixed(2) }));
-    const xmarks = [
-      [13, 38, 'Модуль батареї', 'Живлення годинника реального часу'],
-      [16, 58, 'Клемна кришка', 'Пломбується, відкриття фіксується в журналі'],
-      [29, 13.5, 'Кришка корпусу', 'Прозоре вікно дисплея, захист IP54'],
-      [41, 13.5, 'Захисний екран', 'Ізолює електроніку від клемної зони'],
-      [56.5, 11, 'Друкована плата', 'Власна розробка та SMT-монтаж'],
-      [57.5, 70, 'Клемна колодка', 'Підключення трьох фаз і нейтралі'],
-      [71.5, 24, 'Реле навантаження', 'Дистанційне вимкнення споживача'],
-      [72, 7, 'Основа корпусу', 'Кріплення на щиток і DIN-рейку']
-    ].map(([x, y, t, d], i) => ({ no: '0' + (i + 1), t, d, st: 'left: ' + x + '%; top: ' + y + '%' }));
-
-    const steps = [
-      { t: 'Конструкторське бюро', img: 'de1ec571973f47479cdfc5e1ddf2ab60', alt: 'Конструкторське бюро НІК-ЕЛЕКТРОНІКА' },
-      { t: 'SMT-монтаж плат', img: '91d9cc8d1dd39ed30b472abf02be9d93', alt: 'SMT-лінія монтажу друкованих плат' },
-      { t: 'Лиття корпусів', img: '1695fc08e5d7c1a2fcd4fbc761e00a02', alt: 'Виготовлення корпусів приладів' },
-      { t: 'Складання', img: '2d5e93a952ee95766eb8b2734477ce42', alt: 'Складання лічильників на виробництві' },
-      { t: 'Повірка та випробування', img: 'e3a26a87fafda2aa0c87ff6cdb2b951e', alt: 'Випробувальний центр НІК-ЕЛЕКТРОНІКА' }
-    ].map((x, i) => ({ ...x, img: B + x.img, no: '0' + (i + 1) }));
-
-    const names = [['Житомиробленерго'], ['Прикарпаттяобленерго'], ['Харківобленерго'], ['[Назва партнера]', 1], ['[Назва партнера]', 1], ['[Назва партнера]', 1]];
-    const marquee = names.concat(names).map(([t, ph]) => ({ t, cls: 'mname' + (ph ? ' ph' : '') }));
-    const seg = ['Оператори систем розподілу', 'Державні установи', 'Муніципальні підприємства', 'Девелопери', 'Промислові підприємства', 'Дистриб’ютори в ЄС та Азії'];
-
-    // key figures: count up with ease-out, columns start one after another
-    const ease = (t) => 1 - Math.pow(1 - t, 3);
-    const stats = [
-      { n: 150, suf: 'K', full: 'понад 150 тисяч', label: 'Приладів на місяць', sub: 'власне виробництво' },
-      { n: 10, suf: 'M', full: 'понад 10 мільйонів', label: 'Виготовлених приладів', sub: 'повний цикл складання' },
-      { n: 20, suf: '', full: 'понад 20', label: 'Років на ринку', sub: 'з 2005 року' },
-      { n: 600, suf: '', full: 'понад 600', label: 'Фахівців у команді', sub: 'інженери, R&D, метрологи' }
-    ].map((d, i) => {
-      const k = ease(Math.max(0, Math.min(1, (s.p - i * 0.08) / 0.76)));
-      return { value: Math.round(d.n * k) + d.suf, full: d.full, label: d.label, sub: d.sub, bar: 'width: ' + (k * 100).toFixed(1) + '%' };
-    });
+  base(s) {
     const isMenu = (t, href, items) => ({ t, href, items: items.map((x) => ({ t: x, href })) });
-    const tagN = 'tag', tagR = 'tag r';
     return {
       menu: [
-        isMenu('Каталог', 'Catalog-v3.dc.html', ['Продукти', 'Послуги', 'Програмне забезпечення', 'Таблиця взаємозамінності', 'Порівняти товари']),
-        isMenu('Про нас', 'About-v3.dc.html', ['Про компанію', 'Історія компанії', 'Кар’єра', 'Центр оцінки відповідності', 'Наші партнери']),
-        isMenu('Контакти', 'WhereToBuy-v3.dc.html', ['Де купити', 'Сервісний центр']),
-        isMenu('Прес-центр', 'News-v3.dc.html', ['Новини', 'НІКіпедія', 'Ми у ЗМІ'])
+        isMenu('Каталог', 'catalog.html', ['Продукти', 'Послуги', 'Програмне забезпечення', 'Таблиця взаємозамінності', 'Порівняти товари']),
+        isMenu('Про нас', 'about.html', ['Про компанію', 'Історія компанії', 'Кар’єра', 'Центр оцінки відповідності', 'Наші партнери']),
+        isMenu('Контакти', 'where-to-buy.html', ['Де купити', 'Сервісний центр']),
+        isMenu('Прес-центр', 'news.html', ['Новини', 'НІКіпедія', 'Ми у ЗМІ'])
       ],
-      slides, cur: slideData[s.s], curNo: '0' + (s.s + 1),
-      c0: cap(0), c1: cap(1), c2: cap(2), c3: cap(3),
-      pause: () => this.setState({ paused: true }), resume: () => this.setState({ paused: false }),
-      tabs, prods, catName, showMore: rest < 4, moreSpan: 'grid-column: span ' + rest, also,
-      spots, spot,
-      tilt: (e) => { const el = e.currentTarget, t = el.querySelector('.tilt'); if (!t) return; const r = el.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5; t.style.transform = 'rotateY(' + (x * 22).toFixed(1) + 'deg) rotateX(' + (-y * 14).toFixed(1) + 'deg)'; },
-      untilt: (e) => { const t = e.currentTarget.querySelector('.tilt'); if (t) t.style.transform = ''; },
-      xparts, xmarks, steps, stats,
-      vidCls: 'vbox' + (s.vid ? '' : ' paused'), vidLabel: s.vid ? 'Зупинити відео' : 'Відтворити відео', vidText: s.vid ? 'Пауза' : 'Відтворити',
-      vidIcon: s.vid ? 'M7 5h4v14H7zM13 5h4v14h-4z' : 'M8 5v14l11-7z',
-      toggleVid: () => this.setState({ vid: !s.vid }),
-      marquee, segs: [seg, seg],
-      news: [
-        { cls: 'nc big', d: '26.08.2026', tag: 'Компанія', tagCls: tagR, t: 'Звіт незалежного аудитора щодо фінансової звітності за 2025 рік', img: B + 'c0704521db1416ec66e4d8545678ba60' },
-        { cls: 'nc sm', d: '05.11.2024', tag: 'Партнерство', tagCls: tagN, t: 'НІК-ЕЛЕКТРОНІКА подовжила членство в ICC', img: B + '64d3854c808afc98f555fddf056f74b8' },
-        { cls: 'nc sm', d: '01.02.2023', tag: 'Сертифікація', tagCls: tagN, t: 'Успішно пройшли ресертифікацію за ISO 27001', img: B + '4ee835b35f0ce1c5b4662a723809ed42' }
-      ],
-      notSent: !s.sent, sent: s.sent, formCls: s.tried ? 'tried' : '',
-      submit: (e) => { e.preventDefault(); const f = e.currentTarget; if (!f.checkValidity()) { this.setState({ tried: true }); const bad = f.querySelector(':invalid'); if (bad) bad.focus(); return; } this.setState({ sent: true }); },
-      again: () => this.setState({ sent: false, tried: false }),
       cookie: s.cookie && !s.menu,
       menuOpen: s.menu, menuExp: String(s.menu), menuLabel: s.menu ? 'Закрити меню' : 'Відкрити меню',
       burgerPath: s.menu ? 'M6 6l12 12M18 6 6 18' : 'M4 7h16M4 12h16M4 17h16',
@@ -647,6 +580,20 @@ class Component extends DCLogic {
       closeCookie: () => this.setState({ cookie: false }),
       openCookie: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ cookie: true }); }
     };
+  }
+  renderVals() {
+    const s = this.state;
+    const B = '/_blob/';
+    const D = [
+      { n: '[Дилер А]', r: 1, x: 16, y: 44 }, { n: '[Дилер Б]', r: 1, x: 24, y: 58 }, { n: '[Дилер В]', r: 2, x: 34, y: 32 },
+      { n: '[Дилер Г]', r: 2, x: 40, y: 62 }, { n: '[Дилер Д]', r: 3, x: 48, y: 40 }, { n: '[Дилер Е]', r: 3, x: 56, y: 52 },
+      { n: '[Дилер Є]', r: 4, x: 50, y: 72 }, { n: '[Дилер Ж]', r: 4, x: 64, y: 36 }
+    ];
+    const pins = D.map((d, i) => ({ st: 'left: ' + d.x + '%; top: ' + d.y + '%', on: String(s.pin === i), aria: d.n + ', регіон ' + d.r, pick: () => this.setState({ pin: i }) }));
+    const dd = D[s.pin];
+    const regs = [[0, 'Усі регіони'], [1, 'Регіон 1'], [2, 'Регіон 2'], [3, 'Регіон 3'], [4, 'Регіон 4']].map(([id, t]) => ({ t, on: String(s.reg === id), pick: () => this.setState({ reg: id }) }));
+    const rows = D.filter((d) => !s.reg || d.r === s.reg).map((d) => ({ n: d.n, reg: 'Регіон ' + d.r + ' · [область]' }));
+    return Object.assign(this.base(s), { pins, dealer: { n: dd.n, reg: 'Регіон ' + dd.r + ' · [область, місто]' }, regs, rows });
   }
 }
 
