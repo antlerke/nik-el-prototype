@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Стани · кнопки й поля — НІК-ЕЛЕКТРОНІКА</title>
+<meta name="robots" content="noindex">
+
+<style>
+@font-face{font-family:'Geologica';font-style:normal;font-weight:300 800;font-display:swap;src:url(assets/58ce8622-Geologica-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Geologica';font-style:normal;font-weight:300 800;font-display:swap;src:url(assets/129ad3ba-Geologica-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{--mono:'JetBrains Mono',ui-monospace,monospace;--ink:#13385d;--ink-d:#0d2a47;--text:#36434f;--muted:#59636e;--line:#dde3e9;--gray:#e6eaeb;--paper:#f4f6f8;--red:#c8102e;--red-h:#a50d26}
+body{margin:0;background:#ffffff}
+.sheet{width:1200px;box-sizing:border-box;padding:56px 48px 64px;background:#ffffff;font-family:Geologica,system-ui,sans-serif;color:var(--text)}
+.top{padding-bottom:32px;border-bottom:1px solid var(--line)}
+.top h1{margin:0;font-size:48px;line-height:1.05;font-weight:700;letter-spacing:-0.03em;color:var(--ink)}
+.top p{margin:12px 0 0;max-width:800px;font-size:20px;line-height:1.5}
+.h{margin:48px 0 8px;font-size:24px;line-height:1.2;font-weight:700;color:var(--ink)}
+.sub{margin:0 0 16px;font-size:16px;line-height:1.5;color:var(--muted)}
+.mx{display:grid;gap:24px 16px;align-items:center}
+.mx.b5{grid-template-columns:150px repeat(5,minmax(0,1fr))}
+.mx.i6{grid-template-columns:150px repeat(6,minmax(0,1fr))}
+.ch{font:600 12px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-bottom:12px;border-bottom:1px solid var(--line);align-self:end}
+.rl{font-size:16px;line-height:1.3;font-weight:600;color:var(--ink)}
+.rl>small{display:block;margin-top:4px;font-size:14px;font-weight:400;color:var(--muted)}
+.na{font:500 14px/1.3 var(--mono);color:#a9bbcf}
+/* ---- buttons (same as the boards) ---- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:0 24px 3px;border-radius:8px;border:0;font:500 16px Geologica,sans-serif;text-decoration:none;cursor:pointer;box-sizing:border-box;white-space:nowrap;transition:background-color .2s ease,color .2s ease,box-shadow .25s ease,transform .16s ease}
+.btn>svg{flex:0 0 auto;display:block;position:relative;top:2px}
+.btn-red{background:var(--red);color:#ffffff}
+.btn-red.s-hover{background:var(--red-h);box-shadow:0 14px 30px -12px rgba(200,16,46,.45)}
+.btn-line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.btn-line.s-hover{background:var(--ink);color:#ffffff}
+.btn-ink{background:var(--ink);color:#ffffff}
+.btn-ink.s-hover{background:var(--ink-d)}
+.btn-ghost{min-height:44px;padding:0 12px;background:transparent;color:var(--ink)}
+.btn-ghost.s-hover{background:var(--gray)}
+.btn-icon{width:44px;min-height:44px;padding:0;background:transparent;color:var(--ink)}
+.btn-icon.s-hover,.btn-icon.s-press{background:var(--gray)}
+.btn.btn-icon:disabled{background:transparent}
+.btn-ghost>svg,.btn-icon>svg{top:0}
+.tl{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 4px;border:0;background:transparent;font:500 16px Geologica,sans-serif;cursor:pointer;border-radius:4px;transition:gap .25s ease,color .2s ease}
+.tl>svg{display:block;position:relative;top:1px}
+.tl-red{color:var(--red-h)}
+.tl-red.s-hover{gap:12px;text-decoration:underline;text-underline-offset:4px}
+.tl-red.s-press{gap:12px;text-decoration:underline;text-underline-offset:4px}
+.tl-ink{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.tl-ink.s-hover{color:var(--ink-d);text-decoration-thickness:2px}
+.tl-ink.s-press{color:var(--ink-d);text-decoration-thickness:2px}
+.tl:disabled{color:#6b7682;text-decoration:none;cursor:not-allowed;gap:8px}
+.tl.s-focus{outline:3px solid #007ac2;outline-offset:2px}
+.s-press{transform:scale(.97)}
+.btn-red.s-press{background:var(--red-h)}.btn-line.s-press{background:var(--ink);color:#ffffff}.btn-ink.s-press{background:var(--ink-d)}.btn-ghost.s-press{background:var(--gray)}
+.s-focus{outline:3px solid #007ac2;outline-offset:3px}
+.btn:disabled{background:var(--gray);color:#6b7682;box-shadow:none;cursor:not-allowed;transform:none}
+.btn-line:disabled{background:transparent;box-shadow:inset 0 0 0 1.5px #dde3e9}
+.btn-ghost:disabled{background:transparent}
+.tab{height:48px;padding:0 20px 3px;border-radius:8px;border:0;background:#ffffff;box-shadow:inset 0 0 0 1.5px var(--line);font:500 16px Geologica,sans-serif;color:var(--ink);cursor:pointer;white-space:nowrap}
+.tab.s-hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.tab[aria-selected="true"]{background:var(--ink);color:#ffffff;box-shadow:none}
+.tab:disabled{color:#6b7682;box-shadow:inset 0 0 0 1.5px var(--line);background:var(--paper);cursor:not-allowed}
+/* ---- inputs (same as the boards + new states) ---- */
+.in{display:block;width:100%;min-height:58px;border:1.5px solid #8592a0;border-radius:8px;padding:0 16px;font:16px Geologica,sans-serif;color:var(--text);background:#ffffff;box-sizing:border-box}
+.in::placeholder{color:#6b7682;opacity:1}
+.in.s-hover{border-color:#59636e}
+.in.s-focus{outline:0;border-color:var(--ink);box-shadow:0 0 0 4px rgba(19,56,93,.12)}
+.in.s-err{border-color:var(--red)}
+.in:disabled{background:var(--paper);border-color:var(--line);color:#6b7682;cursor:not-allowed}
+.sel{appearance:none;-webkit-appearance:none;padding-right:44px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2313385d' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;background-size:18px}
+.sel.ph{color:#6b7682}
+.ta{min-height:96px;padding:16px;resize:none}
+.hint{display:block;margin-top:8px;font-size:14px;line-height:1.35;color:var(--muted)}
+.hint.dis{color:#a9bbcf}
+.err{display:flex;align-items:flex-start;gap:6px;margin-top:8px;font-size:14px;line-height:1.35;color:var(--red-h)}
+.err>svg{flex:0 0 16px;margin-top:1px}
+.mx.i6{align-items:start}
+.mx.i6>.rl{padding-top:16px}
+.cb{display:flex;min-height:24px;align-items:center;gap:8px;font-size:14px;color:var(--text)}
+.cb>i{flex:0 0 24px;width:24px;height:24px;box-sizing:border-box;border:2px solid #8592a0;border-radius:4px;background:#ffffff}
+.cb.s-hover>i{border-color:var(--ink)}
+.cb.s-focus{outline:0}
+.cb.s-focus>i{outline:3px solid #007ac2;outline-offset:2px}
+.cb.s-on>i{border-color:var(--ink);background:var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12.5 4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/16px no-repeat}
+.cb.s-err>i{border-color:var(--red)}
+.cb.s-dis{color:#6b7682}.cb.s-dis>i{background:var(--paper);border-color:var(--line)}
+/* phone field: fixed +380 prefix, user types only 9 digits */
+.tel{display:flex;align-items:stretch;min-height:58px;border:1.5px solid #8592a0;border-radius:8px;background:#ffffff;box-sizing:border-box;overflow:hidden}
+.tel>.pre{flex:0 0 auto;display:flex;align-items:center;gap:8px;padding:0 16px;background:var(--paper);border-right:1.5px solid var(--line);font:500 16px Geologica,sans-serif;color:var(--ink);font-variant-numeric:tabular-nums}
+.tel>input{flex:1 1 auto;min-width:0;border:0;padding:0 16px;font:16px Geologica,sans-serif;color:var(--text);background:transparent;outline:0;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+.tel>input::placeholder{color:#6b7682;opacity:1}
+.tel.s-hover{border-color:#59636e}
+.tel.s-focus{outline:0;border-color:var(--ink);box-shadow:0 0 0 4px rgba(19,56,93,.12)}
+.tel.s-err{border-color:var(--red)}
+.tel.s-dis{background:var(--paper);border-color:var(--line)}.tel.s-dis>.pre{color:#6b7682;background:var(--gray)}.tel.s-dis>input{color:#6b7682;cursor:not-allowed}
+.mx.t3{grid-template-columns:150px repeat(3,minmax(0,1fr));align-items:start;gap:16px 16px}
+.mx.t3>.ch{margin-top:8px}
+.mx.t3>.rl{padding-top:16px}
+.new{display:inline-block;margin-left:6px;padding:2px 6px;border-radius:4px;background:rgba(200,16,46,.08);font:600 10px/1.3 var(--mono);letter-spacing:.06em;color:var(--red-h);vertical-align:2px}
+.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.rule{padding:20px;border-radius:12px;background:var(--paper);box-shadow:inset 0 0 0 1px var(--line);font-size:16px;line-height:1.5}
+.rule>b{display:block;margin-bottom:8px;color:var(--ink)}
+</style>
+<style>.uk-nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:16px 24px;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #dde3e9;font:500 15px Geologica,system-ui,sans-serif}.uk-nav b{margin-right:8px;font-weight:700;color:#13385d}.uk-nav a{display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:8px;color:#13385d;text-decoration:none;box-shadow:inset 0 0 0 1px #dde3e9}.uk-nav a[aria-current]{background:#13385d;color:#ffffff;box-shadow:none}.uk-nav .sp{flex:1 1 auto}.sheet{margin:0 auto}</style>
+
+<script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
+<script src="runtime.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/x-template" id="tpl">
+
+<nav class="uk-nav" aria-label="UI kit"><b>UI kit NIK</b><a href="ui-kit.html">Кольори</a><a href="ui-kit-type.html">Типографіка</a><a href="ui-kit-states.html" aria-current="page">Стани</a><span class="sp"></span><a href="home-anna.html">Головна (версія Anna)</a></nav>
+<div class="sheet">
+  <div class="top">
+    <h1>Стани · кнопки й поля</h1>
+    <p>Як кожна кнопка й поле виглядає в кожному стані — однаково на десктопі й мобільній. Позначка <span class="new">NEW</span> — стани, яких у дизайні ще не було.</p>
+  </div>
+
+  <h2 class="h">Кнопки</h2>
+  <p class="sub">Фокус — коли користувач переходить клавішею Tab: синя рамка 3 px, однакова для всіх кнопок.</p>
+  <div class="mx b5">
+    <span></span><span class="ch">Звичайна</span><span class="ch">Наведення</span><span class="ch">Фокус</span><span class="ch">Натиснута</span><span class="ch">Неактивна <span class="new">NEW</span></span>
+
+    <div class="rl">Головна<small>червона · «Переглянути каталог →», «Надіслати запит»</small></div>
+    <div><button class="btn btn-red">Каталог<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button></div>
+    <div><button class="btn btn-red s-hover">Каталог<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button></div>
+    <div><button class="btn btn-red s-focus">Каталог<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button></div>
+    <div><button class="btn btn-red s-press">Каталог<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button></div>
+    <div><button class="btn btn-red" disabled="">Каталог<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button></div>
+
+    <div class="rl">Другорядна<small>обведена · «Як влаштований прилад», «Увесь каталог»</small></div>
+    <div><button class="btn btn-line"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"></rect><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"></path></svg>Прилад</button></div>
+    <div><button class="btn btn-line s-hover"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"></rect><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"></path></svg>Прилад</button></div>
+    <div><button class="btn btn-line s-focus"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"></rect><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"></path></svg>Прилад</button></div>
+    <div><button class="btn btn-line s-press"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"></rect><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"></path></svg>Прилад</button></div>
+    <div><button class="btn btn-line" disabled=""><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"></rect><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"></path></svg>Прилад</button></div>
+
+    <div class="rl">Темна<small>«Прийняти всі» в cookie</small></div>
+    <div><button class="btn btn-ink">Прийняти</button></div>
+    <div><button class="btn btn-ink s-hover">Прийняти</button></div>
+    <div><button class="btn btn-ink s-focus">Прийняти</button></div>
+    <div><button class="btn btn-ink s-press">Прийняти</button></div>
+    <div><button class="btn btn-ink" disabled="">Прийняти</button></div>
+
+    <div class="rl">Тиха<small>«Електронні документи», «UA»</small></div>
+    <div><button class="btn btn-ghost"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg>Документи</button></div>
+    <div><button class="btn btn-ghost s-hover"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg>Документи</button></div>
+    <div><button class="btn btn-ghost s-focus"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg>Документи</button></div>
+    <div><button class="btn btn-ghost s-press"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg>Документи</button></div>
+    <div><button class="btn btn-ghost" disabled=""><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg>Документи</button></div>
+
+    <div class="rl">Лише іконка<small>пошук, кабінет, бургер</small></div>
+    <div><button class="btn btn-icon" aria-label="Пошук"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></button></div><div><button class="btn btn-icon s-hover" aria-label="Пошук"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></button></div><div><button class="btn btn-icon s-focus" aria-label="Пошук"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></button></div><div><button class="btn btn-icon s-press" aria-label="Пошук"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></button></div><div><button class="btn btn-icon" aria-label="Пошук" disabled=""><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></button></div>
+
+    <div class="rl">Текстова червона<small>«Читати далі →» у новинах</small></div>
+    <div><button class="tl tl-red">Читати далі<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button></div><div><button class="tl tl-red s-hover">Читати далі<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button></div><div><button class="tl tl-red s-focus">Читати далі<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button></div><div><button class="tl tl-red s-press">Читати далі<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button></div><div><button class="tl tl-red" disabled="">Читати далі<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button></div>
+
+    <div class="rl">Текстова синя<small>«Налаштувати» в cookie, «Політика конфіденційності»</small></div>
+    <div><button class="tl tl-ink">Налаштувати</button></div><div><button class="tl tl-ink s-hover">Налаштувати</button></div><div><button class="tl tl-ink s-focus">Налаштувати</button></div><div><button class="tl tl-ink s-press">Налаштувати</button></div><div><button class="tl tl-ink" disabled="">Налаштувати</button></div>
+  </div>
+
+  <h2 class="h">Перемикачі</h2>
+  <p class="sub">Вкладки каталогу й кнопки деталей: замість «натиснутої» — «вибрана».</p>
+  <div class="mx b5">
+    <span></span><span class="ch">Звичайна</span><span class="ch">Наведення</span><span class="ch">Фокус</span><span class="ch">Вибрана</span><span class="ch">Неактивна <span class="new">NEW</span></span>
+    <div class="rl">Вкладка<small>«Усі напрямки», «Вода та тепло»</small></div>
+    <div><button class="tab">Вода та тепло</button></div>
+    <div><button class="tab s-hover">Вода та тепло</button></div>
+    <div><button class="tab s-focus">Вода та тепло</button></div>
+    <div><button class="tab" aria-selected="true">Вода та тепло</button></div>
+    <div><button class="tab" disabled="">Вода та тепло</button></div>
+  </div>
+
+  <h2 class="h">Поля форми</h2>
+  <p class="sub">Під полем — підказка (сірий, 14 px). При помилці підказку замінює текст помилки з іконкою (червоний). Помилка з'являється після спроби надіслати форму.</p>
+  <div class="mx i6">
+    <span></span><span class="ch">Порожнє</span><span class="ch">Наведення <span class="new">NEW</span></span><span class="ch">Фокус</span><span class="ch">Заповнене</span><span class="ch">Помилка</span><span class="ch">Неактивне <span class="new">NEW</span></span>
+
+    <div class="rl">Текстове поле<small>пошта, ПІБ</small></div>
+    <div><input class="in" placeholder="Пошта"><span class="hint">Надішлемо відповідь сюди</span></div>
+    <div><input class="in s-hover" placeholder="Пошта"><span class="hint">Надішлемо відповідь сюди</span></div>
+    <div><input class="in s-focus" placeholder="Пошта"><span class="hint">Надішлемо відповідь сюди</span></div>
+    <div><input class="in" value="olena@nik.ua"><span class="hint">Надішлемо відповідь сюди</span></div>
+    <div><input class="in s-err" value="olena@nik"><span class="err"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5v.5"></path></svg>Вкажіть коректну пошту</span></div>
+    <div><input class="in" placeholder="Пошта" disabled=""><span class="hint dis">Надішлемо відповідь сюди</span></div>
+
+    <div class="rl">Список<small>регіон, тема звернення</small></div>
+    <div><select class="in sel ph"><option>Оберіть</option></select><span class="hint">Підберемо дилера поруч</span></div>
+    <div><select class="in sel ph s-hover"><option>Оберіть</option></select><span class="hint">Підберемо дилера поруч</span></div>
+    <div><select class="in sel ph s-focus"><option>Оберіть</option></select><span class="hint">Підберемо дилера поруч</span></div>
+    <div><select class="in sel"><option>Київська</option></select><span class="hint">Підберемо дилера поруч</span></div>
+    <span class="na" style="padding-top:20px">—</span>
+    <div><select class="in sel ph" disabled=""><option>Оберіть</option></select><span class="hint dis">Підберемо дилера поруч</span></div>
+
+    <div class="rl">Опис запиту<small>багаторядкове поле</small></div>
+    <div><textarea class="in ta" placeholder="Кілька речень"></textarea><span class="hint">Модель, кількість, терміни</span></div>
+    <div><textarea class="in ta s-hover" placeholder="Кілька речень"></textarea><span class="hint">Модель, кількість, терміни</span></div>
+    <div><textarea class="in ta s-focus" placeholder="Кілька речень"></textarea><span class="hint">Модель, кількість, терміни</span></div>
+    <div><textarea class="in ta">Потрібно 200 лічильників</textarea><span class="hint">Модель, кількість, терміни</span></div>
+    <span class="na" style="padding-top:20px">—</span>
+    <div><textarea class="in ta" placeholder="Кілька речень" disabled=""></textarea><span class="hint dis">Модель, кількість, терміни</span></div>
+
+    <div class="rl" style="padding-top:0">Згода<small>чекбокс</small></div>
+    <div><span class="cb"><i></i>Згоден</span></div>
+    <div><span class="cb s-hover"><i></i>Згоден</span></div>
+    <div><span class="cb s-focus"><i></i>Згоден</span></div>
+    <div><span class="cb s-on"><i></i>Згоден</span></div>
+    <span class="na">—</span>
+    <div><span class="cb s-dis"><i></i>Згоден</span></div>
+
+  </div>
+
+  <h2 class="h">Телефон <span class="new">NEW</span></h2>
+  <p class="sub">Окреме поле: код +380 закріплений і не редагується, користувач вводить лише 9 цифр. Цифри групуються автоматично: 67 123 45 67.</p>
+  <div class="mx t3">
+    <span></span><span class="ch">Порожнє</span><span class="ch">Наведення</span><span class="ch">Фокус</span>
+    <div class="rl">Телефон<small>форма «Готові до співпраці»</small></div>
+    <div><div class="tel "><span class="pre">+380</span><input placeholder="00 000 00 00"></div><span class="hint">Код +380 уже вписано — введіть 9 цифр</span></div><div><div class="tel s-hover"><span class="pre">+380</span><input placeholder="00 000 00 00"></div><span class="hint">Код +380 уже вписано — введіть 9 цифр</span></div><div><div class="tel s-focus"><span class="pre">+380</span><input placeholder="00 000 00 00"></div><span class="hint">Код +380 уже вписано — введіть 9 цифр</span></div>
+    <span></span><span class="ch">Заповнене</span><span class="ch">Помилка</span><span class="ch">Неактивне</span>
+    <span></span>
+    <div><div class="tel "><span class="pre">+380</span><input placeholder="00 000 00 00" value="67 123 45 67"></div><span class="hint">Код +380 уже вписано — введіть 9 цифр</span></div><div><div class="tel s-err"><span class="pre">+380</span><input placeholder="00 000 00 00" value="67 123"></div><span class="err"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5v.5"></path></svg>Вкажіть 9 цифр номера</span></div><div><div class="tel s-dis"><span class="pre">+380</span><input placeholder="00 000 00 00" disabled=""></div><span class="hint dis">Код +380 уже вписано — введіть 9 цифр</span></div>
+  </div>
+
+  <h2 class="h">Правила</h2>
+  <div class="rules">
+    <div class="rule"><b>Фокус завжди видно</b>Синя рамка #007AC2 у кнопок і чекбокса, синя обвідка з тінню у полів. Без фокусу сайтом не можна користуватися з клавіатури.</div>
+    <div class="rule"><b>Неактивне — сіре</b>Фон #E6EAEB або #F4F6F8, текст #6B7682, курсор «заборонено». Без тіні й анімації.</div>
+    <div class="rule"><b>Підказка → помилка</b>Під полем завжди одне місце для тексту: сіра підказка #59636E, а при помилці — червоний текст #A50D26 з іконкою і червона рамка. Лише колір не використовуємо.</div>
+  </div>
+</div>
+</script>
+<script>
+window.DC_BLOBS = {};
+
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>

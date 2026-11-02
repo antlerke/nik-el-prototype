@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Кольори · UI kit — НІК-ЕЛЕКТРОНІКА</title>
+<meta name="robots" content="noindex">
+
+<style>
+@font-face{font-family:'Geologica';font-style:normal;font-weight:300 800;font-display:swap;src:url(assets/58ce8622-Geologica-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Geologica';font-style:normal;font-weight:300 800;font-display:swap;src:url(assets/129ad3ba-Geologica-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{--mono:'JetBrains Mono',ui-monospace,monospace;--ink:#13385d;--line:#dde3e9;--paper:#f4f6f8}
+body{margin:0;background:#ffffff}
+.sheet{width:1200px;box-sizing:border-box;padding:56px 48px 64px;background:#ffffff;font-family:Geologica,system-ui,sans-serif;color:#36434f}
+.top{padding-bottom:32px;border-bottom:1px solid var(--line)}
+.top h1{margin:0;font-size:48px;line-height:1.05;font-weight:700;letter-spacing:-0.03em;color:var(--ink)}
+.top p{margin:12px 0 0;max-width:760px;font-size:20px;line-height:1.5}
+.h{margin:48px 0 16px;font-size:24px;line-height:1.2;font-weight:700;color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.sw{border-radius:12px;overflow:hidden;background:#ffffff;box-shadow:inset 0 0 0 1px var(--line)}
+.c{height:112px;display:flex;flex-direction:column;justify-content:flex-end;gap:4px;padding:16px;box-sizing:border-box;box-shadow:inset 0 -1px 0 var(--line);font:600 14px/1.3 var(--mono)}
+.i{padding:16px}
+.i>b{display:block;font-size:16px;line-height:1.3;color:var(--ink)}
+.i>p{margin:8px 0 0;font-size:14px;line-height:1.45;color:#59636e}
+.i>small{display:block;margin-top:8px;font:500 12px/1.3 var(--mono);color:#59636e}
+table{width:100%;border-collapse:collapse;font-size:16px;line-height:1.45}
+th{padding:0 12px 12px 0;text-align:left;font:600 12px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#59636e;border-bottom:1px solid var(--line)}
+td{padding:12px 12px 12px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td.n{font:600 14px/1.45 var(--mono);color:var(--ink)}
+.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.rule{padding:20px;border-radius:12px;background:var(--paper);box-shadow:inset 0 0 0 1px var(--line);font-size:16px;line-height:1.5}
+.rule>b{display:block;margin-bottom:8px;color:var(--ink)}
+</style>
+<style>.uk-nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:16px 24px;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #dde3e9;font:500 15px Geologica,system-ui,sans-serif}.uk-nav b{margin-right:8px;font-weight:700;color:#13385d}.uk-nav a{display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:8px;color:#13385d;text-decoration:none;box-shadow:inset 0 0 0 1px #dde3e9}.uk-nav a[aria-current]{background:#13385d;color:#ffffff;box-shadow:none}.uk-nav .sp{flex:1 1 auto}.sheet{margin:0 auto}</style>
+
+<script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
+<script src="runtime.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/x-template" id="tpl">
+
+<nav class="uk-nav" aria-label="UI kit"><b>UI kit NIK</b><a href="ui-kit.html" aria-current="page">Кольори</a><a href="ui-kit-type.html">Типографіка</a><a href="ui-kit-states.html">Стани</a><span class="sp"></span><a href="home-anna.html">Головна (версія Anna)</a></nav>
+<div class="sheet">
+  <div class="top">
+    <h1>Кольори · UI kit</h1>
+    <p>Одна палітра для десктопу й мобільної. Близькі відтінки зведені в один: 18 кольорів замість ~32. Червоний — один фірмовий, без «неонового».</p>
+  </div>
+  <h2 class="h">Бренд</h2><div class="grid"><div class="sw"><div class="c" style="background:#0D2A47"><span style="color:#ffffff">#0D2A47</span></div><div class="i"><b>Navy 900</b><p>Темні секції (відео, футер), наведення на сині кнопки</p><small>14.6 : 1 на білому</small></div></div><div class="sw"><div class="c" style="background:#13385D"><span style="color:#ffffff">#13385D</span></div><div class="i"><b>Navy 700</b><p>Заголовки, сині кнопки, активні елементи, іконки</p><small>12.0 : 1 на білому</small></div></div><div class="sw"><div class="c" style="background:#C8102E"><span style="color:#ffffff">#C8102E</span></div><div class="i"><b>Red 600</b><p>Головні кнопки, «+» у цифрах, крапки в мітках, маркери на схемі</p><small>5.9 : 1 на білому</small></div></div><div class="sw"><div class="c" style="background:#A50D26"><span style="color:#ffffff">#A50D26</span></div><div class="i"><b>Red 700</b><p>Наведення на червоні кнопки, червоний текст: мітки, теги, «Читати далі»</p><small>7.8 : 1 на білому</small></div></div></div><h2 class="h">Текст на світлому</h2><div class="grid"><div class="sw"><div class="c" style="background:#36434F"><span style="color:#ffffff">#36434F</span></div><div class="i"><b>Text</b><p>Основний текст, описи, текст у формі</p><small>10.1 : 1 на білому</small></div></div><div class="sw"><div class="c" style="background:#59636E"><span style="color:#ffffff">#59636E</span></div><div class="i"><b>Muted</b><p>Другорядне: дати, підписи, характеристики, категорія під приладом</p><small>6.1 : 1 на білому</small></div></div><div class="sw"><div class="c" style="background:#6B7682"><span style="color:#ffffff">#6B7682</span></div><div class="i"><b>Placeholder</b><p>Лише підказки в полях форми</p><small>4.6 : 1 на білому</small></div></div></div><h2 class="h">Текст на темному (Navy 700 / 900)</h2><div class="grid"><div class="sw"><div class="c" style="background:#13385d;color:#FFFFFF"><span style="color:#FFFFFF;font-size:28px;font-weight:700;font-family:Geologica,sans-serif">Аа</span><span style="color:#FFFFFF">#FFFFFF</span></div><div class="i"><b>On dark</b><p>Заголовки й посилання на темному</p><small>12.0 : 1 на Navy 700</small></div></div><div class="sw"><div class="c" style="background:#13385d;color:#D3DEEA"><span style="color:#D3DEEA;font-size:28px;font-weight:700;font-family:Geologica,sans-serif">Аа</span><span style="color:#D3DEEA">#D3DEEA</span></div><div class="i"><b>On dark muted</b><p>Описи й пункти на темному</p><small>8.8 : 1 на Navy 700</small></div></div><div class="sw"><div class="c" style="background:#13385d;color:#A9BBCF"><span style="color:#A9BBCF;font-size:28px;font-weight:700;font-family:Geologica,sans-serif">Аа</span><span style="color:#A9BBCF">#A9BBCF</span></div><div class="i"><b>On dark subtle</b><p>Нижній рядок футера, неактивні крапки</p><small>6.1 : 1 на Navy 700</small></div></div></div><h2 class="h">Поверхні</h2><div class="grid"><div class="sw"><div class="c" style="background:#FFFFFF"><span style="color:#13385d">#FFFFFF</span></div><div class="i"><b>White</b><p>Фон сторінки, картки, поля форми</p></div></div><div class="sw"><div class="c" style="background:#F4F6F8"><span style="color:#13385d">#F4F6F8</span></div><div class="i"><b>Paper</b><p>Сірі секції, неактивні кнопки й вкладки</p></div></div><div class="sw"><div class="c" style="background:#E6EAEB"><span style="color:#13385d">#E6EAEB</span></div><div class="i"><b>Gray</b><p>Наведення, заглушки фото</p></div></div></div><h2 class="h">Лінії й відтінки</h2><div class="grid"><div class="sw"><div class="c" style="background:#DDE3E9"><span style="color:#13385d">#DDE3E9</span></div><div class="i"><b>Line</b><p>Рамки карток, роздільники</p></div></div><div class="sw"><div class="c" style="background:#8592A0"><span style="color:#ffffff">#8592A0</span></div><div class="i"><b>Line strong</b><p>Рамки полів форми, чекбокси (наведення — #59636E)</p><small>3.2 : 1 на білому</small></div></div><div class="sw"><div class="c" style="background:rgba(200,16,46,.08)"><span style="color:#13385d">(200,16,46,.08)</span></div><div class="i"><b>Red tint</b><p>Фон міток розділів і червоних тегів (рамка — 18%)</p></div></div><div class="sw"><div class="c" style="background:rgba(19,56,93,.08)"><span style="color:#13385d">(19,56,93,.08)</span></div><div class="i"><b>Navy tint</b><p>Фон синіх тегів категорій</p></div></div></div><h2 class="h">Службові</h2><div class="grid"><div class="sw"><div class="c" style="background:#007AC2"><span style="color:#ffffff">#007AC2</span></div><div class="i"><b>Focus</b><p>Рамка фокусу з клавіатури</p><small>4.6 : 1 на білому</small></div></div><div class="sw"><div class="c" style="background:#006B44"><span style="color:#ffffff">#006B44</span></div><div class="i"><b>Success</b><p>Повідомлення «Дякуємо» (фон #CCEAE0)</p><small>6.6 : 1 на білому</small></div></div></div>
+  <h2 class="h">Що зміниться</h2>
+  <table><tr><th style="width:250px">Було</th><th style="width:150px">Стане</th><th>Де</th></tr><tr><td class="n">#E30427</td><td class="n">#C8102E</td><td class="w">Крапки в мітках, маркери на схемі розрізу, «+» у цифрах, активні крапки</td></tr><tr><td class="n">#C2031F · #B8031F</td><td class="n">#A50D26</td><td class="w">Текст міток розділів, червоні теги, «Читати далі», «01 / 04»</td></tr><tr><td class="n">червоні відтінки 7% · 10% · 11% · 16%</td><td class="n">8% · 18%</td><td class="w">Фон і рамка міток, тегів, номера «01», номерів етапів</td></tr><tr><td class="n">#21272E</td><td class="n">#36434F</td><td class="w">Опис у картках каталогу, текст у полях форми</td></tr><tr><td class="n">#46515C</td><td class="n">#59636E</td><td class="w">Категорія під приладом, підписи «Мережа / Струм», характеристики</td></tr><tr><td class="n">#F3F6FA</td><td class="n">#FFFFFF</td><td class="w">Посилання у футері</td></tr><tr><td class="n">#DCE5EE</td><td class="n">#D3DEEA</td><td class="w">Пункти під відео</td></tr><tr><td class="n">#CCD5DE</td><td class="n">#8592A0</td><td class="w">Рамки полів форми й чекбокса — тепер 3 : 1 до білого, як вимагає стандарт доступності</td></tr><tr><td class="n">#FAFBFC</td><td class="n">#FFFFFF</td><td class="w">Фон полів форми</td></tr><tr><td class="n">синій відтінок 10%</td><td class="n">8%</td><td class="w">Фон синіх тегів категорій</td></tr></table>
+  <h2 class="h">Правила</h2>
+  <div class="rules">
+    <div class="rule"><b>Червоний — лише акцент</b>Головна кнопка, «+», крапки й маркери. Не більше одного червоного елемента, що «кличе до дії», на екран.</div>
+    <div class="rule"><b>Синій — структура</b>Заголовки, другорядні кнопки, активні вкладки, іконки. Темні секції — Navy 900.</div>
+    <div class="rule"><b>Контраст</b>Текст — не менше 4,5 : 1 до фону. Тому світлі сірі (#A9BBCF, #D3DEEA) — тільки на темному фоні.</div>
+  </div>
+</div>
+</script>
+<script>
+window.DC_BLOBS = {};
+
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>

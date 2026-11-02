@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Типографіка · UI kit — НІК-ЕЛЕКТРОНІКА</title>
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Geologica';font-style:normal;font-weight:300 800;font-display:swap;src:url(assets/58ce8622-Geologica-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Geologica';font-style:normal;font-weight:300 800;font-display:swap;src:url(assets/129ad3ba-Geologica-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{--mono:'JetBrains Mono',ui-monospace,monospace;--ink:#13385d;--text:#21272e;--muted:#59636e;--line:#dde3e9;--paper:#f4f6f8;--red:#e30427;--red-t:#c2031f;--red-a:rgba(227,4,39,.07);--red-b:rgba(227,4,39,.16)}
+body{margin:0;background:#ffffff}
+.sheet{width:1200px;box-sizing:border-box;padding:56px 48px 64px;background:#ffffff;font-family:Geologica,system-ui,sans-serif;color:var(--text)}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;padding-bottom:32px;border-bottom:1px solid var(--line)}
+.top h1{margin:0;font-size:48px;line-height:1.05;font-weight:700;letter-spacing:-0.03em;color:var(--ink)}
+.top p{margin:12px 0 0;max-width:640px;font-size:18px;line-height:1.5;color:#46515c}
+.badge{flex:0 0 auto;display:flex;gap:8px}
+.badge>span{padding:8px 12px;border-radius:8px;background:var(--paper);box-shadow:inset 0 0 0 1px var(--line);font:600 13px/1.2 var(--mono);color:var(--ink)}
+.h{margin:48px 0 16px;font-size:24px;line-height:1.2;font-weight:700;color:var(--ink)}
+.h>small{margin-left:12px;font-size:16px;font-weight:400;color:var(--muted)}
+.cols,.row{display:grid;grid-template-columns:232px minmax(0,1fr) 300px;gap:32px}
+.cols{padding:0 0 12px;border-bottom:1px solid var(--line);font:600 12px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.row{padding:24px 0;border-bottom:1px solid var(--line);align-items:center}
+.meta>b{display:block;font-size:20px;line-height:1.2;font-weight:700;color:var(--ink)}
+.meta>span{display:block;margin-top:8px;font:500 14px/1.45 var(--mono);color:var(--muted)}
+.meta>em{display:block;margin-top:8px;font-style:normal;font-size:14px;line-height:1.45;color:#46515c}
+.d,.m{min-width:0;color:var(--ink);overflow:hidden}
+.m{padding-left:24px;border-left:1px dashed var(--line)}
+.lab{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:8px;background:var(--red-a);box-shadow:inset 0 0 0 1px var(--red-b);color:var(--red-t);font:600 12px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.lab::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red)}
+.body{color:#36434f}
+table{width:100%;border-collapse:collapse;font-size:16px;line-height:1.45}
+th{padding:0 12px 12px 0;text-align:left;font:600 12px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line)}
+td{padding:12px 12px 12px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td.n{font:600 15px/1.45 var(--mono);color:var(--ink);white-space:nowrap}
+td.n>s{color:#9aa5b1;text-decoration:none}
+td.w{color:#46515c}
+.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.rule{padding:20px;border-radius:12px;background:var(--paper);box-shadow:inset 0 0 0 1px var(--line);font-size:16px;line-height:1.5;color:#36434f}
+.rule>b{display:block;margin-bottom:8px;font-size:16px;color:var(--ink)}
+</style>
+<style>.uk-nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:16px 24px;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #dde3e9;font:500 15px Geologica,system-ui,sans-serif}.uk-nav b{margin-right:8px;font-weight:700;color:#13385d}.uk-nav a{display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:8px;color:#13385d;text-decoration:none;box-shadow:inset 0 0 0 1px #dde3e9}.uk-nav a[aria-current]{background:#13385d;color:#ffffff;box-shadow:none}.uk-nav .sp{flex:1 1 auto}.sheet{margin:0 auto}</style>
+
+<script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
+<script src="runtime.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/x-template" id="tpl">
+
+<nav class="uk-nav" aria-label="UI kit"><b>UI kit NIK</b><a href="ui-kit.html">Кольори</a><a href="ui-kit-type.html" aria-current="page">Типографіка</a><a href="ui-kit-states.html">Стани</a><span class="sp"></span><a href="home-anna.html">Головна (версія Anna)</a></nav>
+<div class="sheet">
+  <div class="top">
+    <div>
+      <h1>Типографіка · UI kit</h1>
+      <p>Одна шкала для десктопу (1440 px) і мобільної (390 px). 8 рівнів замість 14 різних розмірів. Кожен рівень має одну роль і однаковий вигляд на всій сторінці.</p>
+    </div>
+    <div class="badge"><span>Geologica</span><span>JetBrains Mono</span></div>
+  </div>
+
+  <h2 class="h">Шкала<small>розмір десктоп / мобільна · насиченість · міжрядковий інтервал</small></h2>
+  <div class="cols"><span>Рівень</span><span>Десктоп</span><span>Мобільна</span></div>
+
+  <div class="row">
+    <div class="meta"><b>Display</b><span>80 / 36 · 800 · 0.9</span><em>Ключові цифри</em></div>
+    <div class="d" style="font-size:80px;line-height:.9;font-weight:800;letter-spacing:-0.055em">150K<span style="color:var(--red)">+</span></div>
+    <div class="m" style="font-size:36px;line-height:.9;font-weight:800;letter-spacing:-0.055em">150K<span style="color:var(--red)">+</span></div>
+  </div>
+  <div class="row">
+    <div class="meta"><b>H1</b><span>64 / 30 · 700 · 1.0</span><em>Заголовок першого екрана — один на сторінці</em></div>
+    <div class="d" style="font-size:64px;line-height:1;font-weight:700;letter-spacing:-0.04em">Точний облік</div>
+    <div class="m" style="font-size:30px;line-height:1;font-weight:700;letter-spacing:-0.04em">Точний облік енергоресурсів</div>
+  </div>
+  <div class="row">
+    <div class="meta"><b>H2</b><span>48 / 26 · 700 · 1.05</span><em>Заголовки розділів, назви партнерів у стрічці</em></div>
+    <div class="d" style="font-size:48px;line-height:1.05;font-weight:700;letter-spacing:-0.03em">Від чипа до корпусу</div>
+    <div class="m" style="font-size:26px;line-height:1.05;font-weight:700;letter-spacing:-0.03em">Від чипа до корпусу</div>
+  </div>
+  <div class="row">
+    <div class="meta"><b>H3</b><span>24 / 20 · 700 · 1.2</span><em>Назви карток, новин, деталі приладу</em></div>
+    <div class="d" style="font-size:24px;line-height:1.2;font-weight:700">Багатотарифний LCD-дисплей</div>
+    <div class="m" style="font-size:20px;line-height:1.2;font-weight:700">Багатотарифний LCD-дисплей</div>
+  </div>
+  <div class="row">
+    <div class="meta"><b>Lead</b><span>20 / 17 · 400 · 1.5</span><em>Текст під заголовками, опис у великих картках, контакти</em></div>
+    <div class="d body" style="font-size:20px;line-height:1.5">Розробляємо та виробляємо лічильники електроенергії, води й тепла з 2005 року.</div>
+    <div class="m body" style="font-size:17px;line-height:1.5">Розробляємо та виробляємо лічильники електроенергії, води й тепла з 2005 року.</div>
+  </div>
+  <div class="row">
+    <div class="meta"><b>Body</b><span>16 / 16 · 400 – 600 · 1.5</span><em>Основний текст, кнопки, меню, поля форми, підписи (500 — кнопки й меню, 600 — виділення)</em></div>
+    <div class="d body" style="font-size:16px;line-height:1.5">Лічильник електроенергії трифазний. <b style="font-weight:600;color:var(--ink)">Модуль батареї</b> · <span style="font-weight:500;color:var(--ink)">Переглянути каталог</span></div>
+    <div class="m body" style="font-size:16px;line-height:1.5">Лічильник електроенергії трифазний. <b style="font-weight:600;color:var(--ink)">Модуль батареї</b></div>
+  </div>
+  <div class="row">
+    <div class="meta"><b>Small</b><span>14 / 14 · 400 – 600 · 1.45</span><em>Характеристики, дати, нижній рядок футера, cookie, «Також у каталозі»</em></div>
+    <div class="d" style="font:500 14px/1.45 var(--mono);color:var(--muted)">Мережа <b style="font-weight:600;color:var(--ink)">3×230/400 В, 50 Гц</b> · 26.08.2026</div>
+    <div class="m" style="font:500 14px/1.45 var(--mono);color:var(--muted)">Мережа <b style="font-weight:600;color:var(--ink)">3×230/400 В</b></div>
+  </div>
+  <div class="row">
+    <div class="meta"><b>Label</b><span>12 / 12 · 600 · 1.3</span><em>Мітки розділів, теги категорій, номери етапів — моно, великими літерами</em></div>
+    <div class="d"><span class="lab">Власна інженерія та R&amp;D</span></div>
+    <div class="m"><span class="lab">Що всередині</span></div>
+  </div>
+
+  <h2 class="h">Що зміниться<small>було → стане</small></h2>
+  <table>
+    <tr><th style="width:150px">Десктоп</th><th style="width:150px">Мобільна</th><th>Де</th></tr>
+    <tr><td class="n">79 → 80</td><td class="n"><s>36</s> 36</td><td class="w">Ключові цифри «150K+»</td></tr>
+    <tr><td class="n">63 → 64</td><td class="n"><s>30</s> 30</td><td class="w">Заголовок першого екрана</td></tr>
+    <tr><td class="n">46 → 48</td><td class="n">28 → 26</td><td class="w">Назви партнерів у біжучій стрічці</td></tr>
+    <tr><td class="n">22 → 24</td><td class="n">22 → 20</td><td class="w">Номер «01» у картці деталі</td></tr>
+    <tr><td class="n">18 → 20</td><td class="n">15 → 17</td><td class="w">Опис у картці деталі; телефон і пошта в контактах</td></tr>
+    <tr><td class="n"><s>20</s> 20</td><td class="n">16 → 17</td><td class="w">Текст під заголовками розділів і на першому екрані</td></tr>
+    <tr><td class="n">18 → 16</td><td class="n">18 → 16</td><td class="w">Назви деталей і номери в легенді розрізу; заголовки колонок футера (без розрядки)</td></tr>
+    <tr><td class="n">15 → 16</td><td class="n">15 → 16</td><td class="w">Перемикач мови, кнопки деталей, опис у картках каталогу, посилання футера, примітка в контактах</td></tr>
+    <tr><td class="n">—</td><td class="n">17 → 16</td><td class="w">Підказка в полі телефону</td></tr>
+    <tr><td class="n">16 → 14</td><td class="n">15 → 14</td><td class="w">Дати новин, нижній рядок футера, пункти під відео, «Інтерфейс користувача», рядки «Мережа / Струм»</td></tr>
+    <tr><td class="n">13 → 12</td><td class="n">13 → 12</td><td class="w">Теги категорій («Електроенергія»), номери етапів «01–06», номери на схемі розрізу</td></tr>
+    <tr><td class="n">15 → 14</td><td class="n">—</td><td class="w">Номер слайда «01 / 04» на плашці приладу</td></tr>
+  </table>
+
+  <h2 class="h">Правила</h2>
+  <div class="rules">
+    <div class="rule"><b>Ієрархія через розмір і колір</b>Заголовки — темно-сині (#13385D), текст — темно-сірий (#36434F), другорядне — сірий (#59636E). Жирність лише 400 / 500 / 600 / 700.</div>
+    <div class="rule"><b>Моно — тільки для «технічного»</b>Мітки, теги, характеристики, дати, номери. Довгий текст і заголовки — завжди Geologica.</div>
+    <div class="rule"><b>Виняток</b>Номери в кружечках на схемі розрізу на мобільній — 10 px: вони всередині малюнка, і більший розмір не влазить у кружечок.</div>
+  </div>
+</div>
+</script>
+<script>
+window.DC_BLOBS = {};
+
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>
