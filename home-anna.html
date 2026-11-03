@@ -1128,7 +1128,7 @@ class Component extends DCLogic {
     mv.addEventListener('click', (e) => { const b = e.target.closest && e.target.closest('.spot'); if (b) this.pickSpot(+b.dataset.i); });
     // a hotspot picked before the model arrived: turn to it once it is loaded
     mv.addEventListener('load', () => { if (this.picked3d) this.focus3d(this.state.spot); this.xray(VIEWS3D[this.state.spot][2], true); });
-    box.querySelector('.m3d-reset').addEventListener('click', () => { box.classList.remove('moved'); this.focus3d(this.state.spot); });
+    box.querySelector('.m3d-reset').addEventListener('click', () => { box.classList.remove('moved'); this.turn3d(-14, 80); });
     this.mark3d(this.state.spot);
     this.face3d();
   }
@@ -1142,10 +1142,7 @@ class Component extends DCLogic {
     if (!mv) return;
     const [theta, phi, xray] = VIEWS3D[i];
     mv.removeAttribute('auto-rotate');
-    // turn the short way round from wherever auto-rotate or the user left the camera
-    const now = mv.getCameraOrbit ? mv.getCameraOrbit().theta * 180 / Math.PI : 0;
-    const t = theta + 360 * Math.round((now - theta) / 360);
-    mv.cameraOrbit = t + 'deg ' + phi + 'deg auto';
+    this.turn3d(theta, phi);
     this.mark3d(i);
     this.xray(xray);
   }
@@ -1158,6 +1155,14 @@ class Component extends DCLogic {
       const n = b.dataset.normal.split(' ').map(Number), l = Math.hypot(n[0], n[1], n[2]) || 1;
       b.classList.toggle('face', (n[0] * d[0] + n[1] * d[1] + n[2] * d[2]) / l > 0.4);
     });
+  }
+  // turn the short way round from wherever auto-rotate or the user left the camera
+  turn3d(theta, phi) {
+    const mv = document.getElementById('nik3d');
+    if (!mv) return;
+    mv.removeAttribute('auto-rotate');
+    const now = mv.getCameraOrbit ? mv.getCameraOrbit().theta * 180 / Math.PI : 0;
+    mv.cameraOrbit = (theta + 360 * Math.round((now - theta) / 360)) + 'deg ' + phi + 'deg auto';
   }
   mark3d(i) {
     document.querySelectorAll('#nik3d .spot').forEach((b) => b.setAttribute('aria-pressed', String(+b.dataset.i === i)));
