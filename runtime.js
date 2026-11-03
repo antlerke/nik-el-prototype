@@ -1,5 +1,5 @@
 // Minimal runtime for Claude Design (.dc.html) templates: {{holes}}, <sc-for>, <sc-if>,
-// on*="{{handler}}" events and setState re-render (DOM patched with morphdom).
+// on*="{{handler}}" events and setState re-render (DOM patched with morphdom; elements marked data-dc-keep are left alone after the first render).
 (function () {
   var handlers = [];
   var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
@@ -70,7 +70,7 @@
         var next = document.createElement('div');
         next.id = 'app';
         next.innerHTML = expand(tpl, c.renderVals()).replace(/\/_blob\/([0-9a-f]{32})/g, function (m, id) { return (window.DC_BLOBS || {})[id] || m; });
-        if (window.morphdom) morphdom(app, next, { onBeforeElUpdated: function (from, to) { if (/^(INPUT|TEXTAREA|SELECT)$/.test(from.tagName)) return false; return !from.isEqualNode(to); } });
+        if (window.morphdom) morphdom(app, next, { onBeforeElUpdated: function (from, to) { if (/^(INPUT|TEXTAREA|SELECT)$/.test(from.tagName) || from.hasAttribute('data-dc-keep')) return false; return !from.isEqualNode(to); } });
         else app.innerHTML = next.innerHTML;
         bind(app);
       };

@@ -6,6 +6,7 @@
 <title>Лічильники електроенергії, води й тепла — НІК-ЕЛЕКТРОНІКА</title>
 <meta name="robots" content="noindex">
 
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
@@ -729,6 +730,19 @@ a{color:var(--ink)}
   .ptag{padding:8px 16px}
   .idx.stop button[aria-current="true"] .bar i{animation:none;transform:scaleX(1)}
 }
+
+/* inside: NIK 2308 3D model (model-viewer); hotspots sit on different sides of the case */
+.m3d{cursor:grab}.m3d:active{cursor:grabbing}
+.m3d model-viewer{position:absolute;inset:0;width:100%;height:100%;--poster-color:transparent;--progress-bar-color:var(--red);outline:none}
+.m3d .spot{position:relative;margin:0;transform:none;transition:opacity .3s ease}
+.m3d .spot:not(.face){opacity:0;pointer-events:none}
+.m3d .ihint{z-index:2;pointer-events:none}
+.m3d-reset{position:absolute;right:16px;top:14px;z-index:2;display:none;align-items:center;gap:8px;height:40px;padding:0 14px;border:0;border-radius:8px;background:#ffffff;box-shadow:inset 0 0 0 1.5px var(--line);font:500 14px var(--mono);color:var(--muted);cursor:pointer;transition:box-shadow .2s ease,color .2s ease}
+.m3d-reset:hover{box-shadow:inset 0 0 0 1.5px var(--ink);color:var(--ink)}
+.m3d.moved .m3d-reset{display:inline-flex}
+@media (hover:none){.m3d .ihint{display:flex !important}}
+.m3d .hm{display:none}
+@media (hover:none),(max-width:600px){.m3d .hd{display:none}.m3d .hm{display:inline}}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
@@ -864,18 +878,17 @@ a{color:var(--ink)}
   <div class="wrap">
     <div class="shead">
       <div><span class="kick">Власна інженерія та R&amp;D</span><h2 class="h2 rv" id="h-ins">Від чипа до корпусу</h2></div>
-      <p class="lead">Натисніть на мітки — покажемо, як влаштований лічильник NIK 2306.</p>
+      <p class="lead">Поверніть прилад і натисніть на мітки — покажемо, як влаштований лічильник NIK 2308.</p>
     </div>
     <div class="igrid">
-      <div class="ibox" onMouseMove="{{tilt}}" onMouseLeave="{{untilt}}">
-        <span class="ihint"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9"></path><path d="M21 3v6h-6"></path></svg>Обертається за курсором</span>
-        <div class="ground" aria-hidden="true"></div>
-        <div class="tilt">
-          <img src="assets/6c5854a5-nik2306-mid.webp" alt="Трифазний лічильник NIK 2306 з модулем зв'язку LTE">
-          <sc-for list="{{spots}}" as="p" hint-placeholder-count="6">
-            <button type="button" class="spot" style="{{p.pos}}" aria-pressed="{{p.on}}" aria-label="{{p.title}}" onClick="{{p.pick}}"><span></span></button>
+      <div class="ibox m3d" data-dc-keep="">
+        <span class="ihint"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9"></path><path d="M21 3v6h-6"></path></svg><span class="hd">Затисніть і потягніть, щоб обернути</span><span class="hm">Потягніть убік, щоб обернути</span></span>
+        <button type="button" class="m3d-reset">Скинути вигляд</button>
+        <model-viewer id="nik3d" data-src="assets/fe973e1e-nik-2308.glb" poster="assets/593dddd1-nik2308-poster.webp" alt="Трифазний лічильник NIK 2308 — 3D-модель, яку можна обертати" camera-controls="" disable-zoom="" disable-pan="" touch-action="pan-y" interaction-prompt="none" camera-orbit="-14deg 80deg auto" min-camera-orbit="auto 35deg auto" max-camera-orbit="auto 145deg auto" interpolation-decay="140" environment-image="neutral" exposure="1.05" shadow-intensity="1" shadow-softness="1" loading="eager" reveal="auto">
+          <sc-for list="{{spots}}" as="p" hint-placeholder-count="7">
+            <button type="button" class="spot" slot="{{p.slot}}" data-i="{{p.i}}" data-position="{{p.position}}" data-normal="{{p.normal}}" data-visibility-attribute="visible" aria-pressed="{{p.on}}" aria-label="{{p.title}}"><span></span></button>
           </sc-for>
-        </div>
+        </model-viewer>
       </div>
       <div class="icard">
         <div class="info" aria-live="polite">
@@ -1087,15 +1100,84 @@ a{color:var(--ink)}
 <script>
 window.DC_BLOBS = {"f17070b288dd9e18e46b94068534e6a7":"assets/f17070b2-nik2306-ua.webp","c4241830221490918fd0d48d83d56297":"assets/c4241830-cut-7071.webp","4e3e1ef59dd050762514eb1b6bc902b0":"assets/4e3e1ef5-cut-kc02.webp","6c5854a5dadda834e83432d9bbe490f6":"assets/6c5854a5-nik2306-mid.webp","d3153f2f5ed8d9965f5fb1e49ae07ad9":"assets/d3153f2f-cut-2300.webp","59c125130fc7c7750a7256ca7228fc69":"assets/59c12513-cut-7011.webp","1bc2c60e4fa2f82c5d311ace163765cc":"assets/1bc2c60e-cut-kk01.webp","07c44668a5a79d699210918f2ee79e65":"assets/07c44668-cut-stv.webp","f7fccb09fa506c70f87d6dad6abfc916":"assets/f7fccb09-p-ambus.jpg","f0a2363fd4057897cae4831524ce270e":"assets/f0a2363f-cut-2303.webp","09712d8f2a0632ed5520ae989b4552e0":"assets/09712d8f-y0.webp","ad569d741727a2ebd68d3d39468bf68a":"assets/ad569d74-y1.webp","4fdc19aa0cd99b2610b022f84cd6169b":"assets/4fdc19aa-y2.webp","32ab23afb2162fd08017cb1eb47b9d42":"assets/32ab23af-y3.webp","eefa88a9c3dd72fe57a1df817af46b7e":"assets/eefa88a9-y4.webp","fe21750897b3ec821d9458f71f874d83":"assets/fe217508-y5.webp","5b396efcb8ce74e5d5921a110e5ca47c":"assets/5b396efc-y6.webp","14c1745388cb9f99de7e708a5c985f32":"assets/14c17453-y7.webp","b770a607cf6fa6949967e41dafb754c7":"assets/b770a607-y8.webp","de1ec571973f47479cdfc5e1ddf2ab60":"assets/de1ec571-role-engineer.webp","91d9cc8d1dd39ed30b472abf02be9d93":"assets/91d9cc8d-c-automation.jpg","1695fc08e5d7c1a2fcd4fbc761e00a02":"assets/1695fc08-c-tampo.jpg","2d5e93a952ee95766eb8b2734477ce42":"assets/2d5e93a9-c-robot.jpg","e3a26a87fafda2aa0c87ff6cdb2b951e":"assets/e3a26a87-c-calibration.jpg","c0704521db1416ec66e4d8545678ba60":"assets/c0704521-prod-molding.jpg","64d3854c808afc98f555fddf056f74b8":"assets/64d3854c-h-2024.webp","4ee835b35f0ce1c5b4662a723809ed42":"assets/4ee835b3-h-2023.webp"};
 
+// camera orbit (theta, phi) and x-ray for each hotspot of the 3D block
+const VIEWS3D = [[-8, 82, false], [-28, 80, false], [26, 80, false], [6, 88, false], [12, 140, false], [195, 82, false], [-20, 78, true]];
 class Component extends DCLogic {
   constructor(props) {
     super(props);
     this.state = { s: 0, stop: false, paused: false, tab: 'all', spot: 0, sent: false, tried: false, cookie: true, menu: false, vid: true, p: 0 };
     if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) this.state.p = 1;
     this.statsTimer = setTimeout(() => this.watchStats(), 300);
+    this.m3dTimer = setTimeout(() => this.init3d(), 300);
     if (typeof window !== 'undefined' && window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       /* autoplay: the next slide opens when the active progress bar fills (see slideDone) */
     }
+  }
+  // 3D block: model-viewer keeps its own DOM (data-dc-keep), so camera, x-ray and hotspot state are set here
+  init3d() {
+    const mv = document.getElementById('nik3d');
+    if (!mv) return;
+    const box = mv.closest('.m3d');
+    const still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!still) { mv.setAttribute('auto-rotate', ''); mv.setAttribute('auto-rotate-delay', '0'); mv.setAttribute('rotation-per-second', '9deg'); }
+    // the model (2.4 MB) is fetched once the block is a screen away; until then the poster shows
+    const go = () => { if (!mv.getAttribute('src')) mv.setAttribute('src', mv.dataset.src); };
+    if ('IntersectionObserver' in window) { const io = new IntersectionObserver((es) => { if (es.some((x) => x.isIntersecting)) { io.disconnect(); go(); } }, { rootMargin: '900px 0px' }); io.observe(box); } else go();
+    mv.addEventListener('camera-change', (e) => { if (e.detail && e.detail.source === 'user-interaction') { mv.removeAttribute('auto-rotate'); box.classList.add('moved'); }
+      this.face3d(); });
+    mv.addEventListener('click', (e) => { const b = e.target.closest && e.target.closest('.spot'); if (b) this.pickSpot(+b.dataset.i); });
+    // a hotspot picked before the model arrived: turn to it once it is loaded
+    mv.addEventListener('load', () => { if (this.picked3d) this.focus3d(this.state.spot); this.xray(VIEWS3D[this.state.spot][2], true); });
+    box.querySelector('.m3d-reset').addEventListener('click', () => { box.classList.remove('moved'); this.focus3d(this.state.spot); });
+    this.mark3d(this.state.spot);
+    this.face3d();
+  }
+  pickSpot(i) {
+    this.picked3d = true;
+    this.setState({ spot: i });
+    this.focus3d(i);
+  }
+  focus3d(i) {
+    const mv = document.getElementById('nik3d');
+    if (!mv) return;
+    const [theta, phi, xray] = VIEWS3D[i];
+    mv.removeAttribute('auto-rotate');
+    // turn the short way round from wherever auto-rotate or the user left the camera
+    const now = mv.getCameraOrbit ? mv.getCameraOrbit().theta * 180 / Math.PI : 0;
+    const t = theta + 360 * Math.round((now - theta) / 360);
+    mv.cameraOrbit = t + 'deg ' + phi + 'deg auto';
+    this.mark3d(i);
+    this.xray(xray);
+  }
+  // a hotspot shows only while its side faces the camera (model-viewer's own check lets edge-on ones through)
+  face3d() {
+    const mv = document.getElementById('nik3d');
+    if (!mv || !mv.getCameraOrbit) return;
+    const o = mv.getCameraOrbit(), d = [Math.sin(o.phi) * Math.sin(o.theta), Math.cos(o.phi), Math.sin(o.phi) * Math.cos(o.theta)];
+    mv.querySelectorAll('.spot').forEach((b) => {
+      const n = b.dataset.normal.split(' ').map(Number), l = Math.hypot(n[0], n[1], n[2]) || 1;
+      b.classList.toggle('face', (n[0] * d[0] + n[1] * d[1] + n[2] * d[2]) / l > 0.4);
+    });
+  }
+  mark3d(i) {
+    document.querySelectorAll('#nik3d .spot').forEach((b) => b.setAttribute('aria-pressed', String(+b.dataset.i === i)));
+  }
+  // x-ray for the board: the case, display and nameplate fade so the electronics show through
+  xray(on, now) {
+    const mv = document.getElementById('nik3d');
+    if (!mv || !mv.model) return;
+    const mats = [0, 4, 5].map((k) => mv.model.materials[k]).filter(Boolean);
+    const to = on ? 0.16 : 1;
+    const from = mats.length ? mats[0].pbrMetallicRoughness.baseColorFactor[3] : 1;
+    if (from === to) return;
+    mats.forEach((m) => m.setAlphaMode('BLEND'));
+    const t0 = performance.now(), dur = now ? 0 : 450;
+    const step = (t) => {
+      const k = dur ? Math.min(1, (t - t0) / dur) : 1, a = from + (to - from) * (1 - Math.pow(1 - k, 3));
+      mats.forEach((m) => { const c = m.pbrMetallicRoughness.baseColorFactor; m.pbrMetallicRoughness.setBaseColorFactor([c[0], c[1], c[2], a]); });
+      if (k < 1) requestAnimationFrame(step); else if (!on) mats.forEach((m) => m.setAlphaMode('OPAQUE'));
+    };
+    requestAnimationFrame(step);
   }
   watchStats() {
     const run = () => {
@@ -1150,16 +1232,17 @@ class Component extends DCLogic {
     const catName = (tabDefs.find(([id]) => id === s.tab) || tabDefs[0])[1];
     const also = ['Програмне забезпечення', 'Мережеве обладнання', 'Аксесуари', 'Контрактне виробництво', 'Високовольтні мережі'];
 
-    // hotspots on the NIK 2306 render (positions in % of the image)
+    // hotspots on the NIK 2308 model (model-viewer coordinates); the camera turns to each one in focus3d
     const spotDefs = [
-      { x: 47.6, y: 16.9, short: 'LCD-дисплей', title: 'Багатотарифний LCD-дисплей', sub: 'Інтерфейс користувача', text: 'Показує спожиту активну й реактивну енергію за тарифами, параметри мережі по фазах L1–L3 і стан зв’язку.', k1: 'Мережа', v1: '3×230/400 В, 50 Гц', k2: 'Струм', v2: '0,25–5(80) А' },
-      { x: 15.9, y: 16.9, short: 'Оптичний порт', title: 'Оптичний порт', sub: 'Локальне зчитування', text: 'Дозволяє зчитати дані й налаштувати лічильник на місці без розкриття корпусу.', k1: 'Протокол', v1: 'DLMS / COSEM', k2: 'Сумісність', v2: 'IDIS' },
-      { x: 50, y: 24.2, short: 'Індикатори', title: 'Імпульсні індикатори', sub: 'Повірка та діагностика', text: 'Світлодіоди 8000 імп/кВт·год і 8000 імп/квар·год для перевірки точності та індикатор зв’язку Link.', k1: 'Клас точності', v1: 'B / 2', k2: 'Стандарти', v2: 'EN 50470-3, EN 62053-23' },
-      { x: 62, y: 52, short: 'Модуль LTE', title: 'Змінний модуль зв’язку', sub: 'NIK LTE Module', text: 'Встановлюється під кришку і передає показання в АСКОЕ мобільною мережею. Крім LTE, лічильник має інтерфейси RS-485 і PLC.', k1: 'Інтерфейси', v1: 'RS-485, PLC', k2: 'Технологія PLC', v2: 'G3-PLC' },
-      { x: 26, y: 51, short: 'Батарея', title: 'Резервна батарея', sub: 'Годинник реального часу', text: 'Живить внутрішній годинник, щоб тарифні зони й журнал подій зберігалися навіть без напруги в мережі.', k1: 'Робоча температура', v1: '−40…+70 °C', k2: 'Захист корпусу', v2: 'IP54' },
-      { x: 47.6, y: 75.8, short: 'Клемна колодка', title: 'Пломбована клемна колодка', sub: 'Захист від втручання', text: 'Клемна кришка пломбується, а її відкриття фіксується в журналі подій лічильника.', k1: 'Схема', v1: 'Трифазна, 4-провідна', k2: 'Реле навантаження', v2: 'Вбудоване' }
+      {"p": "-4.767 0.2486 4.5576", "n": "0 0 1", "short": "LCD-дисплей", "title": "Багатотарифний LCD-дисплей", "sub": "Інтерфейс користувача", "text": "Показує спожиту активну й реактивну енергію за тарифами, параметри мережі по фазах і стан інтерфейсів.", "k1": "Мережа", "v1": "3×57,7/100…3×240/416 В", "k2": "Частота", "v2": "50 Гц"},
+      {"p": "-4.8233 0.2595 4.5559", "n": "-0.07 0 1", "short": "Світлодіоди", "title": "Імпульсні світлодіоди", "sub": "Повірка точності", "text": "Світлодіоди активної й реактивної енергії: за ними перевіряють точність лічильника на повірочній установці.", "k1": "Активна енергія", "v1": "8000 імп/кВт·год", "k2": "Реактивна енергія", "v2": "8000 імп/квар·год"},
+      {"p": "-4.7111 0.2584 4.562", "n": "0 0 1", "short": "Кнопки", "title": "Кнопки перегляду", "sub": "Керування дисплеєм", "text": "Перемикають екрани дисплея: тарифи, параметри мережі, журнал подій — без зняття пломб.", "k1": "Інтерфейси", "v1": "Оптичний, 2× RS-485", "k2": "Зчитування", "v2": "На місці або віддалено"},
+      {"p": "-4.7719 0.2121 4.5591", "n": "0 0 1", "short": "Клас 0,5S", "title": "Клас точності 0,5S", "sub": "Трансформаторне підключення", "text": "Лічильник вмикається через вимірювальні трансформатори струму й напруги — для підстанцій і промислових споживачів.", "k1": "Струм", "v1": "5(10) А", "k2": "Стандарти", "v2": "ДСТУ EN 62053-22, -23"},
+      {"p": "-4.767 0.0334 4.529", "n": "0 -1 0", "short": "Клемна кришка", "title": "Пломбована клемна кришка", "sub": "Захист від втручання", "text": "Закриває клеми й роз’єми RS-485 і кріпиться гвинтами під пломбу, тож доступ до підключення лишається тільки в енергетиків.", "k1": "Підключення", "v1": "Через ТС і ТН", "k2": "Інтерфейси", "v2": "2× RS-485"},
+      {"p": "-4.7593 0.2712 4.4796", "n": "0 0 -1", "short": "Кріплення", "title": "Кріплення на панель", "sub": "Монтаж у щиті обліку", "text": "Верхня петля й два нижні гвинти тримають лічильник на монтажній панелі. Спинка плоска, з напрямними під кабелі.", "k1": "Точки кріплення", "v1": "3", "k2": "Робоча температура", "v2": "−40…+70 °C"},
+      {"p": "-4.81 0.18 4.5305", "n": "0 0 1", "short": "Плата", "title": "Власна електроніка", "sub": "Всередині корпусу", "text": "Схемотехніку, прошивку й монтаж плати робимо самі — від вибору чипа до тестування готового приладу.", "k1": "Клас точності", "v1": "0,5S / 2", "k2": "Виробництво", "v2": "НІК-ЕЛЕКТРОНІКА"}
     ];
-    const spots = spotDefs.map((p, i) => ({ title: p.title, short: p.short, on: String(s.spot === i), pick: () => this.setState({ spot: i }), pos: 'left: ' + p.x + '%; top: ' + p.y + '%' }));
+    const spots = spotDefs.map((p, i) => ({ i, title: p.title, short: p.short, on: String(s.spot === i), pick: () => this.pickSpot(i), slot: 'hotspot-' + i, position: p.p, normal: p.n }));
     const a = spotDefs[s.spot];
     const spot = { ...a, num: '0' + (s.spot + 1) };
 
@@ -1230,8 +1313,6 @@ class Component extends DCLogic {
       pause: () => this.setState({ paused: true }), resume: () => this.setState({ paused: false }),
       tabs, prods, catName, showMore: rest < 4, moreSpan: 'grid-column: span ' + rest, also,
       spots, spot,
-      tilt: (e) => { const el = e.currentTarget, t = el.querySelector('.tilt'); if (!t) return; const r = el.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5; t.style.transform = 'rotateY(' + (x * 22).toFixed(1) + 'deg) rotateX(' + (-y * 14).toFixed(1) + 'deg)'; },
-      untilt: (e) => { const t = e.currentTarget.querySelector('.tilt'); if (t) t.style.transform = ''; },
       xparts, xmarks, steps, stats,
       vidCls: 'vbox' + (s.vid ? '' : ' paused'), vidLabel: s.vid ? 'Зупинити відео' : 'Відтворити відео', vidText: s.vid ? 'Пауза' : 'Відтворити',
       vidIcon: s.vid ? 'M7 5h4v14H7zM13 5h4v14h-4z' : 'M8 5v14l11-7z',
