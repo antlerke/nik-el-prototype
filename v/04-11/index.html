@@ -626,6 +626,10 @@ a{color:var(--ink)}
 @media (hover:none){.m3d .ihint{display:flex !important}}
 .m3d .hm{display:none}
 @media (hover:none),(max-width:600px){.m3d .hd{display:none}.m3d .hm{display:inline}}
+
+/* tags: JetBrains Mono keeps room for descenders, so capitals sat high; same height, text moved down */
+.tag{padding-top:4.5px;padding-bottom:3.5px}
+@media (max-width:600px){.tag{padding-top:6.5px;padding-bottom:5.5px}}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
