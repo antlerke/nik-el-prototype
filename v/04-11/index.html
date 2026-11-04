@@ -158,7 +158,7 @@ a{color:var(--ink)}
 .also a:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
 .cgo{margin-top:18px;height:48px;padding-bottom:3px;box-sizing:border-box;border-radius:8px;background:var(--paper);display:flex;align-items:center;justify-content:center;gap:12px;font-size:16px;font-weight:500;transition:background-color .25s ease,color .25s ease}
 @media (hover:hover) and (pointer:fine){
-  .card:hover{transform:translateY(-6px);box-shadow:0 28px 56px -24px rgba(19,56,93,.35),0 0 0 1.5px var(--ink)}
+  .card:hover{transform:translateY(-6px);box-shadow:0 0 0 1.5px var(--ink),0 28px 56px -24px rgba(19,56,93,.35)}
   .card:hover .cimg img:not(.photo){transform:scale(1.06) rotate(-2deg)}
   .card:hover .cimg img.photo{transform:scale(1.05)}
   .card:hover .cgo{background:var(--ink);color:#ffffff}
@@ -294,7 +294,7 @@ a{color:var(--ink)}
 .nc .t{font-size:24px;line-height:1.25;font-weight:700;letter-spacing:-0.015em}
 .nc.big .t{font-size:32px;line-height:1.15}
 .nc .more{margin-top:auto;display:inline-flex;align-items:center;gap:12px;font-size:16px;font-weight:500;color:var(--red-h);transition:gap .25s var(--out)}
-@media (hover:hover) and (pointer:fine){.nc:hover{transform:translateY(-4px);box-shadow:0 24px 48px -24px rgba(19,56,93,.35),0 0 0 1.5px var(--ink)}.nc:hover .pi img{transform:scale(1.04)}.nc:hover .more{gap:15px}}
+@media (hover:hover) and (pointer:fine){.nc:hover{transform:translateY(-4px);box-shadow:0 0 0 1.5px var(--ink),0 24px 48px -24px rgba(19,56,93,.35)}.nc:hover .pi img{transform:scale(1.04)}.nc:hover .more{gap:15px}}
 
 /* contact */
 .cta{background:var(--paper)}
@@ -692,8 +692,8 @@ a{color:var(--ink)}
 /* cards on grey sections: white card + visible edge + soft shadow (news cards were grey on grey) */
 .nc{background:#ffffff}
 .nc,.card{box-shadow:0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28)}
-.nc:hover{box-shadow:0 24px 48px -24px rgba(19,56,93,.35),0 0 0 1.5px var(--ink)}
-.card:hover{box-shadow:0 28px 56px -24px rgba(19,56,93,.35),0 0 0 1.5px var(--ink)}
+.nc:hover{box-shadow:0 0 0 1.5px var(--ink),0 24px 48px -24px rgba(19,56,93,.35)}
+.card:hover{box-shadow:0 0 0 1.5px var(--ink),0 28px 56px -24px rgba(19,56,93,.35)}
 /* hero chips on the device photo: lighter — sans text, smaller, no heavy shadow */
 .chip{font-family:Geologica,sans-serif;font-size:14px;font-weight:500;color:var(--text);padding:8px 12px;border-radius:8px;background:rgba(255,255,255,.92);box-shadow:0 0 0 1px var(--line),0 8px 20px -16px rgba(19,56,93,.35)}
 .chip i{width:6px;height:6px;margin-right:8px;box-shadow:none;vertical-align:2px}
