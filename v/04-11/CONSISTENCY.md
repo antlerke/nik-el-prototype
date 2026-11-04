@@ -83,4 +83,4 @@ Already done: tags and kickers vertically centred · sort in the catalog 48 px l
 ### 12. Shadows on raised surfaces — 5 different
 - **Problem:** product cards, the contact form card, the hero product label, the active hero chip and the cookie panel each have their own shadow.
 - **Suggested:** two levels — **raised** (cards, form card, product label, chip) = the card shadow · **overlay** (cookie panel, mobile filter panel, menus) = the cookie shadow.
-- **Decision:**
+- **Decision:** ✅ done (Anna: option A) — **raised** `0 0 0 1px line, 0 12px 32px −24px rgba(19,56,93,.28)`: product and news cards, contact form card, hero product label and chips · **above the page** `0 24px 64px rgba(10,32,56,.22), 0 0 0 1px rgba(19,56,93,.06)`: cookie panel, dropdown menus, mobile filter panel (upwards). Card hover unchanged.
