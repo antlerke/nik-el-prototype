@@ -84,3 +84,22 @@ Already done: tags and kickers vertically centred · sort in the catalog 48 px l
 - **Problem:** product cards, the contact form card, the hero product label, the active hero chip and the cookie panel each have their own shadow.
 - **Suggested:** two levels — **raised** (cards, form card, product label, chip) = the card shadow · **overlay** (cookie panel, mobile filter panel, menus) = the cookie shadow.
 - **Decision:** ✅ done (Anna: option A) — **raised** `0 0 0 1px line, 0 12px 32px −24px rgba(19,56,93,.28)`: product and news cards, contact form card, hero product label and chips · **above the page** `0 24px 64px rgba(10,32,56,.22), 0 0 0 1px rgba(19,56,93,.06)`: cookie panel, dropdown menus, mobile filter panel (upwards). Card hover unchanged.
+
+## Group 4 — found in the re-check after groups 1–3 (audit of 2026-11-04)
+
+### 13. Video section heading on mobile differs from the other section headings
+- **Problem:** «Автоматизоване виробництво» (on the video) is 26 px like every mobile section heading, but with line height 23.9 px and letter-spacing −1.3 px; the others have 26.5 px and −1.04 px. Desktop is the same for all.
+- **Where:** home, mobile — section «Автоматизоване виробництво».
+- **Suggested fix:** the same line height and letter-spacing as the other mobile section headings.
+- **Decision:** ✅ done — on mobile the video heading now has line height 1.02 (26.5 px) and −0.04em (−1.04 px) like the other section headings; the section is 5 px taller. Desktop unchanged.
+
+### 14. «Від чипа» card text: line height 1.6 instead of 1.5
+- **Problem:** on desktop the card's description («Показує спожиту активну…») is 20 px with line height 1.6 (32 px); the other 20 px body text (e.g. «Повний цикл…») uses 1.5 (30 px). Mobile is the same for both.
+- **Where:** home, desktop — «Від чипа до корпусу», the card next to the 3D model.
+- **Suggested fix:** line height 1.5.
+- **Decision:**
+
+### 15. Unused CSS left over from the export (code only, not visible)
+- **Problem:** each page carries rules that no longer do anything: overridden by later rules (e.g. the old catalog sort focus), or for elements that no longer exist (`.tel-hint`, `.tilt` from the old 2D picture, `.thumbs` from the removed product thumbnails).
+- **Suggested fix:** list them per page, remove them, and prove with the pixel comparison (all pages, 1440 and 390, incl. hover and focus) that nothing changes. A step towards leaving the Claude Design export behind.
+- **Decision:** ⏸ postponed (Anna) — to be done together with the new UI kit, when the pages' CSS is rebuilt on the kit's scales.

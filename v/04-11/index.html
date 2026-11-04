@@ -764,6 +764,8 @@ a{color:var(--ink)}
 /* shadows on two levels: raised (cards, the form card, hero label and chips) = the card shadow; above the page (cookie, menus, filter panel) = the cookie shadow */
 .fcard,.ptag,.chip{box-shadow:0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28)}
 .drop{box-shadow:0 24px 64px rgba(10,32,56,.22),0 0 0 1px rgba(19,56,93,.06)}
+/* video section heading on mobile: the same line height and letter-spacing as the other section headings (desktop already matches) */
+@media (max-width:600px){.vtxt h2{line-height:1.02;letter-spacing:-0.04em}}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
