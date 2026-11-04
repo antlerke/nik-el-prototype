@@ -745,6 +745,14 @@ a{color:var(--ink)}
 @media (max-width:600px){.mlab{font-size:16px}}
 /* «Від чипа» hotspot buttons: 48 px like the tabs — the other "pick one" control (were 52, a size used nowhere else) */
 .chips button{min-height:48px}
+/* numbers «01»: one family — JetBrains Mono 600; 14 px in badges and circles, 12 px on the photo markers (hero slide numbers stay 16 px plain text) */
+.info .n,.xleg li b,.steps .lb b{font-family:var(--mono);font-size:14px;font-weight:600}
+.xm{font-family:var(--mono);font-size:12px;font-weight:600}
+/* …and centred: JetBrains Mono digits sit high, so each number is moved down by that amount; circles and boxes keep their size */
+.ptag em{padding-top:4.5px;padding-bottom:3.5px}
+.info .n{padding:1.5px 0 .5px}
+.xm,.xleg li b{box-sizing:border-box;padding-top:1px}
+.steps .lb b{box-sizing:border-box;padding-top:2.5px}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>

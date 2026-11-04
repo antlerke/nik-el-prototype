@@ -78,7 +78,7 @@ Already done: tags and kickers vertically centred · sort in the catalog 48 px l
 - **Problem:** the same kind of label (an index number) looks different in every section.
 - **Where (home):** hero slides — mono 16/600 · hero product label «01 / 04» — mono 14/600 · «Від чипа» card number — Geologica 24/700 (20 on mobile) · exploded-view markers — Geologica 12/700 (10 on mobile) · legend «NIK 2306 у розрізі» — mono 16/700 · production steps — mono 12/**900**.
 - **Suggested:** two styles — **index**: JetBrains Mono 14/600 (hero, product label, legend, steps, «Від чипа» card) · **marker on an image**: JetBrains Mono 12/700 (exploded view). Afterwards their vertical centring is checked the same way as item 3.
-- **Decision:**
+- **Decision:** ✅ done (Anna: option B + centred) — all numbers JetBrains Mono 600: **14 px** in badges and circles («01 / 04», «Від чипа» card number, legend, production steps), **12 px** on the exploded-view markers; hero slide numbers stay 16 px plain text. Every number vertically centred (0 px); circles and boxes keep their size.
 
 ### 12. Shadows on raised surfaces — 5 different
 - **Problem:** product cards, the contact form card, the hero product label, the active hero chip and the cookie panel each have their own shadow.
