@@ -66,7 +66,7 @@ Already done: tags and kickers vertically centred · sort in the catalog 48 px l
 ### 9. Control heights — 6 different: 40, 44, 48, 52, 56, 58 px
 - **Problem:** after item 4 the fields match the buttons; what remains is the 3D hotspot buttons at **52** px — a size used nowhere else.
 - **Suggested scale:** **44** icon buttons · **48** secondary controls (tabs, sort, filters, hotspot buttons 52 → 48) · **56** primary buttons and fields.
-- **Decision:**
+- **Decision:** ✅ done (Anna: 48) — hotspot buttons 48 px like the tabs. Scale now: 44 icon buttons · 48 "pick one" and secondary controls · 56 buttons and fields.
 
 ### 10. Corner radii — 12 different: 2, 4, 8, 12, 14, 16, 18, 20, 22, 24, 28, round
 - **Problem:** large boxes (28 / 22 on mobile), cards (24) and controls (8) follow a pattern; small surfaces don't — 12, 14, 16, 18 and 20 for similar things. Some catalog filter controls (group headers, «Показати ще») have **4** instead of 8.
