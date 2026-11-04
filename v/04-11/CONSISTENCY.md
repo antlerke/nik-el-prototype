@@ -27,7 +27,7 @@ Already done: tags and kickers vertically centred · sort in the catalog 48 px l
 ### 3. «PDF» badges and page numbers not vertically centred (same font effect as the tags)
 - **Where:** product — «PDF» badges in «Документація» (1.3 px high) · catalog — page numbers «1», «2» (1 px).
 - **Fix:** same as tags and kickers — text moved down by that amount, box size unchanged.
-- **Decision:**
+- **Decision:** ✅ done — «PDF» and page numbers centred (0.00 px); sizes unchanged (44×28, 44×44).
 
 ## Group 2 — obvious, small visible change
 

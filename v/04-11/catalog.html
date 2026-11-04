@@ -545,6 +545,8 @@ a{color:var(--ink)}
 .sort:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
 .sort:focus{box-shadow:inset 0 0 0 1.5px var(--ink),0 0 0 4px rgba(19,56,93,.12)}
 @media (max-width:900px){#cat-res .rbar .fbtn{min-height:48px}}
+/* page numbers: same font effect as the tags, digits sat 1 px high; the 1 px of padding moves from bottom to top, box unchanged */
+.pager>a,.pager>span{padding-top:1px;padding-bottom:0}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
