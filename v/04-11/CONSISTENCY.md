@@ -22,7 +22,7 @@ Already done: tags and kickers vertically centred · sort in the catalog 48 px l
 - **Problem:** the selected 3D hotspot button goes from weight 500 to 600 — its text gets wider and the button jumps.
 - **Where:** home — «Від чипа до корпусу».
 - **Fix:** keep 500; show the selection by colour only (as the tabs do).
-- **Decision:**
+- **Decision:** ✅ done — selected stays 500; selection shown by white background, dark outline and text, red dot. (The button box itself is a fixed grid cell; it was the text that got wider.)
 
 ### 3. «PDF» badges and page numbers not vertically centred (same font effect as the tags)
 - **Where:** product — «PDF» badges in «Документація» (1.3 px high) · catalog — page numbers «1», «2» (1 px).
