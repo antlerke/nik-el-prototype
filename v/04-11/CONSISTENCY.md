@@ -38,8 +38,9 @@ Already done: tags and kickers vertically centred · sort in the catalog 48 px l
 
 ### 5. Field borders — 1 vs 1.5 px
 - **Problem:** contact form fields have a 1 px border, the catalog search 1.5 px (both #8592A0). Every other line on a control is 1.5 px.
+  (In the CSS both are 1.5 px — but the fields use a real border, which the browser rounds down to 1 px on standard screens; the search, tabs and buttons draw an inset line, which stays 1.5 px.)
 - **Fix:** fields **1.5 px**. Checkboxes stay 2 px (small box, needs the weight).
-- **Decision:**
+- **Decision:** ✅ done — fields draw the same inset 1.5 px line as the other controls, in every state (normal, hover, focus + ring, error, disabled, phone field). Field text now starts 16 px from the edge, like the search. Checkbox unchanged.
 
 ### 6. Card titles — same role, different spacing
 - **Problem:** product cards 24 px with letter-spacing −0.48 px, news cards 24 px with −0.36 px; on mobile (20 px) line height 23 vs 25 px and −0.4 vs −0.3 px.
