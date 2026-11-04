@@ -735,7 +735,7 @@ a{color:var(--ink)}
 /* «Від чипа»: the selected hotspot button keeps its weight (600 made the text wider and the button jump); the selection shows by colour */
 .chips button[aria-pressed="true"]{font-weight:500}
 /* fields: 56 px like every button (were 58, right above the 56 px «Надіслати запит») */
-.fld input:not([type=checkbox]),.fld select,.tel{min-height:56px}
+.fld input:not([type=checkbox]):not(.tel>input),.fld select,.tel{min-height:56px}
 /* news titles: the same title style as the product cards (letter-spacing −0.02em; line height 1.2 desktop, 1.15 mobile) */
 .nc .t{letter-spacing:-0.02em}
 @media (max-width:600px){.nc .t{line-height:1.15}}
@@ -743,19 +743,31 @@ a{color:var(--ink)}
 .ctop{justify-content:flex-start;gap:8px;flex-wrap:wrap}
 /* partner names on mobile: 16 px (was 15, a size used nowhere else) */
 @media (max-width:600px){.mlab{font-size:16px}}
-/* fields: the outline is an inset 1.5 px line like the search, tabs and buttons (a 1.5 px border is rounded down to 1 px on standard screens);
-   the line colour per state is --fl; the checkbox and the phone field's inner input keep their own styles */
-.fld input:not([type=checkbox]):not(.tel>input),.fld select,.fld textarea{--fl:#8592a0;border:0;box-shadow:inset 0 0 0 1.5px var(--fl)}
-.fld input:not([type=checkbox]):not(.tel>input):hover,.fld select:hover,.fld textarea:hover,.tel:hover{--fl:#59636e}
-.fld input:not([type=checkbox]):not(.tel>input):focus,.fld select:focus,.fld textarea:focus{--fl:var(--ink);box-shadow:inset 0 0 0 1.5px var(--fl),0 0 0 4px rgba(19,56,93,.12)}
-.fld input:not([type=checkbox]):disabled,.fld select:disabled,.fld textarea:disabled{--fl:var(--line)}
-.tried .fld input:not([type=checkbox]):not(.tel>input):invalid,.tried .fld select:invalid,.tried .fld textarea:invalid,.tried .tel:has(:invalid){--fl:var(--red)}
-.tried .fld input:not([type=checkbox]):not(.tel>input):invalid:focus,.tried .fld select:invalid:focus,.tried .fld textarea:invalid:focus{box-shadow:inset 0 0 0 1.5px var(--fl),0 0 0 4px rgba(200,16,46,.12)}
-/* phone field: the outline is drawn on a layer above the «+380» block (an inset line on .tel itself would be covered by it) */
-.tel{--fl:#8592a0;border:0;position:relative;box-shadow:none}
-.tel::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1.5px var(--fl);pointer-events:none}
-.tel:focus-within{--fl:var(--ink);box-shadow:0 0 0 4px rgba(19,56,93,.12)}
-.tried .tel:has(:invalid):focus-within{box-shadow:0 0 0 4px rgba(200,16,46,.12)}
+/* «Від чипа» hotspot buttons: 48 px like the tabs — the other "pick one" control (were 52, a size used nowhere else) */
+.chips button{min-height:48px}
+/* numbers «01»: one family — JetBrains Mono 600; 14 px in badges and circles, 12 px on the photo markers (hero slide numbers stay 16 px plain text) */
+.info .n,.xleg li b,.steps .lb b{font-family:var(--mono);font-size:14px;font-weight:600}
+.xm{font-family:var(--mono);font-size:12px;font-weight:600}
+/* …and centred: JetBrains Mono digits sit high, so each number is moved down by that amount; circles and boxes keep their size */
+.ptag em{padding-top:4.5px;padding-bottom:3.5px}
+.info .n{padding:1.5px 0 .5px}
+.xm,.xleg li b{box-sizing:border-box;padding-top:1px}
+.steps .lb b{box-sizing:border-box;padding-top:2.5px}
+/* radii on one scale: 4 checkboxes · 8 controls · 16 small surfaces · 24 cards · 28 / 22 large boxes */
+.menu>li>a{border-radius:8px}
+.info .n,.clist i,.cimg,.steps .ph,.note,.cookie{border-radius:16px}
+@media (max-width:600px){.info{border-radius:22px}}
+/* hero product label: 8 px like the tags and controls (Anna) */
+.ptag{border-radius:8px}
+/* small labels (24–28 px tall: tags, «01 / 04»): 4 px, so they look as crisp as the 8 px corners on taller elements (Anna) */
+.tag,.ptag em{border-radius:4px}
+/* shadows on two levels: raised (cards, the form card, hero label and chips) = the card shadow; above the page (cookie, menus, filter panel) = the cookie shadow */
+.fcard,.ptag,.chip{box-shadow:0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28)}
+.drop{box-shadow:0 24px 64px rgba(10,32,56,.22),0 0 0 1px rgba(19,56,93,.06)}
+/* video section heading on mobile: the same line height and letter-spacing as the other section headings (desktop already matches) */
+@media (max-width:600px){.vtxt h2{line-height:1.02;letter-spacing:-0.04em}}
+/* «Від чипа» card text: line height 1.5 like the other body text (was 1.6 on desktop; mobile was already 1.5) */
+.info p{line-height:1.5}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>

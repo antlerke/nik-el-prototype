@@ -549,6 +549,18 @@ a{color:var(--ink)}
 .pager>a,.pager>span{padding-top:1px;padding-bottom:0}
 /* search: 56 px like every button and field (was 58) */
 .search{height:56px}
+/* search: outlined exactly like the form fields — a 1.5 px #8592A0 border (darker on hover, dark + ring on focus, light when disabled) */
+.search{box-sizing:border-box;border:1.5px solid #8592a0;box-shadow:none;transition:border-color .2s ease,box-shadow .2s ease,background-color .2s ease}
+.search:hover{border-color:#59636e;box-shadow:none}
+.search:focus-within{border-color:var(--ink);box-shadow:0 0 0 4px rgba(19,56,93,.12)}
+.search:has(input:disabled){border-color:var(--line);box-shadow:none}
+/* radii on one scale: 4 checkboxes · 8 controls · 16 small surfaces · 24 cards · 28 / 22 large boxes */
+.menu>li>a,.acc-t,.tl{border-radius:8px}
+.cimg,.cookie{border-radius:16px}
+/* small labels (24–28 px tall: tags): 4 px, so they look as crisp as the 8 px corners on taller elements (Anna) */
+.tag{border-radius:4px}
+/* shadows on two levels: above the page (cookie, menus, filter panel) = the cookie shadow */
+.drop{box-shadow:0 24px 64px rgba(10,32,56,.22),0 0 0 1px rgba(19,56,93,.06)}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
