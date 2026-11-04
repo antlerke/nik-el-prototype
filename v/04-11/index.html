@@ -407,7 +407,7 @@ a{color:var(--ink)}
   .xleg{grid-template-columns:minmax(0,1fr)}
   .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
   .figs{padding:80px 0}.fgrid{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:48px}.fig{padding:0 16px !important;border-left:0 !important}.fig:nth-child(odd){padding-left:0 !important}.fig b{font-size:min(56px,calc((50cqi - 32px) * .3))}.fbar{margin-bottom:24px}
-  .fig>span{font-size:16px;margin-top:16px;white-space:normal}.fig small{font-size:13px;white-space:normal}
+  .fig>span{font-size:16px;margin-top:16px;white-space:normal}.fig small{font-size:14px;white-space:normal}
   .vtxt h2{font-size:40px}
   .vsec{padding:80px 16px}.vbox{border-radius:22px;height:auto}.vf{inset:0 0 auto 0;height:300px}.vbox::after{inset:0 0 auto 0;height:300px;background:linear-gradient(0deg,rgba(13,42,71,.45) 0%,rgba(13,42,71,0) 60%)}.vtxt{position:static;margin-top:300px;padding:28px 24px 32px}.vctl button,.vctl>span{width:44px;padding:0;gap:0;font-size:0;justify-content:center;background:rgba(13,42,71,.72);box-shadow:inset 0 0 0 1px rgba(255,255,255,.3)}.vctl svg{top:0}.vrow{gap:12px 24px}.vctl>span{display:none}
   .mname{gap:24px;padding-right:24px}.mseg>span{font-size:14px;padding:10px 16px}
@@ -486,6 +486,105 @@ a{color:var(--ink)}
   .card{padding:24px}.card.more,.info,.nc .bd,.fcard{padding:32px}
 }
 @media (min-width:601px) and (max-width:1180px){.fig>span{font-size:min(20px,calc((50cqi - 65px) * .084))}}
+/* from the mobile artboard: the 900px block keeps footer numbers on one line, and the clients lead loses the desktop's fixed 565px width (tablet keeps the desktop artboard) */
+@media (max-width:600px){.fcols .num{white-space:nowrap}section[aria-labelledby="h-cli"] .lead{width:auto !important}}
+/* mobile body text: smaller */
+@media (max-width:600px){.cap p,.lead,.cyc p,.vtxt p{font-size:17px;line-height:1.5}.info p{font-size:16px}.cd{font-size:15px}.clist a,.clist div{font-size:17px}.clist small,.xleg li small{font-size:14px}.xleg li span{font-size:16px}.note,.vrow{font-size:15px}}
+/* mobile hero: buttons and slide index closer to text */
+@media (max-width:600px){.hbtns{margin-top:20px}.idx{margin-top:20px}}
+/* mobile hero: more room under the product tag, smaller tag */
+@media (max-width:600px){.stage{height:240px}.disc{width:240px}.prod img{max-width:56%}.hgrid{gap:16px}.ptag{border-radius:12px}.ptag b{font-size:16px}.ptag em{font-size:12px;padding:4px 8px;border-radius:7px}}
+/* mobile: tighter heading-to-body spacing */
+@media (max-width:600px){.cap p{margin-top:10px}.shead:has(>.lead)>.lead{margin-top:10px}.cyc{gap:10px}.vtxt p{margin-top:10px}.info p{margin-top:12px}#contact .lead{margin-top:10px !important}}
+/* mobile: section buttons full width */
+@media (max-width:600px){.shead>.btn,.cyc>div:last-child .btn,.ok .btn{width:100%;align-self:stretch}}
+/* mobile: «Від чипа» tighter, no cursor hint */
+@media (max-width:600px){.igrid{margin-top:24px}.ihint{display:none !important}}
+/* mobile: section head → content 24px everywhere */
+@media (max-width:600px){.shead{gap:24px}.tabs{margin-top:24px}.xscroll{margin-top:24px}.steps{margin-top:24px}.mq{margin-top:24px}.ngrid{margin-top:24px}.clist{margin-top:24px}}
+/* mobile: equal 80px between sections (no doubled gaps on same-colour neighbours) */
+@media (max-width:600px){.sec,.figs{padding:80px 0}.hgrid{padding-bottom:0}.vsec{padding:80px 16px 0}}
+/* mobile: info card — text, divider and key/value rows */
+@media (max-width:600px){.info .kv{margin-top:20px;padding-top:16px;gap:8px}}
+/* mobile: key figures — smaller numbers, tighter text */
+@media (max-width:600px){.fig:nth-child(even){padding-right:0 !important}.fig b em{margin-left:.24em}.fig b{font-size:36px}.fig>span{margin-top:12px}.fig small{margin-top:4px}}
+/* mobile: video bullet list — one per line, dot on the first line */
+@media (max-width:600px){.vrow{flex-direction:column;gap:10px;margin-top:24px;padding-top:20px}.vrow span{align-items:flex-start}.vrow span::before{margin-top:6px}}
+/* «Також у каталозі»: one swipeable row on mobile */
+.also-row{display:contents}
+@media (max-width:600px){.also{flex-direction:column;align-items:stretch;gap:12px;margin-top:24px}.also-row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:2px 16px}.also-row::-webkit-scrollbar{display:none}.also-row a{flex:0 0 auto}}
+/* mobile: news «Читати далі» on the right */
+@media (max-width:600px){.nc .more{align-self:flex-end}}
+/* mobile: production steps — even, tighter grid */
+@media (max-width:600px){.steps{gap:20px 12px}.steps li{gap:10px}.steps .ph{border-radius:14px}.steps .ph.svc{padding:14px;font-size:14px}}
+/* mobile: cookie banner — two equal buttons, settings link below */
+@media (max-width:600px){.cookie p{font-size:14px}.cookie .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.cookie .row .btn{width:100%;padding:0 12px 3px}.cookie .row .lnk{grid-column:1/-1}}
+/* mobile: exploded view fits the screen (no sideways scroll) */
+@media (max-width:600px){.xscroll{overflow:visible;margin:24px 0 0;padding:0}.xscroll .xstage{min-width:0;border-radius:16px}.xm{width:20px;height:20px;margin:-10px 0 0 -10px;font-size:10px;box-shadow:0 0 0 3px var(--red-b)}}
+/* mobile hero: smaller slide numbers (tap area kept at 44px) */
+@media (max-width:600px){.hgrid>div:not(.stage){display:flex;flex-direction:column;align-items:flex-start}.caps,.hbtns,.idx{align-self:stretch}.idx{order:1;margin-top:-4px}.hbtns{order:2;margin-top:14px}.idx .no{font-size:14px}.idx button{min-height:44px;justify-content:flex-end;padding-bottom:10px}.idx button[aria-current="true"] .no::after{flex-basis:14px;width:14px;height:14px}}
+/* catalog: «Увесь каталог» after the cards on mobile, in the header on desktop */
+/* mobile: catalog scroller has room for the hover lift, so the card's top outline isn't clipped */
+@media (max-width:600px){.cards{padding-top:10px;margin-top:18px}}
+.cat-more,.news-more,.about-more{display:none}
+@media (max-width:600px){#catalog .shead>.btn,section[aria-labelledby="h-news"] .shead>.btn,.cyc>div:last-child .btn{display:none}.cat-more,.news-more,.about-more{display:flex;width:100%;margin-top:20px}.about-more{margin-top:24px}}
+/* mobile: slimmer header bar */
+@media (max-width:600px){.hd .wrap{height:64px}.mnav{top:65px}}
+/* mobile type, step 2: headings and body a bit smaller */
+@media (max-width:600px){.cap h1,.cap h2{font-size:30px}.h2,#h-about{font-size:26px}.vtxt h2{font-size:28px}.info h3,.nc .t,.nc.big .t,.ct{font-size:20px}.cap p,.lead,.cyc p,.vtxt p{font-size:16px}.info p{font-size:15px}.clist a,.clist div{font-size:16px}}
+/* mobile consistency pass: one scale for headings, body and spacing
+   H1 30 · H2 26 · card title 20 · body 16 · card text 15 · meta 14
+   kicker→heading 16 · heading→text 10 · text/head→content or button 24 · card padding 20 */
+@media (max-width:600px){
+  .vtxt h2{font-size:26px}
+  .ok h3{font-size:26px !important}.ok p{font-size:16px !important}
+  .info p{line-height:1.5}
+  .cyc>div:last-child{gap:24px}
+  .cat-more{margin-top:8px}.news-more{margin-top:24px}
+  .card,.card.more{padding:20px}.info{padding:20px}.nc .bd{padding:20px}.fcard{padding:20px}.vtxt{padding:20px 20px 24px}
+}
+/* mobile 8-pt grid: every gap, margin and padding is a multiple of 8 (tiny badges use a 4px half-step) */
+@media (max-width:600px){
+  .cap p,.vtxt p,.shead:has(>.lead)>.lead,.info p{margin-top:8px}#contact .lead{margin-top:8px !important}.cyc{gap:8px}
+  .hd .wrap>div:last-child{gap:8px !important}.mnav .grp{padding:24px 0}.mnav .sub{margin-top:8px}
+  .hgrid{padding-top:24px}.hbtns{gap:8px;margin-top:16px}.idx{margin-top:0}.idx button{padding-bottom:8px}.ptag{gap:8px;padding:8px 8px 8px 16px}
+  .btn{gap:8px;padding-left:24px;padding-right:24px}.cookie .row .btn{padding-left:16px;padding-right:16px}.tabs button{padding-left:16px;padding-right:16px}
+  .also{gap:8px}.also a{display:inline-flex;align-items:center;min-height:40px;padding:0 16px;box-sizing:border-box}
+  .cards{margin-top:16px;padding-top:8px;padding-bottom:8px}.cat-more{margin-top:16px}
+  .card,.card.more{padding:16px}.cimg{margin-top:16px}.ct{margin-top:16px}.spec{padding:8px 0}.cgo{margin-top:16px;gap:8px}.more .mgo{height:48px;padding:0 24px 3px;gap:8px}.tag{padding:4px 8px}
+  .igrid{gap:24px}.info{padding:16px}.info>div:first-child{gap:16px !important}.info .kv{margin-top:24px}.chips{gap:8px}
+  .xleg li{padding:16px 16px 16px 0;gap:8px 16px}
+  .steps{gap:24px 16px}.steps li{gap:8px}.steps .lb{gap:8px}.steps .ph.svc{padding:16px}
+  .fig>span{margin-top:8px}.fig small{margin-top:8px}
+  .vtxt{padding:16px 16px 24px}.vrow{padding-top:24px;gap:8px}
+  .mrow+.mrow{margin-top:24px}.mseg>span{padding:8px 16px;margin-right:8px}
+  .ngrid{gap:16px}.nc .bd{padding:16px;gap:16px}.nc .meta{gap:8px}.nc .more{gap:8px}
+  .cgrid{gap:24px}.clist{gap:8px}.note{margin-top:24px;padding:16px;gap:16px}
+  .fcard{padding:16px}.fgrid2{gap:16px}.fld input,.fld select{padding-left:16px}.fld input{padding-right:16px}.fld textarea{padding:16px}.fld .tel-hint{padding:0 17.5px}.captcha{padding:0 16px;gap:16px}
+  form .btn[type="submit"]{margin-top:24px !important}.ok p{margin-top:16px !important}.ok .btn{margin-top:24px !important}
+  .fcols{gap:32px 16px}.fcols>div{gap:8px}.fcols b{margin-bottom:8px}
+  .cookie{padding:16px;gap:16px}
+}
+/* mobile hero (variant B): label on top; the slide-1 heading and text stay;
+   only the product picture changes, with 4 short bars under it (autoplay 8 s) */
+@media (max-width:600px){
+  .hgrid{gap:0}
+  .hgrid>div:not(.stage){display:contents}
+  .hero .kick{order:-2;justify-self:start}
+  .stage{order:-1;margin-top:16px}
+  .idx{order:0;display:flex;justify-content:center;gap:4px;margin:8px 0 0;max-width:none}
+  .idx button{width:44px;min-height:24px;padding:0}
+  .idx .no,.idx .tt,.idx button[aria-current="true"] .no{display:none}
+  .idx .bar{left:6px;right:6px;bottom:11px}
+  .caps{order:1;margin-top:16px}
+  .caps>div:not(:first-child){display:none}
+  .caps>div:first-child{opacity:1;transform:none;pointer-events:auto}
+  .hbtns{order:2;margin-top:24px}
+  .ptag>span{display:block;font-size:14px}
+  .ptag em{display:none}
+  .ptag{padding:8px 16px}
+  .idx.stop button[aria-current="true"] .bar i{animation:none;transform:scaleX(1)}
+}
 /* one shape for chips, labels and links: 8 px corners like buttons, tabs and cards */
 .kick,.also a,.mseg>span{border-radius:8px}
 /* detail card in «Від чипа до корпусу»: light, to match the device panel on the left */
@@ -626,10 +725,11 @@ a{color:var(--ink)}
 @media (hover:none){.m3d .ihint{display:flex !important}}
 .m3d .hm{display:none}
 @media (hover:none),(max-width:600px){.m3d .hd{display:none}.m3d .hm{display:inline}}
+/* mobile: the hint and «Скинути вигляд» share the top of a narrow box, so once the model has been turned the hint goes and the button comes */
+@media (max-width:600px){.m3d .ihint{display:flex !important}.m3d.moved .ihint{display:none !important}}
 
 /* tags: JetBrains Mono keeps room for descenders, so capitals sat high; same height, text moved down */
 .tag{padding-top:4.5px;padding-bottom:3.5px}
-@media (max-width:600px){.tag{padding-top:6.5px;padding-bottom:5.5px}}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
@@ -700,7 +800,7 @@ a{color:var(--ink)}
         <a href="#catalog" class="btn btn-red">Переглянути каталог<svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
         <a href="#inside" class="btn btn-line"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"></rect><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"></path></svg>Як влаштований прилад</a>
       </div>
-      <ol class="idx" aria-label="Слайди" onAnimationEnd="{{slideDone}}">
+      <ol class="{{idxCls}}" aria-label="Слайди" onAnimationEnd="{{slideDone}}">
         <sc-for list="{{slides}}" as="s" hint-placeholder-count="4">
           <li><button aria-current="{{s.cur}}" onClick="{{s.pick}}"><span class="no">{{s.no}}</span><span class="tt">{{s.short}}</span><span class="bar" aria-hidden="true"><i></i></span></button></li>
         </sc-for>
@@ -751,7 +851,8 @@ a{color:var(--ink)}
       </a>
       </sc-if>
     </div>
-    <div class="also"><span>Також у каталозі:</span><sc-for list="{{also}}" as="x" hint-placeholder-count="5"><a href="catalog.html">{{x}}</a></sc-for></div>
+    <a href="catalog.html" class="btn btn-line cat-more">Увесь каталог<svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    <div class="also"><span>Також у каталозі:</span><div class="also-row"><sc-for list="{{also}}" as="x" hint-placeholder-count="5"><a href="catalog.html">{{x}}</a></sc-for></div></div>
   </div>
 </section>
 
@@ -822,6 +923,7 @@ a{color:var(--ink)}
       </sc-for>
       <li class="rv"><div class="ph svc">Гарантійне й післягарантійне обслуговування, ремонт і консультації інженерів.</div><div class="lb"><b>06</b>Сервісний центр</div></li>
     </ol>
+    <a href="#" class="btn btn-line about-more">Більше про компанію<svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
   </div>
 </section>
 
@@ -904,6 +1006,7 @@ a{color:var(--ink)}
         </a>
       </sc-for>
     </div>
+    <a href="#" class="btn btn-line news-more">Усі новини<svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
   </div>
 </section>
 
@@ -984,7 +1087,7 @@ const VIEWS3D = [[-8, 82, false], [-28, 80, false], [26, 80, false], [6, 88, fal
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { s: 0, paused: false, tab: 'all', spot: 0, sent: false, tried: false, cookie: true, menu: false, vid: true, p: 0 };
+    this.state = { s: 0, stop: false, paused: false, tab: 'all', spot: 0, sent: false, tried: false, cookie: true, menu: false, vid: true, p: 0 };
     if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) this.state.p = 1;
     this.statsTimer = setTimeout(() => this.watchStats(), 300);
     this.m3dTimer = setTimeout(() => this.init3d(), 300);
@@ -1084,7 +1187,7 @@ class Component extends DCLogic {
   renderVals() {
     const B = '/_blob/';
     const s = this.state;
-    const go = (i) => () => this.setState({ s: (i + 4) % 4 });
+    const go = (i) => () => this.setState({ s: (i + 4) % 4, stop: true }); // a tap on a bar stops autoplay (the .idx.stop rule exists only at ≤600px)
     // hero: each approved slide text is paired with a product from a different category
     const slideData = [
       { img: 'f17070b288dd9e18e46b94068534e6a7', alt: 'Трифазний лічильник електроенергії NIK 2306 з модулем LTE', short: 'Від розробки до сервісу', name: 'NIK 2306', cat: 'Облік електроенергії', c1: 'DLMS / COSEM', c2: 'Модуль зв’язку LTE' },
@@ -1191,7 +1294,7 @@ class Component extends DCLogic {
         isMenu('Контакти', '#', ['Де купити', ['Сервісний центр', '#']]),
         isMenu('Прес-центр', '#', ['Новини', 'НІКіпедія', 'Ми у ЗМІ'])
       ],
-      slides, cur: slideData[s.s], curNo: '0' + (s.s + 1),
+      slides, cur: slideData[s.s], curNo: '0' + (s.s + 1), idxCls: 'idx' + (s.stop ? ' stop' : ''),
       c0: cap(0), c1: cap(1), c2: cap(2), c3: cap(3),
       slideDone: (e) => { if (e && e.animationName === 'prog') this.setState({ s: (this.state.s + 1) % 4 }); },
       pause: () => this.setState({ paused: true }), resume: () => this.setState({ paused: false }),
