@@ -34,7 +34,7 @@ Already done: tags and kickers vertically centred · sort in the catalog 48 px l
 ### 4. Fields and the button next to them: 58 vs 56 px
 - **Problem:** in the contact form the button «Надіслати запит» is 56 px, the fields above it 58 px; the catalog search is 58 px too. Every button on the site is 56 px.
 - **Fix:** fields **56** px (contact form and catalog search).
-- **Decision:**
+- **Decision:** ✅ done — contact form fields (incl. phone) and catalog search are 56 px, like the buttons. Text area stays 140 px.
 
 ### 5. Field borders — 1 vs 1.5 px
 - **Problem:** contact form fields have a 1 px border, the catalog search 1.5 px (both #8592A0). Every other line on a control is 1.5 px.
