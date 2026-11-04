@@ -741,6 +741,8 @@ a{color:var(--ink)}
 @media (max-width:600px){.nc .t{line-height:1.15}}
 /* product card top row: labels together on the left, as on catalog and product */
 .ctop{justify-content:flex-start;gap:8px;flex-wrap:wrap}
+/* partner names on mobile: 16 px (was 15, a size used nowhere else) */
+@media (max-width:600px){.mlab{font-size:16px}}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>

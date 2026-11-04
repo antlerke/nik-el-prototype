@@ -56,7 +56,7 @@ Already done: tags and kickers vertically centred · sort in the catalog 48 px l
 - **Problem:** everything else on mobile is 14, 16 or 17 px (17 is the body text on all pages — consistent).
 - **Where:** home — «Клієнти та партнери», the running names.
 - **Fix:** 16 px.
-- **Decision:**
+- **Decision:** ✅ done — partner names 16 px on mobile (desktop stays 20 px).
 
 ## Group 3 — design decisions (the scales for the UI kit)
 
