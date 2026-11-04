@@ -540,6 +540,11 @@ a{color:var(--ink)}
 .tag{padding-top:5.3px;padding-bottom:2.7px}
 /* kickers: same font effect, capitals sat 0.5px high; text moved down, dot kept level with the letters */
 .kick{padding-top:8.5px;padding-bottom:7.5px}.kick::before{position:relative;top:-.5px}
+/* sort: a compact 48px control like the tabs (light line, medium text) rather than a 58px form field; «Фільтри» beside it on mobile matches */
+.sort{height:48px;border:0;box-shadow:inset 0 0 0 1.5px var(--line);font-weight:500;color:var(--ink)}
+.sort:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.sort:focus{box-shadow:inset 0 0 0 1.5px var(--ink),0 0 0 4px rgba(19,56,93,.12)}
+@media (max-width:900px){#cat-res .rbar .fbtn{min-height:48px}}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
