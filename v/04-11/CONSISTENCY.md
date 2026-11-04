@@ -97,7 +97,7 @@ Already done: tags and kickers vertically centred · sort in the catalog 48 px l
 - **Problem:** on desktop the card's description («Показує спожиту активну…») is 20 px with line height 1.6 (32 px); the other 20 px body text (e.g. «Повний цикл…») uses 1.5 (30 px). Mobile is the same for both.
 - **Where:** home, desktop — «Від чипа до корпусу», the card next to the 3D model.
 - **Suggested fix:** line height 1.5.
-- **Decision:**
+- **Decision:** ✅ done — the card text is 20 px / 30 px on desktop like the other body text; the card is 6 px shorter. Mobile unchanged (already 1.5).
 
 ### 15. Unused CSS left over from the export (code only, not visible)
 - **Problem:** each page carries rules that no longer do anything: overridden by later rules (e.g. the old catalog sort focus), or for elements that no longer exist (`.tel-hint`, `.tilt` from the old 2D picture, `.thumbs` from the removed product thumbnails).
