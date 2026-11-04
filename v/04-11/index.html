@@ -736,6 +736,9 @@ a{color:var(--ink)}
 .chips button[aria-pressed="true"]{font-weight:500}
 /* fields: 56 px like every button (were 58, right above the 56 px «Надіслати запит») */
 .fld input,.fld select,.tel{min-height:56px}
+/* news titles: the same title style as the product cards (letter-spacing −0.02em; line height 1.2 desktop, 1.15 mobile) */
+.nc .t{letter-spacing:-0.02em}
+@media (max-width:600px){.nc .t{line-height:1.15}}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>

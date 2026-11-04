@@ -45,7 +45,7 @@ Already done: tags and kickers vertically centred · sort in the catalog 48 px l
 - **Problem:** product cards 24 px with letter-spacing −0.48 px, news cards 24 px with −0.36 px; on mobile (20 px) line height 23 vs 25 px and −0.4 vs −0.3 px.
 - **Where:** home — catalog cards vs news cards; catalog and product — product cards.
 - **Fix:** news cards take the product card title style: 24 / 700, line height 1.2, −0.02em (mobile 20 / 700, line height 1.15, −0.02em).
-- **Decision:**
+- **Decision:** ✅ done — news and product card titles identical: 24/700, 28.8 px line, −0.48 px (mobile 20/700, 23 px line, −0.4 px).
 
 ### 7. Product card top row differs between pages
 - **Problem:** on home the labels in the card's top row are spread to both ends; on catalog and product they sit together on the left. Visible when a card has two labels (e.g. «Новинка»).
