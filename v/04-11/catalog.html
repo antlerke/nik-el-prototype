@@ -554,6 +554,11 @@ a{color:var(--ink)}
 .search:hover{border-color:#59636e;box-shadow:none}
 .search:focus-within{border-color:var(--ink);box-shadow:0 0 0 4px rgba(19,56,93,.12)}
 .search:has(input:disabled){border-color:var(--line);box-shadow:none}
+/* radii on one scale: 4 checkboxes · 8 controls · 16 small surfaces · 24 cards · 28 / 22 large boxes */
+.menu>li>a,.acc-t,.tl{border-radius:8px}
+.cimg,.cookie{border-radius:16px}
+/* small labels (24–28 px tall: tags): 4 px, so they look as crisp as the 8 px corners on taller elements (Anna) */
+.tag{border-radius:4px}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>

@@ -72,7 +72,7 @@ Already done: tags and kickers vertically centred · sort in the catalog 48 px l
 - **Problem:** large boxes (28 / 22 on mobile), cards (24) and controls (8) follow a pattern; small surfaces don't — 12, 14, 16, 18 and 20 for similar things. Some catalog filter controls (group headers, «Показати ще») have **4** instead of 8.
 - **Where:** 12 — header dropdown links · 14 — number box in «Від чипа», icons in the contact form · 16 — hero product label, document tiles · 18 — photos in cards and production steps, the note in the form · 20 — cookie panel · 4 — checkboxes, catalog filter headers, «Показати ще».
 - **Suggested scale:** **4** checkboxes only · **8** all controls (filter headers and «Показати ще» 4 → 8) · **16** small surfaces (12, 14, 18, 20 → 16) · **24** cards · **28 / 22** large boxes (unchanged).
-- **Decision:**
+- **Decision:** ✅ done (Anna) — scale now **4** checkboxes and small labels up to 28 px tall (tags, «Новинка», «PDF», «01 / 04») · **8** controls, kickers, menu links, catalog filter headers and «Показати ще», hero product label · **16** small surfaces (photos in cards and production steps, «Від чипа» number box, contact icons, the form note, document tiles, cookie panel) · **24** cards · **28 / 22** large boxes («Від чипа» card now 22 on mobile too). 12 → 8 distinct radii on the pages.
 
 ### 11. Numbers «01» — 8 different styles
 - **Problem:** the same kind of label (an index number) looks different in every section.

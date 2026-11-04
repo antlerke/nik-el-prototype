@@ -753,6 +753,14 @@ a{color:var(--ink)}
 .info .n{padding:1.5px 0 .5px}
 .xm,.xleg li b{box-sizing:border-box;padding-top:1px}
 .steps .lb b{box-sizing:border-box;padding-top:2.5px}
+/* radii on one scale: 4 checkboxes · 8 controls · 16 small surfaces · 24 cards · 28 / 22 large boxes */
+.menu>li>a{border-radius:8px}
+.info .n,.clist i,.cimg,.steps .ph,.note,.cookie{border-radius:16px}
+@media (max-width:600px){.info{border-radius:22px}}
+/* hero product label: 8 px like the tags and controls (Anna) */
+.ptag{border-radius:8px}
+/* small labels (24–28 px tall: tags, «01 / 04»): 4 px, so they look as crisp as the 8 px corners on taller elements (Anna) */
+.tag,.ptag em{border-radius:4px}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
