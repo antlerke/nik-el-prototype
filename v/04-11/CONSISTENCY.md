@@ -50,7 +50,7 @@ Already done: tags and kickers vertically centred · sort in the catalog 48 px l
 ### 7. Product card top row differs between pages
 - **Problem:** on home the labels in the card's top row are spread to both ends; on catalog and product they sit together on the left. Visible when a card has two labels (e.g. «Новинка»).
 - **Fix:** together on the left everywhere (as catalog / product).
-- **Decision:**
+- **Decision:** ✅ done — same rule on all pages (left, 8 px gap, wraps). On home no visible change (its cards have one label) — screenshots identical.
 
 ### 8. Partner names 15 px on mobile
 - **Problem:** everything else on mobile is 14, 16 or 17 px (17 is the body text on all pages — consistent).
