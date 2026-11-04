@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NIK 2306 — лічильник електроенергії трифазний — НІК-ЕЛЕКТРОНІКА</title>
 <meta name="robots" content="noindex">
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
@@ -543,6 +544,24 @@ main>:nth-child(1){padding-top:40px !important}
 .tag{padding-top:5.3px;padding-bottom:2.7px}
 /* kickers: same font effect, capitals sat 0.5px high; text moved down, dot kept level with the letters */
 .kick{padding-top:8.5px;padding-bottom:7.5px}.kick::before{position:relative;top:-.5px}
+/* gallery: a 3D model first (for now the NIK 2308 as a labelled placeholder), the photos stay as the other thumbnails;
+   hint, reset button and model loading as in the home page's 3D block, without hotspots */
+.thumbs button{position:relative}
+.thumbs .t3d{position:absolute;right:6px;bottom:6px;padding:2px 6px;border-radius:6px;background:var(--ink);color:#ffffff;font:600 11px/1.3 var(--mono);letter-spacing:.04em}
+.stage2 .m3d{position:absolute;inset:0;display:none;border-radius:inherit;overflow:hidden;cursor:grab}
+.stage2 .m3d:active{cursor:grabbing}
+.stage2.is3d .m3d{display:block}
+.stage2.is3d>img{display:none}
+.stage2 .cap{z-index:2}
+.stage2.is3d .cap{padding:4px 8px;margin:-4px -8px;border-radius:6px;background:rgba(255,255,255,.85)}
+.m3d model-viewer{position:absolute;inset:0;width:100%;height:100%;--poster-color:transparent;--progress-bar-color:var(--red);outline:none}
+.m3d .ihint{position:absolute;left:24px;top:24px;z-index:2;display:flex;align-items:center;gap:8px;font:14px var(--mono);color:var(--muted);pointer-events:none}
+.m3d-reset{position:absolute;right:16px;top:14px;z-index:2;display:none;align-items:center;gap:8px;height:40px;padding:0 14px;border:0;border-radius:8px;background:#ffffff;box-shadow:inset 0 0 0 1.5px var(--line);font:500 14px var(--mono);color:var(--muted);cursor:pointer;transition:box-shadow .2s ease,color .2s ease}
+.m3d-reset:hover{box-shadow:inset 0 0 0 1.5px var(--ink);color:var(--ink)}
+.m3d.moved .m3d-reset{display:inline-flex}
+.m3d .hm{display:none}
+@media (hover:none),(max-width:600px){.m3d .hd{display:none}.m3d .hm{display:inline}}
+@media (max-width:600px){.m3d .ihint{left:16px;top:16px}.m3d.moved .ihint{display:none}}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
@@ -601,9 +620,16 @@ main>:nth-child(1){padding-top:40px !important}
     <div class="pd">
       <div class="gal">
         <div class="thumbs" role="group" aria-label="Зображення моделі">
-          <sc-for list="{{thumbs}}" as="t" hint-placeholder-count="3"><button type="button" aria-pressed="{{t.on}}" aria-label="{{t.alt}}" onClick="{{t.pick}}"><img src="{{t.img}}" alt=""></button></sc-for>
+          <sc-for list="{{thumbs}}" as="t" hint-placeholder-count="3"><button type="button" aria-pressed="{{t.on}}" aria-label="{{t.alt}}" onClick="{{t.pick}}"><img src="{{t.img}}" alt=""><sc-if value="{{t.is3d}}"><span class="t3d">3D</span></sc-if></button></sc-for>
         </div>
-        <div class="stage2"><img class="{{shot.cls}}" src="{{shot.img}}" alt="{{shot.alt}}"><span class="cap">{{shot.cap}}</span></div>
+        <div class="{{stageCls}}">
+          <div class="m3d" data-dc-keep="">
+            <span class="ihint"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9"></path><path d="M21 3v6h-6"></path></svg><span class="hd">Затисніть і потягніть, щоб обернути</span><span class="hm">Потягніть убік, щоб обернути</span></span>
+            <button type="button" class="m3d-reset">Скинути вигляд</button>
+            <model-viewer id="nik3d" data-src="../../assets/fe973e1e-nik-2308.glb" poster="../../assets/593dddd1-nik2308-poster.webp" alt="Трифазний лічильник NIK 2308 — 3D-модель, яку можна обертати" camera-controls="" disable-zoom="" disable-pan="" touch-action="pan-y" interaction-prompt="none" camera-orbit="-14deg 80deg auto" min-camera-orbit="auto 35deg auto" max-camera-orbit="auto 145deg auto" interpolation-decay="140" environment-image="neutral" exposure="1.05" shadow-intensity="1" shadow-softness="1" loading="eager" reveal="auto"></model-viewer>
+          </div>
+          <img class="{{shot.cls}}" src="{{shot.img}}" alt="{{shot.alt}}"><span class="cap">{{shot.cap}}</span>
+        </div>
       </div>
       <div class="pinfo">
         <div class="tagrow"><span class="tag r">Електроенергія</span><span class="tag new">Новинка</span></div>
@@ -752,6 +778,25 @@ class Component extends DCLogic {
   constructor(props) {
     super(props);
     this.state = Object.assign({ cookie: true, menu: false }, { g: 0, sec: 'p-desc' });
+    this.m3dTimer = setTimeout(() => this.init3d(), 300);
+  }
+  // gallery 3D: model-viewer keeps its own DOM (data-dc-keep), so rotation, the reset button and loading are set up here
+  init3d() {
+    const mv = document.getElementById('nik3d');
+    if (!mv) return;
+    const box = mv.closest('.m3d');
+    const still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!still) { mv.setAttribute('auto-rotate', ''); mv.setAttribute('auto-rotate-delay', '0'); mv.setAttribute('rotation-per-second', '9deg'); }
+    // the model (2.4 MB) is fetched once the gallery is a screen away; until then the poster shows
+    const go = () => { if (!mv.getAttribute('src')) mv.setAttribute('src', mv.dataset.src); };
+    if ('IntersectionObserver' in window) { const io = new IntersectionObserver((es) => { if (es.some((x) => x.isIntersecting)) { io.disconnect(); go(); } }, { rootMargin: '900px 0px' }); io.observe(box); } else go();
+    mv.addEventListener('camera-change', (e) => { if (e.detail && e.detail.source === 'user-interaction') { mv.removeAttribute('auto-rotate'); box.classList.add('moved'); } });
+    // reset: turn the short way round back to the front view
+    box.querySelector('.m3d-reset').addEventListener('click', () => {
+      box.classList.remove('moved');
+      const now = mv.getCameraOrbit ? mv.getCameraOrbit().theta * 180 / Math.PI : 0;
+      mv.cameraOrbit = (-14 + 360 * Math.round((now + 14) / 360)) + 'deg 80deg auto';
+    });
   }
   base(s) {
     const isMenu = (t, href, items) => ({ t, href, items: items.map((x) => (Array.isArray(x) ? { t: x[0], href: x[1] } : { t: x, href })) });
@@ -790,11 +835,13 @@ class Component extends DCLogic {
     const DIR = { el: 'Електроенергія', wh: 'Вода та тепло', am: 'АСКОЕ', st: 'Стабілізатори' };
     const card = (p) => ({ ...p, img: B + p.img, alt: p.m + ' — ' + p.t.toLowerCase(), tag: p.eol ? 'Знято з виробництва' : DIR[p.dir], tagCls: p.eol ? 'tag eol' : 'tag' + (p.dir === 'el' ? ' r' : ''), cls: 'card' + (p.eol ? ' eol' : '') });
     const shots = [
+      { is3d: true, img: '../../assets/593dddd1-nik2308-poster.webp', alt: '3D-модель', cap: '[3D-модель NIK 2308 — тимчасово]', cls: '' },
       { img: B + 'f17070b288dd9e18e46b94068534e6a7', alt: 'NIK 2306 з модулем LTE — вигляд спереду', cap: 'Виконання для України', cls: '' },
       { img: B + '6c5854a5dadda834e83432d9bbe490f6', alt: 'NIK 2306 у виконанні з маркуванням CE і MID', cap: 'Виконання для ЄС (MID)', cls: '' },
       { img: B + '4f80ef4cc75cb5a09e82e89582a6fabf', alt: 'NIK 2306 у розрізі', cap: 'Будова приладу', cls: 'wide' }
     ];
-    const thumbs = shots.map((x, i) => ({ img: x.img, alt: x.cap, on: String(s.g === i), pick: () => this.setState({ g: i }) }));
+    const thumbs = shots.map((x, i) => ({ img: x.img, alt: x.is3d ? x.alt : x.cap, is3d: !!x.is3d, on: String(s.g === i), pick: () => this.setState({ g: i }) }));
+    const stageCls = 'stage2' + (shots[s.g].is3d ? ' is3d' : '');
     const subnav = [['p-desc', 'Опис'], ['p-spec', 'Характеристики'], ['p-draw', 'Креслення'], ['p-docs', 'Документи'], ['p-video', 'Відео']].map(([id, t]) => ({ t, href: '#' + id, cur: String(s.sec === id), pick: () => this.setState({ sec: id }) }));
     const specs = [
       ['Номінальна напруга', '3×230/400 В, 50 Гц'], ['Струм', '0,25–5(80) А'], ['Клас точності', 'B (активна) / 2 (реактивна)'], ['Стандарти', 'EN 50470-3, EN 62053-23'],
@@ -802,7 +849,7 @@ class Component extends DCLogic {
       ['Реле навантаження', 'Вбудоване'], ['Робоча температура', '−40…+70 °C'], ['Ступінь захисту', 'IP54']
     ].map(([k, v]) => ({ k, v }));
     const rel = ['KC-02', 'KK-01', 'NIK AMBUS', 'NIK 2300'].map((m) => card(P.find((p) => p.m === m)));
-    return Object.assign(this.base(s), { thumbs, shot: shots[s.g], subnav, specs, rel });
+    return Object.assign(this.base(s), { thumbs, shot: shots[s.g], stageCls, subnav, specs, rel });
   }
 }
 
