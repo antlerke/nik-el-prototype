@@ -103,3 +103,7 @@ Already done: tags and kickers vertically centred · sort in the catalog 48 px l
 - **Problem:** each page carries rules that no longer do anything: overridden by later rules (e.g. the old catalog sort focus), or for elements that no longer exist (`.tel-hint`, `.tilt` from the old 2D picture, `.thumbs` from the removed product thumbnails).
 - **Suggested fix:** list them per page, remove them, and prove with the pixel comparison (all pages, 1440 and 390, incl. hover and focus) that nothing changes. A step towards leaving the Claude Design export behind.
 - **Decision:** ⏸ postponed (Anna) — to be done together with the new UI kit, when the pages' CSS is rebuilt on the kit's scales.
+
+### 16. Product page, mobile: gap after «Технічні характеристики» 158 px instead of 160
+- **Problem:** the section's bottom padding is reduced on purpose (the specs table adds its own space), but a later rule set 64 px where an earlier one had 66 — so the visible gap was 158 px, the others 160.
+- **Decision:** ✅ done — 66 px, both rules now agree; all visible gaps between product sections on mobile are 160 px. Desktop unchanged.
