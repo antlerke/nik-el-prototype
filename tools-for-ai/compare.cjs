@@ -1,12 +1,12 @@
 // Screenshot two pages under the same conditions (fonts loaded, animations off) and diff them pixel by pixel in Chrome.
-//   node tools-for-ai/compare.cjs <width> <urlA> <urlB> [--sections] [--css "<css for both>"] [--prep-a "<js for A>"] [--skip "<selector>"]
+//   node tools-for-ai/compare.cjs <width> <urlA> <urlB> [--sections] [--css "<css for both>"] [--prep-a "<js for A>"] [--css-b "<css for B only>"] [--skip "<selector>"]
 // Whole page by default; --sections compares header, each section and footer separately, so a section of a different
 // height does not shift everything below it. Crops of differences go to tools-for-ai/out/ (A left, B right).
 const { spawn } = require('child_process'), fs = require('fs'), os = require('os'), path = require('path');
 
 const args = process.argv.slice(2), opt = (k) => { const i = args.indexOf(k); return i < 0 ? null : args.splice(i, 2)[1]; };
 const sections = args.includes('--sections') && args.splice(args.indexOf('--sections'), 1);
-const css = opt('--css') || '', prepA = opt('--prep-a'), skip = opt('--skip');
+const css = opt('--css') || '', cssB = opt('--css-b') || '', prepA = opt('--prep-a'), skip = opt('--skip');
 const [width, urlA, urlB] = args, W = +width;
 const OUT = path.join(__dirname, 'out');
 fs.mkdirSync(OUT, { recursive: true });
@@ -16,8 +16,8 @@ const port = 9300 + Math.floor(Math.random() * 600);
 const chrome = spawn(CHROME, ['--headless=new', '--hide-scrollbars', '--user-data-dir=' + path.join(os.tmpdir(), 'nik-compare-' + port), '--remote-debugging-port=' + port, 'about:blank'], { stdio: 'ignore' });
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 const FREEZE = '*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}';
-// header, footer and every top-level section, in page order
-const PARTS = `[...document.querySelectorAll('header, section, footer')].filter((e) => !e.parentElement.closest('header, section, footer'))`;
+// header, footer, every top-level section and every other top-level block of <main> (e.g. the catalog's results), in page order
+const PARTS = `[...document.querySelectorAll('header, section, footer, main > *')].filter((e) => !e.parentElement.closest('header, section, footer') && e.getBoundingClientRect().height > 0)`;
 
 (async () => {
   let tabs;
@@ -31,12 +31,12 @@ const PARTS = `[...document.querySelectorAll('header, section, footer')].filter(
   await send('Page.enable');
   await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
 
-  async function load(url, prep) {
+  async function load(url, prep, extra = '') {
     await send('Emulation.setDeviceMetricsOverride', { width: W, height: 1000, deviceScaleFactor: 1, mobile: false });
     await send('Page.navigate', { url });
     await wait(4000);
     if (prep) await evaluate(prep);
-    await evaluate(`(async () => { const s = document.createElement('style'); s.textContent = ${JSON.stringify(FREEZE + css)}; document.head.appendChild(s);
+    await evaluate(`(async () => { const s = document.createElement('style'); s.textContent = ${JSON.stringify(FREEZE + css + extra)}; document.head.appendChild(s);
       document.querySelectorAll('img').forEach((i) => (i.loading = 'eager'));
       await document.fonts.ready; await Promise.all([...document.images].map((i) => i.complete ? 0 : new Promise((r) => { i.onload = i.onerror = r; }))); })()`);
     const h = await evaluate('Math.ceil(document.documentElement.scrollHeight)');
@@ -46,7 +46,7 @@ const PARTS = `[...document.querySelectorAll('header, section, footer')].filter(
     return { png: (await send('Page.captureScreenshot', { format: 'png' })).data, h, parts };
   }
 
-  const a = await load(urlA, prepA), b = await load(urlB);
+  const a = await load(urlA, prepA), b = await load(urlB, null, cssB);
   if (a.parts.length !== b.parts.length) console.log(`! different number of parts: A ${a.parts.length}, B ${b.parts.length}`);
   await send('Emulation.setDeviceMetricsOverride', { width: 800, height: 600, deviceScaleFactor: 1, mobile: false });
   await send('Page.navigate', { url: 'about:blank' });
@@ -64,7 +64,13 @@ const PARTS = `[...document.querySelectorAll('header, section, footer')].filter(
       const ca = px(A, x), cb = px(B, y), da = ca.getContext('2d').getImageData(0, 0, w, h).data, db = cb.getContext('2d').getImageData(0, 0, w, h).data;
       let n = 0, top = h, bot = -1;
       for (let i = 0; i < da.length; i += 4) if (Math.abs(da[i] - db[i]) + Math.abs(da[i + 1] - db[i + 1]) + Math.abs(da[i + 2] - db[i + 2]) > 24) { n++; const r = Math.floor(i / 4 / w); top = Math.min(top, r); bot = r; }
-      const item = { name: y.name, heightA: x.h, heightB: y.h, diffPixels: n };
+      // something above moved by a fraction of a pixel? then B matches A shifted by a row or two — report it as a shift, not a change
+      let shift = null;
+      if (n) for (const dy of [-1, 1, -2, 2]) {
+        let m = 0; for (let r = 2; r < h - 2; r++) for (let c = 0; c < w; c++) { const i = (r * w + c) * 4, j = ((r + dy) * w + c) * 4; if (Math.abs(da[i] - db[j]) + Math.abs(da[i + 1] - db[j + 1]) + Math.abs(da[i + 2] - db[j + 2]) > 24) m++; }
+        if (m < n * 0.02) { shift = { dy, left: m }; break; }
+      }
+      const item = { name: y.name, heightA: x.h, heightB: y.h, diffPixels: n, shift };
       if (n) {
         const t = Math.max(0, top - 40), ch = Math.min(h, bot + 40) - t, c = new OffscreenCanvas(w * 2 + 16, ch), g = c.getContext('2d');
         g.fillStyle = '#ff00ff'; g.fillRect(0, 0, c.width, ch); g.drawImage(ca, 0, t, w, ch, 0, 0, w, ch); g.drawImage(cb, 0, t, w, ch, w + 16, 0, w, ch);
@@ -77,7 +83,7 @@ const PARTS = `[...document.querySelectorAll('header, section, footer')].filter(
   let differ = 0;
   result.forEach((r, k) => {
     if (r.crop) { const f = path.join(OUT, `diff-${W}-${String(k).padStart(2, '0')}.png`); fs.writeFileSync(f, Buffer.from(r.crop, 'base64')); r.crop = path.relative(process.cwd(), f); differ++; }
-    console.log(`${String(k).padStart(2)} ${r.name.padEnd(56)} ${r.note || (r.diffPixels ? `${r.diffPixels} px differ (rows ${r.rows}; heights ${r.heightA}/${r.heightB}) → ${r.crop}` : `identical${r.heightA !== r.heightB ? ` (heights ${r.heightA}/${r.heightB})` : ''}`)}`);
+    console.log(`${String(k).padStart(2)} ${r.name.padEnd(56)} ${r.note || (r.diffPixels ? (r.shift ? `only moved ${r.shift.dy > 0 ? 'down' : 'up'} ${Math.abs(r.shift.dy)}px (${r.shift.left} px differ after the shift) → ${r.crop}` : `${r.diffPixels} px differ (rows ${r.rows}; heights ${r.heightA}/${r.heightB}) → ${r.crop}`) : `identical${r.heightA !== r.heightB ? ` (heights ${r.heightA}/${r.heightB})` : ''}`)}`);
   });
   console.log(differ ? `\n${differ} part(s) differ` : '\nall compared parts identical');
   ws.close(); chrome.kill(); process.exit(0);
