@@ -35,18 +35,21 @@ Already done: tags and kickers vertically centred · sort in the catalog 48 px l
 - **Problem:** in the contact form the button «Надіслати запит» is 56 px, the fields above it 58 px; the catalog search is 58 px too. Every button on the site is 56 px.
 - **Fix:** fields **56** px (contact form and catalog search).
 - **Decision:** ✅ done — contact form fields (incl. phone) and catalog search are 56 px, like the buttons. Text area stays 140 px.
+  ⚠ The first version also stretched the consent checkbox to 56 px (it is an `input` too) — fixed: checkboxes are excluded.
 
 ### 5. Field borders — 1 vs 1.5 px
 - **Problem:** contact form fields have a 1 px border, the catalog search 1.5 px (both #8592A0). Every other line on a control is 1.5 px.
   (In the CSS both are 1.5 px — but the fields use a real border, which the browser rounds down to 1 px on standard screens; the search, tabs and buttons draw an inset line, which stays 1.5 px.)
 - **Fix:** fields **1.5 px**. Checkboxes stay 2 px (small box, needs the weight).
 - **Decision:** ✅ done — fields draw the same inset 1.5 px line as the other controls, in every state (normal, hover, focus + ring, error, disabled, phone field). Field text now starts 16 px from the edge, like the search. Checkbox unchanged.
+  ⚠ The first version hid the phone field's outline behind the grey «+380» block — fixed: that outline is drawn on a layer above it.
 
 ### 6. Card titles — same role, different spacing
 - **Problem:** product cards 24 px with letter-spacing −0.48 px, news cards 24 px with −0.36 px; on mobile (20 px) line height 23 vs 25 px and −0.4 vs −0.3 px.
 - **Where:** home — catalog cards vs news cards; catalog and product — product cards.
 - **Fix:** news cards take the product card title style: 24 / 700, line height 1.2, −0.02em (mobile 20 / 700, line height 1.15, −0.02em).
 - **Decision:** ✅ done — news and product card titles identical: 24/700, 28.8 px line, −0.48 px (mobile 20/700, 23 px line, −0.4 px).
+  Side effect on desktop: «НІК-ЕЛЕКТРОНІКА» now fits on one line, so the two small news cards changed height (303 / 291 → 290 / 304 px).
 
 ### 7. Product card top row differs between pages
 - **Problem:** on home the labels in the card's top row are spread to both ends; on catalog and product they sit together on the left. Visible when a card has two labels (e.g. «Новинка»).
