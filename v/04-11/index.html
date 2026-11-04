@@ -728,8 +728,8 @@ a{color:var(--ink)}
 /* mobile: the hint and «Скинути вигляд» share the top of a narrow box, so once the model has been turned the hint goes and the button comes */
 @media (max-width:600px){.m3d .ihint{display:flex !important}.m3d.moved .ihint{display:none !important}}
 
-/* tags: JetBrains Mono keeps room for descenders, so capitals sat high; same height, text moved down */
-.tag{padding-top:4.5px;padding-bottom:3.5px}
+/* tags: one rule on all pages — 24 px tall (16 px line + 8 px padding); JetBrains Mono keeps room for descenders, so the text is moved down to centre the capitals */
+.tag{display:inline-flex;align-items:center;white-space:nowrap;line-height:16px;padding-top:4.5px;padding-bottom:3.5px}
 /* kickers: same font effect, capitals sat 0.5px high; text moved down, dot kept level with the letters */
 .kick{padding-top:8.5px;padding-bottom:7.5px}.kick::before{position:relative;top:-.5px}
 </style>

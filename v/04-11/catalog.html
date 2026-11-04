@@ -536,8 +536,8 @@ a{color:var(--ink)}
 .pgrid.soft{grid-template-columns:minmax(0,1fr) minmax(0,2fr)}
 @media (max-width:600px){.pgrid.soft{grid-template-columns:minmax(0,1fr)}}
 
-/* tags: JetBrains Mono keeps room for descenders, so capitals sat 1.3px high; same height, text moved down */
-.tag{padding-top:5.3px;padding-bottom:2.7px}
+/* tags: one rule on all pages — 24 px tall (16 px line + 8 px padding); JetBrains Mono keeps room for descenders, so the text is moved down to centre the capitals */
+.tag{display:inline-flex;align-items:center;white-space:nowrap;line-height:16px;padding-top:4.5px;padding-bottom:3.5px}
 /* kickers: same font effect, capitals sat 0.5px high; text moved down, dot kept level with the letters */
 .kick{padding-top:8.5px;padding-bottom:7.5px}.kick::before{position:relative;top:-.5px}
 /* sort: a compact 48px control like the tabs (light line, medium text) rather than a 58px form field; «Фільтри» beside it on mobile matches */

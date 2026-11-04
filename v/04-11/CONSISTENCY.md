@@ -16,7 +16,7 @@ Already done: tags and kickers vertically centred · sort in the catalog 48 px l
 ### 1. Tag line height differs between pages (code only, not visible)
 - **Problem:** home tags use line-height `normal` (24 px tall), catalog / product `1.3` (23.6 px), so each page needs its own centring offset.
 - **Fix:** one tag rule on all pages; no visible change.
-- **Decision:**
+- **Decision:** ✅ done — one rule on all pages: 24 px tall (16 px line), capitals centred (4.5 / 3.5 px padding).
 
 ### 2. Text gets bolder when selected
 - **Problem:** the selected 3D hotspot button goes from weight 500 to 600 — its text gets wider and the button jumps.
