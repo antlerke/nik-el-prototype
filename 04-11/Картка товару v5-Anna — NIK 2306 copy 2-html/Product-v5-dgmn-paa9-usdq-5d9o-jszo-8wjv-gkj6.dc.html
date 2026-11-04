@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<title>NIK 2306 — лічильник електроенергії трифазний — НІК-ЕЛЕКТРОНІКА</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Geologica';font-style:normal;font-weight:300 800;font-display:swap;src:url(./assets/ceeb9be89aed5239b060fc9331f36b56.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Geologica';font-style:normal;font-weight:300 800;font-display:swap;src:url(./assets/4b40a9007cfad458258bd78cdb97dd05.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+</style>
+<style>
+@property --n{syntax:'<integer>';inherits:false;initial-value:0}
+:root{--mono:'JetBrains Mono',ui-monospace,monospace;--ink:#13385d;--ink-d:#0d2a47;--text:#36434f;--muted:#59636e;--line:#dde3e9;--gray:#e6eaeb;--paper:#f4f6f8;--red:#c8102e;--red-h:#a50d26;--red-a:rgba(200,16,46,.08);--red-b:rgba(200,16,46,.18);--red-t:#a50d26;--ease:cubic-bezier(.32,.72,0,1);--out:cubic-bezier(.23,1,.32,1)}
+body{margin:0;background:#ffffff}
+::selection{background:var(--ink);color:#ffffff}
+a{color:var(--ink)}
+.wrap{max-width:1280px;margin:0 auto;padding:0 32px;box-sizing:border-box}
+.num{font-variant-numeric:tabular-nums}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid #007ac2;outline-offset:3px}
+.skip{position:absolute;left:16px;top:-80px;z-index:100;background:var(--ink);color:#ffffff;padding:12px 16px;border-radius:8px;text-decoration:none;font-weight:600}.skip:focus{top:12px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:56px;padding:0 28px 3px;border-radius:8px;border:0;font:500 16px Geologica,sans-serif;text-decoration:none;cursor:pointer;box-sizing:border-box;transition:background-color .2s ease,color .2s ease,box-shadow .25s ease,transform .16s var(--out)}
+.btn:active{transform:scale(.97)}
+.btn-ink{background:var(--ink);color:#ffffff}.btn-ink:hover{background:var(--ink-d)}
+.btn-red{background:var(--red);color:#ffffff}.btn-red:hover{background:var(--red-h);box-shadow:0 14px 30px -12px rgba(200,16,46,.45)}
+.btn-line{box-shadow:inset 0 0 0 1.5px var(--ink);color:var(--ink);background:transparent}.btn-line:hover{background:var(--ink);color:#ffffff}
+.btn svg{transition:transform .25s var(--out)}
+.btn svg,.cgo svg{flex:0 0 auto;display:block;position:relative;top:2px}
+.icon{width:44px;height:44px;border-radius:8px;border:0;background:transparent;color:var(--ink);display:inline-grid;place-items:center;cursor:pointer;transition:background-color .2s ease}
+.icon:hover{background:var(--gray)}
+.icon svg{display:block}
+.kick{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border-radius:999px;background:var(--red-a);box-shadow:inset 0 0 0 1px var(--red-b);color:var(--red-t);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.kick::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red)}
+
+/* header */
+.hd{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.9);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
+.hd .wrap{display:flex;align-items:center;gap:32px;height:80px}
+.menu{display:flex;gap:4px;flex:1 1 auto;margin:0;padding:0;list-style:none}
+.menu>li{position:relative}
+.menu>li>a{display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 14px;border-radius:12px;text-decoration:none;font-size:16px;font-weight:500;line-height:1;color:var(--ink);transition:background-color .2s ease}
+.menu>li>a svg{flex:0 0 auto;display:block;transition:transform .25s var(--out)}
+.menu>li:hover>a,.menu>li:focus-within>a{background:var(--gray)}
+.menu>li:hover>a svg,.menu>li:focus-within>a svg{transform:rotate(180deg)}
+.drop{position:absolute;left:0;top:calc(100% + 10px);min-width:280px;padding:10px;background:#ffffff;border-radius:16px;box-shadow:0 24px 48px rgba(19,56,93,.16),0 0 0 1px rgba(19,56,93,.06);opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .18s ease,transform .25s var(--out)}
+.drop::before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px}
+.menu>li:hover .drop,.menu>li:focus-within .drop{opacity:1;transform:none;pointer-events:auto}
+.drop a{display:flex;align-items:center;min-height:44px;padding:0 14px;border-radius:10px;text-decoration:none;font-size:16px;font-weight:500;color:var(--text)}
+.drop a:hover{background:var(--paper);color:var(--ink)}
+.docs{min-height:44px;padding:0 18px 3px;font-size:16px;border-radius:8px}
+.seg{display:flex;padding:4px;border-radius:12px;background:var(--paper);box-shadow:inset 0 0 0 1px var(--line)}
+.seg a{display:grid;place-items:center;min-width:40px;height:36px;padding:0 6px;border-radius:9px;font-size:14px;font-weight:500;line-height:1;color:var(--muted);text-decoration:none;transition:background-color .2s ease,color .2s ease}
+.seg a:hover{color:var(--ink)}
+.seg a[aria-current]{background:var(--ink);color:#ffffff}
+.burger{display:none}
+.mnav{display:none}
+@media (max-width:900px){
+  .mnav{display:block;position:fixed;left:0;right:0;top:81px;bottom:0;z-index:29;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;background:#ffffff;padding:8px 16px 40px;box-sizing:border-box;animation:mIn .35s var(--ease) both}
+  @keyframes mIn{from{opacity:0;transform:translateY(-12px)}}
+  .mnav .grp{padding:20px 0;border-bottom:1px solid var(--line)}
+  .mnav .grp>a{display:flex;justify-content:space-between;align-items:center;min-height:48px;font-size:26px;font-weight:700;letter-spacing:-0.02em;color:var(--ink);text-decoration:none}
+  .mnav .sub{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;margin-top:6px}
+  .mnav .sub a{display:flex;align-items:center;min-height:44px;font-size:16px;color:var(--text);text-decoration:none}
+  .mnav .foot{display:flex;flex-direction:column;gap:16px;padding-top:24px}
+}
+.cap{grid-area:1/1;opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .9s var(--out);pointer-events:none}
+.cap.on{opacity:1;transform:none;transition-delay:.45s,.45s;pointer-events:auto}
+.cap h1,.cap h2{margin:0;font-size:clamp(40px,4.4vw,68px);line-height:1;font-weight:700;letter-spacing:-0.04em;color:var(--ink);text-wrap:balance;max-width:16ch}
+.cap p{margin:24px 0 0;font-size:clamp(20px,1.6vw,23px);line-height:1.55;color:var(--text);max-width:50ch}
+@keyframes prog{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* sections */
+.sec{padding:120px 0}
+.shead{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+.shead:has(>.lead){display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:32px;row-gap:0;align-items:start}
+.shead:has(>.lead)>div{display:contents}
+.shead:has(>.lead) .kick{grid-column:1;grid-row:1;justify-self:start}
+.shead:has(>.lead) .h2{grid-column:1;grid-row:2}
+.shead:has(>.lead)>.lead{grid-column:2;grid-row:2;margin-top:16px;max-width:38ch}
+@media (max-width:900px){.shead:has(>.lead){grid-template-columns:minmax(0,1fr)}.shead:has(>.lead)>.lead{grid-column:1;grid-row:3;margin-top:24px;max-width:44ch}}
+.h2{margin:16px 0 0;font-size:clamp(36px,3.6vw,56px);line-height:1.02;font-weight:700;color:var(--ink);letter-spacing:-0.04em;text-wrap:balance}
+.lead{margin:0;font-size:clamp(20px,1.6vw,23px);line-height:1.5;color:var(--text);max-width:44ch}
+.card{display:flex;flex-direction:column;padding:16px;border-radius:24px;background:#ffffff;box-shadow:0 0 0 1px var(--line);text-decoration:none;color:var(--ink);transition:transform .35s var(--out),box-shadow .35s ease;animation:cin .5s var(--out) both}
+@keyframes cin{from{opacity:0;transform:translateY(16px)}}
+.card.wide{grid-column:span 2}
+.ctop{display:flex;justify-content:space-between;align-items:center}
+.tag{padding:6px 10px;border-radius:8px;background:rgba(19,56,93,.08);color:var(--ink);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.tag.r{background:rgba(200,16,46,.08);color:var(--red-h)}
+.cimg{position:relative;margin-top:14px;height:220px;border-radius:18px;overflow:hidden;background:linear-gradient(180deg,var(--paper) 0%,var(--gray) 100%);display:flex;align-items:center;justify-content:center}
+.card.wide .cimg{height:260px}
+.cimg img{max-width:72%;max-height:84%;object-fit:contain;transition:transform .6s var(--out)}
+.cimg img.cut{filter:drop-shadow(0 18px 18px rgba(19,56,93,.22))}
+.cimg img.flat{mix-blend-mode:multiply}
+.ct{margin-top:18px;font-size:24px;font-weight:700;letter-spacing:-0.02em;line-height:1.15}
+.cd{margin-top:8px;font-size:17px;line-height:1.5;color:var(--text);flex:1 1 auto}
+.spec{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:14px}
+.cd+.spec{margin-top:16px}
+.spec>span{color:var(--muted);font-weight:500}.spec b{font-weight:600;color:var(--ink);text-align:right}
+.cgo{margin-top:18px;height:48px;padding-bottom:3px;box-sizing:border-box;border-radius:8px;background:var(--paper);display:flex;align-items:center;justify-content:center;gap:12px;font-size:16px;font-weight:500;transition:background-color .25s ease,color .25s ease}
+@media (hover:hover) and (pointer:fine){
+  .card:hover{transform:translateY(-6px);box-shadow:0 28px 56px -24px rgba(19,56,93,.35),0 0 0 1.5px var(--ink)}
+  .card:hover .cimg img:not(.photo){transform:scale(1.06) rotate(-2deg)}
+  .card:hover .cgo{background:var(--ink);color:#ffffff}
+}
+@keyframes ping{0%{transform:scale(.6);opacity:1}100%{transform:scale(1.6);opacity:0}}
+.info{flex:1 1 auto;border-radius:28px;padding:36px;background:linear-gradient(160deg,var(--ink) 0%,var(--ink-d) 100%);color:#ffffff;display:flex;flex-direction:column}
+.info .n{flex:0 0 auto;box-sizing:border-box;width:52px;height:52px;padding:0 0 2px;border-radius:14px;background:var(--red);display:grid;place-items:center;text-align:center;line-height:1;font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.info h3{margin:0;font-size:28px;line-height:1.15;letter-spacing:-0.02em}
+.info .sub{margin-top:8px;font-size:16px;color:#d3deea}
+.info p{margin:24px 0 0;font-size:19px;line-height:1.6;color:var(--text)}
+@media (prefers-reduced-motion:no-preference){@supports (animation-timeline:view()){
+  @keyframes asm{from{translate:calc(var(--ax) * 1cqi) calc(var(--ay) * 1cqi)}}
+  @keyframes mk{from{opacity:0;transform:scale(.4)}}
+}}
+@keyframes vfade{0%{opacity:0;transform:scale(1.04)}6%{opacity:1}33%{opacity:1}40%{opacity:0;transform:scale(1.14)}100%{opacity:0}}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* footer */
+.ft{background:linear-gradient(160deg,var(--ink) 0%,var(--ink-d) 100%);color:#ffffff}
+.ft a{color:#ffffff;text-decoration:none;transition:color .15s ease}.ft a:hover{color:#ffffff}
+.ftop{padding:72px 0 44px;border-bottom:1px solid rgba(255,255,255,.14)}
+.fcols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:36px;padding-top:44px}
+.fcols>div{display:flex;flex-direction:column;gap:12px;font-size:16px;line-height:1.45}
+.fcols>div>a,.fcols>div>span{font-family:Geologica,sans-serif;font-size:16px;font-weight:500;line-height:1.45;font-variant-numeric:tabular-nums}
+.fcols b{margin-bottom:12px;font-family:var(--mono);font-size:16px;font-weight:600;letter-spacing:0;text-transform:uppercase;color:#d3deea}
+.fbot{display:flex;justify-content:space-between;align-items:center;gap:16px 24px;flex-wrap:wrap;padding:56px 0 32px;font-family:var(--mono);font-size:14px;font-weight:500;line-height:1.45;color:#a9bbcf}
+.fbot nav{display:flex;gap:24px;flex-wrap:wrap}
+.fbot a{color:#a9bbcf}
+
+/* cookie */
+.cookie{position:fixed;left:32px;right:32px;bottom:16px;z-index:50;max-width:1216px;margin:0 auto;display:flex;align-items:center;gap:24px;box-sizing:border-box;background:#ffffff;border-radius:20px;padding:16px 16px 16px 24px;box-shadow:0 24px 64px rgba(10,32,56,.22),0 0 0 1px rgba(19,56,93,.06);animation:pop .5s var(--ease) .8s both}
+@keyframes pop{from{opacity:0;transform:translateY(24px) scale(.98)}}
+.cookie p{margin:0;flex:1 1 auto;font-size:15px;line-height:1.55;color:var(--text)}
+.cookie .row{display:flex;gap:8px;flex:0 0 auto}
+.cookie .btn{min-height:44px;padding:0 18px 3px;font-size:16px;border-radius:8px}
+.cookie .lnk{background:transparent;color:var(--ink);text-decoration:underline;text-underline-offset:3px;padding:0 8px}
+
+/* reveal */
+@media (prefers-reduced-motion:no-preference){@supports (animation-timeline:view()){
+  @keyframes rv{from{opacity:0;transform:translateY(40px)}}
+}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition-duration:.01ms !important}}
+
+/* secondary typeface: JetBrains Mono for labels, tags and technical data */
+.kick,.tag,.spec,.fcols b,.info .sub{font-family:var(--mono)}
+.kick{font-size:12px;letter-spacing:.12em}
+.tag{font-size:13px;letter-spacing:.04em}
+.spec{font-size:14px}
+
+/* responsive */
+@media (max-width:1180px){.menu>li>a{padding:0 10px;font-size:15px}.docs{display:none}}
+@media (max-width:900px){
+  .menu,.seg.top{display:none}.burger{display:inline-grid}
+  .cap h1,.cap h2{font-size:40px}
+  .fcols{grid-template-columns:1fr 1fr}
+  .fcols .num{white-space:nowrap}
+}
+@media (max-width:600px){
+  .wrap{padding:0 16px}
+  .sec{padding:80px 0}.card{flex:0 0 82%;scroll-snap-align:start}
+  .cimg,.card.wide .cimg{height:200px}
+  .info{padding:28px}.info h3{font-size:24px}
+  .ftop{padding:56px 0 32px}.fcols{gap:32px 20px;padding-top:32px}.fbot{flex-direction:column;align-items:flex-start;padding-top:40px}
+  .cookie{left:16px;right:16px;bottom:16px;flex-direction:column;align-items:stretch;gap:14px;padding:18px}.cookie .row{flex-wrap:wrap}
+}
+/* mobile headings: smaller and fluid */
+@media (max-width:600px){.cap h1,.cap h2{font-size:clamp(30px,8.5vw,40px)}.h2{font-size:clamp(28px,7.4vw,36px)}.info h3,.ct{font-size:clamp(20px,5.6vw,24px)}}
+/* mobile body text: smaller */
+@media (max-width:600px){.cap p,.lead{font-size:17px;line-height:1.5}.info p{font-size:16px}.cd{font-size:15px}}
+/* mobile: tighter heading-to-body spacing */
+@media (max-width:600px){.cap p{margin-top:10px}.shead:has(>.lead)>.lead{margin-top:10px}.info p{margin-top:12px}#contact .lead{margin-top:10px !important}}
+/* mobile: section buttons full width */
+@media (max-width:600px){.shead>.btn{width:100%;align-self:stretch}}
+/* mobile: section head → content 24px everywhere */
+@media (max-width:600px){.shead{gap:24px}}
+/* mobile: equal 80px between sections (no doubled gaps on same-colour neighbours) */
+@media (max-width:600px){.sec{padding:80px 0}}
+/* mobile: cookie banner — two equal buttons, settings link below */
+@media (max-width:600px){.cookie p{font-size:14px}.cookie .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.cookie .row .btn{width:100%;padding:0 12px 3px}.cookie .row .lnk{grid-column:1/-1}}
+@media (max-width:600px){section[aria-labelledby="h-news"] .shead>.btn{display:none}}
+/* mobile: slimmer header bar */
+@media (max-width:600px){.hd .wrap{height:64px}.mnav{top:65px}}
+/* mobile type, step 2: headings and body a bit smaller */
+@media (max-width:600px){.cap h1,.cap h2{font-size:30px}.h2{font-size:26px}.info h3,.ct{font-size:20px}.cap p,.lead{font-size:16px}.info p{font-size:15px}}
+/* mobile consistency pass: one scale for headings, body and spacing
+   H1 30 · H2 26 · card title 20 · body 16 · card text 15 · meta 14
+   kicker→heading 16 · heading→text 10 · text/head→content or button 24 · card padding 20 */
+@media (max-width:600px){
+  .info p{line-height:1.5}
+  .card{padding:20px}.info{padding:20px}
+}
+/* mobile 8-pt grid: every gap, margin and padding is a multiple of 8 (tiny badges use a 4px half-step) */
+@media (max-width:600px){
+  .cap p,.shead:has(>.lead)>.lead,.info p{margin-top:8px}#contact .lead{margin-top:8px !important}
+  .hd .wrap>div:last-child{gap:8px !important}.mnav .grp{padding:24px 0}.mnav .sub{margin-top:8px}
+  .btn{gap:8px;padding-left:24px;padding-right:24px}.cookie .row .btn{padding-left:16px;padding-right:16px}
+  .card{padding:16px}.cimg{margin-top:16px}.ct{margin-top:16px}.spec{padding:8px 0}.cgo{margin-top:16px;gap:8px}.tag{padding:4px 8px}.info{padding:16px}.info>div:first-child{gap:16px !important}
+  form .btn[type="submit"]{margin-top:24px !important}
+  .fcols{gap:32px 16px}.fcols>div{gap:8px}.fcols b{margin-bottom:8px}
+  .cookie{padding:16px;gap:16px}
+}
+/* desktop & tablet 8-pt grid: every gap, margin and padding is a multiple of 8 (tiny badges use a 4px half-step) */
+@media (min-width:601px){
+  .btn{gap:8px;padding-left:24px;padding-right:24px}
+  .kick{gap:8px}
+  .menu>li>a{gap:8px;padding:0 16px}
+  .drop{top:calc(100% + 8px);padding:8px}.drop::before{top:-8px;height:8px}.drop a{padding:0 16px}
+  .docs{padding-left:16px;padding-right:16px}
+  .seg a{padding:0 8px}
+  .hd .wrap>div:last-child{gap:8px !important}.seg.top{margin-left:8px !important}
+  .cimg{margin-top:16px}.ct{margin-top:16px}.spec{padding:8px 0;gap:8px}.cgo{margin-top:16px;gap:8px}
+  .tag{padding:4px 8px}
+  .info{padding:40px}.info>div:first-child{gap:16px !important}
+  #contact .lead{margin-top:16px !important}
+  form .btn[type="submit"]{margin-top:24px !important}
+  .ftop{padding:72px 0 48px}.fcols{gap:32px;padding-top:48px}.fcols>div{gap:8px}.fcols b{margin-bottom:8px}
+  .cookie .btn{padding-left:16px;padding-right:16px}.cookie .lnk{padding-left:8px;padding-right:8px}
+}
+@media (min-width:601px) and (max-width:900px){
+  .mnav .grp{padding:24px 0}.mnav .sub{margin-top:8px}
+}
+/* desktop consistency pass: one type scale and one spacing scale (values at 1440; fluid below)
+   H1 64 · H2 48 · H3 32 · card title 24 · lead 20 · large-card text 18 · body 16 · meta 14
+   kicker→H2 16 · H2→text 24 · section head→content 48 · grid gaps 24 · small card 24 · large card 32 · sections 120 */
+@media (min-width:601px){
+  .cap h1,.cap h2{font-size:clamp(40px,4.4vw,64px)}
+  .h2{font-size:clamp(36px,3.4vw,48px);line-height:1.04;letter-spacing:-0.04em}
+  .ct,.info h3{font-size:24px;line-height:1.2}
+  .cap p,.lead{font-size:clamp(18px,1.4vw,20px);line-height:1.5}
+  .info p{font-size:18px}
+  .cd{font-size:16px}
+  .cookie p{font-size:14px}
+  #contact .lead{margin-top:24px !important}
+  .card{padding:24px}.info{padding:32px}
+}
+/* one shape for chips, labels and links: 8 px corners like buttons, tabs and cards */
+.kick{border-radius:8px}
+/* detail card in «Від чипа до корпусу»: light, to match the device panel on the left */
+.info{background:#ffffff;color:var(--text);box-shadow:inset 0 0 0 1px var(--line)}
+.info h3{color:var(--ink)}
+.info .sub{color:var(--muted)}
+.info p{color:var(--text)}
+.info .n{background:var(--red-a);color:var(--red-t);box-shadow:inset 0 0 0 1px var(--red-b)}
+/* two-column layout (>900 px): the detail card is as tall as its text; the device panel follows the right column */
+@media (min-width:901px){.info{flex:0 0 auto}}
+/* header: more air. >900 px: taller (96), logo 40; >1359 px: wider gaps. Menu text never wraps:
+   «Електронні документи» shows from 1300 px (it is also in the footer), tighter menu at 901–1060 px */
+@media (min-width:901px){.hd .wrap{height:96px}.hd .wrap>a>img{height:40px !important;top:-7px !important}.menu>li>a,.docs{white-space:nowrap}}
+@media (min-width:901px) and (max-width:1060px){.hd .wrap{gap:24px}.menu{gap:0}.menu>li>a{padding:0 8px}}
+@media (min-width:1181px) and (max-width:1299px){.docs{display:none}}
+@media (min-width:1360px){.hd .wrap>a{margin-right:8px}.menu{gap:8px}}
+/* header grouping (variant B): menu | divider | quiet utilities — docs as an icon link, language as «UA ▾» */
+.docs{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 12px;border-radius:8px;color:var(--ink);text-decoration:none;font-size:16px;font-weight:500;white-space:nowrap;transition:background-color .2s ease}
+.docs:hover{background:var(--gray)}
+.docs>svg{flex:0 0 auto;display:block}
+.hd .wrap>nav{display:flex;align-items:center}
+.lang{position:relative;display:flex}
+.lang-btn{display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 10px;border:0;border-radius:8px;background:transparent;color:var(--ink);font:500 15px Geologica,sans-serif;cursor:pointer;transition:background-color .2s ease}
+.lang-btn>svg{display:block;transition:transform .25s var(--out)}
+.lang:hover>.lang-btn,.lang:focus-within>.lang-btn{background:var(--gray)}
+.lang:hover>.lang-btn>svg,.lang:focus-within>.lang-btn>svg{transform:rotate(180deg)}
+.lang .lang-drop{left:auto;right:0;min-width:180px}
+.lang:hover .lang-drop,.lang:focus-within .lang-drop{opacity:1;transform:none;pointer-events:auto}
+.lang-drop>a[aria-current]{color:var(--ink);font-weight:600}
+.hd .wrap>div:last-child{gap:4px !important}
+@media (max-width:1180px){.docs{display:none}}
+@media (min-width:1181px) and (max-width:1299px){.docs{display:none}}
+@media (max-width:900px){.lang{display:none}}
+/* CTA buttons: deeper brand red instead of the bright var(--red) (marks and dots keep --red) */
+.btn-red{background:var(--red)}
+.btn-red:hover{background:var(--red-h);box-shadow:0 14px 30px -12px rgba(200,16,46,.45)}
+/* section labels on phones: always one line (narrow phones wrapped «… з 2005 / року») */
+@media (max-width:600px){.kick{white-space:nowrap;letter-spacing:.06em;max-width:100%;box-sizing:border-box}}
+@media (max-width:359px){.kick{letter-spacing:.02em;padding:8px 12px;gap:8px}}
+/* ===== Typography scale (UI kit «Типографіка»): Display 80/36 · H1 64/30 · H2 48/26 · H3 24/20 · Lead 20/17 · Body 16 · Small 14 · Label 12 ===== */
+@media (min-width:601px){
+  .cap h1,.cap h2{font-size:clamp(40px,4.45vw,64px)}
+  .info .n{font-size:24px}
+  .info p{font-size:20px}
+  .lang-btn{font-size:16px}
+  .info .sub{font-size:14px}
+  .tag{font-size:12px}
+}
+@media (max-width:600px){
+  .info .n{font-size:20px}
+  .cap p,.lead,.info p{font-size:17px}
+  .cd{font-size:16px}
+  .tag{font-size:12px}
+  .info .sub{font-size:14px}
+}
+/* ===== States (UI kit «Стани · кнопки й поля») ===== */
+.btn:disabled,.btn[aria-disabled="true"]{background:var(--gray);color:#6b7682;box-shadow:none;cursor:not-allowed;transform:none}
+.btn-line:disabled,.btn-line[aria-disabled="true"]{background:transparent;box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn-red:active{background:var(--red-h)}
+.btn-line:active{background:var(--ink);color:#ffffff}
+.btn-ink:active{background:var(--ink-d)}
+.icon:active,.docs:active,.lang-btn:active{background:var(--gray);transform:scale(.97)}
+.icon:disabled{background:transparent;color:#6b7682;cursor:not-allowed}
+.cookie .lnk{text-decoration-thickness:1px;text-underline-offset:4px}
+.cookie .lnk:hover{color:var(--ink-d);text-decoration-thickness:2px}
+.card{box-shadow:0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28)}
+.card:hover{box-shadow:0 28px 56px -24px rgba(19,56,93,.35),0 0 0 1.5px var(--ink)}
+</style>
+<style>
+.crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0;padding:0;list-style:none;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.crumbs li+li::before{content:"/";margin-right:8px;color:#8592a0}
+.crumbs a{color:var(--muted);text-decoration:none}.crumbs a:hover{color:var(--ink)}
+.crumbs [aria-current]{color:var(--ink)}
+.h3s{margin:0;color:var(--ink)}
+.ph{display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;box-sizing:border-box;border-radius:20px;background:repeating-linear-gradient(135deg,var(--paper) 0 12px,#ffffff 12px 24px);box-shadow:inset 0 0 0 1.5px var(--line);font-family:var(--mono);font-size:13px;color:var(--muted)}
+
+.pd{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:start;margin-top:32px}
+.gal{display:grid;grid-template-columns:88px minmax(0,1fr);gap:16px}
+.thumbs{display:flex;flex-direction:column;gap:8px}
+.thumbs button{width:88px;height:88px;padding:8px;border:0;border-radius:18px;background:#ffffff;box-shadow:inset 0 0 0 1.5px var(--line);cursor:pointer;transition:box-shadow .2s ease}
+.thumbs button img{width:100%;height:100%;object-fit:contain}
+.thumbs button[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--ink)}
+.stage2{position:relative;height:600px;border-radius:28px;background:radial-gradient(60% 55% at 50% 45%,#ffffff 0%,var(--paper) 70%,var(--gray) 100%);box-shadow:inset 0 0 0 1px var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.stage2 img{max-width:80%;max-height:86%;object-fit:contain;filter:drop-shadow(0 36px 32px rgba(19,56,93,.22));animation:fadeIn .5s var(--out) both}
+.stage2 img.wide{max-width:94%;filter:none}
+@keyframes fadeIn{from{opacity:0;transform:scale(.98)}}
+.stage2 .cap{position:absolute;left:20px;bottom:18px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.pinfo .tagrow{display:flex;gap:8px;flex-wrap:wrap}
+.pinfo h1{margin:16px 0 0;color:var(--ink)}
+.pinfo .lead{margin-top:16px}
+.badges{margin-top:24px}
+.badges h2{margin:0 0 8px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.badges div{display:flex;gap:8px;flex-wrap:wrap}
+.bdg{display:inline-flex;align-items:center;min-height:40px;padding:0 16px;box-sizing:border-box;border-radius:8px;background:#ffffff;box-shadow:inset 0 0 0 1px var(--line);font-size:14px;font-weight:500;line-height:1.3;white-space:nowrap;color:var(--ink);text-decoration:none;transition:box-shadow .2s ease}
+a.bdg:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.feat{list-style:none;margin:32px 0 0;padding:24px 0 0;border-top:1px solid var(--line);display:grid;gap:16px}
+.feat li{display:flex;gap:16px;font-size:16px;line-height:1.5;color:var(--text)}
+.feat li::before{content:"";flex:0 0 8px;height:8px;margin-top:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px var(--red-a)}
+.pact{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:32px}
+.pact .lnk{font-weight:500;color:var(--ink);text-decoration-thickness:1px;text-underline-offset:4px}
+.pact .lnk:hover{color:var(--ink-d);text-decoration-thickness:2px}
+.pnote{margin-top:16px;font-size:14px;line-height:1.45;color:var(--muted)}
+.subnav{position:sticky;top:96px;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.subnav .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.subnav a{flex:0 0 auto;display:inline-flex;align-items:center;height:60px;padding:0 16px;font-size:16px;font-weight:600;color:var(--muted);text-decoration:none;box-shadow:inset 0 -2px 0 transparent}
+.subnav a:hover{color:var(--ink)}
+.subnav a[aria-current="true"]{color:var(--ink);box-shadow:inset 0 -2px 0 var(--red)}
+.psec{padding:120px 0;scroll-margin-top:168px}
+.psec+.psec{border-top:1px solid var(--line)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:start}
+.prose p{margin:16px 0 0;color:var(--text)}
+.xbox{border-radius:24px;background:#ffffff;box-shadow:inset 0 0 0 1px var(--line);padding:24px}
+.xbox img{display:block;width:100%;height:auto}
+.xbox figcaption{margin-top:16px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.kvt{width:100%;border-collapse:collapse;margin-top:24px;font-size:16px}
+.kvt th,.kvt td{padding:16px 0;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.kvt th{font-weight:500;color:var(--muted);width:46%;padding-right:24px}
+.kvt td{font-family:var(--mono);font-size:14px;color:var(--ink);font-weight:500}
+.code{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.code span{display:flex;flex-direction:column;gap:8px;padding:16px 16px;border-radius:14px;background:#ffffff;box-shadow:inset 0 0 0 1.5px var(--line);font-family:var(--mono);font-size:18px;font-weight:600;color:var(--ink)}
+.code span:first-child{background:var(--ink);color:#ffffff;box-shadow:none}
+.code small{font-size:12px;font-weight:400;color:var(--muted)}
+.code span:first-child small{color:#a9bbcf}
+.draw{position:relative;border-radius:24px;background:#ffffff;box-shadow:inset 0 0 0 1px var(--line);height:520px;display:flex;align-items:center;justify-content:center;overflow:hidden;background-image:linear-gradient(rgba(19,56,93,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(19,56,93,.05) 1px,transparent 1px);background-size:24px 24px}
+.draw img{height:400px;width:auto;filter:grayscale(1) contrast(.9);opacity:.35}
+.dim{position:absolute;font-family:var(--mono);font-size:12px;color:var(--ink)}
+.docs2{display:grid;gap:8px;margin-top:24px}
+.doc{display:flex;align-items:center;gap:16px;min-height:68px;padding:0 24px;border-radius:16px;background:#ffffff;box-shadow:inset 0 0 0 1px var(--line);text-decoration:none;color:var(--ink);font-weight:600;transition:box-shadow .2s ease}
+.doc:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.doc em{font-style:normal;flex:0 0 auto;padding:8px 8px;border-radius:8px;background:var(--red-a);color:var(--red-t);font-family:var(--mono);font-size:12px;font-weight:600}
+.doc small{margin-left:auto;font-family:var(--mono);font-size:12px;font-weight:400;color:var(--muted)}
+.doc.lock{background:var(--paper);color:var(--muted);box-shadow:inset 0 0 0 1.5px var(--line);border:0}
+.doc.lock em{background:rgba(19,56,93,.08);color:var(--muted)}
+.vbox2{position:relative;aspect-ratio:16/10;border-radius:24px;overflow:hidden;display:grid;place-items:center;isolation:isolate}
+.vbox2 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.vbox2::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(13,42,71,.45)}
+.vbox2 button{width:88px;height:88px;border-radius:50%;border:0;background:var(--red);color:#ffffff;display:grid;place-items:center;cursor:pointer;box-shadow:0 0 0 10px var(--red-b)}
+.vbox2 span{position:absolute;left:20px;bottom:18px;color:#ffffff;font-family:var(--mono);font-size:12px}
+.rel{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:40px}
+.rel .card{animation:none}
+@media (max-width:1100px){.pd{grid-template-columns:minmax(0,1fr);gap:40px}.rel{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){.two{grid-template-columns:minmax(0,1fr);gap:40px}.subnav{top:96px}}
+@media (max-width:600px){
+  .gal{grid-template-columns:minmax(0,1fr)}.thumbs{flex-direction:row;order:2}.thumbs button{width:72px;height:72px}
+  .stage2{height:400px;border-radius:22px}
+  .pact .btn{flex:1 1 100%}
+  .psec{padding:80px 0}
+  .draw{height:380px}.draw img{height:280px}
+  .rel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin:40px -16px 0;padding:4px 16px 16px;scrollbar-width:none}.rel .card{flex:0 0 82%;scroll-snap-align:start}
+  .code span{font-size:15px;padding:16px}
+}
+
+/* ===== v5-Anna: type scale from UI kit «Типографіка» (Display 80/36 · H1 64/30 · H2 48/26 · H3 24/20 · Lead 20/17 · Body 16 · Small 14 · Label 12) ===== */
+@media (min-width:601px){
+  .pinfo h1{font-size:clamp(40px,4.45vw,64px);line-height:1;letter-spacing:-0.04em;font-weight:700}
+  .h3s{font-size:clamp(36px,3.4vw,48px);line-height:1.04;letter-spacing:-0.04em;font-weight:700}
+  .cert b{font-size:24px;line-height:1.2;font-weight:700}
+  .prose p{font-size:20px;line-height:1.5}
+}
+@media (max-width:600px){
+  .pinfo h1{font-size:30px;line-height:1;letter-spacing:-0.04em;font-weight:700}
+  .h3s{font-size:26px;line-height:1.02;letter-spacing:-0.04em;font-weight:700}
+  .cert b{font-size:20px;line-height:1.2;font-weight:700}
+  .prose p{font-size:17px;line-height:1.5}
+  .subnav{top:64px}
+}
+@media (min-width:601px) and (max-width:900px){.subnav{top:80px}}
+.cert p,.feat li,.subnav a,.kvt{font-size:16px}
+.kvt td,.dim,.doc small,.pnote,.xbox figcaption,.ph{font-size:14px}
+.crumbs,.badges h2,.cert .st,.stage2 .cap,.code small,.doc em,.vbox2 span{font-size:12px}
+
+/* states as in the UI kit and the main page */
+.thumbs button:not([aria-pressed="true"]):hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
+#p-video{scroll-margin-top:168px}
+
+/* number + word must read as one phrase: sentences and captions in Geologica (monospace spaces are as wide as a digit) */
+.xbox figcaption{font-family:Geologica,sans-serif;letter-spacing:0;font-variant-numeric:tabular-nums}
+
+/* card link: text and arrow kept together as one centred unit */
+.cgo{justify-content:center;text-align:center}
+.cgo-in{display:inline-flex;align-items:center;gap:8px;margin:0 auto}
+
+/* product actions on phones: two full-width buttons, then a quiet centred text link */
+.pact .lnk{display:inline-flex;align-items:center;gap:8px}
+.pact .lnk svg{flex:0 0 auto;display:block;position:relative;top:1px}
+@media (max-width:600px){.pact .lnk{flex:1 1 100%;justify-content:center;min-height:44px}}
+
+/* section menu: solid white bar and a plain red underline — no blur layer, so no hairline seams beside the tabs when the canvas is zoomed */
+.subnav{background:#ffffff;backdrop-filter:none;-webkit-backdrop-filter:none}
+.subnav a{box-shadow:none;border-bottom:2px solid transparent;box-sizing:border-box}
+.subnav a[aria-current="true"]{box-shadow:none;border-bottom-color:var(--red)}
+
+/* phones: every content button is full width, like the section buttons on the main page */
+@media (max-width:600px){main .btn:not(.fbtn):not(.rst){width:100%;align-self:stretch}}
+
+/* document rows: one badge width so every title starts on the same line; on phones the size sits under the title */
+.doc{line-height:1.3}
+.doc em{display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:28px;padding:0 8px;box-sizing:border-box}
+@media (max-width:600px){
+  .doc{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:16px;row-gap:4px;align-items:center;align-content:center;padding:16px}
+  .doc em{grid-row:span 2}
+  .doc small{grid-column:2;margin-left:0}
+}
+
+/* catalog / product consistency pass */
+.kvt{display:block;width:100%;margin-top:24px;font-size:16px}
+.kvr{display:grid;grid-template-columns:46% minmax(0,1fr);border-bottom:1px solid var(--line)}
+.kk{padding:16px 24px 16px 0;font-family:var(--mono);font-size:14px;font-weight:500;color:var(--muted)}
+.kvv{padding:16px 0;font-family:var(--mono);font-size:14px;font-weight:600;color:var(--ink)}
+.code span{font-size:16px}
+.rel-more{display:none}
+@media (max-width:600px){
+  .code span{font-size:14px}
+  .rel{scroll-padding-inline:16px;padding-top:12px;margin-top:32px}
+  .rel-sec .shead>.btn{display:none}
+  .rel-more{display:flex;width:100%;margin-top:24px}
+  .pnote{text-align:center}
+}
+
+/* PDF badge inside download buttons — same look as the badges in the documents list */
+.pdfb{display:inline-flex;align-items:center;justify-content:center;height:24px;padding:0 8px;border-radius:8px;background:var(--red-a);color:var(--red-t);font:600 12px/1 var(--mono);letter-spacing:.02em}
+
+/* even vertical rhythm, as on the main page: head → first content 64 / 40, between blocks 120 + 120 / 80 + 80, last content → footer 120 / 80 */
+@media (min-width:601px){main>:nth-child(1){padding-bottom:42px !important}main>:nth-child(3){padding-top:64px !important}}
+@media (max-width:600px){main>:nth-child(1){padding-bottom:42px !important}main>:nth-child(3){padding-top:40px !important}main>:nth-child(4){padding-bottom:66px !important}}
+
+/* ===== UI kit pass (03.11): values from «UI kit · Основи / Елементи / Блоки» ===== */
+.drop a,.seg a{border-radius:8px}
+/* status tags */
+.tag.new{background:var(--ink);color:#ffffff}
+.tag.eol{background:var(--gray);color:var(--muted)}
+/* breadcrumbs — Geologica 14, current page 500 */
+.crumbs{font-family:Geologica,sans-serif;font-size:14px;line-height:1.45}
+.crumbs [aria-current]{font-weight:500}
+.crumbs a:hover{text-decoration:underline;text-underline-offset:4px}
+/* captions — Small 14 (photo caption is prose, so Geologica) */
+.stage2 .cap{font-family:Geologica,sans-serif;font-size:14px}
+.vbox2 span,.code small{font-size:14px}
+/* section navigation — active is Navy, Body 500, height 56 */
+.subnav a{height:56px;font-weight:500}
+.subnav a[aria-current="true"]{border-bottom-color:var(--ink)}
+/* spacing from «Основи»: heading → text 24 */
+.pinfo .lead{margin-top:24px}
+.prose .h3s+p{margin-top:24px}
+@media (max-width:600px){.pinfo .lead,.prose .h3s+p{margin-top:8px}}
+/* «Стати дилером» = «Текстова синя», no arrow */
+.pact .lnk svg{display:none}
+/* selected thumbnail: 1.5 px like every selected state */
+.thumbs button[aria-pressed="true"]{box-shadow:inset 0 0 0 1.5px var(--ink)}
+/* sections are separated by background only, as on the main page */
+.psec+.psec{border-top:0}
+/* video play: white, so the red button stays the only call to action */
+.vbox2 button{background:#ffffff;color:var(--ink);box-shadow:0 0 0 10px rgba(255,255,255,.24)}
+/* document rows: 64, badge as a tag */
+.doc{min-height:64px}
+.doc em{letter-spacing:.04em}
+.ph{border-radius:24px}
+/* pass 2: order code on the mono scale (14), section head → cards 48 / 24, inner page head 40 / 24 and crumbs → content 32 / 24, group names Navy like the catalog filters, plain bullet dots like the main page */
+.code span{font-size:14px}
+.rel{margin-top:48px}
+.badges h2{color:var(--ink)}
+.feat li::before{box-shadow:none}
+main>:nth-child(1){padding-top:40px !important}
+@media (max-width:600px){.rel{margin-top:24px}main>:nth-child(1){padding-top:24px !important}.pd{margin-top:24px}}
+/* «Креслення» text and button: Lead 20 / 17, heading → text 24 / 8, text → button 32 / 24 */
+.dtxt{margin:24px 0 0;font-size:20px;line-height:1.5;color:var(--text)}
+.dbtn{margin-top:32px}
+@media (max-width:600px){.dtxt{margin-top:8px;font-size:17px}.dbtn{margin-top:24px}}
+/* rhythm on the 8-pt grid */
+@media (min-width:601px){main>:nth-child(1){padding-bottom:40px !important}}
+@media (max-width:600px){main>:nth-child(1){padding-bottom:40px !important}main>:nth-child(4){padding-bottom:64px !important}.rel{gap:16px}}
+
+/* ===== UI kit pass 3 (03.11): consistency review ===== */
+/* card tags side by side, 8 apart (as in «Блоки») */
+.ctop{justify-content:flex-start;gap:8px;flex-wrap:wrap}
+.tag{display:inline-flex;align-items:center;line-height:1.3;white-space:nowrap}
+/* focus on dark (footer, video): white ring, as on the main page */
+.ft :focus-visible,.vbox2 :focus-visible{outline-color:#ffffff}
+/* large panels (cross-section, drawing, video): 28 / 22 */
+.xbox,.draw,.vbox2{border-radius:28px}
+@media (max-width:600px){.xbox,.draw,.vbox2{border-radius:22px}}
+/* product photo on the big stage: shadow from «Основи» */
+.stage2 img{filter:drop-shadow(0 40px 36px rgba(19,56,93,.24))}
+.stage2 img.wide{filter:none}
+/* gallery caption: visible (the slider .cap rule hid it) */
+.stage2 .cap{opacity:1;transform:none;pointer-events:auto}
+/* columns: 48 / 24, as on the main page */
+.pd,.two{gap:48px}
+@media (max-width:600px){.pd,.two{gap:24px}}
+/* order code: tag radius 8 */
+.code span{border-radius:8px}
+/* locked document: 1 px edge, as in «Блоки» */
+.doc.lock{box-shadow:inset 0 0 0 1px var(--line)}
+/* captions on photos: on the 8-pt grid */
+.stage2 .cap,.vbox2 span{left:24px;bottom:24px}
+@media (max-width:600px){.stage2 .cap,.vbox2 span{left:16px;bottom:16px}}
+/* play button (UI kit «Елементи · На темному фоні»): hover and focus */
+.vbox2 button{transition:box-shadow .2s ease}
+.vbox2 button:hover{box-shadow:0 0 0 10px rgba(255,255,255,.4)}
+.vbox2 button:focus-visible{outline:3px solid #ffffff;outline-offset:13px}
+</style>
+</helmet>
+<div style="font-family: Geologica, sans-serif; color: var(--text); background: #ffffff; overflow-x: hidden">
+
+<a href="#main" class="skip">Перейти до змісту</a>
+<header class="hd">
+  <div class="wrap">
+    <a href="Main-v5-kflx-1krx-k1wp-ptzz-q75t-zbr8-ncr3-vboh-w8v5.dc.html" aria-label="НІК-ЕЛЕКТРОНІКА — на головну" style="display: flex"><img src="./assets/b595d8599d5771d4e9e8bf7cb4fbd5bb.webp" alt="НІК-ЕЛЕКТРОНІКА — на головну" style="height: 34px; width: auto; display: block; position: relative; top: -6px"></a>
+    <nav aria-label="Головне меню" style="flex: 1 1 auto">
+      <ul class="menu">
+        <sc-for list="{{menu}}" as="m" hint-placeholder-count="4">
+          <li>
+            <a href="{{m.href}}" aria-haspopup="true">{{m.t}}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></a>
+            <div class="drop">
+              <sc-for list="{{m.items}}" as="i" hint-placeholder-count="4"><a href="{{i.href}}">{{i.t}}</a></sc-for>
+            </div>
+          </li>
+        </sc-for>
+      </ul>
+    </nav>
+    <a href="#" class="docs"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg>Електронні документи</a>
+    <div style="display: flex; align-items: center; gap: 6px">
+      <button class="icon burger" type="button" aria-label="{{menuLabel}}" aria-expanded="{{menuExp}}" aria-controls="mnav" onClick="{{toggleMenu}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="{{burgerPath}}"></path></svg></button>
+      <button class="icon" aria-label="Пошук моделі, документа або статті" title="Пошук моделі, документа або статті"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></button>
+      <a href="#" class="icon" aria-label="Увійти в особистий кабінет" title="Увійти в особистий кабінет"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></a>
+      <div class="lang"><button type="button" class="lang-btn" aria-haspopup="true" aria-label="Мова сайту: українська">UA<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button><div class="drop lang-drop" aria-label="Мова сайту"><a href="#" aria-current="true" lang="uk">Українська</a><a href="#" lang="en">English</a><a href="#" lang="ru">Русский</a></div></div>
+    </div>
+  </div>
+</header>
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{false}}">
+  <nav class="mnav" id="mnav" aria-label="Мобільне меню" onClick="{{menuClick}}">
+    <sc-for list="{{menu}}" as="m" hint-placeholder-count="4">
+      <div class="grp">
+        <a href="{{m.href}}">{{m.t}}<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        <div class="sub"><sc-for list="{{m.items}}" as="i" hint-placeholder-count="4"><a href="{{i.href}}">{{i.t}}</a></sc-for></div>
+      </div>
+    </sc-for>
+    <div class="foot">
+      <a href="#" class="btn btn-line" style="width: 100%">Електронні документи</a>
+      <a href="Main-v5-kflx-1krx-k1wp-ptzz-q75t-zbr8-ncr3-vboh-w8v5.dc.html#contact" class="btn btn-red" style="width: 100%">Зв'язатися з нами</a>
+      <div class="seg" aria-label="Мова сайту" style="align-self: flex-start"><a href="#" aria-current="true">UA</a><a href="#">EN</a><a href="#">RU</a></div>
+    </div>
+  </nav>
+</sc-if>
+
+<main id="main">
+<section style="padding: 32px 0 72px; background: linear-gradient(180deg, #ffffff 0%, var(--paper) 100%)">
+  <div class="wrap">
+    <nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a href="Main-v5-kflx-1krx-k1wp-ptzz-q75t-zbr8-ncr3-vboh-w8v5.dc.html">Головна</a></li><li><a href="Catalog-v5-vaxw-b5b4-edoi-s1qo-mumm-t8sy.dc.html">Каталог</a></li><li><a href="Catalog-v5-vaxw-b5b4-edoi-s1qo-mumm-t8sy.dc.html">Облік електроенергії</a></li><li><span aria-current="page">NIK 2306</span></li></ol></nav>
+    <div class="pd">
+      <div class="gal">
+        <div class="thumbs" role="group" aria-label="Зображення моделі">
+          <sc-for list="{{thumbs}}" as="t" hint-placeholder-count="3"><button type="button" aria-pressed="{{t.on}}" aria-label="{{t.alt}}" onClick="{{t.pick}}"><img src="{{t.img}}" alt=""></button></sc-for>
+        </div>
+        <div class="stage2"><img class="{{shot.cls}}" src="{{shot.img}}" alt="{{shot.alt}}"><span class="cap">{{shot.cap}}</span></div>
+      </div>
+      <div class="pinfo">
+        <div class="tagrow"><span class="tag r">Електроенергія</span><span class="tag new">Новинка</span></div>
+        <h1>NIK 2306</h1>
+        <p class="lead">Трифазний лічильник електроенергії з багатотарифним обліком, змінним модулем зв’язку та вбудованим реле навантаження.</p>
+        <div class="badges"><h2>Канали зв’язку</h2><div><a class="bdg" href="Catalog-v5-vaxw-b5b4-edoi-s1qo-mumm-t8sy.dc.html">LTE</a><a class="bdg" href="Catalog-v5-vaxw-b5b4-edoi-s1qo-mumm-t8sy.dc.html">RS-485</a><a class="bdg" href="Catalog-v5-vaxw-b5b4-edoi-s1qo-mumm-t8sy.dc.html">PLC</a><a class="bdg" href="Catalog-v5-vaxw-b5b4-edoi-s1qo-mumm-t8sy.dc.html">G3-PLC</a></div></div>
+        <div class="badges"><h2>Сертифікати та стандарти</h2><div><span class="tag" title="Державний стандарт України">ДСТУ</span><span class="tag" title="Маркування відповідності ЄС">CE</span><span class="tag" title="Директива ЄС про засоби вимірювання">MID</span><span class="tag" title="Протокол обміну даними">DLMS / COSEM</span><span class="tag" title="Профіль сумісності лічильників">IDIS</span></div></div>
+        <ul class="feat">
+          <li>Багатотарифний облік активної й реактивної енергії</li>
+          <li>Змінний модуль зв’язку NIK LTE Module під кришкою</li>
+          <li>Вбудоване реле навантаження для дистанційного вимкнення</li>
+          <li>Оптичний порт для зчитування й налаштування на місці</li>
+          <li>Пломбована клемна кришка з фіксацією відкриття в журналі подій</li>
+        </ul>
+        <div class="pact">
+          <a href="WhereToBuy-v5.dc.html" class="btn btn-red">Контакти<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a href="#" class="btn btn-line">Чим замінити</a>
+          <a href="WhereToBuy-v5.dc.html" class="lnk">Стати дилером<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </div>
+        <p class="pnote">Ціни, наявність і замовлення — у кабінеті партнера.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<nav class="subnav" aria-label="Розділи картки товару"><div class="wrap">
+  <sc-for list="{{subnav}}" as="n" hint-placeholder-count="5"><a href="{{n.href}}" aria-current="{{n.cur}}" onClick="{{n.pick}}">{{n.t}}</a></sc-for>
+</div></nav>
+
+<section class="psec" id="p-desc"><div class="wrap two">
+  <div class="prose">
+    <span class="kick">Опис</span>
+    <h2 class="h3s" style="margin-top: 16px">Облік і керування навантаженням в одному приладі</h2>
+    <p>NIK 2306 вимірює активну й реактивну енергію в трифазних мережах 3×230/400 В і зберігає показання за тарифами та журнал подій. Дані передаються в систему АСКОЕ через RS-485, PLC або змінний модуль LTE.</p>
+    <p>Вбудоване реле дозволяє оператору дистанційно вимикати й вмикати споживача. Корпус із захистом IP54 працює в діапазоні від −40 до +70 °C.</p>
+    <p style="font-size: 14px; color: var(--muted)">[Повний опис моделі — від замовника]</p>
+  </div>
+  <figure class="xbox" style="margin: 0"><img src="./assets/f4a4c7b187c7db0a0348ba83d9f3540a.webp" alt="NIK 2306 у розрізі: деталі корпусу, плата, клемна колодка"><figcaption>NIK 2306 у розрізі · власна розробка та виробництво</figcaption></figure>
+</div></section>
+
+<section class="psec" id="p-spec" style="background: var(--paper)"><div class="wrap two">
+  <div>
+    <span class="kick">Характеристики</span>
+    <h2 class="h3s" style="margin-top: 16px">Технічні характеристики</h2>
+    <div class="kvt" role="table" aria-label="Технічні характеристики">
+      <sc-for list="{{specs}}" as="r" hint-placeholder-count="10"><div class="kvr" role="row"><span class="kk" role="rowheader">{{r.k}}</span><span class="kvv" role="cell">{{r.v}}</span></div></sc-for>
+    </div>
+  </div>
+  <div>
+    <span class="kick">Виконання</span>
+    <h2 class="h3s" style="margin-top: 16px">Як читати код замовлення</h2>
+    <div class="code">
+      <span>NIK 2306<small>модель</small></span><span>ARP6<small>[функції]</small></span><span>T.3292<small>[тип]</small></span><span>MC.22<small>[модуль]</small></span>
+    </div>
+    <p style="margin-top: 16px; font-size: 14px; color: var(--muted)">Приклад з маркування приладу. Розшифровку сегментів і таблицю виконань надасть замовник.</p>
+  </div>
+</div></section>
+
+<section class="psec" id="p-draw"><div class="wrap two">
+  <div>
+    <span class="kick">Креслення</span>
+    <h2 class="h3s" style="margin-top: 16px">Габаритні та монтажні розміри</h2>
+    <p class="dtxt">Креслення з розмірами в міліметрах і схема підключення трифазної чотирипровідної мережі.</p>
+    <a href="#" class="btn btn-line dbtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>Завантажити креслення<span class="sr">(PDF)</span></a>
+  </div>
+  <div class="draw" aria-label="Схематичне креслення з розмірами">
+    <img src="./assets/6f884be94a4a94d5b0a95fc852f59487.webp" alt="">
+    <svg style="position: absolute; inset: 0; width: 100%; height: 100%; color: var(--red)" aria-hidden="true"><line x1="34%" y1="90%" x2="66%" y2="90%" stroke="currentColor" stroke-width="1.5"></line><line x1="34%" y1="87%" x2="34%" y2="93%" stroke="currentColor" stroke-width="1.5"></line><line x1="66%" y1="87%" x2="66%" y2="93%" stroke="currentColor" stroke-width="1.5"></line><line x1="80%" y1="11%" x2="80%" y2="88%" stroke="currentColor" stroke-width="1.5"></line><line x1="78%" y1="11%" x2="82%" y2="11%" stroke="currentColor" stroke-width="1.5"></line><line x1="78%" y1="88%" x2="82%" y2="88%" stroke="currentColor" stroke-width="1.5"></line></svg>
+    <span class="dim" style="left: 50%; bottom: 3%; transform: translateX(-50%)">[ширина] мм</span>
+    <span class="dim" style="left: 82%; top: 48%">[висота] мм</span>
+  </div>
+</div></section>
+
+<section class="psec" id="p-docs" style="background: var(--paper)"><div class="wrap two">
+  <div>
+    <span class="kick">Документи</span>
+    <h2 class="h3s" style="margin-top: 16px">Документація</h2>
+    <div class="docs2">
+      <a class="doc" href="#"><em>PDF</em>Настанова з експлуатації<small>[розмір]</small></a>
+      <a class="doc" href="#"><em>PDF</em>Сертифікат відповідності<small>[розмір]</small></a>
+      <a class="doc" href="#"><em>PDF</em>Декларація відповідності ЄС (MID)<small>[розмір]</small></a>
+      <a class="doc" href="#"><em>PDF</em>Презентація продукту<small>[розмір]</small></a>
+      <a class="doc lock" href="#"><em><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></em>Інструкція з підключення<small>у кабінеті партнера</small></a>
+    </div>
+  </div>
+  <div id="p-video">
+    <span class="kick">Відео</span>
+    <h2 class="h3s" style="margin-top: 16px">Огляд моделі</h2>
+    <div class="vbox2" style="margin-top: 24px"><img src="./assets/54dc208313d5188e0155a7d57ed4fd77.webp" alt=""><button type="button" aria-label="Дивитися відео про NIK 2306"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></button><span>YouTube · [тривалість]</span></div>
+  </div>
+</div></section>
+
+<section class="psec rel-sec"><div class="wrap">
+  <div class="shead"><div><span class="kick">Сумісні рішення</span><h2 class="h2">З цим товаром також обирають</h2></div><a href="Catalog-v5-vaxw-b5b4-edoi-s1qo-mumm-t8sy.dc.html" class="btn btn-line">Увесь каталог<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+  <div class="rel">
+    <sc-for list="{{rel}}" as="c" hint-placeholder-count="4">
+      <a href="Product-v5-dgmn-paa9-usdq-5d9o-jszo-8wjv.dc.html" class="{{c.cls}}">
+          <span class="ctop"><span class="{{c.tagCls}}">{{c.tag}}</span><sc-if value="{{c.isNew}}" hint-placeholder-val="{{false}}"><span class="tag new">Новинка</span></sc-if></span>
+          <span class="cimg"><img class="{{c.k}}" src="{{c.img}}" alt="{{c.alt}}"></span>
+          <span class="ct">{{c.m}}</span>
+          <span class="cd">{{c.t}}</span>
+          <span class="spec"><span>{{c.k1}}</span><b>{{c.v1}}</b></span>
+          <span class="spec"><span>{{c.k2}}</span><b>{{c.v2}}</b></span>
+          <span class="cgo"><span class="cgo-in">Специфікація<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span>
+        </a>
+    </sc-for>
+  </div>
+  <a href="Catalog-v5-vaxw-b5b4-edoi-s1qo-mumm-t8sy.dc.html" class="btn btn-line rel-more">Увесь каталог<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div></section>
+</main>
+
+<!-- 11. Футер -->
+<footer class="ft">
+  <div class="wrap">
+    <div class="ftop"><img src="./assets/3b4743586c945758ec695ddb8d686d15.webp" alt="НІК-ЕЛЕКТРОНІКА" style="height: 64px; width: auto; display: block"></div>
+    <div class="fcols">
+      <div><b>Каталог</b><a href="Catalog-v5-vaxw-b5b4-edoi-s1qo-mumm-t8sy.dc.html">Облік електроенергії</a><a href="Catalog-v5-vaxw-b5b4-edoi-s1qo-mumm-t8sy.dc.html">Облік води й тепла</a><a href="Catalog-v5-vaxw-b5b4-edoi-s1qo-mumm-t8sy.dc.html">АСКОЕ та контролери</a><a href="Catalog-v5-vaxw-b5b4-edoi-s1qo-mumm-t8sy.dc.html">Стабілізатори напруги</a></div>
+      <div><b>Компанія</b><a href="About-v5.dc.html">Про нас</a><a href="About-v5.dc.html">Виробництво</a><a href="Career-v5.dc.html">Кар’єра</a><a href="News-v5.dc.html">Прес-центр</a></div>
+      <div><b>Партнерам</b><a href="WhereToBuy-v5.dc.html">Де купити</a><a href="Main-v5-kflx-1krx-k1wp-ptzz-q75t-zbr8-ncr3-vboh-w8v5.dc.html#contact">Стати дилером</a><a href="#">Електронні документи</a><a href="ServiceCenter-v5.dc.html">Сервісний центр</a></div>
+      <div><b>Контакти</b><a href="#" class="num">+380 (44) 498-06-19</a><a href="#">info@nikel.com.ua</a><span>Пн–Пт, 8:00–17:00</span></div>
+    </div>
+    <div class="fbot">
+      <span>© 2005–2026 ТОВ «НІК-ЕЛЕКТРОНІКА»</span>
+      <nav aria-label="Правова інформація та соцмережі"><a href="#">Політика конфіденційності</a><a href="#" onClick="{{openCookie}}">Cookie</a><span><a href="#">LinkedIn</a> · <a href="#">Facebook</a> · <a href="#">YouTube</a></span></nav>
+    </div>
+  </div>
+</footer>
+
+<!-- Cookie-банер -->
+<sc-if value="{{cookie}}" hint-placeholder-val="{{true}}">
+  <div class="cookie" role="region" aria-label="Налаштування cookie">
+    <p>Ми використовуємо необхідні cookie, щоб сайт працював. За вашою згодою також використаємо аналітичні cookie і сторонні сервіси — карти та відео. Детальніше — у <a href="#">Політиці cookie</a>.</p>
+    <div class="row">
+      <button class="btn btn-ink" onClick="{{closeCookie}}">Прийняти всі</button>
+      <button class="btn btn-line" onClick="{{closeCookie}}">Лише необхідні</button>
+      <button class="btn lnk" onClick="{{closeCookie}}">Налаштувати</button>
+    </div>
+  </div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5200}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = Object.assign({ cookie: true, menu: false }, { g: 0, sec: 'p-desc' });
+  }
+  base(s) {
+    const isMenu = (t, href, items) => ({ t, href, items: items.map((x) => (Array.isArray(x) ? { t: x[0], href: x[1] } : { t: x, href })) });
+    return {
+      menu: [
+        isMenu('Каталог', 'Catalog-v5-vaxw-b5b4-edoi-s1qo-mumm-t8sy.dc.html', ['Продукти', 'Послуги', 'Програмне забезпечення', 'Таблиця взаємозамінності', 'Порівняти товари']),
+        isMenu('Про нас', 'About-v5.dc.html', ['Про компанію', ['Історія компанії', 'History-v5.dc.html'], ['Кар’єра', 'Career-v5.dc.html'], ['Центр оцінки відповідності', 'Conformity-v5.dc.html'], ['Наші партнери', 'Partners-v5.dc.html']]),
+        isMenu('Контакти', 'WhereToBuy-v5.dc.html', ['Де купити', ['Сервісний центр', 'ServiceCenter-v5.dc.html']]),
+        isMenu('Прес-центр', 'News-v5.dc.html', ['Новини', 'НІКіпедія', 'Ми у ЗМІ'])
+      ],
+      cookie: s.cookie && !s.menu,
+      menuOpen: s.menu, menuExp: String(s.menu), menuLabel: s.menu ? 'Закрити меню' : 'Відкрити меню',
+      burgerPath: s.menu ? 'M6 6l12 12M18 6 6 18' : 'M4 7h16M4 12h16M4 17h16',
+      toggleMenu: () => this.setState({ menu: !s.menu }),
+      menuClick: (e) => { if (e && e.target && e.target.closest && e.target.closest('a')) this.setState({ menu: false }); },
+      closeCookie: () => this.setState({ cookie: false }),
+      openCookie: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ cookie: true }); }
+    };
+  }
+  renderVals() {
+    const s = this.state;
+    const B = '/_blob/';
+    const P = [
+      { m: 'NIK 2306', t: 'Лічильник електроенергії трифазний', img: 'f17070b288dd9e18e46b94068534e6a7', k: 'cut', dir: 'el', ph: '3', ch: ['LTE', 'RS-485', 'PLC', 'G3-PLC'], cert: ['ДСТУ', 'CE', 'MID'], k1: 'Мережа', v1: '3×230/400 В', k2: 'Зв’язок', v2: 'LTE, RS-485, PLC', isNew: 1 },
+      { m: 'NIK 2300', t: 'Лічильник електроенергії трифазний', img: 'd3153f2f5ed8d9965f5fb1e49ae07ad9', k: 'cut', dir: 'el', ph: '3', ch: ['PLC', 'G3-PLC'], cert: [], k1: 'Фази', v1: 'Трифазний', k2: 'Зв’язок', v2: 'PLC, G3-PLC' },
+      { m: 'NIK 2303', t: 'Лічильник електроенергії трифазний', img: 'f0a2363fd4057897cae4831524ce270e', k: 'cut', dir: 'el', ph: '3', ch: ['PLC'], cert: [], k1: 'Фази', v1: 'Трифазний', k2: 'Зв’язок', v2: 'PLC' },
+      { m: 'NIK 2104', t: 'Лічильник електроенергії однофазний', img: 'd44b48d010a937c9048712bd27b4b807', k: 'cut', dir: 'el', ph: '1', ch: [], cert: [], k1: 'Фази', v1: 'Однофазний', k2: 'Мережа', v2: '230 В' },
+      { m: 'NIK 2100', t: 'Лічильник електроенергії однофазний', img: '9b13e5f6913676cc93140685ba7b1bc0', k: 'cut', dir: 'el', ph: '1', ch: [], cert: [], k1: 'Фази', v1: 'Однофазний', k2: 'Аналог', v2: 'NIK 2104', eol: 1 },
+      { m: 'NIK 7071', t: 'Теплолічильник', img: 'c4241830221490918fd0d48d83d56297', k: 'cut', dir: 'wh', ch: ['M-Bus'], cert: [], k1: 'Ресурс', v1: 'Тепло', k2: 'Інтерфейс', v2: 'M-Bus' },
+      { m: 'NIK 7011', t: 'Лічильник холодної води', img: '59c125130fc7c7750a7256ca7228fc69', k: 'cut', dir: 'wh', ch: [], cert: ['CE', 'MID'], k1: 'Витрата Q3', v1: '1,6 м³/год', k2: 'Маркування', v2: 'CE / MID' },
+      { m: 'KC-02', t: 'Концентратор даних АСКОЕ', img: '4e3e1ef59dd050762514eb1b6bc902b0', k: 'cut', dir: 'am', ch: [], cert: [], k1: 'Призначення', v1: 'Збір даних', k2: 'Підключення', v2: 'Лічильники NIK' },
+      { m: 'KK-01', t: 'Комунікаційний контролер АСКОЕ', img: '1bc2c60e4fa2f82c5d311ace163765cc', k: 'cut', dir: 'am', ch: [], cert: [], k1: 'Призначення', v1: 'Передача даних', k2: 'Система', v2: 'АСКОЕ' },
+      { m: 'NIK AMBUS', t: 'Модуль підключення приладів M-Bus', img: 'f7fccb09fa506c70f87d6dad6abfc916', k: 'flat', dir: 'am', ch: ['M-Bus'], cert: [], k1: 'Монтаж', v1: 'DIN-рейка', k2: 'Інтерфейс', v2: 'M-Bus' },
+      { m: 'NIK STV-01M', t: 'Стабілізатор напруги', img: '07c44668a5a79d699210918f2ee79e65', k: 'cut', dir: 'st', ch: [], cert: [], k1: 'Призначення', v1: 'Захист мережі', k2: 'Монтаж', v2: 'Настінний' }
+    ];
+    const DIR = { el: 'Електроенергія', wh: 'Вода та тепло', am: 'АСКОЕ', st: 'Стабілізатори' };
+    const card = (p) => ({ ...p, img: B + p.img, alt: p.m + ' — ' + p.t.toLowerCase(), tag: p.eol ? 'Знято з виробництва' : DIR[p.dir], tagCls: p.eol ? 'tag eol' : 'tag' + (p.dir === 'el' ? ' r' : ''), cls: 'card' + (p.eol ? ' eol' : '') });
+    const shots = [
+      { img: B + 'f17070b288dd9e18e46b94068534e6a7', alt: 'NIK 2306 з модулем LTE — вигляд спереду', cap: 'Виконання для України', cls: '' },
+      { img: B + '6c5854a5dadda834e83432d9bbe490f6', alt: 'NIK 2306 у виконанні з маркуванням CE і MID', cap: 'Виконання для ЄС (MID)', cls: '' },
+      { img: B + '4f80ef4cc75cb5a09e82e89582a6fabf', alt: 'NIK 2306 у розрізі', cap: 'Будова приладу', cls: 'wide' }
+    ];
+    const thumbs = shots.map((x, i) => ({ img: x.img, alt: x.cap, on: String(s.g === i), pick: () => this.setState({ g: i }) }));
+    const subnav = [['p-desc', 'Опис'], ['p-spec', 'Характеристики'], ['p-draw', 'Креслення'], ['p-docs', 'Документи'], ['p-video', 'Відео']].map(([id, t]) => ({ t, href: '#' + id, cur: String(s.sec === id), pick: () => this.setState({ sec: id }) }));
+    const specs = [
+      ['Номінальна напруга', '3×230/400 В, 50 Гц'], ['Струм', '0,25–5(80) А'], ['Клас точності', 'B (активна) / 2 (реактивна)'], ['Стандарти', 'EN 50470-3, EN 62053-23'],
+      ['Протокол', 'DLMS / COSEM, IDIS'], ['Інтерфейси', 'RS-485, PLC (G3-PLC), модуль LTE'], ['Постійна лічильника', '8000 імп/кВт·год, 8000 імп/квар·год'],
+      ['Реле навантаження', 'Вбудоване'], ['Робоча температура', '−40…+70 °C'], ['Ступінь захисту', 'IP54']
+    ].map(([k, v]) => ({ k, v }));
+    const rel = ['KC-02', 'KK-01', 'NIK AMBUS', 'NIK 2300'].map((m) => card(P.find((p) => p.m === m)));
+    return Object.assign(this.base(s), { thumbs, shot: shots[s.g], subnav, specs, rel });
+  }
+}
+</script>
+</body>
+</html>
