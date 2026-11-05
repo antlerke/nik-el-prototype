@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NIK 2306 — лічильник електроенергії трифазний — НІК-ЕЛЕКТРОНІКА</title>
 <meta name="robots" content="noindex">
-<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
@@ -556,21 +555,26 @@ main>:nth-child(1){padding-top:40px !important}
 .tag{display:inline-flex;align-items:center;white-space:nowrap;line-height:16px;padding-top:4.5px;padding-bottom:3.5px}
 /* kickers: same font effect, capitals sat 0.5px high; text moved down, dot kept level with the letters */
 .kick{padding-top:8.5px;padding-bottom:7.5px}.kick::before{position:relative;top:-.5px}
-/* gallery: only a 3D model, no thumbnails (for now the NIK 2308 model stands in for the NIK 2306 — design study);
-   hint, reset button and model loading as in the home page's 3D block, without hotspots */
-.gal{grid-template-columns:minmax(0,1fr)}
-.stage2 .m3d{position:absolute;inset:0;border-radius:inherit;overflow:hidden;cursor:grab}
-.stage2 .m3d:active{cursor:grabbing}
-.m3d model-viewer{position:absolute;inset:0;width:100%;height:100%;--poster-color:transparent;--progress-bar-color:var(--red);outline:none}
-.m3d .ihint{position:absolute;left:24px;top:24px;z-index:2;display:flex;align-items:center;gap:8px;font:14px var(--mono);color:var(--muted);pointer-events:none}
-.m3d-reset{position:absolute;right:16px;top:14px;z-index:2;display:none;align-items:center;gap:8px;height:40px;padding:0 14px;border:0;border-radius:8px;background:#ffffff;box-shadow:inset 0 0 0 1.5px var(--line);font:500 14px var(--mono);color:var(--muted);cursor:pointer;transition:box-shadow .2s ease,color .2s ease}
-.m3d-reset:hover{box-shadow:inset 0 0 0 1.5px var(--ink);color:var(--ink)}
-.m3d.moved .m3d-reset{display:inline-flex}
-.m3d .h-touch{display:none}
-@media (hover:none),(max-width:600px){.m3d .h-desk{display:none}.m3d .h-touch{display:inline}}
-/* narrower than 360 px the touch hint drops «убік», so it keeps clear of the box edge */
-@media (max-width:359px){.m3d .h-wide{display:none}}
-@media (max-width:600px){.m3d .ihint{left:16px;top:16px}.m3d.moved .ihint{display:none}}
+/* gallery: two photos instead of the 3D model, no thumbnails (for now the NIK 2308 stands in for the NIK 2306 — design study);
+   the photos fill the box and cross-fade (fade as in the home page hero); under them short timer bars as in the home mobile hero:
+   the active bar fills in 10 s, then the next photo opens; a bar opens its photo; the timer waits while the pointer is on the photo */
+.gal{grid-template-columns:minmax(0,1fr);row-gap:8px}
+.stage2 .gph{position:absolute;inset:0;border-radius:inherit;overflow:hidden}
+.stage2 .gph img{position:absolute;inset:0;width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;filter:none;animation:none;opacity:0;transition:opacity .9s ease}
+.stage2 .gph img.on{opacity:1}
+@media (prefers-reduced-motion:reduce){.stage2 .gph img{transition:none}}
+.gidx{list-style:none;margin:0;padding:0;display:flex;justify-content:center;gap:4px}
+.gidx li{display:flex}
+.gidx button{position:relative;width:44px;min-height:24px;padding:0;border:0;background:transparent;cursor:pointer}
+.gidx button::before{content:"";position:absolute;inset:-4px -2px}
+.gidx .bar{position:absolute;left:6px;right:6px;bottom:11px;height:2px;background:var(--line);border-radius:2px;overflow:hidden}
+.gidx .bar i{display:block;height:100%;width:100%;background:var(--ink);transform-origin:left;transform:scaleX(0)}
+.gidx button[aria-current="true"] .bar{background:rgba(19,56,93,.18)}
+.gidx button[aria-current="true"] .bar i{animation:prog 10s linear both}
+@media (hover:hover){.gal:has(.stage2:hover) .gidx button[aria-current="true"] .bar i{animation-play-state:paused}}
+/* phones: a tap on a bar stops the timer (as on the home page); reduced motion: no timer, the bars switch the photos */
+@media (max-width:600px){.gidx.stop button[aria-current="true"] .bar i{animation:none;transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){.gidx button[aria-current="true"] .bar i{animation:none;transform:scaleX(1)}}
 /* «PDF» badges: same font effect as the tags, capitals sat 1.3 px high; text moved down, badge size unchanged */
 .doc em{padding-top:2.6px}
 /* radii on one scale: 4 checkboxes · 8 controls · 16 small surfaces · 24 cards · 28 / 22 large boxes */
@@ -638,12 +642,16 @@ main>:nth-child(1){padding-top:40px !important}
     <div class="pd">
       <div class="gal">
         <div class="stage2">
-          <div class="m3d" data-dc-keep="">
-            <span class="ihint"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path></svg><span class="h-desk">Затисніть і потягніть, щоб обернути</span><span class="h-touch">Потягніть<span class="h-wide"> убік</span>, щоб обернути</span></span>
-            <button type="button" class="m3d-reset">Скинути вигляд</button>
-            <model-viewer id="nik3d" data-src="../../assets/fe973e1e-nik-2308.glb" poster="../../assets/593dddd1-nik2308-poster.webp" alt="Трифазний лічильник NIK 2308 — 3D-модель, яку можна обертати" camera-controls="" disable-zoom="" disable-pan="" touch-action="pan-y" interaction-prompt="none" camera-orbit="-14deg 80deg auto" min-camera-orbit="auto 35deg auto" max-camera-orbit="auto 145deg auto" interpolation-decay="140" environment-image="neutral" exposure="1.05" shadow-intensity="1" shadow-softness="1" loading="eager" reveal="auto"></model-viewer>
+          <div class="gph">
+            <img class="{{gal0}}" src="../../assets/91859076-nik2308-gray.jpg" alt="Трифазний лічильник NIK 2308" width="1280" height="1280">
+            <img class="{{gal1}}" src="../../assets/0190bb87-nik2308-dark.jpg" alt="" width="1280" height="1280">
           </div>
         </div>
+        <ol class="{{gidxCls}}" aria-label="Фото товару" onAnimationEnd="{{galDone}}">
+          <sc-for list="{{galBars}}" as="b" hint-placeholder-count="2">
+            <li><button type="button" aria-label="{{b.label}}" aria-current="{{b.cur}}" onClick="{{b.pick}}"><span class="bar" aria-hidden="true"><i></i></span></button></li>
+          </sc-for>
+        </ol>
       </div>
       <div class="pinfo">
         <div class="tagrow"><span class="tag r">Електроенергія</span><span class="tag new">Новинка</span></div>
@@ -791,8 +799,7 @@ window.DC_BLOBS = {"f17070b288dd9e18e46b94068534e6a7":"../../assets/f17070b2-nik
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = Object.assign({ cookie: true, menu: false }, { sec: 'p-desc' });
-    this.m3dTimer = setTimeout(() => this.init3d(), 300);
+    this.state = Object.assign({ cookie: true, menu: false }, { sec: 'p-desc', gi: 0, gstop: false });
     this.spyTimer = setTimeout(() => this.initSpy(), 300);
   }
   // sub-menu: the item of the section that is under the (sticky) sub-menu is the current one, while scrolling too
@@ -816,24 +823,6 @@ class Component extends DCLogic {
     };
     window.addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(spy); } }, { passive: true });
     spy();
-  }
-  // gallery 3D: model-viewer keeps its own DOM (data-dc-keep), so rotation, the reset button and loading are set up here
-  init3d() {
-    const mv = document.getElementById('nik3d');
-    if (!mv) return;
-    const box = mv.closest('.m3d');
-    const still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!still) { mv.setAttribute('auto-rotate', ''); mv.setAttribute('auto-rotate-delay', '0'); mv.setAttribute('rotation-per-second', '9deg'); }
-    // the model (2.4 MB) is fetched once the gallery is a screen away; until then the poster shows
-    const go = () => { if (!mv.getAttribute('src')) mv.setAttribute('src', mv.dataset.src); };
-    if ('IntersectionObserver' in window) { const io = new IntersectionObserver((es) => { if (es.some((x) => x.isIntersecting)) { io.disconnect(); go(); } }, { rootMargin: '900px 0px' }); io.observe(box); } else go();
-    mv.addEventListener('camera-change', (e) => { if (e.detail && e.detail.source === 'user-interaction') { mv.removeAttribute('auto-rotate'); box.classList.add('moved'); } });
-    // reset: turn the short way round back to the front view
-    box.querySelector('.m3d-reset').addEventListener('click', () => {
-      box.classList.remove('moved');
-      const now = mv.getCameraOrbit ? mv.getCameraOrbit().theta * 180 / Math.PI : 0;
-      mv.cameraOrbit = (-14 + 360 * Math.round((now + 14) / 360)) + 'deg 80deg auto';
-    });
   }
   base(s) {
     const isMenu = (t, href, items) => ({ t, href, items: items.map((x) => (Array.isArray(x) ? { t: x[0], href: x[1] } : { t: x, href })) });
@@ -878,7 +867,13 @@ class Component extends DCLogic {
       ['Реле навантаження', 'Вбудоване'], ['Робоча температура', '−40…+70 °C'], ['Ступінь захисту', 'IP54']
     ].map(([k, v]) => ({ k, v }));
     const rel = ['KC-02', 'KK-01', 'NIK AMBUS', 'NIK 2300'].map((m) => card(P.find((p) => p.m === m)));
-    return Object.assign(this.base(s), { subnav, specs, rel });
+    // gallery: the photo of the active bar; the next one opens when its bar fills (prog), a bar click opens its photo
+    const gal = {
+      gal0: s.gi === 0 ? 'on' : '', gal1: s.gi === 1 ? 'on' : '', gidxCls: 'gidx' + (s.gstop ? ' stop' : ''),
+      galBars: ['Фото 1 з 2', 'Фото 2 з 2'].map((label, i) => ({ label, cur: String(s.gi === i), pick: () => this.setState({ gi: i, gstop: true }) })),
+      galDone: (e) => { if (e && e.animationName === 'prog') this.setState({ gi: (this.state.gi + 1) % 2 }); }
+    };
+    return Object.assign(this.base(s), { subnav, specs, rel }, gal);
   }
 }
 
