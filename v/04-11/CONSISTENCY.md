@@ -161,3 +161,9 @@ and the cookie panel open) and by looking at every section. Clean: nothing stick
 - **Where:** home «Від чипа до корпусу» and product, 320 px only.
 - **Suggested fix (choose):** A — the hint may wrap onto two lines, keeping 24 px from the edge · B — shorter text on narrow screens («Потягніть, щоб обернути»).
 - **Decision:** ✅ done (Anna: B) — narrower than 360 px the hint is «Потягніть, щоб обернути» (43–53 px clear of the edge at 320); from 360 px it stays «Потягніть убік, щоб обернути» (41 px and more). Home and product; desktop text unchanged.
+
+### 25. Video section: kicker too close to the video (found by Anna)
+- **Problem:** on mobile the video is on top and the text block below it; the kicker «Відеоекскурсія виробництвом» sat only 16 px under the video, so it looked stuck to the picture.
+- **Where:** home, mobile — «Автоматизоване виробництво».
+- **Options:** A — 32 px above the kicker · B — kicker on the video's bottom-left corner, as on desktop.
+- **Decision:** ✅ done (Anna: A) — 32 px between the video and the kicker; the block is 16 px taller. Tablet and desktop unchanged.
