@@ -204,3 +204,18 @@ and the cookie panel open) and by looking at every section. Clean: nothing stick
 - **Where:** home, mobile — «Готові до співпраці?», under the e-mail.
 - **Suggested fix:** non-breaking spaces in «1 робочого дня», so it wraps as one piece.
 - **Decision:** ✅ done (Anna) — «1 робочого дня» has non-breaking spaces and wraps as one piece («Відповідаємо протягом / 1 робочого дня»).
+
+### 32. Model and standard names split across lines
+- **Problem:** a name breaks between its parts: «NIK / 2308» (home 390, «Від чипа» text), «ISO / 27001» (home 320, news title), «NIK LTE / Module» (product 320–360, feature list), «EN / 62053-23» (product 320–360, specs table).
+- **Suggested fix:** non-breaking spaces inside these names.
+- **Decision:** ✅ done (Anna) — non-breaking spaces in «NIK 2308», «ISO 27001», «NIK LTE Module», «EN 50470-3», «EN 62053-23»; the standards also get an invisible word joiner after the hyphen (JetBrains Mono has no non-breaking hyphen glyph), so «EN 62053-23» never splits at «-». Seen on desktop / tablet too: the news title on 768 now wraps «за / ISO 27001».
+
+### 33. One word alone on the last line (product)
+- **Problem:** «Ціни, наявність і замовлення — у кабінеті / партнера.» (all mobile widths); heading «Облік і керування навантаженням в одному / приладі» (360–390).
+- **Suggested fix:** non-breaking spaces, so «у кабінеті партнера» and «в одному приладі» wrap as one piece (also keeps «у» / «в» off the line end).
+- **Decision:** ✅ done (Anna) — «у кабінеті партнера» and «в одному приладі» wrap as one piece; on desktop the heading now reads «навантаженням / в одному приладі» (the «в» no longer hangs at the line end). Heights unchanged.
+
+### 34. Hero slide switches 24 px tall
+- **Problem:** on mobile the four bars under the product picture are 44 × 24 px tap targets (the minimum).
+- **Suggested fix:** 48 × 32 px tap areas, invisible (like the footer links).
+- **Decision:** ✅ done (Anna) — each bar has an invisible 48 × 32 px tap area (neighbours touch, no overlap); the look is unchanged.

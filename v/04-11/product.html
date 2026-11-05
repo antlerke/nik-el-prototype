@@ -651,7 +651,7 @@ main>:nth-child(1){padding-top:40px !important}
         <div class="badges"><h2>Сертифікати та стандарти</h2><div><span class="tag" title="Державний стандарт України">ДСТУ</span><span class="tag" title="Маркування відповідності ЄС">CE</span><span class="tag" title="Директива ЄС про засоби вимірювання">MID</span><span class="tag" title="Протокол обміну даними">DLMS / COSEM</span><span class="tag" title="Профіль сумісності лічильників">IDIS</span></div></div>
         <ul class="feat">
           <li>Багатотарифний облік активної й реактивної енергії</li>
-          <li>Змінний модуль зв’язку NIK LTE Module під кришкою</li>
+          <li>Змінний модуль зв’язку NIK&nbsp;LTE&nbsp;Module під кришкою</li>
           <li>Вбудоване реле навантаження для дистанційного вимкнення</li>
           <li>Оптичний порт для зчитування й налаштування на місці</li>
           <li>Пломбована клемна кришка з фіксацією відкриття в журналі подій</li>
@@ -661,7 +661,7 @@ main>:nth-child(1){padding-top:40px !important}
           <a href="#" class="btn btn-line">Чим замінити</a>
           <a href="#" class="lnk">Стати дилером<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
         </div>
-        <p class="pnote">Ціни, наявність і замовлення — у кабінеті партнера.</p>
+        <p class="pnote">Ціни, наявність і замовлення — у&nbsp;кабінеті&nbsp;партнера.</p>
       </div>
     </div>
   </div>
@@ -674,7 +674,7 @@ main>:nth-child(1){padding-top:40px !important}
 <section class="psec" id="p-desc"><div class="wrap two">
   <div class="prose">
     <span class="kick">Опис</span>
-    <h2 class="h3s" style="margin-top: 16px">Облік і керування навантаженням в одному приладі</h2>
+    <h2 class="h3s" style="margin-top: 16px">Облік і керування навантаженням в&nbsp;одному&nbsp;приладі</h2>
     <p>NIK 2306 вимірює активну й реактивну енергію в трифазних мережах 3×230/400 В і зберігає показання за тарифами та журнал подій. Дані передаються в систему АСКОЕ через RS-485, PLC або змінний модуль LTE.</p>
     <p>Вбудоване реле дозволяє оператору дистанційно вимикати й вмикати споживача. Корпус із захистом IP54 працює в діапазоні від −40 до +70 °C.</p>
     <p style="font-size: 14px; color: var(--muted)">[Повний опис моделі — від замовника]</p>
@@ -848,7 +848,7 @@ class Component extends DCLogic {
     const card = (p) => ({ ...p, img: B + p.img, alt: p.m + ' — ' + p.t.toLowerCase(), tag: p.eol ? 'Знято з виробництва' : DIR[p.dir], tagCls: p.eol ? 'tag eol' : 'tag' + (p.dir === 'el' ? ' r' : ''), cls: 'card' + (p.eol ? ' eol' : '') });
     const subnav = [['p-desc', 'Опис'], ['p-spec', 'Характеристики'], ['p-draw', 'Креслення'], ['p-docs', 'Документи'], ['p-video', 'Відео']].map(([id, t]) => ({ t, href: '#' + id, cur: String(s.sec === id), pick: () => this.setState({ sec: id }) }));
     const specs = [
-      ['Номінальна напруга', '3×230/400 В, 50 Гц'], ['Струм', '0,25–5(80) А'], ['Клас точності', 'B (активна) / 2 (реактивна)'], ['Стандарти', 'EN 50470-3, EN 62053-23'],
+      ['Номінальна напруга', '3×230/400 В, 50 Гц'], ['Струм', '0,25–5(80) А'], ['Клас точності', 'B (активна) / 2 (реактивна)'], ['Стандарти', 'EN 50470-⁠3, EN 62053-⁠23'],
       ['Протокол', 'DLMS / COSEM, IDIS'], ['Інтерфейси', 'RS-485, PLC (G3-PLC), модуль LTE'], ['Постійна лічильника', '8000 імп/кВт·год, 8000 імп/квар·год'],
       ['Реле навантаження', 'Вбудоване'], ['Робоча температура', '−40…+70 °C'], ['Ступінь захисту', 'IP54']
     ].map(([k, v]) => ({ k, v }));
