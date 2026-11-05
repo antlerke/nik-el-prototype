@@ -362,11 +362,6 @@ a{color:var(--ink)}
 .cookie .btn{min-height:44px;padding:0 18px 3px;font-size:16px;border-radius:8px}
 .cookie .lnk{background:transparent;color:var(--ink);text-decoration:underline;text-underline-offset:3px;padding:0 8px}
 
-/* reveal */
-@media (prefers-reduced-motion:no-preference){@supports (animation-timeline:view()){
-  .rv{animation:rv linear both;animation-timeline:view();animation-range:entry 0% cover 30%}
-  @keyframes rv{from{opacity:0;transform:translateY(40px)}}
-}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition-duration:.01ms !important}.vf:first-of-type{opacity:1}}
 
 /* secondary typeface: JetBrains Mono for labels, tags and technical data */
@@ -879,7 +874,7 @@ a{color:var(--ink)}
 <section class="sec" id="catalog" aria-labelledby="h-cat" style="background: var(--paper)">
   <div class="wrap">
     <div class="shead">
-      <div><span class="kick">Продуктовий портфель</span><h2 class="h2 rv" id="h-cat">Каталог</h2></div>
+      <div><span class="kick">Продуктовий портфель</span><h2 class="h2" id="h-cat">Каталог</h2></div>
       <a href="catalog.html" class="btn btn-line">Увесь каталог<svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
     </div>
     <div class="tabs" role="tablist" aria-label="Напрям">
@@ -915,7 +910,7 @@ a{color:var(--ink)}
 <section class="sec ins" id="inside" aria-labelledby="h-ins">
   <div class="wrap">
     <div class="shead">
-      <div><span class="kick">Власна інженерія та R&amp;D</span><h2 class="h2 rv" id="h-ins">Від чипа до корпусу</h2></div>
+      <div><span class="kick">Власна інженерія та R&amp;D</span><h2 class="h2" id="h-ins">Від чипа до корпусу</h2></div>
       <p class="lead">Поверніть прилад і натисніть на мітки — покажемо, як влаштований лічильник NIK&nbsp;2308.</p>
     </div>
     <div class="igrid">
@@ -949,7 +944,7 @@ a{color:var(--ink)}
 <section class="sec xpl" aria-labelledby="h-xpl">
   <div class="wrap">
     <div class="shead">
-      <div><span class="kick">Що всередині</span><h2 class="h2 rv" id="h-xpl">NIK 2306 у розрізі</h2></div>
+      <div><span class="kick">Що всередині</span><h2 class="h2" id="h-xpl">NIK 2306 у розрізі</h2></div>
       <p class="lead">Кожну деталь ми проєктуємо й виготовляємо самі: від друкованої плати до корпусу та клемної кришки.</p>
     </div>
     <div class="xscroll"><div class="xstage">
@@ -966,7 +961,7 @@ a{color:var(--ink)}
 <section class="sec" aria-labelledby="h-about">
   <div class="wrap">
     <div class="cyc">
-      <div><span class="kick">Про компанію</span><h2 class="h2 rv" id="h-about"><span class="hl">Повний цикл —</span> <span class="hl">від розробки до сервісу</span></h2></div>
+      <div><span class="kick">Про компанію</span><h2 class="h2" id="h-about"><span class="hl">Повний цикл —</span> <span class="hl">від розробки до сервісу</span></h2></div>
       <div>
         <p>НІК-ЕЛЕКТРОНІКА — український розробник і виробник приладів обліку енергоресурсів і систем автоматизованого обліку (AMI). Ми виробляємо лічильники електроенергії, води, тепла, стабілізатори напруги та програмне забезпечення для дистанційного збору даних.</p>
         <a href="#" class="btn btn-line" style="margin-top: 32px">Більше про компанію<svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
@@ -974,9 +969,9 @@ a{color:var(--ink)}
     </div>
     <ol class="steps">
       <sc-for list="{{steps}}" as="st" hint-placeholder-count="5">
-        <li class="rv"><div class="ph"><img src="{{st.img}}" alt="{{st.alt}}"></div><div class="lb"><b>{{st.no}}</b>{{st.t}}</div></li>
+        <li><div class="ph"><img src="{{st.img}}" alt="{{st.alt}}"></div><div class="lb"><b>{{st.no}}</b>{{st.t}}</div></li>
       </sc-for>
-      <li class="rv"><div class="ph svc">Гарантійне й післягарантійне обслуговування, ремонт і консультації інженерів.</div><div class="lb"><b>06</b>Сервісний центр</div></li>
+      <li><div class="ph svc">Гарантійне й післягарантійне обслуговування, ремонт і консультації інженерів.</div><div class="lb"><b>06</b>Сервісний центр</div></li>
     </ol>
     <a href="#" class="btn btn-line about-more">Більше про компанію<svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
   </div>
@@ -1017,7 +1012,7 @@ a{color:var(--ink)}
 <section class="sec" aria-labelledby="h-cli">
   <div class="wrap">
     <div class="shead">
-      <div><span class="kick">Нам довіряють</span><h2 class="h2 rv" id="h-cli">Клієнти та партнери</h2></div>
+      <div><span class="kick">Нам довіряють</span><h2 class="h2" id="h-cli">Клієнти та партнери</h2></div>
       <p class="lead" style="width: 565px">Оператори систем розподілу, державні й муніципальні установи, девелопери та B2B-партнери в Україні й за кордоном.</p>
     </div>
   </div>
@@ -1046,7 +1041,7 @@ a{color:var(--ink)}
 <section class="sec" aria-labelledby="h-news" style="background: var(--paper)">
   <div class="wrap">
     <div class="shead">
-      <div><span class="kick">Прес-центр</span><h2 class="h2 rv" id="h-news">Новини та статті</h2></div>
+      <div><span class="kick">Прес-центр</span><h2 class="h2" id="h-news">Новини та статті</h2></div>
       <a href="#" class="btn btn-line">Усі новини<svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
     </div>
     <div class="ngrid">

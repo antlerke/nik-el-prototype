@@ -260,4 +260,8 @@ and the cookie panel open) and by looking at every section. Clean: nothing stick
 - **Problem:** after «Надіслати запит» with empty fields the errors showed in red, but a screen reader only heard the label — not that the field is wrong, nor the error text.
 - **Decision:** ✅ done (Anna) — on a failed submit each wrong field gets `aria-invalid` and its error text (now with an id) as its description; focus goes to the first one as before, so it reads e.g. «ПІБ, невірно, Вкажіть прізвище та ім’я». Fixing a field removes the mark. Nothing visible changes.
 
+### 44. Home: scroll «reveal» animation on headings (found by Anna)
+- **Problem:** six section headings and the six «Повний цикл» photo cards faded in and slid up 40 px, tied to the scroll position (half-transparent and shifted if you stop scrolling); the kicker above didn't move, so they drifted apart; home only, and only in browsers with scroll-driven animations (Chrome, Edge). Came with the Claude Design export.
+- **Decision:** ✅ done (Anna: remove) — the animation and its `rv` classes are gone; headings and cards are simply there, as on catalog and product. The site header is not affected.
+
 Also fixed in the checking tool: `mobile-check.cjs` treated the page wrapper as a sideways scroller and so missed every overflow; 37 and 38 were found after that fix.
