@@ -761,6 +761,8 @@ a{color:var(--ink)}
 .steps .lb b{box-sizing:border-box;padding-top:2.5px}
 /* «Повний цикл», mobile: titles 14 px, numbers like the photo markers (20 px circle, 12 px) — titles fit without breaking a word; narrower than 360 px «Конструкторське» takes its soft hyphen */
 @media (max-width:600px){.steps .lb{font-size:14px}.steps .lb b{width:20px;height:20px;font-size:12px;padding-top:1px}}
+/* narrower than 360 px the pink «Сервісний центр» tile has 8 px side padding, so «обслуговування,» fits */
+@media (max-width:359px){.steps .ph.svc{padding-left:8px;padding-right:8px}}
 /* radii on one scale: 4 checkboxes · 8 controls · 16 small surfaces · 24 cards · 28 / 22 large boxes */
 .menu>li>a{border-radius:8px}
 .info .n,.clist i,.cimg,.steps .ph,.note,.cookie{border-radius:16px}
