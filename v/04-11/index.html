@@ -753,6 +753,8 @@ a{color:var(--ink)}
 .info .n{padding:1.5px 0 .5px}
 .xm,.xleg li b{box-sizing:border-box;padding-top:1px}
 .steps .lb b{box-sizing:border-box;padding-top:2.5px}
+/* «Повний цикл», mobile: titles 14 px, numbers like the photo markers (20 px circle, 12 px) — titles fit without breaking a word; narrower than 360 px «Конструкторське» takes its soft hyphen */
+@media (max-width:600px){.steps .lb{font-size:14px}.steps .lb b{width:20px;height:20px;font-size:12px;padding-top:1px}}
 /* radii on one scale: 4 checkboxes · 8 controls · 16 small surfaces · 24 cards · 28 / 22 large boxes */
 .menu>li>a{border-radius:8px}
 .info .n,.clist i,.cimg,.steps .ph,.note,.cookie{border-radius:16px}
@@ -1296,7 +1298,7 @@ class Component extends DCLogic {
     ].map(([x, y, t, d], i) => ({ no: '0' + (i + 1), t, d, st: 'left: ' + x + '%; top: ' + y + '%' }));
 
     const steps = [
-      { t: 'Конструкторське бюро', img: 'de1ec571973f47479cdfc5e1ddf2ab60', alt: 'Конструкторське бюро НІК-ЕЛЕКТРОНІКА' },
+      { t: 'Конструк­торське бюро', img: 'de1ec571973f47479cdfc5e1ddf2ab60', alt: 'Конструкторське бюро НІК-ЕЛЕКТРОНІКА' },
       { t: 'SMT-монтаж плат', img: '91d9cc8d1dd39ed30b472abf02be9d93', alt: 'SMT-лінія монтажу друкованих плат' },
       { t: 'Лиття корпусів', img: '1695fc08e5d7c1a2fcd4fbc761e00a02', alt: 'Виготовлення корпусів приладів' },
       { t: 'Складання', img: '2d5e93a952ee95766eb8b2734477ce42', alt: 'Складання лічильників на виробництві' },

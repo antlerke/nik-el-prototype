@@ -118,7 +118,7 @@ and the cookie panel open) and by looking at every section. Clean: nothing stick
 - **Problem:** on mobile the titles may break anywhere, so a word is split without a hyphen: «Конструкторськ / е бюро» (390), «Конструкто / рське», «випробуван / ня» (320). At 320 the pink tile's word «післягарантійне» is wider than the tile and gets cut.
 - **Where:** home, mobile — «Повний цикл — від розробки до сервісу», the six steps under the photos.
 - **Suggested fix (choose):** A — number above the title (the title gets the full tile width) · B — smaller title · C — one step per row.
-- **Decision:**
+- **Decision:** ✅ done (Anna) — A was tried and undone (number above the title didn't look right). Instead, on mobile: titles 14 px, numbers like the photo markers (20 px circle, 12 px); «Конструкторське» has a soft hyphen, used only below 360 px («Конструк- / торське бюро»). All titles are whole words at 360 and 390; the section is 18–70 px shorter. Tablet and desktop unchanged. Still open: the pink tile's text at 320 (no hyphens there — they also split «післягарантійне» at 390).
 
 ### 18. Cookie panel: button text on two lines
 - **Problem:** the two buttons sit side by side and are too narrow: «Лише необхідні» wraps at 390, both buttons wrap at 320.
