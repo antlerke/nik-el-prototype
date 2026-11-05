@@ -87,7 +87,7 @@ const CHECK = `(async () => {
 
   const report = {};
   for (const page of PAGES) for (const w of WIDTHS) {
-    await send('Emulation.setDeviceMetricsOverride', { width: w, height: 844, deviceScaleFactor: 1, mobile: true });
+    await send('Emulation.setDeviceMetricsOverride', { width: w, height: w < 600 ? 844 : 900, deviceScaleFactor: 1, mobile: w < 600 });
     await send('Page.navigate', { url: BASE + page + '.html' });
     await wait(3500);
     if (CLICK) {

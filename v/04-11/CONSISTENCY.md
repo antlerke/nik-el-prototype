@@ -230,7 +230,7 @@ and the cookie panel open) and by looking at every section. Clean: nothing stick
 ### 36. Header, catalog filters and product sub-menu didn't stick
 - **Problem:** they are `position: sticky` in the CSS, but the page wrapper (from the Claude Design export) had `overflow-x: hidden`, which turns sticky off — they scrolled away with the page.
 - **Decision:** ✅ done (Anna) — the wrapper uses `overflow-x: clip` (still no sideways scroll); the header stays on top on all pages, the product sub-menu right under it (96 / 80 / 64 px), the catalog filters (desktop) 24 px under the header.
-  Open: the catalog filter panel (~1000 px) is taller than the screen, so its lower part is only reachable at the end of the results; the product sub-menu's active item follows clicks only, not scrolling.
+  Two follow-ups, done as 39 and 40.
 
 ### 37. Home, mobile: «Також у каталозі» row didn't scroll
 - **Problem:** the block wraps (`flex-wrap`), so on mobile the row grew to its full length (977 px) and was cut by the screen edge instead of scrolling — the last chips were unreachable.
@@ -239,5 +239,13 @@ and the cookie panel open) and by looking at every section. Clean: nothing stick
 ### 38. Footer at 320 px: phone number past its column
 - **Problem:** «+380 (44) 498-06-19» (kept on one line) is wider than its column and reached the screen edge (cut at 320).
 - **Decision:** ✅ done (Anna) — narrower than 360 px «Контакти» takes the full width as its own row; the footer is 111 px taller there. All three pages.
+
+### 39. Catalog (desktop): sticky filter panel taller than the screen
+- **Problem:** once sticky (36), the ~1000 px panel stuck under the header and its lower part («Сертифікати», «Показати зняті») was only reachable at the end of the results.
+- **Decision:** ✅ done (Anna) — the panel is at most the screen height minus 144 px (24 px clear at the bottom); what doesn't fit scrolls inside it (thin scrollbar, the page doesn't scroll along).
+
+### 40. Product sub-menu: active item didn't follow scrolling
+- **Problem:** the underline moved only on click; with the sub-menu now always visible it showed «Опис» while reading other sections.
+- **Decision:** ✅ done (Anna) — the section whose top is 80 px under the sub-menu is current, while scrolling and after a jump. Desktop: documents and video sit side by side, so that row shows «Документи», or «Відео» if that was clicked (remembered until you scroll to another section).
 
 Also fixed in the checking tool: `mobile-check.cjs` treated the page wrapper as a sideways scroller and so missed every overflow; 37 and 38 were found after that fix.

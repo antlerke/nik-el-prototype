@@ -793,6 +793,29 @@ class Component extends DCLogic {
     super(props);
     this.state = Object.assign({ cookie: true, menu: false }, { sec: 'p-desc' });
     this.m3dTimer = setTimeout(() => this.init3d(), 300);
+    this.spyTimer = setTimeout(() => this.initSpy(), 300);
+  }
+  // sub-menu: the item of the section that is under the (sticky) sub-menu is the current one, while scrolling too
+  initSpy() {
+    const ids = ['p-desc', 'p-spec', 'p-draw', 'p-docs', 'p-video'];
+    let queued = false;
+    const spy = () => {
+      queued = false;
+      const nav = document.querySelector('nav.subnav');
+      if (!nav) return;
+      // a section is current once its top is 80 px under the sub-menu (a jump from the menu lands it there too)
+      const line = nav.getBoundingClientRect().bottom + 80;
+      let cur = ids[0];
+      for (const id of ids) { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top <= line) cur = id; }
+      // a click is remembered until the reader scrolls to another section (not during the jump itself)
+      if (cur !== 'p-docs' && cur !== 'p-video' && Date.now() - (this.pickedAt || 0) > 1500) this.picked = null;
+      // documents and video side by side (desktop): one row — documents, unless «Відео» was clicked
+      const v = document.getElementById('p-video'), col = v && v.previousElementSibling;
+      if ((cur === 'p-docs' || cur === 'p-video') && col && v.getBoundingClientRect().top < col.getBoundingClientRect().bottom - 1) cur = this.picked === 'p-video' ? 'p-video' : 'p-docs';
+      if (cur !== this.state.sec) this.setState({ sec: cur });
+    };
+    window.addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(spy); } }, { passive: true });
+    spy();
   }
   // gallery 3D: model-viewer keeps its own DOM (data-dc-keep), so rotation, the reset button and loading are set up here
   init3d() {
@@ -848,7 +871,7 @@ class Component extends DCLogic {
     ];
     const DIR = { el: 'Електроенергія', wh: 'Вода та тепло', am: 'АСКОЕ', st: 'Стабілізатори' };
     const card = (p) => ({ ...p, img: B + p.img, alt: p.m + ' — ' + p.t.toLowerCase(), tag: p.eol ? 'Знято з виробництва' : DIR[p.dir], tagCls: p.eol ? 'tag eol' : 'tag' + (p.dir === 'el' ? ' r' : ''), cls: 'card' + (p.eol ? ' eol' : '') });
-    const subnav = [['p-desc', 'Опис'], ['p-spec', 'Характеристики'], ['p-draw', 'Креслення'], ['p-docs', 'Документи'], ['p-video', 'Відео']].map(([id, t]) => ({ t, href: '#' + id, cur: String(s.sec === id), pick: () => this.setState({ sec: id }) }));
+    const subnav = [['p-desc', 'Опис'], ['p-spec', 'Характеристики'], ['p-draw', 'Креслення'], ['p-docs', 'Документи'], ['p-video', 'Відео']].map(([id, t]) => ({ t, href: '#' + id, cur: String(s.sec === id), pick: () => { this.picked = id; this.pickedAt = Date.now(); this.setState({ sec: id }); } }));
     const specs = [
       ['Номінальна напруга', '3×230/400 В, 50 Гц'], ['Струм', '0,25–5(80) А'], ['Клас точності', 'B (активна) / 2 (реактивна)'], ['Стандарти', 'EN 50470-⁠3, EN 62053-⁠23'],
       ['Протокол', 'DLMS / COSEM, IDIS'], ['Інтерфейси', 'RS-485, PLC (G3-PLC), модуль LTE'], ['Постійна лічильника', '8000 імп/кВт·год, 8000 імп/квар·год'],

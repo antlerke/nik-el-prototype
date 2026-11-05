@@ -507,6 +507,8 @@ a{color:var(--ink)}
 .sort{height:58px}
 /* filter panel like «Блоки»: card shadow, values Body 16 / 400 gap 8, counts Small 14, links 16 */
 .filt{box-shadow:0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28)}
+/* desktop: the filter panel sticks under the header but is never taller than the screen — what doesn't fit scrolls inside it */
+@media (min-width:901px){.filt{box-sizing:border-box;max-height:calc(100vh - 144px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}}
 .cb{gap:8px;font-weight:400}
 .cb em{font-size:14px}
 .tl.sm{font-size:16px}
