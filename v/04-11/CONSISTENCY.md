@@ -142,7 +142,7 @@ and the cookie panel open) and by looking at every section. Clean: nothing stick
 - **Problem:** the breadcrumbs wrap and the second line starts with the separator: «/ NIK 2306» (390), «/ Облік електроенергії …» (320).
 - **Where:** product, mobile — breadcrumbs.
 - **Suggested fix:** the «/» stays on the line with the item before it, so a new line starts with a link.
-- **Decision:**
+- **Decision:** ✅ done (Anna) — the separator now belongs to the item before it, so a wrapped line starts with a link («Облік електроенергії / NIK 2306»). Same rule on catalog (no visible change there); spacing and heights unchanged.
 
 ### 22. Footer links too small to tap
 - **Problem:** the link lists are 23 px tall with 12 px between them; «Політика конфіденційності», «Cookie», «LinkedIn · Facebook · YouTube» are 18–20 px. The guideline for touch is 44 px.
