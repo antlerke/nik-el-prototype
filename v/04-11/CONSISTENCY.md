@@ -227,3 +227,17 @@ and the cookie panel open) and by looking at every section. Clean: nothing stick
 - **Options:** A — the magnifier becomes the button · B — a «Знайти» button inside the field.
 - **Decision:** ✅ done (Anna: B) — the field is a search form with a 40 px «Знайти» button (navy, like «Прийняти всі»); search runs on the button or Enter (the phone keyboard's «Пошук»), not while typing or on leaving the field. On narrow phones the placeholder is shortened with «…» (320: «Модель, пр…»). The search label is kept for screen readers.
 
+### 36. Header, catalog filters and product sub-menu didn't stick
+- **Problem:** they are `position: sticky` in the CSS, but the page wrapper (from the Claude Design export) had `overflow-x: hidden`, which turns sticky off — they scrolled away with the page.
+- **Decision:** ✅ done (Anna) — the wrapper uses `overflow-x: clip` (still no sideways scroll); the header stays on top on all pages, the product sub-menu right under it (96 / 80 / 64 px), the catalog filters (desktop) 24 px under the header.
+  Open: the catalog filter panel (~1000 px) is taller than the screen, so its lower part is only reachable at the end of the results; the product sub-menu's active item follows clicks only, not scrolling.
+
+### 37. Home, mobile: «Також у каталозі» row didn't scroll
+- **Problem:** the block wraps (`flex-wrap`), so on mobile the row grew to its full length (977 px) and was cut by the screen edge instead of scrolling — the last chips were unreachable.
+- **Decision:** ✅ done (Anna) — no wrapping on mobile; the row is screen-wide and scrolls sideways like the tabs.
+
+### 38. Footer at 320 px: phone number past its column
+- **Problem:** «+380 (44) 498-06-19» (kept on one line) is wider than its column and reached the screen edge (cut at 320).
+- **Decision:** ✅ done (Anna) — narrower than 360 px «Контакти» takes the full width as its own row; the footer is 111 px taller there. All three pages.
+
+Also fixed in the checking tool: `mobile-check.cjs` treated the page wrapper as a sideways scroller and so missed every overflow; 37 and 38 were found after that fix.

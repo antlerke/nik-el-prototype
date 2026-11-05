@@ -60,6 +60,8 @@ a{color:var(--ink)}
 .seg a[aria-current]{background:var(--ink);color:#ffffff}
 /* menu (burger): language buttons 40 px, so the switch is 48 px like the tabs */
 .mnav .seg a{height:40px}
+/* footer narrower than 360 px: «Контакти» takes the full width, so the phone number (never broken) fits */
+@media (max-width:359px){.fcols>div:last-child{grid-column:1/-1}}
 /* header logo link: 48 px tap area up to 900 px (the logo is 34 px there), invisible — padding offset by negative margin */
 @media (max-width:900px){.hd a[aria-label$="на головну"]{padding:7px 0;margin:-7px 0}}
 .burger{display:none}
@@ -564,11 +566,11 @@ a{color:var(--ink)}
 .search:hover{border-color:#59636e;box-shadow:none}
 .search:focus-within{border-color:var(--ink);box-shadow:0 0 0 4px rgba(19,56,93,.12)}
 .search:has(input:disabled){border-color:var(--line);box-shadow:none}
-/* radii on one scale: 4 checkboxes · 8 controls · 16 small surfaces · 24 cards · 28 / 22 large boxes */
-.menu>li>a,.acc-t,.tl{border-radius:8px}
 /* search runs on «Знайти» or Enter (the phone keyboard's «Пошук»), not while typing; the button sits inside the field, 40 px */
 .search{padding-right:8px;min-width:0}.search>svg{flex:0 0 auto}
 #cat-res .search .sgo{flex:0 0 auto;width:auto;min-height:40px;height:40px;padding:0 16px 3px;margin:0 !important;align-self:center}
+/* radii on one scale: 4 checkboxes · 8 controls · 16 small surfaces · 24 cards · 28 / 22 large boxes */
+.menu>li>a,.acc-t,.tl{border-radius:8px}
 .cimg,.cookie{border-radius:16px}
 /* small labels (24–28 px tall: tags): 4 px, so they look as crisp as the 8 px corners on taller elements (Anna) */
 .tag{border-radius:4px}
@@ -582,7 +584,7 @@ a{color:var(--ink)}
 <body>
 <div id="app"></div>
 <script type="text/x-template" id="tpl">
-<div style="font-family: Geologica, sans-serif; color: var(--text); background: #ffffff; overflow-x: hidden">
+<div style="font-family: Geologica, sans-serif; color: var(--text); background: #ffffff; overflow-x: clip">
 
 <a href="#main" class="skip">Перейти до змісту</a>
 <header class="hd">

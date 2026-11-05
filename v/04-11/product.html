@@ -60,6 +60,8 @@ a{color:var(--ink)}
 .seg a[aria-current]{background:var(--ink);color:#ffffff}
 /* menu (burger): language buttons 40 px, so the switch is 48 px like the tabs */
 .mnav .seg a{height:40px}
+/* footer narrower than 360 px: «Контакти» takes the full width, so the phone number (never broken) fits */
+@media (max-width:359px){.fcols>div:last-child{grid-column:1/-1}}
 /* header logo link: 48 px tap area up to 900 px (the logo is 34 px there), invisible — padding offset by negative margin */
 @media (max-width:900px){.hd a[aria-label$="на головну"]{padding:7px 0;margin:-7px 0}}
 .burger{display:none}
@@ -586,7 +588,7 @@ main>:nth-child(1){padding-top:40px !important}
 <body>
 <div id="app"></div>
 <script type="text/x-template" id="tpl">
-<div style="font-family: Geologica, sans-serif; color: var(--text); background: #ffffff; overflow-x: hidden">
+<div style="font-family: Geologica, sans-serif; color: var(--text); background: #ffffff; overflow-x: clip">
 
 <a href="#main" class="skip">Перейти до змісту</a>
 <header class="hd">

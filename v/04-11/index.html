@@ -63,6 +63,8 @@ a{color:var(--ink)}
 .seg a[aria-current]{background:var(--ink);color:#ffffff}
 /* menu (burger): language buttons 40 px, so the switch is 48 px like the tabs */
 .mnav .seg a{height:40px}
+/* footer narrower than 360 px: «Контакти» takes the full width, so the phone number (never broken) fits */
+@media (max-width:359px){.fcols>div:last-child{grid-column:1/-1}}
 /* header logo link: 48 px tap area up to 900 px (the logo is 34 px there), invisible — padding offset by negative margin */
 @media (max-width:900px){.hd a[aria-label$="на головну"]{padding:7px 0;margin:-7px 0}}
 .burger{display:none}
@@ -518,7 +520,7 @@ a{color:var(--ink)}
 @media (max-width:600px){.vrow{flex-direction:column;gap:10px;margin-top:24px;padding-top:20px}.vrow span{align-items:flex-start}.vrow span::before{margin-top:6px}}
 /* «Також у каталозі»: one swipeable row on mobile */
 .also-row{display:contents}
-@media (max-width:600px){.also{flex-direction:column;align-items:stretch;gap:12px;margin-top:24px}.also-row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:2px 16px}.also-row::-webkit-scrollbar{display:none}.also-row a{flex:0 0 auto}}
+@media (max-width:600px){.also{flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:12px;margin-top:24px}.also-row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:2px 16px}.also-row::-webkit-scrollbar{display:none}.also-row a{flex:0 0 auto}}
 /* mobile: news «Читати далі» on the right */
 @media (max-width:600px){.nc .more{align-self:flex-end}}
 /* mobile: production steps — even, tighter grid */
@@ -791,7 +793,7 @@ a{color:var(--ink)}
 <body>
 <div id="app"></div>
 <script type="text/x-template" id="tpl">
-<div style="font-family: Geologica, sans-serif; color: #36434f; background: #ffffff; overflow-x: hidden">
+<div style="font-family: Geologica, sans-serif; color: #36434f; background: #ffffff; overflow-x: clip">
 
 <a href="#main" class="skip">Перейти до змісту</a>
 <header class="hd">

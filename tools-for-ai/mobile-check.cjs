@@ -13,12 +13,13 @@
 // --click "<selector>" taps that element first (e.g. the burger, the filter button), checks that state and saves the
 //   screen as tools-for-ai/out/mob/<page>-<width>-click.png; --cookie keeps the cookie panel (hidden otherwise)
 // --eval "<js>" only prints what that expression returns on each page and width (for measuring), no checks
+// --scroll <y> scrolls the page to y first and saves the screen as tools-for-ai/out/mob/<page>-<width>-scroll<y>.png (for sticky parts)
 const { spawn } = require('child_process'), fs = require('fs'), os = require('os'), path = require('path');
 
 const args = process.argv.slice(2), opt = (k, d) => { const i = args.indexOf(k); return i < 0 ? d : args.splice(i, 2)[1]; };
 const SHOTS = args.includes('--shots') && args.splice(args.indexOf('--shots'), 1);
 const COOKIE = args.includes('--cookie') && args.splice(args.indexOf('--cookie'), 1);
-const CLICK = opt('--click', null), EVAL = opt('--eval', null);
+const CLICK = opt('--click', null), EVAL = opt('--eval', null), SCROLL = opt('--scroll', null);
 const WIDTHS = opt('--widths', '320,360,390').split(',').map(Number);
 const BASE = args[0] && args[0].startsWith('http') ? args.shift() : 'http://127.0.0.1:8740/v/04-11/';
 const PAGES = args.length ? args : ['index', 'catalog', 'product'];
@@ -38,7 +39,8 @@ const CHECK = `(async () => {
   const vis = (el) => { const r = el.getBoundingClientRect(), cs = getComputedStyle(el); return r.width > 0 && r.height > 0 && cs.visibility !== 'hidden' && +cs.opacity > 0 && !el.closest('[aria-hidden=true], [hidden], .sr'); };
   const own = (el) => [...el.childNodes].filter((n) => n.nodeType === 3).map((n) => n.textContent).join('').trim();
   // inside something that scrolls sideways or clips (a carousel, a marquee): the screen edge does not apply
-  const scroller = (el) => { for (let p = el.parentElement; p && p !== document.body; p = p.parentElement) { const o = getComputedStyle(p).overflowX; if (o !== 'visible') return p; } return null; };
+  // (the page wrapper right under #app clips sideways too — that is not a scroller, it would hide every overflow)
+  const scroller = (el) => { for (let p = el.parentElement; p && p !== document.body; p = p.parentElement) { if (p.parentElement && p.parentElement.id === 'app') continue; const o = getComputedStyle(p).overflowX; if (o !== 'visible') return p; } return null; };
   const add = (kind, el, note) => out.push({ kind, where: name(el), text: (own(el) || el.getAttribute('aria-label') || el.placeholder || '').slice(0, 30), note, y: Math.round(el.getBoundingClientRect().top + scrollY) });
   const de = document.documentElement;
   if (de.scrollWidth > W + 1) out.push({ kind: 'overflow', where: 'page', text: '', note: 'page is ' + de.scrollWidth + ' px wide on a ' + W + ' px screen', y: 0 });
@@ -92,6 +94,12 @@ const CHECK = `(async () => {
       const ok = (await send('Runtime.evaluate', { returnByValue: true, expression: `(() => { const e = [...document.querySelectorAll(${JSON.stringify(CLICK)})].find((x) => x.offsetWidth); if (e) e.click(); return !!e; })()` })).result.value;
       if (!ok) { console.log(`! ${page}@${w}: nothing to tap for ${CLICK}`); continue; }
       await wait(900);
+    }
+    if (SCROLL != null) {
+      await send('Runtime.evaluate', { expression: `(() => { const k = document.querySelector('.cookie'); if (k && !${!!COOKIE}) k.style.display = 'none'; scrollTo(0, ${+SCROLL}); })()` });
+      await wait(700);
+      fs.mkdirSync(path.join(OUT, 'mob'), { recursive: true });
+      fs.writeFileSync(path.join(OUT, 'mob', `${page}-${w}-scroll${SCROLL}.png`), Buffer.from((await send('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
     }
     if (EVAL) {
       const v = await send('Runtime.evaluate', { expression: `(async () => { await document.fonts.ready; return (${EVAL}); })()`, awaitPromise: true, returnByValue: true });
