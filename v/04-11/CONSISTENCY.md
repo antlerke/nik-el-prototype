@@ -130,7 +130,7 @@ and the cookie panel open) and by looking at every section. Clean: nothing stick
 - **Problem:** on mobile the three news cards are the same list, but the first photo is ~300 px tall (left over from the big desktop card), the other two 200 px.
 - **Where:** home, mobile — «Новини та статті».
 - **Suggested fix:** 200 px for all three.
-- **Decision:**
+- **Decision:** ✅ done (Anna) — on mobile all three news photos are 200 px (the first was 320); the section is 120 px shorter. Tablet and desktop unchanged (the big card stays big).
 
 ### 20. Product page: second block in a section starts 24 px after the first
 - **Problem:** on desktop two blocks sit side by side; on mobile they stack with only 24 px between them, so a new kicker and heading stick to the table / documents above.
