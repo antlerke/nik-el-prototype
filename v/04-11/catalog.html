@@ -839,7 +839,8 @@ class Component extends DCLogic {
       tabs, isProd: s.tab === 'prod', isSvc: s.tab === 'svc', isSoft: s.tab === 'soft', svcs,
       groups, items, none: !list.length, found: list.length + ' ' + (list.length % 10 === 1 && list.length % 100 !== 11 ? 'модель' : [2, 3, 4].includes(list.length % 10) && ![12, 13, 14].includes(list.length % 100) ? 'моделі' : 'моделей'), active,
       q: s.q, sort: s.sort, onQ: (e) => { e.preventDefault(); this.setState({ q: e.target.querySelector('input').value.trim(), page: 1 }); }, onSort: (e) => this.setState({ sort: e.target.value, page: 1 }),
-      pages, multi: true, hasNext: page < pageCount, noNext: page >= pageCount, next: goPage(Math.min(page + 1, pageCount)),
+      // page buttons only when there is more than one page (not for one page, not for «нічого не знайдено»)
+      pages, multi: pageCount > 1, hasNext: page < pageCount, noNext: page >= pageCount, next: goPage(Math.min(page + 1, pageCount)),
       eolOn: String(f.eol), toggleEol: () => { const ff = this.state.applied; this.setState({ applied: { ...ff, eol: !ff.eol }, page: 1 }); },
       reset: () => this.setState({ applied: empty, q: '', page: 1 }),
       resetAll: () => this.setState({ applied: empty, page: 1 }),

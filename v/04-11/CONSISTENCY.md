@@ -248,4 +248,8 @@ and the cookie panel open) and by looking at every section. Clean: nothing stick
 - **Problem:** the underline moved only on click; with the sub-menu now always visible it showed «Опис» while reading other sections.
 - **Decision:** ✅ done (Anna) — the section whose top is 80 px under the sub-menu is current, while scrolling and after a jump. Desktop: documents and video sit side by side, so that row shows «Документи», or «Відео» if that was clicked (remembered until you scroll to another section).
 
+### 41. Catalog: page button «1» shown when nothing was found
+- **Problem:** the page buttons were always on — with 0 results (and with a single page) a lone «1» stayed under the empty message.
+- **Decision:** ✅ done (Anna) — page buttons only when there is more than one page. (The «Послуги» / «Програмне забезпечення» tabs were checked again: they work — 4 service cards, NIK SPACE; the first check was wrong.)
+
 Also fixed in the checking tool: `mobile-check.cjs` treated the page wrapper as a sideways scroller and so missed every overflow; 37 and 38 were found after that fix.
