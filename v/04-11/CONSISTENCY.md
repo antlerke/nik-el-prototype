@@ -148,7 +148,7 @@ and the cookie panel open) and by looking at every section. Clean: nothing stick
 - **Problem:** the link lists are 23 px tall with 12 px between them; «Політика конфіденційності», «Cookie», «LinkedIn · Facebook · YouTube» are 18–20 px. The guideline for touch is 44 px.
 - **Where:** all pages, mobile — footer.
 - **Suggested fix:** a 44 px tap area around each link without changing how the footer looks.
-- **Decision:**
+- **Decision:** ✅ done (Anna: on the 8 px grid) — 44 px isn't possible without loosening the footer (the column links are 31 px apart), so: column links 32 px (lines 24 px instead of 23.2, + the 8 px gap; two-line links 56 px), bottom links 40 px. The extra is invisible padding; the footer is 9–12 px taller on mobile. All three pages; tablet and desktop unchanged.
 
 ### 23. Mobile menu: language buttons 36 px
 - **Problem:** UA / EN / RU are 36 px tall; everything else in the menu is 44–48 px.
