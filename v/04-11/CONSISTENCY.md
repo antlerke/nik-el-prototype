@@ -252,4 +252,8 @@ and the cookie panel open) and by looking at every section. Clean: nothing stick
 - **Problem:** the page buttons were always on — with 0 results (and with a single page) a lone «1» stayed under the empty message.
 - **Decision:** ✅ done (Anna) — page buttons only when there is more than one page. (The «Послуги» / «Програмне забезпечення» tabs were checked again: they work — 4 service cards, NIK SPACE; the first check was wrong.)
 
+### 42. Catalog: «скиньте фільтри» left the old search text in the field
+- **Problem:** after «нічого не знайдено» → «скиньте фільтри» all models came back, but the field still showed the old query (the page doesn't re-render fields).
+- **Decision:** ✅ done (Anna) — the reset empties the search field too.
+
 Also fixed in the checking tool: `mobile-check.cjs` treated the page wrapper as a sideways scroller and so missed every overflow; 37 and 38 were found after that fix.

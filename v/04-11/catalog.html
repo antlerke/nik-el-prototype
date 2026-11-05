@@ -842,7 +842,8 @@ class Component extends DCLogic {
       // page buttons only when there is more than one page (not for one page, not for «нічого не знайдено»)
       pages, multi: pageCount > 1, hasNext: page < pageCount, noNext: page >= pageCount, next: goPage(Math.min(page + 1, pageCount)),
       eolOn: String(f.eol), toggleEol: () => { const ff = this.state.applied; this.setState({ applied: { ...ff, eol: !ff.eol }, page: 1 }); },
-      reset: () => this.setState({ applied: empty, q: '', page: 1 }),
+      // the field keeps what was typed (inputs aren't re-rendered), so it is emptied here too
+      reset: () => { const qi = document.getElementById('cat-q'); if (qi) qi.value = ''; this.setState({ applied: empty, q: '', page: 1 }); },
       resetAll: () => this.setState({ applied: empty, page: 1 }),
       anyActive: n > 0 || f.eol, noneActive: !(n > 0 || f.eol),
       showLabel: list.length ? 'Показати (' + list.length + ')' : 'Моделей немає',
