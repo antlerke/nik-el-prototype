@@ -160,4 +160,4 @@ and the cookie panel open) and by looking at every section. Clean: nothing stick
 - **Problem:** «Потягніть убік, щоб обернути» runs right up to the box's right edge (no space left).
 - **Where:** home «Від чипа до корпусу» and product, 320 px only.
 - **Suggested fix (choose):** A — the hint may wrap onto two lines, keeping 24 px from the edge · B — shorter text on narrow screens («Потягніть, щоб обернути»).
-- **Decision:** B (Anna) — shorter text on narrow screens.
+- **Decision:** ✅ done (Anna: B) — narrower than 360 px the hint is «Потягніть, щоб обернути» (43–53 px clear of the edge at 320); from 360 px it stays «Потягніть убік, щоб обернути» (41 px and more). Home and product; desktop text unchanged.
