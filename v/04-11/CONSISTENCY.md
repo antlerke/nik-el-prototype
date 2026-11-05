@@ -256,4 +256,8 @@ and the cookie panel open) and by looking at every section. Clean: nothing stick
 - **Problem:** after «нічого не знайдено» → «скиньте фільтри» all models came back, but the field still showed the old query (the page doesn't re-render fields).
 - **Decision:** ✅ done (Anna) — the reset empties the search field too.
 
+### 43. Contact form: fields with an error weren't marked for screen readers
+- **Problem:** after «Надіслати запит» with empty fields the errors showed in red, but a screen reader only heard the label — not that the field is wrong, nor the error text.
+- **Decision:** ✅ done (Anna) — on a failed submit each wrong field gets `aria-invalid` and its error text (now with an id) as its description; focus goes to the first one as before, so it reads e.g. «ПІБ, невірно, Вкажіть прізвище та ім’я». Fixing a field removes the mark. Nothing visible changes.
+
 Also fixed in the checking tool: `mobile-check.cjs` treated the page wrapper as a sideways scroller and so missed every overflow; 37 and 38 were found after that fix.
