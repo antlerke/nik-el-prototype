@@ -167,3 +167,9 @@ and the cookie panel open) and by looking at every section. Clean: nothing stick
 - **Where:** home, mobile — «Автоматизоване виробництво».
 - **Options:** A — 32 px above the kicker · B — kicker on the video's bottom-left corner, as on desktop.
 - **Decision:** ✅ done (Anna: A) — 32 px between the video and the kicker; the block is 16 px taller. Tablet and desktop unchanged.
+
+### 26. «Від чипа»: hotspot switches inconvenient on mobile (found by Anna)
+- **Problem:** on mobile the 7 switches were a full-width list under the card (~390 px tall): after picking one you had to scroll back up to see the card and the model.
+- **Where:** home, mobile — «Від чипа до корпусу».
+- **Options:** A — one row under the 3D model that scrolls sideways (like the tabs) · B — several per row, wrapping · C — two columns.
+- **Decision:** ✅ done (Anna: A) — order on mobile: model → row of switches → card; the picked switch (also when picked by a mark on the model) scrolls to the middle of the row, the page doesn't move. The section is 332 px shorter. Tablet and desktop unchanged.

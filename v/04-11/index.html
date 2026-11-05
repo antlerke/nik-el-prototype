@@ -751,6 +751,8 @@ a{color:var(--ink)}
 @media (max-width:600px){.mlab{font-size:16px}}
 /* «Від чипа» hotspot buttons: 48 px like the tabs — the other "pick one" control (were 52, a size used nowhere else) */
 .chips button{min-height:48px}
+/* …mobile: one row under the 3D model that scrolls sideways (like the tabs), right above the card it changes */
+@media (max-width:600px){.chips{order:-1;display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:2px 16px}.chips::-webkit-scrollbar{display:none}.chips button{flex:0 0 auto}}
 /* numbers «01»: one family — JetBrains Mono 600; 14 px in badges and circles, 12 px on the photo markers (hero slide numbers stay 16 px plain text) */
 .info .n,.xleg li b,.steps .lb b{font-family:var(--mono);font-size:14px;font-weight:600}
 .xm{font-family:var(--mono);font-size:12px;font-weight:600}
@@ -1166,6 +1168,14 @@ class Component extends DCLogic {
     this.picked3d = true;
     this.setState({ spot: i });
     this.focus3d(i);
+    // mobile: the switches are a row that scrolls sideways — bring the picked one to the middle (the page itself doesn't move)
+    setTimeout(() => {
+      const c = document.querySelectorAll('.chips button')[i], row = c && c.parentElement;
+      if (!row || row.scrollWidth <= row.clientWidth) return;
+      const cr = c.getBoundingClientRect(), rr = row.getBoundingClientRect();
+      const still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      row.scrollBy({ left: cr.left + cr.width / 2 - (rr.left + rr.width / 2), behavior: still ? 'auto' : 'smooth' });
+    }, 0);
   }
   focus3d(i) {
     const mv = document.getElementById('nik3d');
