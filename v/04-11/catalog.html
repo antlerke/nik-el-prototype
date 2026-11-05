@@ -566,6 +566,9 @@ a{color:var(--ink)}
 .search:has(input:disabled){border-color:var(--line);box-shadow:none}
 /* radii on one scale: 4 checkboxes · 8 controls · 16 small surfaces · 24 cards · 28 / 22 large boxes */
 .menu>li>a,.acc-t,.tl{border-radius:8px}
+/* search runs on «Знайти» or Enter (the phone keyboard's «Пошук»), not while typing; the button sits inside the field, 40 px */
+.search{padding-right:8px;min-width:0}.search>svg{flex:0 0 auto}
+#cat-res .search .sgo{flex:0 0 auto;width:auto;min-height:40px;height:40px;padding:0 16px 3px;margin:0 !important;align-self:center}
 .cimg,.cookie{border-radius:16px}
 /* small labels (24–28 px tall: tags): 4 px, so they look as crisp as the 8 px corners on taller elements (Anna) */
 .tag{border-radius:4px}
@@ -645,7 +648,7 @@ a{color:var(--ink)}
     <div class="ffoot"><button type="button" class="tl" disabled="{{noneActive}}" onClick="{{resetAll}}">Скинути все</button><button type="button" class="btn btn-ink" onClick="{{closeSheet}}">{{showLabel}}</button></div>
   </aside>
   <div id="cat-res">
-    <label class="search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><span class="sr">Пошук у каталозі</span><input type="search" placeholder="Модель, протокол або тип" title="Наприклад: NIK 2306, G3-PLC" value="{{q}}" onChange="{{onQ}}"></label>
+    <form class="search" role="search" onSubmit="{{onQ}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><label class="sr" for="cat-q">Пошук у каталозі</label><input type="search" id="cat-q" placeholder="Модель, протокол або тип" title="Наприклад: NIK 2306, G3-PLC" value="{{q}}"><button type="submit" class="btn btn-ink sgo">Знайти</button></form>
     <div class="rbar">
       <button type="button" class="btn btn-line fbtn" onClick="{{openSheet}}">Фільтри{{fCount}}</button>
       <span class="n" aria-live="polite">Знайдено: {{found}}</span>
@@ -831,7 +834,7 @@ class Component extends DCLogic {
     return Object.assign(this.base(s), {
       tabs, isProd: s.tab === 'prod', isSvc: s.tab === 'svc', isSoft: s.tab === 'soft', svcs,
       groups, items, none: !list.length, found: list.length + ' ' + (list.length % 10 === 1 && list.length % 100 !== 11 ? 'модель' : [2, 3, 4].includes(list.length % 10) && ![12, 13, 14].includes(list.length % 100) ? 'моделі' : 'моделей'), active,
-      q: s.q, sort: s.sort, onQ: (e) => this.setState({ q: e.target.value, page: 1 }), onSort: (e) => this.setState({ sort: e.target.value, page: 1 }),
+      q: s.q, sort: s.sort, onQ: (e) => { e.preventDefault(); this.setState({ q: e.target.querySelector('input').value.trim(), page: 1 }); }, onSort: (e) => this.setState({ sort: e.target.value, page: 1 }),
       pages, multi: true, hasNext: page < pageCount, noNext: page >= pageCount, next: goPage(Math.min(page + 1, pageCount)),
       eolOn: String(f.eol), toggleEol: () => { const ff = this.state.applied; this.setState({ applied: { ...ff, eol: !ff.eol }, page: 1 }); },
       reset: () => this.setState({ applied: empty, q: '', page: 1 }),

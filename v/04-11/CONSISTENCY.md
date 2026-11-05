@@ -219,3 +219,11 @@ and the cookie panel open) and by looking at every section. Clean: nothing stick
 - **Problem:** on mobile the four bars under the product picture are 44 × 24 px tap targets (the minimum).
 - **Suggested fix:** 48 × 32 px tap areas, invisible (like the footer links).
 - **Decision:** ✅ done (Anna) — each bar has an invisible 48 × 32 px tap area (neighbours touch, no overlap); the look is unchanged.
+
+## Group 7 — bugs (check of 2026-11-05: JS errors, failed loads, markup, interactions)
+
+### 35. Catalog search ran on leaving the field, with no button to start it (found by Anna)
+- **Problem:** the search applied only after Enter or when the field lost focus; the magnifier was decoration only.
+- **Options:** A — the magnifier becomes the button · B — a «Знайти» button inside the field.
+- **Decision:** ✅ done (Anna: B) — the field is a search form with a 40 px «Знайти» button (navy, like «Прийняти всі»); search runs on the button or Enter (the phone keyboard's «Пошук»), not while typing or on leaving the field. On narrow phones the placeholder is shortened with «…» (320: «Модель, пр…»). The search label is kept for screen readers.
+
