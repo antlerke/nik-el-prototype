@@ -1,11 +1,11 @@
 // The same element before (A) and after (B), side by side and zoomed — for reviewing a small visual change.
-//   node tools-for-ai/pair.cjs <width> <urlA> <urlB> <out name> <selector> [--hover] [--zoom 2] [--pad 12] [--css-b "<css for B>"] [--nth 0]
+//   node tools-for-ai/pair.cjs <width> <urlA> <urlB> <out name> <selector> [--hover] [--zoom 2] [--pad 12] [--css-b "<css for B>"] [--js-b "<js for B>"] [--nth 0]
 // Writes tools-for-ai/out/pair-<out name>.png (A left, B right). The cookie panel is hidden unless the selector is the cookie panel.
 const { spawn } = require('child_process'), fs = require('fs'), os = require('os'), path = require('path');
 
 const args = process.argv.slice(2), opt = (k, d) => { const i = args.indexOf(k); if (i < 0) return d; const v = args[i + 1]; args.splice(i, 2); return v; };
 const hover = args.includes('--hover') && args.splice(args.indexOf('--hover'), 1);
-const zoom = +opt('--zoom', 2), pad = +opt('--pad', 12), cssB = opt('--css-b', ''), nth = +opt('--nth', 0);
+const zoom = +opt('--zoom', 2), pad = +opt('--pad', 12), cssB = opt('--css-b', ''), jsB = opt('--js-b', ''), nth = +opt('--nth', 0);
 const [width, urlA, urlB, name, sel] = args;
 const W = +width;
 const OUT = path.join(__dirname, 'out');
@@ -27,11 +27,11 @@ const wait = (ms) => new Promise((r) => setTimeout(r, ms));
   await send('Emulation.setDeviceMetricsOverride', { width: W, height: 900, deviceScaleFactor: 1, mobile: W < 600 });
   await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
 
-  async function grab(url, css) {
+  async function grab(url, css, js = '') {
     await send('Page.navigate', { url });
     await wait(3500);
     const box = await evaluate(`(async () => {
-      const s = document.createElement('style'); s.textContent = '*,*::before,*::after{transition:none!important}' + ${JSON.stringify(css)}; document.head.appendChild(s);
+      const s = document.createElement('style'); s.textContent = '*,*::before,*::after{transition:none!important}' + ${JSON.stringify(css)}; document.head.appendChild(s); ${js}
       const k = document.querySelector('.cookie'); if (k && !${JSON.stringify(sel)}.includes('cookie')) k.style.display = 'none';
       await document.fonts.ready;
       const e = [...document.querySelectorAll(${JSON.stringify(sel)})].filter((x) => x.offsetWidth)[${nth}];
@@ -48,7 +48,7 @@ const wait = (ms) => new Promise((r) => setTimeout(r, ms));
     if (hover) await send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: 1, y: 1 });
     return shot;
   }
-  const a = await grab(urlA, ''), b = await grab(urlB, cssB);
+  const a = await grab(urlA, ''), b = await grab(urlB, cssB, jsB);
   await send('Page.navigate', { url: 'about:blank' });
   await wait(200);
   const png = await evaluate(`(async () => {

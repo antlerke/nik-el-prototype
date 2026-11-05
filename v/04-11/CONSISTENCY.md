@@ -107,3 +107,57 @@ Already done: tags and kickers vertically centred · sort in the catalog 48 px l
 ### 16. Product page, mobile: gap after «Технічні характеристики» 158 px instead of 160
 - **Problem:** the section's bottom padding is reduced on purpose (the specs table adds its own space), but a later rule set 64 px where an earlier one had 66 — so the visible gap was 158 px, the others 160.
 - **Decision:** ✅ done — 66 px, both rules now agree; all visible gaps between product sections on mobile are 160 px. Desktop unchanged.
+
+## Group 5 — mobile (check of 2026-11-05)
+
+Found by `tools-for-ai/mobile-check.cjs` (phone emulation, 320 / 360 / 390 px, also with the menu, the catalog filter panel
+and the cookie panel open) and by looking at every section. Clean: nothing sticks out of the screen, fields are 16 px
+(no iPhone zoom), no text under 12 px, no text touching the screen edge.
+
+### 17. «Повний цикл»: step titles break in the middle of a word
+- **Problem:** on mobile the titles may break anywhere, so a word is split without a hyphen: «Конструкторськ / е бюро» (390), «Конструкто / рське», «випробуван / ня» (320). At 320 the pink tile's word «післягарантійне» is wider than the tile and gets cut.
+- **Where:** home, mobile — «Повний цикл — від розробки до сервісу», the six steps under the photos.
+- **Suggested fix (choose):** A — number above the title (the title gets the full tile width) · B — smaller title · C — one step per row.
+- **Decision:**
+
+### 18. Cookie panel: button text on two lines
+- **Problem:** the two buttons sit side by side and are too narrow: «Лише необхідні» wraps at 390, both buttons wrap at 320.
+- **Where:** all pages, mobile — cookie panel.
+- **Suggested fix:** buttons one under another, full width, one line each.
+- **Decision:**
+
+### 19. News: first photo taller than the others
+- **Problem:** on mobile the three news cards are the same list, but the first photo is ~300 px tall (left over from the big desktop card), the other two 200 px.
+- **Where:** home, mobile — «Новини та статті».
+- **Suggested fix:** 200 px for all three.
+- **Decision:**
+
+### 20. Product page: second block in a section starts 24 px after the first
+- **Problem:** on desktop two blocks sit side by side; on mobile they stack with only 24 px between them, so a new kicker and heading stick to the table / documents above.
+- **Where:** product, mobile — «Як читати код замовлення» after the specs table, «Огляд моделі» after the documents.
+- **Suggested fix:** 64 px before a block that starts with its own kicker and heading (text → picture stays 24 px).
+- **Decision:**
+
+### 21. Product page: breadcrumb line starts with «/»
+- **Problem:** the breadcrumbs wrap and the second line starts with the separator: «/ NIK 2306» (390), «/ Облік електроенергії …» (320).
+- **Where:** product, mobile — breadcrumbs.
+- **Suggested fix:** the «/» stays on the line with the item before it, so a new line starts with a link.
+- **Decision:**
+
+### 22. Footer links too small to tap
+- **Problem:** the link lists are 23 px tall with 12 px between them; «Політика конфіденційності», «Cookie», «LinkedIn · Facebook · YouTube» are 18–20 px. The guideline for touch is 44 px.
+- **Where:** all pages, mobile — footer.
+- **Suggested fix:** a 44 px tap area around each link without changing how the footer looks.
+- **Decision:**
+
+### 23. Mobile menu: language buttons 36 px
+- **Problem:** UA / EN / RU are 36 px tall; everything else in the menu is 44–48 px.
+- **Where:** all pages — mobile menu, bottom.
+- **Suggested fix:** 44 px.
+- **Decision:**
+
+### 24. 320 px: the 3D hint touches the edge of its box
+- **Problem:** «Потягніть убік, щоб обернути» runs right up to the box's right edge (no space left).
+- **Where:** home «Від чипа до корпусу» and product, 320 px only.
+- **Suggested fix (choose):** A — the hint may wrap onto two lines, keeping 24 px from the edge · B — shorter text on narrow screens («Потягніть, щоб обернути»).
+- **Decision:** B (Anna) — shorter text on narrow screens.
