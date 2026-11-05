@@ -528,6 +528,8 @@ main>:nth-child(1){padding-top:40px !important}
 /* columns: 48 / 24, as on the main page */
 .pd,.two{gap:48px}
 @media (max-width:600px){.pd,.two{gap:24px}}
+/* mobile: a second block with its own kicker and heading («Як читати код замовлення», «Огляд моделі») gets 64 px, so it doesn't stick to the block above */
+@media (max-width:600px){#p-spec .two,#p-docs .two{row-gap:64px}}
 /* order code: tag radius 8 */
 .code span{border-radius:8px}
 /* locked document: 1 px edge, as in «Блоки» */

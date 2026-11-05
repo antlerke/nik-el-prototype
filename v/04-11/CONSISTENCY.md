@@ -136,7 +136,7 @@ and the cookie panel open) and by looking at every section. Clean: nothing stick
 - **Problem:** on desktop two blocks sit side by side; on mobile they stack with only 24 px between them, so a new kicker and heading stick to the table / documents above.
 - **Where:** product, mobile — «Як читати код замовлення» after the specs table, «Огляд моделі» after the documents.
 - **Suggested fix:** 64 px before a block that starts with its own kicker and heading (text → picture stays 24 px).
-- **Decision:**
+- **Decision:** ✅ done (Anna) — on mobile 64 px before «Як читати код замовлення» and «Огляд моделі»; each section is 40 px taller. «Опис» and «Креслення» (text → picture) stay 24 px. Tablet (48 px) and desktop unchanged.
 
 ### 21. Product page: breadcrumb line starts with «/»
 - **Problem:** the breadcrumbs wrap and the second line starts with the separator: «/ NIK 2306» (390), «/ Облік електроенергії …» (320).
