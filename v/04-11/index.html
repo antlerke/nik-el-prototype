@@ -517,8 +517,8 @@ a{color:var(--ink)}
 @media (max-width:600px){.nc .more{align-self:flex-end}}
 /* mobile: production steps — even, tighter grid */
 @media (max-width:600px){.steps{gap:20px 12px}.steps li{gap:10px}.steps .ph{border-radius:14px}.steps .ph.svc{padding:14px;font-size:14px}}
-/* mobile: cookie banner — two equal buttons, settings link below */
-@media (max-width:600px){.cookie p{font-size:14px}.cookie .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.cookie .row .btn{width:100%;padding:0 12px 3px}.cookie .row .lnk{grid-column:1/-1}}
+/* mobile: cookie banner — buttons one under another, full width, settings link below (text never wraps in a button) */
+@media (max-width:600px){.cookie p{font-size:14px}.cookie .row{display:grid;grid-template-columns:1fr;gap:8px}.cookie .row .btn{width:100%;padding:0 12px 3px}.cookie .row .lnk{grid-column:1/-1}}
 /* mobile: exploded view fits the screen (no sideways scroll) */
 @media (max-width:600px){.xscroll{overflow:visible;margin:24px 0 0;padding:0}.xscroll .xstage{min-width:0;border-radius:16px}.xm{width:20px;height:20px;margin:-10px 0 0 -10px;font-size:10px;box-shadow:0 0 0 3px var(--red-b)}}
 /* mobile hero: smaller slide numbers (tap area kept at 44px) */

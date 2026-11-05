@@ -124,7 +124,7 @@ and the cookie panel open) and by looking at every section. Clean: nothing stick
 - **Problem:** the two buttons sit side by side and are too narrow: «Лише необхідні» wraps at 390, both buttons wrap at 320.
 - **Where:** all pages, mobile — cookie panel.
 - **Suggested fix:** buttons one under another, full width, one line each.
-- **Decision:**
+- **Decision:** ✅ done (Anna) — on mobile «Прийняти всі» and «Лише необхідні» are one under another, full width, text on one line; «Налаштувати» below. The panel is ~50 px taller. All three pages; desktop unchanged.
 
 ### 19. News: first photo taller than the others
 - **Problem:** on mobile the three news cards are the same list, but the first photo is ~300 px tall (left over from the big desktop card), the other two 200 px.

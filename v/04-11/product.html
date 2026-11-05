@@ -181,8 +181,8 @@ a{color:var(--ink)}
 @media (max-width:600px){.shead{gap:24px}}
 /* mobile: equal 80px between sections (no doubled gaps on same-colour neighbours) */
 @media (max-width:600px){.sec{padding:80px 0}}
-/* mobile: cookie banner — two equal buttons, settings link below */
-@media (max-width:600px){.cookie p{font-size:14px}.cookie .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.cookie .row .btn{width:100%;padding:0 12px 3px}.cookie .row .lnk{grid-column:1/-1}}
+/* mobile: cookie banner — buttons one under another, full width, settings link below (text never wraps in a button) */
+@media (max-width:600px){.cookie p{font-size:14px}.cookie .row{display:grid;grid-template-columns:1fr;gap:8px}.cookie .row .btn{width:100%;padding:0 12px 3px}.cookie .row .lnk{grid-column:1/-1}}
 @media (max-width:600px){section[aria-labelledby="h-news"] .shead>.btn{display:none}}
 /* mobile: slimmer header bar */
 @media (max-width:600px){.hd .wrap{height:64px}.mnav{top:65px}}
