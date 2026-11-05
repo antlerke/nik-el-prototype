@@ -480,6 +480,8 @@ a.bdg:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
 .crumbs{font-family:Geologica,sans-serif;font-size:14px;line-height:1.45}
 .crumbs [aria-current]{font-weight:500}
 .crumbs a:hover{text-decoration:underline;text-underline-offset:4px}
+/* mobile: crumb links get a 32 px tap area — 24 px lines + the 8 px gap; padding offset by negative margin */
+@media (max-width:600px){.crumbs{line-height:24px}.crumbs a{display:inline-block;padding:4px 0;margin:-4px 0}}
 /* captions — Small 14 (photo caption is prose, so Geologica) */
 .stage2 .cap{font-family:Geologica,sans-serif;font-size:14px}
 .vbox2 span,.code small{font-size:14px}

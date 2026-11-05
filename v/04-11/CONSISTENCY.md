@@ -186,7 +186,7 @@ and the cookie panel open) and by looking at every section. Clean: nothing stick
 - **Problem:** «Головна», «Каталог», «Облік електроенергії» are 18 px tall tap targets.
 - **Where:** catalog and product, mobile.
 - **Suggested fix:** 32 px tap areas like the footer — lines 24 px (+ the 8 px gap), so the crumbs get ~4 px taller per line.
-- **Decision:**
+- **Decision:** ✅ done (Anna) — on mobile the crumb links are 32 px tap areas (lines 24 px instead of 20.3, + the 8 px gap); the crumbs are ~4 px taller per line, everything else only moves by that much. Catalog and product; tablet and desktop unchanged.
 
 ### 29. Catalog, mobile: «Фільтри» button outline differs from the sort next to it
 - **Problem:** «Фільтри» (48 px) has the dark button outline, the sort beside it the light one; on the home page 48 px controls (tabs) use the light outline, the dark one is for 56 px buttons.
