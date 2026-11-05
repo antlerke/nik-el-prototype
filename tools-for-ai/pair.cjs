@@ -1,11 +1,11 @@
 // The same element before (A) and after (B), side by side and zoomed — for reviewing a small visual change.
-//   node tools-for-ai/pair.cjs <width> <urlA> <urlB> <out name> <selector> [--hover] [--zoom 2] [--pad 12] [--css-b "<css for B>"] [--js-b "<js for B>"] [--nth 0]
+//   node tools-for-ai/pair.cjs <width> <urlA> <urlB> <out name> <selector> [--hover] [--zoom 2] [--pad 12] [--css-b "<css for B>"] [--js "<js for both>"] [--js-b "<js for B>"] [--nth 0]
 // Writes tools-for-ai/out/pair-<out name>.png (A left, B right). The cookie panel is hidden unless the selector is the cookie panel.
 const { spawn } = require('child_process'), fs = require('fs'), os = require('os'), path = require('path');
 
 const args = process.argv.slice(2), opt = (k, d) => { const i = args.indexOf(k); if (i < 0) return d; const v = args[i + 1]; args.splice(i, 2); return v; };
 const hover = args.includes('--hover') && args.splice(args.indexOf('--hover'), 1);
-const zoom = +opt('--zoom', 2), pad = +opt('--pad', 12), cssB = opt('--css-b', ''), jsB = opt('--js-b', ''), nth = +opt('--nth', 0);
+const zoom = +opt('--zoom', 2), pad = +opt('--pad', 12), cssB = opt('--css-b', ''), jsB = opt('--js-b', ''), jsBoth = opt('--js', ''), nth = +opt('--nth', 0);
 const [width, urlA, urlB, name, sel] = args;
 const W = +width;
 const OUT = path.join(__dirname, 'out');
@@ -48,7 +48,7 @@ const wait = (ms) => new Promise((r) => setTimeout(r, ms));
     if (hover) await send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: 1, y: 1 });
     return shot;
   }
-  const a = await grab(urlA, ''), b = await grab(urlB, cssB, jsB);
+  const a = await grab(urlA, '', jsBoth), b = await grab(urlB, cssB, jsBoth + ';' + jsB);
   await send('Page.navigate', { url: 'about:blank' });
   await wait(200);
   const png = await evaluate(`(async () => {

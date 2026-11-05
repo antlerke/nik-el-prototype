@@ -154,7 +154,7 @@ and the cookie panel open) and by looking at every section. Clean: nothing stick
 - **Problem:** UA / EN / RU are 36 px tall; everything else in the menu is 44–48 px.
 - **Where:** all pages — mobile menu, bottom.
 - **Suggested fix:** 44 px.
-- **Decision:**
+- **Decision:** ✅ done (Anna: on the 8 px grid) — language buttons 40 px, so the whole switch is 48 px like the tabs. Burger menu on all three pages; the header switch on desktop unchanged.
 
 ### 24. 320 px: the 3D hint touches the edge of its box
 - **Problem:** «Потягніть убік, щоб обернути» runs right up to the box's right edge (no space left).
