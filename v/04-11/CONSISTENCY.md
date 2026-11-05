@@ -173,3 +173,34 @@ and the cookie panel open) and by looking at every section. Clean: nothing stick
 - **Where:** home, mobile — «Від чипа до корпусу».
 - **Options:** A — one row under the 3D model that scrolls sideways (like the tabs) · B — several per row, wrapping · C — two columns.
 - **Decision:** ✅ done (Anna: A) — order on mobile: model → row of switches → card; the picked switch (also when picked by a mark on the model) scrolls to the middle of the row, the page doesn't move. The section is 332 px shorter. Tablet and desktop unchanged.
+
+## Group 6 — mobile re-check after group 5 (2026-11-05)
+
+### 27. Header logo: tap area 34 px
+- **Problem:** the logo link (to the home page) is only as tall as the logo, 34 px; the header is 64 px.
+- **Where:** all pages, header up to 900 px (where the logo is 34 px).
+- **Suggested fix:** 48 px tap area, invisible (padding offset by negative margin).
+- **Decision:** ✅ done (Anna) — the logo link is a 48 px tap area up to 900 px; nothing moves (header pixel-identical). All three pages; desktop unchanged.
+
+### 28. Breadcrumb links 18 px tall
+- **Problem:** «Головна», «Каталог», «Облік електроенергії» are 18 px tall tap targets.
+- **Where:** catalog and product, mobile.
+- **Suggested fix:** 32 px tap areas like the footer — lines 24 px (+ the 8 px gap), so the crumbs get ~4 px taller per line.
+- **Decision:**
+
+### 29. Catalog, mobile: «Фільтри» button outline differs from the sort next to it
+- **Problem:** «Фільтри» (48 px) has the dark button outline, the sort beside it the light one; on the home page 48 px controls (tabs) use the light outline, the dark one is for 56 px buttons.
+- **Where:** catalog, mobile — above the results.
+- **Suggested fix:** the light outline, like the sort and the tabs.
+- **Decision:**
+
+### 30. Home, mobile: 3D hint icon gap 10 px
+- **Problem:** the gap between the rotate icon and «Потягніть убік, щоб обернути» is 10 px on home mobile, 8 px everywhere else (home desktop, product).
+- **Suggested fix:** 8 px.
+- **Decision:** ✅ done (Anna) — 8 px, like home desktop and product.
+
+### 31. Contact block: «дня» alone on a line
+- **Problem:** «Відповідаємо протягом 1 робочого дня» wraps so that «дня» is alone on the second line.
+- **Where:** home, mobile — «Готові до співпраці?», under the e-mail.
+- **Suggested fix:** non-breaking spaces in «1 робочого дня», so it wraps as one piece.
+- **Decision:** ✅ done (Anna) — «1 робочого дня» has non-breaking spaces and wraps as one piece («Відповідаємо протягом / 1 робочого дня»).

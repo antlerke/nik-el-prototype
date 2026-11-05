@@ -60,6 +60,8 @@ a{color:var(--ink)}
 .seg a[aria-current]{background:var(--ink);color:#ffffff}
 /* menu (burger): language buttons 40 px, so the switch is 48 px like the tabs */
 .mnav .seg a{height:40px}
+/* header logo link: 48 px tap area up to 900 px (the logo is 34 px there), invisible — padding offset by negative margin */
+@media (max-width:900px){.hd a[aria-label$="на головну"]{padding:7px 0;margin:-7px 0}}
 .burger{display:none}
 .mnav{display:none}
 @media (max-width:900px){

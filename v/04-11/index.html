@@ -63,6 +63,8 @@ a{color:var(--ink)}
 .seg a[aria-current]{background:var(--ink);color:#ffffff}
 /* menu (burger): language buttons 40 px, so the switch is 48 px like the tabs */
 .mnav .seg a{height:40px}
+/* header logo link: 48 px tap area up to 900 px (the logo is 34 px there), invisible — padding offset by negative margin */
+@media (max-width:900px){.hd a[aria-label$="на головну"]{padding:7px 0;margin:-7px 0}}
 .burger{display:none}
 .mnav{display:none}
 @media (max-width:900px){
@@ -174,7 +176,7 @@ a{color:var(--ink)}
 .tilt img{display:block;width:100%;height:auto;filter:drop-shadow(0 46px 40px rgba(19,56,93,.28))}
 .ground{position:absolute;left:50%;bottom:36px;width:300px;height:26px;margin-left:-150px;border-radius:50%;background:radial-gradient(closest-side,rgba(19,56,93,.22),rgba(19,56,93,0))}
 @media (hover:none){.ihint{display:none !important}}
-.ihint{position:absolute;left:24px;top:22px;display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
+.ihint{position:absolute;left:24px;top:22px;display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
 .spot{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border:0;padding:0;background:transparent;cursor:pointer;display:grid;place-items:center;transform:translateZ(30px)}
 .spot span{position:relative;width:18px;height:18px;border-radius:50%;background:#ffffff;box-shadow:0 0 0 3px var(--red),0 6px 14px rgba(19,56,93,.35);transition:transform .25s var(--out),background-color .2s ease}
 .spot:hover span{transform:scale(1.15)}
@@ -1069,7 +1071,7 @@ a{color:var(--ink)}
       <p class="lead" style="margin-top: 20px">Оберіть тему звернення та коротко опишіть запит. Ми передамо його профільному фахівцю і відповімо протягом 1 робочого дня.</p>
       <div class="clist">
         <a href="#"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"></path></svg></i><span class="num">+380 (44) 498-06-19<small>Пн–Пт, 8:00–17:00</small></span></a>
-        <a href="#"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></i><span>info@nikel.com.ua<small>Відповідаємо протягом 1 робочого дня</small></span></a>
+        <a href="#"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></i><span>info@nikel.com.ua<small>Відповідаємо протягом 1&nbsp;робочого&nbsp;дня</small></span></a>
       </div>
       <div class="note"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16.5v.5"></path></svg><span>Ми працюємо з компаніями та організаціями. Якщо ви побутовий споживач, зверніться до дилера у вашому регіоні — <a href="#">Де купити</a> — або знайдіть відповідь у чат-боті.</span></div>
     </div>
