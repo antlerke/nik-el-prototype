@@ -58,6 +58,12 @@ a{color:var(--ink)}
 .seg a{display:grid;place-items:center;min-width:40px;height:36px;padding:0 6px;border-radius:9px;font-size:14px;font-weight:500;line-height:1;color:var(--muted);text-decoration:none;transition:background-color .2s ease,color .2s ease}
 .seg a:hover{color:var(--ink)}
 .seg a[aria-current]{background:var(--ink);color:#ffffff}
+/* menu (burger): language buttons 40 px, so the switch is 48 px like the tabs */
+.mnav .seg a{height:40px}
+/* footer narrower than 360 px: «Контакти» takes the full width, so the phone number (never broken) fits */
+@media (max-width:359px){.fcols>div:last-child{grid-column:1/-1}}
+/* header logo link: 48 px tap area up to 900 px (the logo is 34 px there), invisible — padding offset by negative margin */
+@media (max-width:900px){.hd a[aria-label$="на головну"]{padding:7px 0;margin:-7px 0}}
 .burger{display:none}
 .mnav{display:none}
 @media (max-width:900px){
@@ -132,6 +138,8 @@ a{color:var(--ink)}
 .fbot{display:flex;justify-content:space-between;align-items:center;gap:16px 24px;flex-wrap:wrap;padding:56px 0 32px;font-family:var(--mono);font-size:14px;font-weight:500;line-height:1.45;color:#a9bbcf}
 .fbot nav{display:flex;gap:24px;flex-wrap:wrap}
 .fbot a{color:#a9bbcf}
+/* mobile: bigger tap areas in the footer, on the 8 px grid — column links 32 px (24 px lines + the 8 px gap), bottom links 40 px; the extra is padding offset by negative margin, so nothing moves */
+@media (max-width:600px){.fcols>div>a,.fcols>div>span{line-height:24px}.fcols>div>a{padding:4px 0;margin:-4px 0}.fbot nav a{display:inline-block;line-height:20px;padding:10px 6px;margin:-10px -6px}}
 
 /* cookie */
 .cookie{position:fixed;left:32px;right:32px;bottom:16px;z-index:50;max-width:1216px;margin:0 auto;display:flex;align-items:center;gap:24px;box-sizing:border-box;background:#ffffff;border-radius:20px;padding:16px 16px 16px 24px;box-shadow:0 24px 64px rgba(10,32,56,.22),0 0 0 1px rgba(19,56,93,.06);animation:pop .5s var(--ease) .8s both}
@@ -181,8 +189,8 @@ a{color:var(--ink)}
 @media (max-width:600px){.shead{gap:24px}}
 /* mobile: equal 80px between sections (no doubled gaps on same-colour neighbours) */
 @media (max-width:600px){.sec{padding:80px 0}}
-/* mobile: cookie banner — two equal buttons, settings link below */
-@media (max-width:600px){.cookie p{font-size:14px}.cookie .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.cookie .row .btn{width:100%;padding:0 12px 3px}.cookie .row .lnk{grid-column:1/-1}}
+/* mobile: cookie banner — buttons one under another, full width, settings link below (text never wraps in a button) */
+@media (max-width:600px){.cookie p{font-size:14px}.cookie .row{display:grid;grid-template-columns:1fr;gap:8px}.cookie .row .btn{width:100%;padding:0 12px 3px}.cookie .row .lnk{grid-column:1/-1}}
 @media (max-width:600px){section[aria-labelledby="h-news"] .shead>.btn{display:none}}
 /* mobile: slimmer header bar */
 @media (max-width:600px){.hd .wrap{height:64px}.mnav{top:65px}}
@@ -309,7 +317,7 @@ a{color:var(--ink)}
 </style>
 <style>
 .crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0;padding:0;list-style:none;font-family:var(--mono);font-size:12px;color:var(--muted)}
-.crumbs li+li::before{content:"/";margin-right:8px;color:#8592a0}
+.crumbs li:not(:last-child)::after{content:"/";margin-left:8px;color:#8592a0}
 .crumbs a{color:var(--muted);text-decoration:none}.crumbs a:hover{color:var(--ink)}
 .crumbs [aria-current]{color:var(--ink)}
 .h3s{margin:0;color:var(--ink)}
@@ -474,6 +482,8 @@ a.bdg:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
 .crumbs{font-family:Geologica,sans-serif;font-size:14px;line-height:1.45}
 .crumbs [aria-current]{font-weight:500}
 .crumbs a:hover{text-decoration:underline;text-underline-offset:4px}
+/* mobile: crumb links get a 32 px tap area — 24 px lines + the 8 px gap; padding offset by negative margin */
+@media (max-width:600px){.crumbs{line-height:24px}.crumbs a{display:inline-block;padding:4px 0;margin:-4px 0}}
 /* captions — Small 14 (photo caption is prose, so Geologica) */
 .stage2 .cap{font-family:Geologica,sans-serif;font-size:14px}
 .vbox2 span,.code small{font-size:14px}
@@ -528,6 +538,8 @@ main>:nth-child(1){padding-top:40px !important}
 /* columns: 48 / 24, as on the main page */
 .pd,.two{gap:48px}
 @media (max-width:600px){.pd,.two{gap:24px}}
+/* mobile: a second block with its own kicker and heading («Як читати код замовлення», «Огляд моделі») gets 64 px, so it doesn't stick to the block above */
+@media (max-width:600px){#p-spec .two,#p-docs .two{row-gap:64px}}
 /* order code: tag radius 8 */
 .code span{border-radius:8px}
 /* locked document: 1 px edge, as in «Блоки» */
@@ -556,6 +568,8 @@ main>:nth-child(1){padding-top:40px !important}
 .m3d.moved .m3d-reset{display:inline-flex}
 .m3d .h-touch{display:none}
 @media (hover:none),(max-width:600px){.m3d .h-desk{display:none}.m3d .h-touch{display:inline}}
+/* narrower than 360 px the touch hint drops «убік», so it keeps clear of the box edge */
+@media (max-width:359px){.m3d .h-wide{display:none}}
 @media (max-width:600px){.m3d .ihint{left:16px;top:16px}.m3d.moved .ihint{display:none}}
 /* «PDF» badges: same font effect as the tags, capitals sat 1.3 px high; text moved down, badge size unchanged */
 .doc em{padding-top:2.6px}
@@ -574,7 +588,7 @@ main>:nth-child(1){padding-top:40px !important}
 <body>
 <div id="app"></div>
 <script type="text/x-template" id="tpl">
-<div style="font-family: Geologica, sans-serif; color: var(--text); background: #ffffff; overflow-x: hidden">
+<div style="font-family: Geologica, sans-serif; color: var(--text); background: #ffffff; overflow-x: clip">
 
 <a href="#main" class="skip">Перейти до змісту</a>
 <header class="hd">
@@ -625,7 +639,7 @@ main>:nth-child(1){padding-top:40px !important}
       <div class="gal">
         <div class="stage2">
           <div class="m3d" data-dc-keep="">
-            <span class="ihint"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path></svg><span class="h-desk">Затисніть і потягніть, щоб обернути</span><span class="h-touch">Потягніть убік, щоб обернути</span></span>
+            <span class="ihint"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path></svg><span class="h-desk">Затисніть і потягніть, щоб обернути</span><span class="h-touch">Потягніть<span class="h-wide"> убік</span>, щоб обернути</span></span>
             <button type="button" class="m3d-reset">Скинути вигляд</button>
             <model-viewer id="nik3d" data-src="../../assets/fe973e1e-nik-2308.glb" poster="../../assets/593dddd1-nik2308-poster.webp" alt="Трифазний лічильник NIK 2308 — 3D-модель, яку можна обертати" camera-controls="" disable-zoom="" disable-pan="" touch-action="pan-y" interaction-prompt="none" camera-orbit="-14deg 80deg auto" min-camera-orbit="auto 35deg auto" max-camera-orbit="auto 145deg auto" interpolation-decay="140" environment-image="neutral" exposure="1.05" shadow-intensity="1" shadow-softness="1" loading="eager" reveal="auto"></model-viewer>
           </div>
@@ -639,7 +653,7 @@ main>:nth-child(1){padding-top:40px !important}
         <div class="badges"><h2>Сертифікати та стандарти</h2><div><span class="tag" title="Державний стандарт України">ДСТУ</span><span class="tag" title="Маркування відповідності ЄС">CE</span><span class="tag" title="Директива ЄС про засоби вимірювання">MID</span><span class="tag" title="Протокол обміну даними">DLMS / COSEM</span><span class="tag" title="Профіль сумісності лічильників">IDIS</span></div></div>
         <ul class="feat">
           <li>Багатотарифний облік активної й реактивної енергії</li>
-          <li>Змінний модуль зв’язку NIK LTE Module під кришкою</li>
+          <li>Змінний модуль зв’язку NIK&nbsp;LTE&nbsp;Module під кришкою</li>
           <li>Вбудоване реле навантаження для дистанційного вимкнення</li>
           <li>Оптичний порт для зчитування й налаштування на місці</li>
           <li>Пломбована клемна кришка з фіксацією відкриття в журналі подій</li>
@@ -649,7 +663,7 @@ main>:nth-child(1){padding-top:40px !important}
           <a href="#" class="btn btn-line">Чим замінити</a>
           <a href="#" class="lnk">Стати дилером<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
         </div>
-        <p class="pnote">Ціни, наявність і замовлення — у кабінеті партнера.</p>
+        <p class="pnote">Ціни, наявність і замовлення — у&nbsp;кабінеті&nbsp;партнера.</p>
       </div>
     </div>
   </div>
@@ -662,7 +676,7 @@ main>:nth-child(1){padding-top:40px !important}
 <section class="psec" id="p-desc"><div class="wrap two">
   <div class="prose">
     <span class="kick">Опис</span>
-    <h2 class="h3s" style="margin-top: 16px">Облік і керування навантаженням в одному приладі</h2>
+    <h2 class="h3s" style="margin-top: 16px">Облік і керування навантаженням в&nbsp;одному&nbsp;приладі</h2>
     <p>NIK 2306 вимірює активну й реактивну енергію в трифазних мережах 3×230/400 В і зберігає показання за тарифами та журнал подій. Дані передаються в систему АСКОЕ через RS-485, PLC або змінний модуль LTE.</p>
     <p>Вбудоване реле дозволяє оператору дистанційно вимикати й вмикати споживача. Корпус із захистом IP54 працює в діапазоні від −40 до +70 °C.</p>
     <p style="font-size: 14px; color: var(--muted)">[Повний опис моделі — від замовника]</p>
@@ -779,6 +793,29 @@ class Component extends DCLogic {
     super(props);
     this.state = Object.assign({ cookie: true, menu: false }, { sec: 'p-desc' });
     this.m3dTimer = setTimeout(() => this.init3d(), 300);
+    this.spyTimer = setTimeout(() => this.initSpy(), 300);
+  }
+  // sub-menu: the item of the section that is under the (sticky) sub-menu is the current one, while scrolling too
+  initSpy() {
+    const ids = ['p-desc', 'p-spec', 'p-draw', 'p-docs', 'p-video'];
+    let queued = false;
+    const spy = () => {
+      queued = false;
+      const nav = document.querySelector('nav.subnav');
+      if (!nav) return;
+      // a section is current once its top is 80 px under the sub-menu (a jump from the menu lands it there too)
+      const line = nav.getBoundingClientRect().bottom + 80;
+      let cur = ids[0];
+      for (const id of ids) { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top <= line) cur = id; }
+      // a click is remembered until the reader scrolls to another section (not during the jump itself)
+      if (cur !== 'p-docs' && cur !== 'p-video' && Date.now() - (this.pickedAt || 0) > 1500) this.picked = null;
+      // documents and video side by side (desktop): one row — documents, unless «Відео» was clicked
+      const v = document.getElementById('p-video'), col = v && v.previousElementSibling;
+      if ((cur === 'p-docs' || cur === 'p-video') && col && v.getBoundingClientRect().top < col.getBoundingClientRect().bottom - 1) cur = this.picked === 'p-video' ? 'p-video' : 'p-docs';
+      if (cur !== this.state.sec) this.setState({ sec: cur });
+    };
+    window.addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(spy); } }, { passive: true });
+    spy();
   }
   // gallery 3D: model-viewer keeps its own DOM (data-dc-keep), so rotation, the reset button and loading are set up here
   init3d() {
@@ -834,9 +871,9 @@ class Component extends DCLogic {
     ];
     const DIR = { el: 'Електроенергія', wh: 'Вода та тепло', am: 'АСКОЕ', st: 'Стабілізатори' };
     const card = (p) => ({ ...p, img: B + p.img, alt: p.m + ' — ' + p.t.toLowerCase(), tag: p.eol ? 'Знято з виробництва' : DIR[p.dir], tagCls: p.eol ? 'tag eol' : 'tag' + (p.dir === 'el' ? ' r' : ''), cls: 'card' + (p.eol ? ' eol' : '') });
-    const subnav = [['p-desc', 'Опис'], ['p-spec', 'Характеристики'], ['p-draw', 'Креслення'], ['p-docs', 'Документи'], ['p-video', 'Відео']].map(([id, t]) => ({ t, href: '#' + id, cur: String(s.sec === id), pick: () => this.setState({ sec: id }) }));
+    const subnav = [['p-desc', 'Опис'], ['p-spec', 'Характеристики'], ['p-draw', 'Креслення'], ['p-docs', 'Документи'], ['p-video', 'Відео']].map(([id, t]) => ({ t, href: '#' + id, cur: String(s.sec === id), pick: () => { this.picked = id; this.pickedAt = Date.now(); this.setState({ sec: id }); } }));
     const specs = [
-      ['Номінальна напруга', '3×230/400 В, 50 Гц'], ['Струм', '0,25–5(80) А'], ['Клас точності', 'B (активна) / 2 (реактивна)'], ['Стандарти', 'EN 50470-3, EN 62053-23'],
+      ['Номінальна напруга', '3×230/400 В, 50 Гц'], ['Струм', '0,25–5(80) А'], ['Клас точності', 'B (активна) / 2 (реактивна)'], ['Стандарти', 'EN 50470-⁠3, EN 62053-⁠23'],
       ['Протокол', 'DLMS / COSEM, IDIS'], ['Інтерфейси', 'RS-485, PLC (G3-PLC), модуль LTE'], ['Постійна лічильника', '8000 імп/кВт·год, 8000 імп/квар·год'],
       ['Реле навантаження', 'Вбудоване'], ['Робоча температура', '−40…+70 °C'], ['Ступінь захисту', 'IP54']
     ].map(([k, v]) => ({ k, v }));

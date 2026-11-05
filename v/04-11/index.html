@@ -61,6 +61,12 @@ a{color:var(--ink)}
 .seg a{display:grid;place-items:center;min-width:40px;height:36px;padding:0 6px;border-radius:9px;font-size:14px;font-weight:500;line-height:1;color:var(--muted);text-decoration:none;transition:background-color .2s ease,color .2s ease}
 .seg a:hover{color:var(--ink)}
 .seg a[aria-current]{background:var(--ink);color:#ffffff}
+/* menu (burger): language buttons 40 px, so the switch is 48 px like the tabs */
+.mnav .seg a{height:40px}
+/* footer narrower than 360 px: «Контакти» takes the full width, so the phone number (never broken) fits */
+@media (max-width:359px){.fcols>div:last-child{grid-column:1/-1}}
+/* header logo link: 48 px tap area up to 900 px (the logo is 34 px there), invisible — padding offset by negative margin */
+@media (max-width:900px){.hd a[aria-label$="на головну"]{padding:7px 0;margin:-7px 0}}
 .burger{display:none}
 .mnav{display:none}
 @media (max-width:900px){
@@ -172,7 +178,7 @@ a{color:var(--ink)}
 .tilt img{display:block;width:100%;height:auto;filter:drop-shadow(0 46px 40px rgba(19,56,93,.28))}
 .ground{position:absolute;left:50%;bottom:36px;width:300px;height:26px;margin-left:-150px;border-radius:50%;background:radial-gradient(closest-side,rgba(19,56,93,.22),rgba(19,56,93,0))}
 @media (hover:none){.ihint{display:none !important}}
-.ihint{position:absolute;left:24px;top:22px;display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
+.ihint{position:absolute;left:24px;top:22px;display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
 .spot{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border:0;padding:0;background:transparent;cursor:pointer;display:grid;place-items:center;transform:translateZ(30px)}
 .spot span{position:relative;width:18px;height:18px;border-radius:50%;background:#ffffff;box-shadow:0 0 0 3px var(--red),0 6px 14px rgba(19,56,93,.35);transition:transform .25s var(--out),background-color .2s ease}
 .spot:hover span{transform:scale(1.15)}
@@ -345,6 +351,8 @@ a{color:var(--ink)}
 .fbot{display:flex;justify-content:space-between;align-items:center;gap:16px 24px;flex-wrap:wrap;padding:56px 0 32px;font-family:var(--mono);font-size:14px;font-weight:500;line-height:1.45;color:#a9bbcf}
 .fbot nav{display:flex;gap:24px;flex-wrap:wrap}
 .fbot a{color:#a9bbcf}
+/* mobile: bigger tap areas in the footer, on the 8 px grid — column links 32 px (24 px lines + the 8 px gap), bottom links 40 px; the extra is padding offset by negative margin, so nothing moves */
+@media (max-width:600px){.fcols>div>a,.fcols>div>span{line-height:24px}.fcols>div>a{padding:4px 0;margin:-4px 0}.fbot nav a{display:inline-block;line-height:20px;padding:10px 6px;margin:-10px -6px}}
 
 /* cookie */
 .cookie{position:fixed;left:32px;right:32px;bottom:16px;z-index:50;max-width:1216px;margin:0 auto;display:flex;align-items:center;gap:24px;box-sizing:border-box;background:#ffffff;border-radius:20px;padding:16px 16px 16px 24px;box-shadow:0 24px 64px rgba(10,32,56,.22),0 0 0 1px rgba(19,56,93,.06);animation:pop .5s var(--ease) .8s both}
@@ -354,11 +362,6 @@ a{color:var(--ink)}
 .cookie .btn{min-height:44px;padding:0 18px 3px;font-size:16px;border-radius:8px}
 .cookie .lnk{background:transparent;color:var(--ink);text-decoration:underline;text-underline-offset:3px;padding:0 8px}
 
-/* reveal */
-@media (prefers-reduced-motion:no-preference){@supports (animation-timeline:view()){
-  .rv{animation:rv linear both;animation-timeline:view();animation-range:entry 0% cover 30%}
-  @keyframes rv{from{opacity:0;transform:translateY(40px)}}
-}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition-duration:.01ms !important}.vf:first-of-type{opacity:1}}
 
 /* secondary typeface: JetBrains Mono for labels, tags and technical data */
@@ -411,7 +414,7 @@ a{color:var(--ink)}
   .vtxt h2{font-size:40px}
   .vsec{padding:80px 16px}.vbox{border-radius:22px;height:auto}.vf{inset:0 0 auto 0;height:300px}.vbox::after{inset:0 0 auto 0;height:300px;background:linear-gradient(0deg,rgba(13,42,71,.45) 0%,rgba(13,42,71,0) 60%)}.vtxt{position:static;margin-top:300px;padding:28px 24px 32px}.vctl button,.vctl>span{width:44px;padding:0;gap:0;font-size:0;justify-content:center;background:rgba(13,42,71,.72);box-shadow:inset 0 0 0 1px rgba(255,255,255,.3)}.vctl svg{top:0}.vrow{gap:12px 24px}.vctl>span{display:none}
   .mname{gap:24px;padding-right:24px}.mseg>span{font-size:14px;padding:10px 16px}
-  .nc.sm{flex-direction:column}.nc.sm .pi{flex:none;height:200px;min-height:0}.nc .bd{padding:22px}.nc.big .t{font-size:24px}
+  .nc.sm{flex-direction:column}.nc.sm .pi,.nc.big .pi{flex:none;height:200px;min-height:0}.nc .bd{padding:22px}.nc.big .t{font-size:24px}
   .fcard{padding:24px 18px;border-radius:22px}.fgrid2{grid-template-columns:1fr}
   .ftop{padding:56px 0 32px}.fcols{gap:32px 20px;padding-top:32px}.fbot{flex-direction:column;align-items:flex-start;padding-top:40px}
   .cookie{left:16px;right:16px;bottom:16px;flex-direction:column;align-items:stretch;gap:14px;padding:18px}.cookie .row{flex-wrap:wrap}
@@ -512,13 +515,13 @@ a{color:var(--ink)}
 @media (max-width:600px){.vrow{flex-direction:column;gap:10px;margin-top:24px;padding-top:20px}.vrow span{align-items:flex-start}.vrow span::before{margin-top:6px}}
 /* «Також у каталозі»: one swipeable row on mobile */
 .also-row{display:contents}
-@media (max-width:600px){.also{flex-direction:column;align-items:stretch;gap:12px;margin-top:24px}.also-row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:2px 16px}.also-row::-webkit-scrollbar{display:none}.also-row a{flex:0 0 auto}}
+@media (max-width:600px){.also{flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:12px;margin-top:24px}.also-row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:2px 16px}.also-row::-webkit-scrollbar{display:none}.also-row a{flex:0 0 auto}}
 /* mobile: news «Читати далі» on the right */
 @media (max-width:600px){.nc .more{align-self:flex-end}}
 /* mobile: production steps — even, tighter grid */
 @media (max-width:600px){.steps{gap:20px 12px}.steps li{gap:10px}.steps .ph{border-radius:14px}.steps .ph.svc{padding:14px;font-size:14px}}
-/* mobile: cookie banner — two equal buttons, settings link below */
-@media (max-width:600px){.cookie p{font-size:14px}.cookie .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.cookie .row .btn{width:100%;padding:0 12px 3px}.cookie .row .lnk{grid-column:1/-1}}
+/* mobile: cookie banner — buttons one under another, full width, settings link below (text never wraps in a button) */
+@media (max-width:600px){.cookie p{font-size:14px}.cookie .row{display:grid;grid-template-columns:1fr;gap:8px}.cookie .row .btn{width:100%;padding:0 12px 3px}.cookie .row .lnk{grid-column:1/-1}}
 /* mobile: exploded view fits the screen (no sideways scroll) */
 @media (max-width:600px){.xscroll{overflow:visible;margin:24px 0 0;padding:0}.xscroll .xstage{min-width:0;border-radius:16px}.xm{width:20px;height:20px;margin:-10px 0 0 -10px;font-size:10px;box-shadow:0 0 0 3px var(--red-b)}}
 /* mobile hero: smaller slide numbers (tap area kept at 44px) */
@@ -556,7 +559,7 @@ a{color:var(--ink)}
   .xleg li{padding:16px 16px 16px 0;gap:8px 16px}
   .steps{gap:24px 16px}.steps li{gap:8px}.steps .lb{gap:8px}.steps .ph.svc{padding:16px}
   .fig>span{margin-top:8px}.fig small{margin-top:8px}
-  .vtxt{padding:16px 16px 24px}.vrow{padding-top:24px;gap:8px}
+  .vtxt{padding:32px 16px 24px}.vrow{padding-top:24px;gap:8px}
   .mrow+.mrow{margin-top:24px}.mseg>span{padding:8px 16px;margin-right:8px}
   .ngrid{gap:16px}.nc .bd{padding:16px;gap:16px}.nc .meta{gap:8px}.nc .more{gap:8px}
   .cgrid{gap:24px}.clist{gap:8px}.note{margin-top:24px;padding:16px;gap:16px}
@@ -574,6 +577,7 @@ a{color:var(--ink)}
   .stage{order:-1;margin-top:16px}
   .idx{order:0;display:flex;justify-content:center;gap:4px;margin:8px 0 0;max-width:none}
   .idx button{width:44px;min-height:24px;padding:0}
+  .idx button::before{content:"";position:absolute;inset:-4px -2px}
   .idx .no,.idx .tt,.idx button[aria-current="true"] .no{display:none}
   .idx .bar{left:6px;right:6px;bottom:11px}
   .caps{order:1;margin-top:16px}
@@ -725,6 +729,8 @@ a{color:var(--ink)}
 @media (hover:none){.m3d .ihint{display:flex !important}}
 .m3d .h-touch{display:none}
 @media (hover:none),(max-width:600px){.m3d .h-desk{display:none}.m3d .h-touch{display:inline}}
+/* narrower than 360 px the touch hint drops «убік», so it keeps clear of the box edge */
+@media (max-width:359px){.m3d .h-wide{display:none}}
 /* mobile: the hint and «Скинути вигляд» share the top of a narrow box, so once the model has been turned the hint goes and the button comes */
 @media (max-width:600px){.m3d .ihint{display:flex !important}.m3d.moved .ihint{display:none !important}}
 
@@ -745,6 +751,8 @@ a{color:var(--ink)}
 @media (max-width:600px){.mlab{font-size:16px}}
 /* «Від чипа» hotspot buttons: 48 px like the tabs — the other "pick one" control (were 52, a size used nowhere else) */
 .chips button{min-height:48px}
+/* …mobile: one row under the 3D model that scrolls sideways (like the tabs), right above the card it changes */
+@media (max-width:600px){.chips{order:-1;display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:2px 16px}.chips::-webkit-scrollbar{display:none}.chips button{flex:0 0 auto}}
 /* numbers «01»: one family — JetBrains Mono 600; 14 px in badges and circles, 12 px on the photo markers (hero slide numbers stay 16 px plain text) */
 .info .n,.xleg li b,.steps .lb b{font-family:var(--mono);font-size:14px;font-weight:600}
 .xm{font-family:var(--mono);font-size:12px;font-weight:600}
@@ -753,6 +761,10 @@ a{color:var(--ink)}
 .info .n{padding:1.5px 0 .5px}
 .xm,.xleg li b{box-sizing:border-box;padding-top:1px}
 .steps .lb b{box-sizing:border-box;padding-top:2.5px}
+/* «Повний цикл», mobile: titles 14 px, numbers like the photo markers (20 px circle, 12 px) — titles fit without breaking a word; narrower than 360 px «Конструкторське» takes its soft hyphen */
+@media (max-width:600px){.steps .lb{font-size:14px}.steps .lb b{width:20px;height:20px;font-size:12px;padding-top:1px}}
+/* narrower than 360 px the pink «Сервісний центр» tile has 8 px side padding, so «обслуговування,» fits */
+@media (max-width:359px){.steps .ph.svc{padding-left:8px;padding-right:8px}}
 /* radii on one scale: 4 checkboxes · 8 controls · 16 small surfaces · 24 cards · 28 / 22 large boxes */
 .menu>li>a{border-radius:8px}
 .info .n,.clist i,.cimg,.steps .ph,.note,.cookie{border-radius:16px}
@@ -776,7 +788,7 @@ a{color:var(--ink)}
 <body>
 <div id="app"></div>
 <script type="text/x-template" id="tpl">
-<div style="font-family: Geologica, sans-serif; color: #36434f; background: #ffffff; overflow-x: hidden">
+<div style="font-family: Geologica, sans-serif; color: #36434f; background: #ffffff; overflow-x: clip">
 
 <a href="#main" class="skip">Перейти до змісту</a>
 <header class="hd">
@@ -862,7 +874,7 @@ a{color:var(--ink)}
 <section class="sec" id="catalog" aria-labelledby="h-cat" style="background: var(--paper)">
   <div class="wrap">
     <div class="shead">
-      <div><span class="kick">Продуктовий портфель</span><h2 class="h2 rv" id="h-cat">Каталог</h2></div>
+      <div><span class="kick">Продуктовий портфель</span><h2 class="h2" id="h-cat">Каталог</h2></div>
       <a href="catalog.html" class="btn btn-line">Увесь каталог<svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
     </div>
     <div class="tabs" role="tablist" aria-label="Напрям">
@@ -898,12 +910,12 @@ a{color:var(--ink)}
 <section class="sec ins" id="inside" aria-labelledby="h-ins">
   <div class="wrap">
     <div class="shead">
-      <div><span class="kick">Власна інженерія та R&amp;D</span><h2 class="h2 rv" id="h-ins">Від чипа до корпусу</h2></div>
-      <p class="lead">Поверніть прилад і натисніть на мітки — покажемо, як влаштований лічильник NIK 2308.</p>
+      <div><span class="kick">Власна інженерія та R&amp;D</span><h2 class="h2" id="h-ins">Від чипа до корпусу</h2></div>
+      <p class="lead">Поверніть прилад і натисніть на мітки — покажемо, як влаштований лічильник NIK&nbsp;2308.</p>
     </div>
     <div class="igrid">
       <div class="ibox m3d" data-dc-keep="">
-        <span class="ihint"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path></svg><span class="h-desk">Затисніть і потягніть, щоб обернути</span><span class="h-touch">Потягніть убік, щоб обернути</span></span>
+        <span class="ihint"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path></svg><span class="h-desk">Затисніть і потягніть, щоб обернути</span><span class="h-touch">Потягніть<span class="h-wide"> убік</span>, щоб обернути</span></span>
         <button type="button" class="m3d-reset">Скинути вигляд</button>
         <model-viewer id="nik3d" data-src="../../assets/fe973e1e-nik-2308.glb" poster="../../assets/593dddd1-nik2308-poster.webp" alt="Трифазний лічильник NIK 2308 — 3D-модель, яку можна обертати" camera-controls="" disable-zoom="" disable-pan="" touch-action="pan-y" interaction-prompt="none" camera-orbit="-14deg 80deg auto" min-camera-orbit="auto 35deg auto" max-camera-orbit="auto 145deg auto" interpolation-decay="140" environment-image="neutral" exposure="1.05" shadow-intensity="1" shadow-softness="1" loading="eager" reveal="auto">
           <sc-for list="{{spots}}" as="p" hint-placeholder-count="7">
@@ -932,7 +944,7 @@ a{color:var(--ink)}
 <section class="sec xpl" aria-labelledby="h-xpl">
   <div class="wrap">
     <div class="shead">
-      <div><span class="kick">Що всередині</span><h2 class="h2 rv" id="h-xpl">NIK 2306 у розрізі</h2></div>
+      <div><span class="kick">Що всередині</span><h2 class="h2" id="h-xpl">NIK 2306 у розрізі</h2></div>
       <p class="lead">Кожну деталь ми проєктуємо й виготовляємо самі: від друкованої плати до корпусу та клемної кришки.</p>
     </div>
     <div class="xscroll"><div class="xstage">
@@ -949,7 +961,7 @@ a{color:var(--ink)}
 <section class="sec" aria-labelledby="h-about">
   <div class="wrap">
     <div class="cyc">
-      <div><span class="kick">Про компанію</span><h2 class="h2 rv" id="h-about"><span class="hl">Повний цикл —</span> <span class="hl">від розробки до сервісу</span></h2></div>
+      <div><span class="kick">Про компанію</span><h2 class="h2" id="h-about"><span class="hl">Повний цикл —</span> <span class="hl">від розробки до сервісу</span></h2></div>
       <div>
         <p>НІК-ЕЛЕКТРОНІКА — український розробник і виробник приладів обліку енергоресурсів і систем автоматизованого обліку (AMI). Ми виробляємо лічильники електроенергії, води, тепла, стабілізатори напруги та програмне забезпечення для дистанційного збору даних.</p>
         <a href="#" class="btn btn-line" style="margin-top: 32px">Більше про компанію<svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
@@ -957,9 +969,9 @@ a{color:var(--ink)}
     </div>
     <ol class="steps">
       <sc-for list="{{steps}}" as="st" hint-placeholder-count="5">
-        <li class="rv"><div class="ph"><img src="{{st.img}}" alt="{{st.alt}}"></div><div class="lb"><b>{{st.no}}</b>{{st.t}}</div></li>
+        <li><div class="ph"><img src="{{st.img}}" alt="{{st.alt}}"></div><div class="lb"><b>{{st.no}}</b>{{st.t}}</div></li>
       </sc-for>
-      <li class="rv"><div class="ph svc">Гарантійне й післягарантійне обслуговування, ремонт і консультації інженерів.</div><div class="lb"><b>06</b>Сервісний центр</div></li>
+      <li><div class="ph svc">Гарантійне й післягарантійне обслуговування, ремонт і консультації інженерів.</div><div class="lb"><b>06</b>Сервісний центр</div></li>
     </ol>
     <a href="#" class="btn btn-line about-more">Більше про компанію<svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
   </div>
@@ -1000,7 +1012,7 @@ a{color:var(--ink)}
 <section class="sec" aria-labelledby="h-cli">
   <div class="wrap">
     <div class="shead">
-      <div><span class="kick">Нам довіряють</span><h2 class="h2 rv" id="h-cli">Клієнти та партнери</h2></div>
+      <div><span class="kick">Нам довіряють</span><h2 class="h2" id="h-cli">Клієнти та партнери</h2></div>
       <p class="lead" style="width: 565px">Оператори систем розподілу, державні й муніципальні установи, девелопери та B2B-партнери в Україні й за кордоном.</p>
     </div>
   </div>
@@ -1029,7 +1041,7 @@ a{color:var(--ink)}
 <section class="sec" aria-labelledby="h-news" style="background: var(--paper)">
   <div class="wrap">
     <div class="shead">
-      <div><span class="kick">Прес-центр</span><h2 class="h2 rv" id="h-news">Новини та статті</h2></div>
+      <div><span class="kick">Прес-центр</span><h2 class="h2" id="h-news">Новини та статті</h2></div>
       <a href="#" class="btn btn-line">Усі новини<svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
     </div>
     <div class="ngrid">
@@ -1057,7 +1069,7 @@ a{color:var(--ink)}
       <p class="lead" style="margin-top: 20px">Оберіть тему звернення та коротко опишіть запит. Ми передамо його профільному фахівцю і відповімо протягом 1 робочого дня.</p>
       <div class="clist">
         <a href="#"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"></path></svg></i><span class="num">+380 (44) 498-06-19<small>Пн–Пт, 8:00–17:00</small></span></a>
-        <a href="#"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></i><span>info@nikel.com.ua<small>Відповідаємо протягом 1 робочого дня</small></span></a>
+        <a href="#"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></i><span>info@nikel.com.ua<small>Відповідаємо протягом 1&nbsp;робочого&nbsp;дня</small></span></a>
       </div>
       <div class="note"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16.5v.5"></path></svg><span>Ми працюємо з компаніями та організаціями. Якщо ви побутовий споживач, зверніться до дилера у вашому регіоні — <a href="#">Де купити</a> — або знайдіть відповідь у чат-боті.</span></div>
     </div>
@@ -1065,11 +1077,11 @@ a{color:var(--ink)}
       <sc-if value="{{notSent}}" hint-placeholder-val="{{true}}">
         <form class="{{formCls}}" novalidate="" onSubmit="{{submit}}" aria-label="Форма зв'язку">
           <div class="fgrid2">
-            <div class="fld w"><label for="f-name">ПІБ*</label><input id="f-name" name="name" required="" autocomplete="name" placeholder="Прізвище, ім’я, по батькові"><span class="err"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5v.5"></path></svg>Вкажіть прізвище та ім’я</span></div>
-            <div class="fld"><label for="f-tel">Телефон*</label><div class="tel"><span class="pre" aria-hidden="true">+380</span><input id="f-tel" name="tel" type="tel" inputmode="numeric" required="" pattern="(\d ?){9}" maxlength="12" autocomplete="tel-national" placeholder="00 000 00 00" aria-describedby="f-tel-hint" onInput="{{telFmt}}"></div><span class="hint" id="f-tel-hint">Код +380 уже вписано — введіть 9 цифр</span><span class="err"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5v.5"></path></svg>Вкажіть 9 цифр номера</span></div>
-            <div class="fld"><label for="f-mail">Електронна пошта*</label><input id="f-mail" name="email" type="email" required="" autocomplete="email" placeholder="name@company.com"><span class="hint">Надішлемо відповідь сюди</span><span class="err"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5v.5"></path></svg>Вкажіть коректну пошту</span></div>
-            <div class="fld"><label for="f-reg">Регіон</label><select id="f-reg" name="region"><option value="">Оберіть регіон</option><option>Вінницька область</option><option>Волинська область</option><option>Дніпропетровська область</option><option>Донецька область</option><option>Житомирська область</option><option>Закарпатська область</option><option>Запорізька область</option><option>Івано-Франківська область</option><option>Київська область</option><option>Кіровоградська область</option><option>Луганська область</option><option>Львівська область</option><option>Миколаївська область</option><option>Одеська область</option><option>Полтавська область</option><option>Рівненська область</option><option>Сумська область</option><option>Тернопільська область</option><option>Харківська область</option><option>Херсонська область</option><option>Хмельницька область</option><option>Черкаська область</option><option>Чернівецька область</option><option>Чернігівська область</option><option>м. Київ</option><option disabled="">АР Крим — тимчасово не працюємо</option><option disabled="">м. Севастополь — тимчасово не працюємо</option><option>Інша країна</option></select><span class="err">Заповніть це поле</span></div>
-            <div class="fld"><label for="f-topic">Тема звернення</label><select id="f-topic" name="topic"><option value="">Оберіть тему</option><option>Сервіс</option><option>Хочу стати дистриб’ютором</option><option>Замовити прорахунок високовольтних мереж</option><option>Технічна підтримка</option><option>Замовити випробування</option><option>Маркетингові запити</option></select><span class="err">Заповніть це поле</span></div>
+            <div class="fld w"><label for="f-name">ПІБ*</label><input id="f-name" name="name" required="" autocomplete="name" placeholder="Прізвище, ім’я, по батькові"><span class="err" id="f-name-err"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5v.5"></path></svg>Вкажіть прізвище та ім’я</span></div>
+            <div class="fld"><label for="f-tel">Телефон*</label><div class="tel"><span class="pre" aria-hidden="true">+380</span><input id="f-tel" name="tel" type="tel" inputmode="numeric" required="" pattern="(\d ?){9}" maxlength="12" autocomplete="tel-national" placeholder="00 000 00 00" aria-describedby="f-tel-hint" onInput="{{telFmt}}"></div><span class="hint" id="f-tel-hint">Код +380 уже вписано — введіть 9 цифр</span><span class="err" id="f-tel-err"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5v.5"></path></svg>Вкажіть 9 цифр номера</span></div>
+            <div class="fld"><label for="f-mail">Електронна пошта*</label><input id="f-mail" name="email" type="email" required="" autocomplete="email" placeholder="name@company.com"><span class="hint">Надішлемо відповідь сюди</span><span class="err" id="f-mail-err"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5v.5"></path></svg>Вкажіть коректну пошту</span></div>
+            <div class="fld"><label for="f-reg">Регіон</label><select id="f-reg" name="region"><option value="">Оберіть регіон</option><option>Вінницька область</option><option>Волинська область</option><option>Дніпропетровська область</option><option>Донецька область</option><option>Житомирська область</option><option>Закарпатська область</option><option>Запорізька область</option><option>Івано-Франківська область</option><option>Київська область</option><option>Кіровоградська область</option><option>Луганська область</option><option>Львівська область</option><option>Миколаївська область</option><option>Одеська область</option><option>Полтавська область</option><option>Рівненська область</option><option>Сумська область</option><option>Тернопільська область</option><option>Харківська область</option><option>Херсонська область</option><option>Хмельницька область</option><option>Черкаська область</option><option>Чернівецька область</option><option>Чернігівська область</option><option>м. Київ</option><option disabled="">АР Крим — тимчасово не працюємо</option><option disabled="">м. Севастополь — тимчасово не працюємо</option><option>Інша країна</option></select><span class="err" id="f-reg-err">Заповніть це поле</span></div>
+            <div class="fld"><label for="f-topic">Тема звернення</label><select id="f-topic" name="topic"><option value="">Оберіть тему</option><option>Сервіс</option><option>Хочу стати дистриб’ютором</option><option>Замовити прорахунок високовольтних мереж</option><option>Технічна підтримка</option><option>Замовити випробування</option><option>Маркетингові запити</option></select><span class="err" id="f-topic-err">Заповніть це поле</span></div>
             <div class="fld w"><label for="f-desc">Короткий опис запиту</label><textarea id="f-desc" name="desc" placeholder="Кілька речень про вашу задачу"></textarea><span class="hint">Модель, кількість, терміни</span></div>
             <div class="fld w"><div class="captcha" aria-label="Капча"><span style="width: 24px; height: 24px; border-radius: 4px; border: 2px solid #8592a0"></span>[Капча — стандартний віджет]</div></div>
             <div class="fld w"><label class="consent" style="font-weight: 400"><input type="checkbox" required=""><span>Я погоджуюся на обробку моїх персональних даних відповідно до <a href="#">Політики конфіденційності</a>.</span></label></div>
@@ -1152,10 +1164,29 @@ class Component extends DCLogic {
     this.mark3d(this.state.spot);
     this.face3d();
   }
+  // contact form: screen readers hear which fields are wrong — aria-invalid, and the error text joins the field's description
+  // (set here, not in the template: fields aren't re-rendered once on the page)
+  markForm(f) {
+    f.querySelectorAll('input, select, textarea').forEach((el) => {
+      const bad = !el.checkValidity(), err = el.id && document.getElementById(el.id + '-err');
+      const ids = (el.getAttribute('aria-describedby') || '').split(' ').filter((x) => x && !x.endsWith('-err'));
+      if (bad && err) ids.push(err.id);
+      if (bad) el.setAttribute('aria-invalid', 'true'); else el.removeAttribute('aria-invalid');
+      if (ids.length) el.setAttribute('aria-describedby', ids.join(' ')); else el.removeAttribute('aria-describedby');
+    });
+  }
   pickSpot(i) {
     this.picked3d = true;
     this.setState({ spot: i });
     this.focus3d(i);
+    // mobile: the switches are a row that scrolls sideways — bring the picked one to the middle (the page itself doesn't move)
+    setTimeout(() => {
+      const c = document.querySelectorAll('.chips button')[i], row = c && c.parentElement;
+      if (!row || row.scrollWidth <= row.clientWidth) return;
+      const cr = c.getBoundingClientRect(), rr = row.getBoundingClientRect();
+      const still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      row.scrollBy({ left: cr.left + cr.width / 2 - (rr.left + rr.width / 2), behavior: still ? 'auto' : 'smooth' });
+    }, 0);
   }
   focus3d(i) {
     const mv = document.getElementById('nik3d');
@@ -1296,7 +1327,7 @@ class Component extends DCLogic {
     ].map(([x, y, t, d], i) => ({ no: '0' + (i + 1), t, d, st: 'left: ' + x + '%; top: ' + y + '%' }));
 
     const steps = [
-      { t: 'Конструкторське бюро', img: 'de1ec571973f47479cdfc5e1ddf2ab60', alt: 'Конструкторське бюро НІК-ЕЛЕКТРОНІКА' },
+      { t: 'Конструк­торське бюро', img: 'de1ec571973f47479cdfc5e1ddf2ab60', alt: 'Конструкторське бюро НІК-ЕЛЕКТРОНІКА' },
       { t: 'SMT-монтаж плат', img: '91d9cc8d1dd39ed30b472abf02be9d93', alt: 'SMT-лінія монтажу друкованих плат' },
       { t: 'Лиття корпусів', img: '1695fc08e5d7c1a2fcd4fbc761e00a02', alt: 'Виготовлення корпусів приладів' },
       { t: 'Складання', img: '2d5e93a952ee95766eb8b2734477ce42', alt: 'Складання лічильників на виробництві' },
@@ -1346,12 +1377,12 @@ class Component extends DCLogic {
       news: [
         { cls: 'nc big', d: '26.08.2026', tag: 'Компанія', tagCls: tagR, t: 'Звіт незалежного аудитора щодо фінансової звітності за 2025 рік', img: B + 'c0704521db1416ec66e4d8545678ba60' },
         { cls: 'nc sm', d: '05.11.2024', tag: 'Партнерство', tagCls: tagN, t: 'НІК-ЕЛЕКТРОНІКА подовжила членство в ICC', img: B + '64d3854c808afc98f555fddf056f74b8' },
-        { cls: 'nc sm', d: '01.02.2023', tag: 'Сертифікація', tagCls: tagN, t: 'Успішно пройшли ресертифікацію за ISO 27001', img: B + '4ee835b35f0ce1c5b4662a723809ed42' }
+        { cls: 'nc sm', d: '01.02.2023', tag: 'Сертифікація', tagCls: tagN, t: 'Успішно пройшли ресертифікацію за ISO 27001', img: B + '4ee835b35f0ce1c5b4662a723809ed42' }
       ],
       notSent: !s.sent, sent: s.sent, formCls: s.tried ? 'tried' : '',
       // phone: digits only, grouped as 67 123 45 67 (+380 is fixed in front)
       telFmt: (e) => { const d = e.target.value.replace(/\D/g, '').slice(0, 9); e.target.value = [d.slice(0, 2), d.slice(2, 5), d.slice(5, 7), d.slice(7, 9)].filter(Boolean).join(' '); },
-      submit: (e) => { e.preventDefault(); const f = e.currentTarget; if (!f.checkValidity()) { this.setState({ tried: true }); const bad = f.querySelector(':invalid'); if (bad) bad.focus(); return; } this.setState({ sent: true }); },
+      submit: (e) => { e.preventDefault(); const f = e.currentTarget; this.markForm(f); if (!f.checkValidity()) { f.oninput = f.onchange = () => this.markForm(f); this.setState({ tried: true }); const bad = f.querySelector(':invalid'); if (bad) bad.focus(); return; } this.setState({ sent: true }); },
       again: () => this.setState({ sent: false, tried: false }),
       cookie: s.cookie && !s.menu,
       menuOpen: s.menu, menuExp: String(s.menu), menuLabel: s.menu ? 'Закрити меню' : 'Відкрити меню',

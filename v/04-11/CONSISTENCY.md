@@ -107,3 +107,161 @@ Already done: tags and kickers vertically centred · sort in the catalog 48 px l
 ### 16. Product page, mobile: gap after «Технічні характеристики» 158 px instead of 160
 - **Problem:** the section's bottom padding is reduced on purpose (the specs table adds its own space), but a later rule set 64 px where an earlier one had 66 — so the visible gap was 158 px, the others 160.
 - **Decision:** ✅ done — 66 px, both rules now agree; all visible gaps between product sections on mobile are 160 px. Desktop unchanged.
+
+## Group 5 — mobile (check of 2026-11-05)
+
+Found by `tools-for-ai/mobile-check.cjs` (phone emulation, 320 / 360 / 390 px, also with the menu, the catalog filter panel
+and the cookie panel open) and by looking at every section. Clean: nothing sticks out of the screen, fields are 16 px
+(no iPhone zoom), no text under 12 px, no text touching the screen edge.
+
+### 17. «Повний цикл»: step titles break in the middle of a word
+- **Problem:** on mobile the titles may break anywhere, so a word is split without a hyphen: «Конструкторськ / е бюро» (390), «Конструкто / рське», «випробуван / ня» (320). At 320 the pink tile's word «післягарантійне» is wider than the tile and gets cut.
+- **Where:** home, mobile — «Повний цикл — від розробки до сервісу», the six steps under the photos.
+- **Suggested fix (choose):** A — number above the title (the title gets the full tile width) · B — smaller title · C — one step per row.
+- **Decision:** ✅ done (Anna) — A was tried and undone (number above the title didn't look right). Instead, on mobile: titles 14 px, numbers like the photo markers (20 px circle, 12 px); «Конструкторське» has a soft hyphen, used only below 360 px («Конструк- / торське бюро»). All titles are whole words at 360 and 390; the section is 18–70 px shorter. Tablet and desktop unchanged. The pink tile (no hyphens there — they also split «післягарантійне» at 390): narrower than 360 px its side padding is 8 px instead of 16, so «обслуговування,» fits; font stays 14 px.
+
+### 18. Cookie panel: button text on two lines
+- **Problem:** the two buttons sit side by side and are too narrow: «Лише необхідні» wraps at 390, both buttons wrap at 320.
+- **Where:** all pages, mobile — cookie panel.
+- **Suggested fix:** buttons one under another, full width, one line each.
+- **Decision:** ✅ done (Anna) — on mobile «Прийняти всі» and «Лише необхідні» are one under another, full width, text on one line; «Налаштувати» below. The panel is ~50 px taller. All three pages; desktop unchanged.
+
+### 19. News: first photo taller than the others
+- **Problem:** on mobile the three news cards are the same list, but the first photo is ~300 px tall (left over from the big desktop card), the other two 200 px.
+- **Where:** home, mobile — «Новини та статті».
+- **Suggested fix:** 200 px for all three.
+- **Decision:** ✅ done (Anna) — on mobile all three news photos are 200 px (the first was 320); the section is 120 px shorter. Tablet and desktop unchanged (the big card stays big).
+
+### 20. Product page: second block in a section starts 24 px after the first
+- **Problem:** on desktop two blocks sit side by side; on mobile they stack with only 24 px between them, so a new kicker and heading stick to the table / documents above.
+- **Where:** product, mobile — «Як читати код замовлення» after the specs table, «Огляд моделі» after the documents.
+- **Suggested fix:** 64 px before a block that starts with its own kicker and heading (text → picture stays 24 px).
+- **Decision:** ✅ done (Anna) — on mobile 64 px before «Як читати код замовлення» and «Огляд моделі»; each section is 40 px taller. «Опис» and «Креслення» (text → picture) stay 24 px. Tablet (48 px) and desktop unchanged.
+
+### 21. Product page: breadcrumb line starts with «/»
+- **Problem:** the breadcrumbs wrap and the second line starts with the separator: «/ NIK 2306» (390), «/ Облік електроенергії …» (320).
+- **Where:** product, mobile — breadcrumbs.
+- **Suggested fix:** the «/» stays on the line with the item before it, so a new line starts with a link.
+- **Decision:** ✅ done (Anna) — the separator now belongs to the item before it, so a wrapped line starts with a link («Облік електроенергії / NIK 2306»). Same rule on catalog (no visible change there); spacing and heights unchanged.
+
+### 22. Footer links too small to tap
+- **Problem:** the link lists are 23 px tall with 12 px between them; «Політика конфіденційності», «Cookie», «LinkedIn · Facebook · YouTube» are 18–20 px. The guideline for touch is 44 px.
+- **Where:** all pages, mobile — footer.
+- **Suggested fix:** a 44 px tap area around each link without changing how the footer looks.
+- **Decision:** ✅ done (Anna: on the 8 px grid) — 44 px isn't possible without loosening the footer (the column links are 31 px apart), so: column links 32 px (lines 24 px instead of 23.2, + the 8 px gap; two-line links 56 px), bottom links 40 px. The extra is invisible padding; the footer is 9–12 px taller on mobile. All three pages; tablet and desktop unchanged.
+
+### 23. Mobile menu: language buttons 36 px
+- **Problem:** UA / EN / RU are 36 px tall; everything else in the menu is 44–48 px.
+- **Where:** all pages — mobile menu, bottom.
+- **Suggested fix:** 44 px.
+- **Decision:** ✅ done (Anna: on the 8 px grid) — language buttons 40 px, so the whole switch is 48 px like the tabs. Burger menu on all three pages; the header switch on desktop unchanged.
+
+### 24. 320 px: the 3D hint touches the edge of its box
+- **Problem:** «Потягніть убік, щоб обернути» runs right up to the box's right edge (no space left).
+- **Where:** home «Від чипа до корпусу» and product, 320 px only.
+- **Suggested fix (choose):** A — the hint may wrap onto two lines, keeping 24 px from the edge · B — shorter text on narrow screens («Потягніть, щоб обернути»).
+- **Decision:** ✅ done (Anna: B) — narrower than 360 px the hint is «Потягніть, щоб обернути» (43–53 px clear of the edge at 320); from 360 px it stays «Потягніть убік, щоб обернути» (41 px and more). Home and product; desktop text unchanged.
+
+### 25. Video section: kicker too close to the video (found by Anna)
+- **Problem:** on mobile the video is on top and the text block below it; the kicker «Відеоекскурсія виробництвом» sat only 16 px under the video, so it looked stuck to the picture.
+- **Where:** home, mobile — «Автоматизоване виробництво».
+- **Options:** A — 32 px above the kicker · B — kicker on the video's bottom-left corner, as on desktop.
+- **Decision:** ✅ done (Anna: A) — 32 px between the video and the kicker; the block is 16 px taller. Tablet and desktop unchanged.
+
+### 26. «Від чипа»: hotspot switches inconvenient on mobile (found by Anna)
+- **Problem:** on mobile the 7 switches were a full-width list under the card (~390 px tall): after picking one you had to scroll back up to see the card and the model.
+- **Where:** home, mobile — «Від чипа до корпусу».
+- **Options:** A — one row under the 3D model that scrolls sideways (like the tabs) · B — several per row, wrapping · C — two columns.
+- **Decision:** ✅ done (Anna: A) — order on mobile: model → row of switches → card; the picked switch (also when picked by a mark on the model) scrolls to the middle of the row, the page doesn't move. The section is 332 px shorter. Tablet and desktop unchanged.
+
+## Group 6 — mobile re-check after group 5 (2026-11-05)
+
+### 27. Header logo: tap area 34 px
+- **Problem:** the logo link (to the home page) is only as tall as the logo, 34 px; the header is 64 px.
+- **Where:** all pages, header up to 900 px (where the logo is 34 px).
+- **Suggested fix:** 48 px tap area, invisible (padding offset by negative margin).
+- **Decision:** ✅ done (Anna) — the logo link is a 48 px tap area up to 900 px; nothing moves (header pixel-identical). All three pages; desktop unchanged.
+
+### 28. Breadcrumb links 18 px tall
+- **Problem:** «Головна», «Каталог», «Облік електроенергії» are 18 px tall tap targets.
+- **Where:** catalog and product, mobile.
+- **Suggested fix:** 32 px tap areas like the footer — lines 24 px (+ the 8 px gap), so the crumbs get ~4 px taller per line.
+- **Decision:** ✅ done (Anna) — on mobile the crumb links are 32 px tap areas (lines 24 px instead of 20.3, + the 8 px gap); the crumbs are ~4 px taller per line, everything else only moves by that much. Catalog and product; tablet and desktop unchanged.
+
+### 29. Catalog, mobile: «Фільтри» button outline differs from the sort next to it
+- **Problem:** «Фільтри» (48 px) has the dark button outline, the sort beside it the light one; on the home page 48 px controls (tabs) use the light outline, the dark one is for 56 px buttons.
+- **Where:** catalog, mobile — above the results.
+- **Suggested fix:** the light outline, like the sort and the tabs.
+- **Decision:** ✅ done (Anna) — «Фільтри» (up to 900 px) has the light outline like the sort and the tabs; hover too: dark outline instead of the navy fill. Desktop has no such button.
+
+### 30. Home, mobile: 3D hint icon gap 10 px
+- **Problem:** the gap between the rotate icon and «Потягніть убік, щоб обернути» is 10 px on home mobile, 8 px everywhere else (home desktop, product).
+- **Suggested fix:** 8 px.
+- **Decision:** ✅ done (Anna) — 8 px, like home desktop and product.
+
+### 31. Contact block: «дня» alone on a line
+- **Problem:** «Відповідаємо протягом 1 робочого дня» wraps so that «дня» is alone on the second line.
+- **Where:** home, mobile — «Готові до співпраці?», under the e-mail.
+- **Suggested fix:** non-breaking spaces in «1 робочого дня», so it wraps as one piece.
+- **Decision:** ✅ done (Anna) — «1 робочого дня» has non-breaking spaces and wraps as one piece («Відповідаємо протягом / 1 робочого дня»).
+
+### 32. Model and standard names split across lines
+- **Problem:** a name breaks between its parts: «NIK / 2308» (home 390, «Від чипа» text), «ISO / 27001» (home 320, news title), «NIK LTE / Module» (product 320–360, feature list), «EN / 62053-23» (product 320–360, specs table).
+- **Suggested fix:** non-breaking spaces inside these names.
+- **Decision:** ✅ done (Anna) — non-breaking spaces in «NIK 2308», «ISO 27001», «NIK LTE Module», «EN 50470-3», «EN 62053-23»; the standards also get an invisible word joiner after the hyphen (JetBrains Mono has no non-breaking hyphen glyph), so «EN 62053-23» never splits at «-». Seen on desktop / tablet too: the news title on 768 now wraps «за / ISO 27001».
+
+### 33. One word alone on the last line (product)
+- **Problem:** «Ціни, наявність і замовлення — у кабінеті / партнера.» (all mobile widths); heading «Облік і керування навантаженням в одному / приладі» (360–390).
+- **Suggested fix:** non-breaking spaces, so «у кабінеті партнера» and «в одному приладі» wrap as one piece (also keeps «у» / «в» off the line end).
+- **Decision:** ✅ done (Anna) — «у кабінеті партнера» and «в одному приладі» wrap as one piece; on desktop the heading now reads «навантаженням / в одному приладі» (the «в» no longer hangs at the line end). Heights unchanged.
+
+### 34. Hero slide switches 24 px tall
+- **Problem:** on mobile the four bars under the product picture are 44 × 24 px tap targets (the minimum).
+- **Suggested fix:** 48 × 32 px tap areas, invisible (like the footer links).
+- **Decision:** ✅ done (Anna) — each bar has an invisible 48 × 32 px tap area (neighbours touch, no overlap); the look is unchanged.
+
+## Group 7 — bugs (check of 2026-11-05: JS errors, failed loads, markup, interactions)
+
+### 35. Catalog search ran on leaving the field, with no button to start it (found by Anna)
+- **Problem:** the search applied only after Enter or when the field lost focus; the magnifier was decoration only.
+- **Options:** A — the magnifier becomes the button · B — a «Знайти» button inside the field.
+- **Decision:** ✅ done (Anna: B) — the field is a search form with a 40 px «Знайти» button (navy, like «Прийняти всі»); search runs on the button or Enter (the phone keyboard's «Пошук»), not while typing or on leaving the field. On narrow phones the placeholder is shortened with «…» (320: «Модель, пр…»). The search label is kept for screen readers.
+
+### 36. Header, catalog filters and product sub-menu didn't stick
+- **Problem:** they are `position: sticky` in the CSS, but the page wrapper (from the Claude Design export) had `overflow-x: hidden`, which turns sticky off — they scrolled away with the page.
+- **Decision:** ✅ done (Anna) — the wrapper uses `overflow-x: clip` (still no sideways scroll); the header stays on top on all pages, the product sub-menu right under it (96 / 80 / 64 px), the catalog filters (desktop) 24 px under the header.
+  Two follow-ups, done as 39 and 40.
+
+### 37. Home, mobile: «Також у каталозі» row didn't scroll
+- **Problem:** the block wraps (`flex-wrap`), so on mobile the row grew to its full length (977 px) and was cut by the screen edge instead of scrolling — the last chips were unreachable.
+- **Decision:** ✅ done (Anna) — no wrapping on mobile; the row is screen-wide and scrolls sideways like the tabs.
+
+### 38. Footer at 320 px: phone number past its column
+- **Problem:** «+380 (44) 498-06-19» (kept on one line) is wider than its column and reached the screen edge (cut at 320).
+- **Decision:** ✅ done (Anna) — narrower than 360 px «Контакти» takes the full width as its own row; the footer is 111 px taller there. All three pages.
+
+### 39. Catalog (desktop): sticky filter panel taller than the screen
+- **Problem:** once sticky (36), the ~1000 px panel stuck under the header and its lower part («Сертифікати», «Показати зняті») was only reachable at the end of the results.
+- **Decision:** ✅ done (Anna) — the panel is at most the screen height minus 144 px (24 px clear at the bottom); what doesn't fit scrolls inside it (thin scrollbar, the page doesn't scroll along).
+
+### 40. Product sub-menu: active item didn't follow scrolling
+- **Problem:** the underline moved only on click; with the sub-menu now always visible it showed «Опис» while reading other sections.
+- **Decision:** ✅ done (Anna) — the section whose top is 80 px under the sub-menu is current, while scrolling and after a jump. Desktop: documents and video sit side by side, so that row shows «Документи», or «Відео» if that was clicked (remembered until you scroll to another section).
+
+### 41. Catalog: page button «1» shown when nothing was found
+- **Problem:** the page buttons were always on — with 0 results (and with a single page) a lone «1» stayed under the empty message.
+- **Decision:** ✅ done (Anna) — page buttons only when there is more than one page. (The «Послуги» / «Програмне забезпечення» tabs were checked again: they work — 4 service cards, NIK SPACE; the first check was wrong.)
+
+### 42. Catalog: «скиньте фільтри» left the old search text in the field
+- **Problem:** after «нічого не знайдено» → «скиньте фільтри» all models came back, but the field still showed the old query (the page doesn't re-render fields).
+- **Decision:** ✅ done (Anna) — the reset empties the search field too.
+
+### 43. Contact form: fields with an error weren't marked for screen readers
+- **Problem:** after «Надіслати запит» with empty fields the errors showed in red, but a screen reader only heard the label — not that the field is wrong, nor the error text.
+- **Decision:** ✅ done (Anna) — on a failed submit each wrong field gets `aria-invalid` and its error text (now with an id) as its description; focus goes to the first one as before, so it reads e.g. «ПІБ, невірно, Вкажіть прізвище та ім’я». Fixing a field removes the mark. Nothing visible changes.
+
+### 44. Home: scroll «reveal» animation on headings (found by Anna)
+- **Problem:** six section headings and the six «Повний цикл» photo cards faded in and slid up 40 px, tied to the scroll position (half-transparent and shifted if you stop scrolling); the kicker above didn't move, so they drifted apart; home only, and only in browsers with scroll-driven animations (Chrome, Edge). Came with the Claude Design export.
+- **Decision:** ✅ done (Anna: remove) — the animation and its `rv` classes are gone; headings and cards are simply there, as on catalog and product. The site header is not affected.
+
+Also fixed in the checking tool: `mobile-check.cjs` treated the page wrapper as a sideways scroller and so missed every overflow; 37 and 38 were found after that fix.
