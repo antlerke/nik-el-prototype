@@ -192,7 +192,7 @@ and the cookie panel open) and by looking at every section. Clean: nothing stick
 - **Problem:** «Фільтри» (48 px) has the dark button outline, the sort beside it the light one; on the home page 48 px controls (tabs) use the light outline, the dark one is for 56 px buttons.
 - **Where:** catalog, mobile — above the results.
 - **Suggested fix:** the light outline, like the sort and the tabs.
-- **Decision:**
+- **Decision:** ✅ done (Anna) — «Фільтри» (up to 900 px) has the light outline like the sort and the tabs; hover too: dark outline instead of the navy fill. Desktop has no such button.
 
 ### 30. Home, mobile: 3D hint icon gap 10 px
 - **Problem:** the gap between the rotate icon and «Потягніть убік, щоб обернути» is 10 px on home mobile, 8 px everywhere else (home desktop, product).
