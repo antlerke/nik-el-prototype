@@ -452,9 +452,10 @@ a{color:var(--ink)}
   .chip{display:none}
   .hbtns .btn{flex:1 1 100%}
   .idx button{font-size:0}
-  .tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-left:-16px;margin-right:-16px;padding:2px 16px}
+  .tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-left:-16px;margin-right:-16px;padding:2px 16px;scroll-padding-inline:16px}
   .tabs::-webkit-scrollbar{display:none}
   .tabs button,.tabs a{flex:0 0 auto}
+  .tabs button:focus-visible,.tabs a:focus-visible{outline-offset:-1px}
   .cards{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:28px -16px 0;padding:4px 16px 12px;scroll-padding:0 16px}
   .cards::-webkit-scrollbar{display:none}
   .card{flex:0 0 82%;scroll-snap-align:start}

@@ -5,6 +5,11 @@
   document.addEventListener('click', function (e) {
     if (e.target.closest && e.target.closest('a[href="#"]')) e.preventDefault();
   });
+  // a tab reached with the keyboard is scrolled fully into its row: the browser leaves a half-hidden one where it is
+  document.addEventListener('focusin', function (e) {
+    var t = e.target;
+    if (t.closest && t.closest('.tabs') && t.matches(':focus-visible')) t.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  });
   var handlers = [];
   var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
   function lookup(scope, p) {
