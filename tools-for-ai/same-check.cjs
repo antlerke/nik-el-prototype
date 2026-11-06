@@ -301,13 +301,16 @@ function pageHelper() {
 // HTML: a class for a block that had none, and two classes renamed because the name meant two different things.
 const HTML_CHANGES = {
   [`${VERSION}/product.html`]: [['<section style="padding: 32px 0 72px;', '<section class="ptop" style="padding: 32px 0 72px;']],
-  [`${VERSION}/catalog.html`]: [['<div class="ph" style="min-height: 360px">', '<div class="placeholder" style="min-height: 360px">'], ['<div class="svc">', '<div class="svc-grid">']]
+  [`${VERSION}/catalog.html`]: [
+    ['<div class="ph" style="min-height: 360px">', '<div class="placeholder" style="min-height: 360px">'], ['<div class="svc">', '<div class="svc-grid">'],
+    ['<div class="wrap cat">', '<div class="wrap cat pbody">'], ['<div class="wrap" style="padding-top: 48px; padding-bottom: 120px">', '<div class="wrap pbody" style="padding-top: 48px; padding-bottom: 120px">'], ['<section class="wrap" style="padding-bottom: 120px">', '<section class="wrap band-sec" style="padding-bottom: 120px">']
+  ]
 };
 // Selectors: one class = one style. On the home page .ph is a photo box and .svc a tile; on the other pages they were a placeholder and a grid.
 const renameClasses = (page, sel) => (page === 'index' ? sel : sel.replace(/\.ph(?![\w-])/g, '.placeholder').replace(/\.svc(?![\w-])/g, '.svc-grid'));
 // "The N-th block of <main>" exists on every page: in one file these rules would hit all of them, so each names its block instead.
 const BLOCK_NAMES = {
-  catalog: { 'main>:nth-child(1)': 'main>.phead', 'main>:nth-child(2)': 'main>div.wrap', 'main>:nth-child(3)': 'main>section.wrap' },
+  catalog: { 'main>:nth-child(1)': 'main>.phead', 'main>:nth-child(2)': 'main>.pbody', 'main>:nth-child(3)': 'main>.band-sec' },
   product: { 'main>:nth-child(1)': 'main>.ptop', 'main>:nth-child(3)': 'main>#p-desc', 'main>:nth-child(4)': 'main>#p-spec' }
 };
 const renameSelector = (page, sel) => renameClasses(page, (BLOCK_NAMES[page] || {})[sel] || sel);
@@ -317,7 +320,7 @@ const SHARED_ON_PURPOSE = { index: '.cgo{text-align:center}@media (max-width:600
 
 // A: the same HTML changes, and the renamed classes in its own CSS, as the renamed HTML would otherwise lose them
 function withChanges(p, html) {
-  for (const [from, to] of HTML_CHANGES[p] || []) { if (!html.includes(from)) throw new Error(`${p}: expected text not found: ${from}`); html = html.replace(from, to); }
+  for (const [from, to] of HTML_CHANGES[p] || []) { if (!html.includes(from)) throw new Error(`${p}: expected text not found: ${from}`); html = html.split(from).join(to); }
   const page = path.posix.basename(p, '.html');
   return html.replace(/(<style\b[^>]*>)([\s\S]*?)(<\/style>)/gi, (m, open, css, close) => open + css.replace(/\.ph(?![\w-])/g, page === 'index' ? '.ph' : '.placeholder').replace(/\.svc(?![\w-])/g, page === 'index' ? '.svc' : '.svc-grid') + close);
 }
@@ -327,7 +330,7 @@ const fromGitChanged = (p) => (p.endsWith('.html') ? Buffer.from(withChanges(p, 
 function trialHtml(p) {
   const css = fs.readFileSync(TRIAL, 'utf8'); let first = true;
   let html = String(fromDisk(p));
-  for (const [from, to] of HTML_CHANGES[p] || []) html = html.replace(from, to);
+  for (const [from, to] of HTML_CHANGES[p] || []) html = html.split(from).join(to);
   return html.replace(/<style\b[^>]*>[\s\S]*?<\/style>\n?|<link\b[^>]*rel="stylesheet"[^>]*>\n?/gi, (m) => {
     if (/^<link/i.test(m) && /href="(https?:)?\/\//.test(m)) return m;
     if (first) { first = false; return '<style>' + css + '</style>\n'; }

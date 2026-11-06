@@ -73,7 +73,7 @@
 </section>
 
 <sc-if value="{{isProd}}" hint-placeholder-val="{{true}}">
-<div class="wrap cat">
+<div class="wrap cat pbody">
   <sc-if value="{{sheet}}" hint-placeholder-val="{{false}}"><div class="veil" onClick="{{closeSheet}}"></div></sc-if>
   <aside class="{{filtCls}}" aria-labelledby="filt-h">
     <div class="fhead"><h2 id="filt-h">Фільтри</h2><button class="icon fbtn" type="button" aria-label="Закрити фільтри" onClick="{{closeSheet}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg></button></div>
@@ -112,7 +112,7 @@
 </sc-if>
 
 <sc-if value="{{isSvc}}" hint-placeholder-val="{{false}}">
-<div class="wrap" style="padding-top: 48px; padding-bottom: 120px">
+<div class="wrap pbody" style="padding-top: 48px; padding-bottom: 120px">
   <div class="svc-grid">
     <sc-for list="{{svcs}}" as="v" hint-placeholder-count="4"><a href="#" class="scard"><img src="{{v.img}}" alt=""><b>{{v.t}}</b><span>{{v.d}}</span></a></sc-for>
   </div>
@@ -120,7 +120,7 @@
 </sc-if>
 
 <sc-if value="{{isSoft}}" hint-placeholder-val="{{false}}">
-<div class="wrap" style="padding-top: 48px; padding-bottom: 120px">
+<div class="wrap pbody" style="padding-top: 48px; padding-bottom: 120px">
   <div class="pgrid soft" style="margin-top: 0">
     <a href="#" class="card"><span class="ctop"><span class="tag">Програмне забезпечення</span></span><span class="cimg"><img class="flat" src="../../assets/fdc858a8-p-space.jpg" alt="Логотип NIK SPACE"></span><span class="ct">NIK SPACE</span><span class="cd">ПЗ для дистанційного збору та обробки даних з приладів обліку.</span><span class="cgo"><span class="cgo-in">Детальніше<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span></a>
     <div class="placeholder" style="min-height: 360px">[Опис платформи, скриншоти інтерфейсу та документація — від замовника]</div>
@@ -128,7 +128,7 @@
 </div>
 </sc-if>
 
-<section class="wrap" style="padding-bottom: 120px">
+<section class="wrap band-sec" style="padding-bottom: 120px">
   <div class="band">
     <div><span class="kick">Підбір обладнання</span><h2>Не знайшли потрібну модель?</h2><p>Опишіть об’єкт і задачу — інженер підбере прилади й канали зв’язку під вашу систему обліку.</p></div>
     <a href="index.html#contact" class="btn btn-red">Отримати консультацію<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
