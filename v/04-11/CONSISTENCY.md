@@ -322,4 +322,8 @@ Agreed rule for new pages, and the goal of this group: one class = one style. Re
 - **Problem:** the three buttons have no addresses and «Скопіювати посилання» doesn't copy; the LinkedIn and Facebook icons are simplified drawings.
 - **Fix:** real share addresses, a working copy, and official logos if the company has rules for them.
 
+### 58. History: placeholders and soft photos
+- **Problem:** the page still shows `[Короткий опис події — від замовника]` and `[фото події — опційно]`. On 2x screens some photos are smaller than they need to be: `cf8e2f1d-news-kc02.webp` and `4ee835b3-h-2023.webp` (700 px wide, shown at 360 and 480 px), and at about 1000 px also `2d5e93a9-c-robot.jpg` (1000 px) and `6567fc3b-news-7071.jpg` (800 px), shown at 480 px.
+- **Fix:** ask the company for the missing texts and photos and for larger originals of these four.
+
 Item 15 (unused CSS) still waits for the UI kit: 58 rules applied on no page in the check of 2026-11-06 (some, such as `:disabled` states, may be useful for the kit).
