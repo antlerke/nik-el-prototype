@@ -265,3 +265,65 @@ and the cookie panel open) and by looking at every section. Clean: nothing stick
 - **Decision:** ✅ done (Anna: remove) — the animation and its `rv` classes are gone; headings and cards are simply there, as on catalog and product. The site header is not affected.
 
 Also fixed in the checking tool: `mobile-check.cjs` treated the page wrapper as a sideways scroller and so missed every overflow; 37 and 38 were found after that fix.
+
+## Group 8 — cleanup of `style.css` and the pages, postponed (listed 2026-11-06)
+
+All the CSS of this version now lives in `v/04-11/style.css`. Anna: new pages come first, this cleanup continues later. None of these items is visible on the pages today, and all of them are ⏸ postponed (Anna).
+
+Agreed rule for new pages, and the goal of this group: one class = one style. Reuse existing classes; a real variant gets its own class on the element, named by what it does, not by the page (`.tag-small`, not `.about-tag`); colours through `var(--...)`; no `main>:nth-child` rules.
+
+### 45. Colours written directly instead of the variable
+- **Problem:** about 17 places write the value (`#c8102e`, `#59636e`…) where a variable exists (`var(--red)`, `var(--muted)`); 355 already use the variable. Changing a variable would miss these places.
+- **Fix:** use the variable there. Nothing visible changes.
+
+### 46. Rules still repeated
+- **Problem:** `.tag,.doc em` and `.tag,.ptag em` both set 4 px corners; the base `.tag{padding:6px 10px}` is overridden at every width by two `@media` rules. `tidy-css.cjs` removes only what can never win under the same or a wider condition, so these stayed.
+- **Fix:** merge them one by one, each checked with `same-check.cjs`.
+
+### 47. `!important` — 53 of them
+- **Problem:** many exist only to beat an inline `style="…"`; they make a rule hard to override on a new page.
+- **Fix:** goes away together with 48.
+
+### 48. Inline `style="…"` — 70 (home 28, catalog 17, product 25)
+- **Problem:** styles outside `style.css`; a few are filled in by the page's code and have to stay.
+- **Fix:** move the static ones to classes.
+
+### 49. One class name, two meanings
+- **Problem:** `.n` is the red number on the home page and «Знайдено» in the catalog. No conflict today, because each rule sits under its own parent, but it is confusing. `.ph` and `.svc` were the same kind of case and are already renamed (`.placeholder`, `.svc-grid`).
+- **Fix:** rename, and look for other such names.
+
+### 50. Header and footer copied into every page
+- **Problem:** a change in the menu has to be repeated on each page; the cost grows with every new page.
+- **Fix:** one shared header and footer.
+
+### 51. The rule isn't written in `style.css` itself
+- **Fix:** a short comment at the top of the file with the rule above, for Anna and the developers. Comments that lost their rule in the cleanup can be reviewed at the same time.
+
+### 52. Small bugs that were there before
+- **Problem:** `favicon.ico` is missing (404); `aria-controls="mnav"` on the burger button points at a menu that exists only while it is open.
+
+### 53. Checking tools
+- **Problem:** `same-check.cjs` compares only the three old pages with commit `5ec6136`; the `css` mode of `diff-export.cjs` no longer sees the CSS, because it left the pages.
+- **Fix:** before more refactoring, move its base to a newer commit, empty its list of intended changes and add the new pages' states.
+
+### 54. Esc doesn't close the mobile menu
+- **Problem:** on every page the burger menu closes only with its button; the code doesn't handle the Esc key at all.
+- **Fix:** close it on Esc and return the focus to the burger button.
+
+### 55. Home: keyboard in the 3D block
+- **Problem:** Tab stops on the 3D viewer without a visible focus, and on two hotspots hidden at the current camera angle. The same on commit `5ec6136`, so not caused by the move to `style.css`.
+- **Fix:** a visible focus on the viewer; hidden hotspots leave the Tab order.
+
+### 56. Article: cover photo is stretched
+- **Problem:** `4ee835b3-h-2023.webp` is 700 px wide and is shown at up to 1216 px, so on a computer it looks a little soft. Anna kept the wide cover (2026-11-06) rather than a narrower one.
+- **Fix:** ask the company for the original, at least 2400 px wide, and replace the file.
+
+### 57. Article: share buttons are placeholders
+- **Problem:** the three buttons have no addresses and «Скопіювати посилання» doesn't copy; the LinkedIn and Facebook icons are simplified drawings.
+- **Fix:** real share addresses, a working copy, and official logos if the company has rules for them.
+
+### 58. History: placeholders and soft photos
+- **Problem:** the page still shows `[Короткий опис події — від замовника]` and `[фото події — опційно]`. On 2x screens some photos are smaller than they need to be: `cf8e2f1d-news-kc02.webp` and `4ee835b3-h-2023.webp` (700 px wide, shown at 360 and 480 px), and at about 1000 px also `2d5e93a9-c-robot.jpg` (1000 px) and `6567fc3b-news-7071.jpg` (800 px), shown at 480 px.
+- **Fix:** ask the company for the missing texts and photos and for larger originals of these four.
+
+Item 15 (unused CSS) still waits for the UI kit: 58 rules applied on no page in the check of 2026-11-06 (some, such as `:disabled` states, may be useful for the kit).

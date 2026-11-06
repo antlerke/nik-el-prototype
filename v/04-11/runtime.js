@@ -1,6 +1,15 @@
 // Minimal runtime for Claude Design (.dc.html) templates: {{holes}}, <sc-for>, <sc-if>,
 // on*="{{handler}}" events and setState re-render (DOM patched with morphdom; elements marked data-dc-keep are left alone after the first render).
 (function () {
+  // links with no address yet (href="#") stay put instead of throwing the reader to the top of the page
+  document.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('a[href="#"]')) e.preventDefault();
+  });
+  // a tab reached with the keyboard is scrolled fully into its row: the browser leaves a half-hidden one where it is
+  document.addEventListener('focusin', function (e) {
+    var t = e.target;
+    if (t.closest && t.closest('.tabs') && t.matches(':focus-visible')) t.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  });
   var handlers = [];
   var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
   function lookup(scope, p) {
