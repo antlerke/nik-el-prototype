@@ -29,6 +29,8 @@ const opt = (k, d) => { const i = args.indexOf(k); return i < 0 ? d : args.splic
 const flag = (k) => { const i = args.indexOf(k); if (i < 0) return false; args.splice(i, 1); return true; };
 const BASE = opt('--base', '5ec6136'), PAGES = opt('--pages', 'index,catalog,product').split(','), INJECT_B = opt('--inject-b', ''), TRIAL = opt('--trial', '');
 const ENV_NAMES = opt('--envs', 'normal,reduced,touch').split(','), SOURCE_ONLY = flag('--source-only'), QUICK = flag('--quick'), SELF_TEST = flag('--self-test');
+// --tidied: style.css has been through tidy-css.cjs, whose --verify proves what was removed; part 1 then checks only the HTML and the comments
+const TIDIED = flag('--tidied');
 const SHOTS = path.join(OUT, 'shots');
 fs.mkdirSync(SHOTS, { recursive: true });
 const log = [], say = (s = '') => { console.log(s); log.push(s); }, note = (s) => log.push(s);
@@ -126,7 +128,8 @@ function part1() {
   for (const page of PAGES) {
     const file = `${VERSION}/${page}.html`, A = sources[page], B = pageSource(String(fromDisk(file)), fromDisk, VERSION), c = compareSource(A, B, known);
     B.parts.filter((p) => p.from !== '<style>').forEach((p) => usedFiles.add(p.from));
-    problems += sourceProblems(c);
+    problems += TIDIED ? (c.htmlSame ? 0 : 1) + c.commentsLost.length + c.commentsAdded.length : sourceProblems(c);
+    if (TIDIED) { c.lost = []; c.added = []; c.moved = 0; }
     say(`  ${page}: HTML without CSS ${c.htmlSame ? 'identical (apart from the intended changes)' : 'DIFFERENT'} · its ${c.rules} rules: ${c.lost.length} lost, ${c.added.length} that no page had, ${c.moved} out of order · ${c.fromOthers} rules from the other pages · comments: ${c.commentsLost.length} lost, ${c.commentsAdded.length} that no page had · loads: ${B.parts.map((p) => p.from).join(', ')}`);
     if (c.htmlDiff) { say('    HTML A: ' + JSON.stringify(c.htmlDiff.a)); say('    HTML B: ' + JSON.stringify(c.htmlDiff.b)); }
     for (const [label, list] of [['lost', c.lost], ['added', c.added], ['comment lost', c.commentsLost], ['comment added', c.commentsAdded]]) list.slice(0, 40).forEach((x) => say(`    ${label}: ${x.slice(0, 220)}`));
