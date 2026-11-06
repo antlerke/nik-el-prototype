@@ -272,7 +272,7 @@
   <div class="wrap">
     <div class="shead">
       <div><span class="kick">Прес-центр</span><h2 class="h2" id="h-news">Новини та статті</h2></div>
-      <a href="#" class="btn btn-line">Усі новини<svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a href="news.html" class="btn btn-line">Усі новини<svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
     </div>
     <div class="ngrid">
       <sc-for list="{{news}}" as="n" hint-placeholder-count="3">
@@ -286,7 +286,7 @@
         </a>
       </sc-for>
     </div>
-    <a href="#" class="btn btn-line news-more">Усі новини<svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    <a href="news.html" class="btn btn-line news-more">Усі новини<svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
   </div>
 </section>
 
@@ -335,7 +335,7 @@
     <div class="ftop"><img src="../../assets/0fb4110e-nik-logo-white.svg" alt="НІК-ЕЛЕКТРОНІКА" style="height: 64px; width: auto; display: block"></div>
     <div class="fcols">
       <div><b>Каталог</b><a href="catalog.html">Облік електроенергії</a><a href="catalog.html">Облік води й тепла</a><a href="catalog.html">АСКОЕ та контролери</a><a href="catalog.html">Стабілізатори напруги</a></div>
-      <div><b>Компанія</b><a href="#">Про нас</a><a href="#">Виробництво</a><a href="#">Кар’єра</a><a href="#">Прес-центр</a></div>
+      <div><b>Компанія</b><a href="#">Про нас</a><a href="#">Виробництво</a><a href="#">Кар’єра</a><a href="news.html">Прес-центр</a></div>
       <div><b>Партнерам</b><a href="#">Де купити</a><a href="#contact">Стати дилером</a><a href="#">Електронні документи</a><a href="#">Сервісний центр</a></div>
       <div><b>Контакти</b><a href="#" class="num">+380 (44) 498-06-19</a><a href="#">info@nikel.com.ua</a><span>Пн–Пт, 8:00–17:00</span></div>
     </div>
@@ -591,7 +591,7 @@ class Component extends DCLogic {
         isMenu('Каталог', 'catalog.html', ['Продукти', 'Послуги', 'Програмне забезпечення', 'Таблиця взаємозамінності', 'Порівняти товари']),
         isMenu('Про нас', '#', ['Про компанію', ['Історія компанії', '#'], ['Кар’єра', '#'], ['Центр оцінки відповідності', '#'], ['Наші партнери', '#']]),
         isMenu('Контакти', '#', ['Де купити', ['Сервісний центр', '#']]),
-        isMenu('Прес-центр', '#', ['Новини', 'НІКіпедія', 'Ми у ЗМІ'])
+        isMenu('Прес-центр', 'news.html', ['Новини', ['НІКіпедія', '#'], ['Ми у ЗМІ', '#']])
       ],
       slides, cur: slideData[s.s], curNo: '0' + (s.s + 1), idxCls: 'idx' + (s.stop ? ' stop' : ''),
       c0: cap(0), c1: cap(1), c2: cap(2), c3: cap(3),
