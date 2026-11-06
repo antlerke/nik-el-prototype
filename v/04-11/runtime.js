@@ -1,6 +1,10 @@
 // Minimal runtime for Claude Design (.dc.html) templates: {{holes}}, <sc-for>, <sc-if>,
 // on*="{{handler}}" events and setState re-render (DOM patched with morphdom; elements marked data-dc-keep are left alone after the first render).
 (function () {
+  // links with no address yet (href="#") stay put instead of throwing the reader to the top of the page
+  document.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('a[href="#"]')) e.preventDefault();
+  });
   var handlers = [];
   var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
   function lookup(scope, p) {
