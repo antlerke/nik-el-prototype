@@ -69,18 +69,18 @@
 </section>
 
 <div class="wrap pbody">
-  <a href="#" class="nc wide">
+  <a href="article.html" class="nc wide">
     <span class="pi"><img src="{{top.img}}" alt=""></span>
-    <span class="bd"><span class="meta"><span class="{{top.tagCls}}">{{top.c}}</span>{{top.d}}</span><span class="t">{{top.t}}</span><span class="more">Читати далі<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span>
+    <span class="bd"><span class="meta"><span class="{{top.tagCls}}">{{top.c}}</span><time datetime="{{top.iso}}">{{top.d}}</time></span><span class="t">{{top.t}}</span><span class="more">Читати далі<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span>
   </a>
   <div class="tabs" role="tablist" aria-label="Тема">
     <sc-for list="{{cats}}" as="c" hint-placeholder-count="7"><button type="button" role="tab" aria-selected="{{c.on}}" aria-controls="news-panel" onClick="{{c.pick}}">{{c.t}}</button></sc-for>
   </div>
   <div class="ngrid three" id="news-panel" role="tabpanel" aria-label="{{catName}}">
     <sc-for list="{{list}}" as="n" hint-placeholder-count="9">
-  <a href="#" class="nc">
+  <a href="article.html" class="nc">
     <span class="pi"><img src="{{n.img}}" alt=""></span>
-    <span class="bd"><span class="meta"><span class="{{n.tagCls}}">{{n.c}}</span>{{n.d}}</span><span class="t">{{n.t}}</span><span class="more">Читати далі<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span>
+    <span class="bd"><span class="meta"><span class="{{n.tagCls}}">{{n.c}}</span><time datetime="{{n.iso}}">{{n.d}}</time></span><span class="t">{{n.t}}</span><span class="more">Читати далі<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span>
   </a>
     </sc-for>
   </div>
@@ -152,13 +152,13 @@ class Component extends DCLogic {
       { d: '29.09.2025', c: 'Компанія', t: 'Звіт незалежного аудитора щодо фінансової звітності за 2024 рік', img: 'c78a58ccbebb1066392f86ffe8a8c1f2' },
       { d: '05.11.2024', c: 'Партнерство', t: 'НІК-ЕЛЕКТРОНІКА подовжила членство в ICC', img: '64d3854c808afc98f555fddf056f74b8' },
       { d: '01.10.2023', c: 'Події', t: 'НІК-ЕЛЕКТРОНІКА бере участь у виставці «Енергетика в промисловості»', img: '2ccf31fa5a1b515e3050b040abee4fb2' },
-      { d: '01.02.2023', c: 'Сертифікація', t: 'НІК-ЕЛЕКТРОНІКА успішно пройшла ресертифікацію за ISO 27001', img: '4ee835b35f0ce1c5b4662a723809ed42' },
+      { d: '01.02.2023', c: 'Сертифікація', t: 'НІК-ЕЛЕКТРОНІКА успішно пройшла ресертифікацію за ISO\u00a027001', img: '4ee835b35f0ce1c5b4662a723809ed42' },
       { d: '10.12.2021', c: 'Сертифікація', t: 'Лічильник 7021 сертифіковано', img: 'ea5a942ba9f38ea4590615924d2a72ed' },
       { d: '25.03.2021', c: 'Продукти', t: 'Розробка пересувних електротехнічних лабораторій від NIK', img: 'c0704521db1416ec66e4d8545678ba60' },
-      { d: '27.01.2021', c: 'Продукти', t: 'Київська торгово-промислова палата про новий теплолічильник NIK 7071', img: '6567fc3b643335bde19852dd0048394a' },
-      { d: '08.12.2020', c: 'Сертифікація', t: 'Сертифікат експертизи типу для KC-02', img: 'cf8e2f1dd66b397312a466e40c80f839' },
+      { d: '27.01.2021', c: 'Продукти', t: 'Київська торгово-промислова палата про новий теплолічильник NIK\u00a07071', img: '6567fc3b643335bde19852dd0048394a' },
+      { d: '08.12.2020', c: 'Сертифікація', t: 'Сертифікат експертизи типу для KC-\u206002', img: 'cf8e2f1dd66b397312a466e40c80f839' },
       { d: '17.07.2020', c: 'Виробництво', t: 'Запуск автоматизованого тамподруку', img: '1695fc08e5d7c1a2fcd4fbc761e00a02' }
-    ].map((n) => ({ ...n, img: B + n.img, tagCls: 'tag' + (n.c === 'Компанія' ? ' r' : '') }));
+    ].map((n) => ({ ...n, iso: n.d.split('.').reverse().join('-'), img: B + n.img, tagCls: 'tag' + (n.c === 'Компанія' ? ' r' : '') }));
     const C = ['Усі', 'Компанія', 'Сертифікація', 'Продукти', 'Виробництво', 'Партнерство', 'Події'];
     const cats = C.map((t) => ({ t, on: String(s.cat === t), pick: () => this.setState({ cat: t }) }));
     const rest = NEWS.slice(1).filter((n) => s.cat === 'Усі' || n.c === s.cat);

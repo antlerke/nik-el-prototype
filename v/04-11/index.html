@@ -276,10 +276,10 @@
     </div>
     <div class="ngrid">
       <sc-for list="{{news}}" as="n" hint-placeholder-count="3">
-        <a href="#" class="{{n.cls}}">
+        <a href="article.html" class="{{n.cls}}">
           <span class="pi"><img src="{{n.img}}" alt=""></span>
           <span class="bd">
-            <span class="meta"><span class="{{n.tagCls}}">{{n.tag}}</span>{{n.d}}</span>
+            <span class="meta"><span class="{{n.tagCls}}">{{n.tag}}</span><time datetime="{{n.iso}}">{{n.d}}</time></span>
             <span class="t">{{n.t}}</span>
             <span class="more">Читати далі<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
           </span>
@@ -608,7 +608,7 @@ class Component extends DCLogic {
         { cls: 'nc big', d: '26.08.2026', tag: 'Компанія', tagCls: tagR, t: 'Звіт незалежного аудитора щодо фінансової звітності за 2025 рік', img: B + 'c0704521db1416ec66e4d8545678ba60' },
         { cls: 'nc sm', d: '05.11.2024', tag: 'Партнерство', tagCls: tagN, t: 'НІК-ЕЛЕКТРОНІКА подовжила членство в ICC', img: B + '64d3854c808afc98f555fddf056f74b8' },
         { cls: 'nc sm', d: '01.02.2023', tag: 'Сертифікація', tagCls: tagN, t: 'Успішно пройшли ресертифікацію за ISO 27001', img: B + '4ee835b35f0ce1c5b4662a723809ed42' }
-      ],
+      ].map((n) => ({ ...n, iso: n.d.split('.').reverse().join('-') })),
       notSent: !s.sent, sent: s.sent, formCls: s.tried ? 'tried' : '',
       // phone: digits only, grouped as 67 123 45 67 (+380 is fixed in front)
       telFmt: (e) => { const d = e.target.value.replace(/\D/g, '').slice(0, 9); e.target.value = [d.slice(0, 2), d.slice(2, 5), d.slice(5, 7), d.slice(7, 9)].filter(Boolean).join(' '); },
