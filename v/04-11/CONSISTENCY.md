@@ -306,4 +306,12 @@ Agreed rule for new pages, and the goal of this group: one class = one style. Re
 - **Problem:** `same-check.cjs` compares only the three old pages with commit `5ec6136`; the `css` mode of `diff-export.cjs` no longer sees the CSS, because it left the pages.
 - **Fix:** before more refactoring, move its base to a newer commit, empty its list of intended changes and add the new pages' states.
 
+### 54. Esc doesn't close the mobile menu
+- **Problem:** on every page the burger menu closes only with its button; the code doesn't handle the Esc key at all.
+- **Fix:** close it on Esc and return the focus to the burger button.
+
+### 55. Home: keyboard in the 3D block
+- **Problem:** Tab stops on the 3D viewer without a visible focus, and on two hotspots hidden at the current camera angle. The same on commit `5ec6136`, so not caused by the move to `style.css`.
+- **Fix:** a visible focus on the viewer; hidden hotspots leave the Tab order.
+
 Item 15 (unused CSS) still waits for the UI kit: 58 rules applied on no page in the check of 2026-11-06 (some, such as `:disabled` states, may be useful for the kit).
