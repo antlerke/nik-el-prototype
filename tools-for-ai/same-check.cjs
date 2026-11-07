@@ -302,11 +302,11 @@ function pageHelper() {
 
 // ----- the intended changes of the move to one stylesheet, all of them; anything else has to match exactly -----
 // HTML: a class for a block that had none, and two classes renamed because the name meant two different things.
-const NEWS_LINKS = [["isMenu('Прес-центр', '#', ['Новини', 'НІКіпедія', 'Ми у ЗМІ'])", "isMenu('Прес-центр', 'news.html', ['Новини', ['НІКіпедія', '#'], ['Ми у ЗМІ', '#']])"], ['<a href="#">Прес-центр</a>', '<a href="news.html">Прес-центр</a>'], ["['Історія компанії', '#']", "['Історія компанії', 'history.html']"]];
+const NEWS_LINKS = [["isMenu('Прес-центр', '#', ['Новини', 'НІКіпедія', 'Ми у ЗМІ'])", "isMenu('Прес-центр', 'news.html', ['Новини', ['НІКіпедія', '#'], ['Ми у ЗМІ', '#']])"], ['<a href="#">Прес-центр</a>', '<a href="news.html">Прес-центр</a>'], ["['Історія компанії', '#']", "['Історія компанії', 'history.html']"], ["['Кар’єра', '#']", "['Кар’єра', 'career.html']"], ['<a href="#">Кар’єра</a>', '<a href="career.html">Кар’єра</a>']];
 const HTML_CHANGES = {
   [`${VERSION}/index.html`]: [...NEWS_LINKS, ['<a href="#" class="btn btn-line">Усі новини', '<a href="news.html" class="btn btn-line">Усі новини'], ['<a href="#" class="btn btn-line news-more">Усі новини', '<a href="news.html" class="btn btn-line news-more">Усі новини'], ['<a href="#" class="{{n.cls}}">', '<a href="article.html" class="{{n.cls}}">'], ['{{n.tag}}</span>{{n.d}}</span>', '{{n.tag}}</span><time datetime="{{n.iso}}">{{n.d}}</time></span>'], ["      ],\n      notSent: !s.sent", "      ].map((n) => ({ ...n, iso: n.d.split('.').reverse().join('-') })),\n      notSent: !s.sent"]],
   [`${VERSION}/product.html`]: [...NEWS_LINKS, ['<section style="padding: 32px 0 72px;', '<section class="ptop" style="padding: 32px 0 72px;']],
-  [`${VERSION}/catalog.html`]: [...NEWS_LINKS,
+  [`${VERSION}/catalog.html`]: [...NEWS_LINKS, ['послуги — з документацією', 'послуги&nbsp;— з документацією'],
     ['<div class="ph" style="min-height: 360px">', '<div class="placeholder" style="min-height: 360px">'], ['<div class="svc">', '<div class="svc-grid">'],
     ['<div class="wrap cat">', '<div class="wrap cat pbody">'], ['<div class="wrap" style="padding-top: 48px; padding-bottom: 120px">', '<div class="wrap pbody" style="padding-top: 48px; padding-bottom: 120px">'], ['<section class="wrap" style="padding-bottom: 120px">', '<section class="wrap band-sec" style="padding-bottom: 120px">']
   ]
