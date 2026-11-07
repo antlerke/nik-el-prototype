@@ -65,7 +65,7 @@
     <nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a href="index.html">Головна</a></li><li><a href="#">Про нас</a></li><li><span aria-current="page">Історія компанії</span></li></ol></nav>
     <h1>Історія компанії</h1>
     <p class="lead">Від невеликого конструкторського бюро до виробника з повним циклом&nbsp;— ключові події НІК-&#8288;ЕЛЕКТРОНІКА з 2005&nbsp;року.</p>
-    <nav class="tabs" aria-label="Розділ «Про нас»"><a href="#">Про компанію</a><a href="history.html" aria-current="page">Історія</a><a href="career.html">Кар’єра</a><a href="conformity.html">Центр оцінки відповідності</a><a href="#">Партнери</a><a href="#">Кейси та об’єкти</a></nav>
+    <nav class="tabs" aria-label="Розділ «Про нас»"><a href="#">Про компанію</a><a href="history.html" aria-current="page">Історія</a><a href="career.html">Кар’єра</a><a href="conformity.html">Центр оцінки відповідності</a><a href="partners.html">Партнери</a><a href="#">Кейси та об’єкти</a></nav>
   </div>
 </section>
 
@@ -126,7 +126,7 @@ class Component extends DCLogic {
     return {
       menu: [
         isMenu('Каталог', 'catalog.html', ['Продукти', 'Послуги', 'Програмне забезпечення', 'Таблиця взаємозамінності', 'Порівняти товари']),
-        isMenu('Про нас', '#', ['Про компанію', ['Історія компанії', 'history.html'], ['Кар’єра', 'career.html'], ['Центр оцінки відповідності', 'conformity.html'], ['Наші партнери', '#']]),
+        isMenu('Про нас', '#', ['Про компанію', ['Історія компанії', 'history.html'], ['Кар’єра', 'career.html'], ['Центр оцінки відповідності', 'conformity.html'], ['Наші партнери', 'partners.html']]),
         isMenu('Контакти', '#', ['Де купити', ['Сервісний центр', '#']]),
         isMenu('Прес-центр', 'news.html', ['Новини', ['НІКіпедія', '#'], ['Ми у ЗМІ', '#']])
       ],
