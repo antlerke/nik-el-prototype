@@ -1927,3 +1927,40 @@ main>.band-sec{padding-bottom:120px}
   .vac{gap:16px;padding:16px}
   .vac h2{font-size:20px;line-height:1.15}
 }
+
+/* conformity page */
+.lab{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:24px;container-type:inline-size}
+.lab figure{position:relative;margin:0;min-height:460px;border-radius:16px;overflow:hidden;background:var(--gray)}
+.lab figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.lab .stat-cards{grid-template-columns:minmax(0,1fr);grid-auto-rows:1fr;margin-top:0;container-type:normal}
+.certs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:48px}
+.cert{display:flex;flex-direction:column;padding:32px;border-radius:24px;background:#ffffff;box-shadow:0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28)}
+.cert h3{margin:0;font-size:24px;line-height:1.2;letter-spacing:-0.02em;color:var(--ink);text-wrap:pretty}
+.cert small{margin-top:8px;font-family:var(--mono);font-size:14px;color:var(--muted)}
+.cert .cd{margin:16px 0 0}
+.cert .cgo{color:var(--ink);text-decoration:none}
+.decl .btn{margin-top:32px}
+.decl-text{padding:32px;border-radius:24px;background:#ffffff;box-shadow:0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28)}
+.decl-text p:not(.pnote){margin:0;font-size:20px;line-height:1.5;color:var(--text)}
+.decl-text p:not(.pnote)+p:not(.pnote){margin-top:16px}
+.decl-text .pnote{margin:16px 0 0}
+@media (hover:hover) and (pointer:fine){
+  .cert .cgo:hover{background:var(--ink);color:#ffffff}
+}
+@media (max-width:1180px){
+  .certs{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  .lab,.certs{grid-template-columns:minmax(0,1fr)}
+  .lab figure{min-height:320px}
+  .lab .stat-cards{grid-auto-rows:auto}
+}
+@media (max-width:600px){
+  .lab,.certs{gap:16px}
+  .certs{margin-top:24px}
+  .cert,.decl-text{padding:16px}
+  .cert h3{font-size:20px;line-height:1.15}
+  .decl .btn{margin-top:24px}
+  .decl-text p:not(.pnote){font-size:17px}
+  .decl-text .pnote{text-align:left}
+}
