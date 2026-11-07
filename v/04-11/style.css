@@ -2011,3 +2011,9 @@ main>.band-sec{padding-bottom:120px}
 @media (max-width:900px){
   .lab-rev{grid-template-columns:minmax(0,1fr)}
 }
+
+/* button in a page head */
+.phead .btn{display:flex;width:fit-content;margin-top:32px}
+@media (max-width:600px){
+  .phead .btn{width:100%;margin-top:24px}
+}
