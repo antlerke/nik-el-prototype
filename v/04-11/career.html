@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Кар’єра — НІК-ЕЛЕКТРОНІКА</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
+<script src="runtime.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/x-template" id="tpl">
+<div style="font-family: Geologica, sans-serif; color: var(--text); background: #ffffff; overflow-x: clip">
+
+<a href="#main" class="skip">Перейти до змісту</a>
+<header class="hd">
+  <div class="wrap">
+    <a href="index.html" aria-label="НІК-ЕЛЕКТРОНІКА — на головну" style="display: flex"><img src="../../assets/4acb50f3-nik-logo.svg" alt="НІК-ЕЛЕКТРОНІКА — на головну" style="height: 34px; width: auto; display: block; position: relative; top: -6px"></a>
+    <nav aria-label="Головне меню" style="flex: 1 1 auto">
+      <ul class="menu">
+        <sc-for list="{{menu}}" as="m" hint-placeholder-count="4">
+          <li>
+            <a href="{{m.href}}" aria-haspopup="true">{{m.t}}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></a>
+            <div class="drop">
+              <sc-for list="{{m.items}}" as="i" hint-placeholder-count="4"><a href="{{i.href}}">{{i.t}}</a></sc-for>
+            </div>
+          </li>
+        </sc-for>
+      </ul>
+    </nav>
+    <a href="#" class="docs"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg>Електронні документи</a>
+    <div style="display: flex; align-items: center; gap: 6px">
+      <button class="icon burger" type="button" aria-label="{{menuLabel}}" aria-expanded="{{menuExp}}" aria-controls="mnav" onClick="{{toggleMenu}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="{{burgerPath}}"></path></svg></button>
+      <button class="icon" aria-label="Пошук моделі, документа або статті" title="Пошук моделі, документа або статті"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></button>
+      <a href="#" class="icon" aria-label="Увійти в особистий кабінет" title="Увійти в особистий кабінет"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></a>
+      <div class="lang"><button type="button" class="lang-btn" aria-haspopup="true" aria-label="Мова сайту: українська">UA<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button><div class="drop lang-drop" aria-label="Мова сайту"><a href="#" aria-current="true" lang="uk">Українська</a><a href="#" lang="en">English</a><a href="#" lang="ru">Русский</a></div></div>
+    </div>
+  </div>
+</header>
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{false}}">
+  <nav class="mnav" id="mnav" aria-label="Мобільне меню" onClick="{{menuClick}}">
+    <sc-for list="{{menu}}" as="m" hint-placeholder-count="4">
+      <div class="grp">
+        <a href="{{m.href}}">{{m.t}}<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        <div class="sub"><sc-for list="{{m.items}}" as="i" hint-placeholder-count="4"><a href="{{i.href}}">{{i.t}}</a></sc-for></div>
+      </div>
+    </sc-for>
+    <div class="foot">
+      <a href="#" class="btn btn-line" style="width: 100%">Електронні документи</a>
+      <a href="index.html#contact" class="btn btn-red" style="width: 100%">Зв'язатися з нами</a>
+      <div class="seg" aria-label="Мова сайту" style="align-self: flex-start"><a href="#" aria-current="true">UA</a><a href="#">EN</a><a href="#">RU</a></div>
+    </div>
+  </nav>
+</sc-if>
+
+<main id="main">
+<section class="phead">
+  <div class="wrap">
+    <nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a href="index.html">Головна</a></li><li><a href="about.html">Про нас</a></li><li><span aria-current="page">Кар’єра</span></li></ol></nav>
+    <h1>Кар’єра</h1>
+    <p class="lead">Проєктуємо, виробляємо й випробовуємо електроніку в Україні. Шукаємо людей, які хочуть робити це разом із нами.</p>
+    <a href="vacancies.html" class="btn btn-red">Відкриті вакансії<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    <nav class="tabs" aria-label="Розділ «Про нас»"><a href="about.html">Про компанію</a><a href="history.html">Історія</a><a href="career.html" aria-current="page">Кар’єра</a><a href="conformity.html">Центр оцінки відповідності</a><a href="partners.html">Партнери</a><a href="cases.html">Кейси та об’єкти</a></nav>
+  </div>
+</section>
+
+<div class="wrap pbody">
+  <div class="mosaic">
+    <figure><img src="../../assets/de1ec571-role-engineer.webp" alt="Робоче місце конструктора"></figure>
+    <figure><img src="../../assets/e3a26a87-c-calibration.jpg" alt="Фахівчиня випробувального центру"></figure>
+    <figure><img src="../../assets/91d9cc8d-c-automation.jpg" alt="SMT-лінія"></figure>
+    <figure><img src="../../assets/2d5e93a9-c-robot.jpg" alt="Роботизована ділянка складання"></figure>
+    <figure><img src="../../assets/1695fc08-c-tampo.jpg" alt="Обладнання для виготовлення корпусів"></figure>
+  </div>
+</div>
+
+<section class="sec on-paper" aria-labelledby="h-team">
+  <div class="wrap">
+    <div class="shead"><div><span class="kick">Команда</span><h2 class="h2" id="h-team">Хто працює в НІК-&#8288;ЕЛЕКТРОНІКА</h2></div><p class="lead">Кожен продукт проходить шлях від технічного завдання до сертифікації — і на кожному етапі працюють наші фахівці.</p></div>
+    <ul class="roles"><li class="tag">Проєктанти</li><li class="tag">Інженери-електроніки</li><li class="tag">Розробники ПЗ</li><li class="tag">Конструктори</li><li class="tag">Програмісти</li><li class="tag">Технологи</li><li class="tag">Метрологи</li></ul>
+    <div class="stat-cards">
+      <div><b>600<em>+</em></b><span>Фахівців у команді</span><small>інженери, R&amp;D, метрологи</small></div>
+      <div><b>20<em>+</em></b><span>Років на ринку</span><small>з 2005 року</small></div>
+      <div><b>4</b><span>Власні цехи</span><small>лічильники, стабілізатори, трансформатори, пластмаса</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="h-start">
+  <div class="wrap">
+    <div class="shead"><div><span class="kick">Розділ «Кар’єра»</span><h2 class="h2" id="h-start">Почніть звідси</h2></div></div>
+    <div class="ngrid three">
+      <a href="#" class="nc tile"><span class="pi"><img src="../../assets/91d9cc8d-c-automation.jpg" alt=""></span><span class="bd"><span class="t">Корпоративна культура</span><span class="cd">Як ми працюємо, цінності команди й життя компанії.</span><span class="more">Детальніше<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span></a>
+      <a href="vacancies.html" class="nc tile"><span class="pi"><img src="../../assets/de1ec571-role-engineer.webp" alt=""></span><span class="bd"><span class="t">Вакансії</span><span class="cd">Відкриті посади в розробці, виробництві та метрології.</span><span class="more">Детальніше<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span></a>
+      <a href="#" class="nc tile"><span class="pi"><img src="../../assets/e3a26a87-c-calibration.jpg" alt=""></span><span class="bd"><span class="t">Студентам і випускникам</span><span class="cd">Стажування та співпраця з навчальними закладами.</span><span class="more">Детальніше<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- 11. Футер -->
+<footer class="ft">
+  <div class="wrap">
+    <div class="ftop"><img src="../../assets/0fb4110e-nik-logo-white.svg" alt="НІК-ЕЛЕКТРОНІКА" style="height: 64px; width: auto; display: block"></div>
+    <div class="fcols">
+      <div><b>Каталог</b><a href="catalog.html">Облік електроенергії</a><a href="catalog.html">Облік води й тепла</a><a href="catalog.html">АСКОЕ та контролери</a><a href="catalog.html">Стабілізатори напруги</a></div>
+      <div><b>Компанія</b><a href="about.html">Про нас</a><a href="#">Виробництво</a><a href="career.html">Кар’єра</a><a href="vacancies.html">Вакансії</a><a href="news.html">Прес-центр</a></div>
+      <div><b>Партнерам</b><a href="where.html">Де купити</a><a href="index.html#contact">Стати дилером</a><a href="#">Електронні документи</a><a href="service.html">Сервісний центр</a></div>
+      <div><b>Контакти</b><a href="#" class="num">+380 (44) 498-06-19</a><a href="#">info@nikel.com.ua</a><span>Пн–Пт, 8:00–17:00</span></div>
+    </div>
+    <div class="fbot">
+      <span>© 2005–2026 ТОВ «НІК-ЕЛЕКТРОНІКА»</span>
+      <nav aria-label="Правова інформація та соцмережі"><a href="#">Політика конфіденційності</a><a href="#" onClick="{{openCookie}}">Cookie</a><span><a href="#">LinkedIn</a> · <a href="#">Facebook</a> · <a href="#">YouTube</a></span></nav>
+    </div>
+  </div>
+</footer>
+
+<!-- Cookie-банер -->
+<sc-if value="{{cookie}}" hint-placeholder-val="{{true}}">
+  <div class="cookie" role="region" aria-label="Налаштування cookie">
+    <p>Ми використовуємо необхідні cookie, щоб сайт працював. За вашою згодою також використаємо аналітичні cookie і сторонні сервіси — карти та відео. Детальніше — у <a href="#">Політиці cookie</a>.</p>
+    <div class="row">
+      <button class="btn btn-ink" onClick="{{closeCookie}}">Прийняти всі</button>
+      <button class="btn btn-line" onClick="{{closeCookie}}">Лише необхідні</button>
+      <button class="btn lnk" onClick="{{closeCookie}}">Налаштувати</button>
+    </div>
+  </div>
+</sc-if>
+
+</div>
+</script>
+<script>
+window.DC_BLOBS = {};
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { cookie: true, menu: false };
+  }
+  base(s) {
+    const isMenu = (t, href, items) => ({ t, href, items: items.map((x) => (Array.isArray(x) ? { t: x[0], href: x[1] } : { t: x, href })) });
+    return {
+      menu: [
+        isMenu('Каталог', 'catalog.html', ['Продукти', 'Послуги', 'Програмне забезпечення', 'Таблиця взаємозамінності', 'Порівняти товари']),
+        isMenu('Про нас', 'about.html', ['Про компанію', ['Історія компанії', 'history.html'], ['Кар’єра', 'career.html'], ['Вакансії', 'vacancies.html'], ['Центр оцінки відповідності', 'conformity.html'], ['Наші партнери', 'partners.html']]),
+        isMenu('Контакти', 'where.html', ['Де купити', ['Сервісний центр', 'service.html']]),
+        isMenu('Прес-центр', 'news.html', ['Новини', ['НІКіпедія', '#'], ['Ми у ЗМІ', '#']])
+      ],
+      cookie: s.cookie && !s.menu,
+      menuOpen: s.menu, menuExp: String(s.menu), menuLabel: s.menu ? 'Закрити меню' : 'Відкрити меню',
+      burgerPath: s.menu ? 'M6 6l12 12M18 6 6 18' : 'M4 7h16M4 12h16M4 17h16',
+      toggleMenu: () => this.setState({ menu: !s.menu }),
+      menuClick: (e) => { if (e && e.target && e.target.closest && e.target.closest('a')) this.setState({ menu: false }); },
+      closeCookie: () => this.setState({ cookie: false }),
+      openCookie: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ cookie: true }); }
+    };
+  }
+  renderVals() {
+    return this.base(this.state);
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>

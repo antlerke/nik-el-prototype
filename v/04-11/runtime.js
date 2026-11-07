@@ -10,6 +10,13 @@
     var t = e.target;
     if (t.closest && t.closest('.tabs') && t.matches(':focus-visible')) t.scrollIntoView({ block: 'nearest', inline: 'nearest' });
   });
+  // a section's current tab can start outside its row on a phone: the row opens scrolled to it. Only the row moves, not the page
+  function showCurrentTabs() {
+    document.querySelectorAll('.tabs [aria-current="page"]').forEach(function (a) {
+      var row = a.parentElement, over = a.getBoundingClientRect().right - row.getBoundingClientRect().right + (parseFloat(getComputedStyle(row).paddingRight) || 0);
+      if (over > 0) row.scrollLeft += over;
+    });
+  }
   var handlers = [];
   var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
   function lookup(scope, p) {
@@ -84,6 +91,8 @@
         bind(app);
       };
       c.__render();
+      showCurrentTabs();
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(showCurrentTabs); // the tabs get wider when the font arrives
     }
   };
 })();

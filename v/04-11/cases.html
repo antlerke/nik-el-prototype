@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Кейси та об’єкти — НІК-ЕЛЕКТРОНІКА</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
+<script src="runtime.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/x-template" id="tpl">
+<div style="font-family: Geologica, sans-serif; color: var(--text); background: #ffffff; overflow-x: clip">
+
+<a href="#main" class="skip">Перейти до змісту</a>
+<header class="hd">
+  <div class="wrap">
+    <a href="index.html" aria-label="НІК-ЕЛЕКТРОНІКА — на головну" style="display: flex"><img src="../../assets/4acb50f3-nik-logo.svg" alt="НІК-ЕЛЕКТРОНІКА — на головну" style="height: 34px; width: auto; display: block; position: relative; top: -6px"></a>
+    <nav aria-label="Головне меню" style="flex: 1 1 auto">
+      <ul class="menu">
+        <sc-for list="{{menu}}" as="m" hint-placeholder-count="4">
+          <li>
+            <a href="{{m.href}}" aria-haspopup="true">{{m.t}}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></a>
+            <div class="drop">
+              <sc-for list="{{m.items}}" as="i" hint-placeholder-count="4"><a href="{{i.href}}">{{i.t}}</a></sc-for>
+            </div>
+          </li>
+        </sc-for>
+      </ul>
+    </nav>
+    <a href="#" class="docs"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg>Електронні документи</a>
+    <div style="display: flex; align-items: center; gap: 6px">
+      <button class="icon burger" type="button" aria-label="{{menuLabel}}" aria-expanded="{{menuExp}}" aria-controls="mnav" onClick="{{toggleMenu}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="{{burgerPath}}"></path></svg></button>
+      <button class="icon" aria-label="Пошук моделі, документа або статті" title="Пошук моделі, документа або статті"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></button>
+      <a href="#" class="icon" aria-label="Увійти в особистий кабінет" title="Увійти в особистий кабінет"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></a>
+      <div class="lang"><button type="button" class="lang-btn" aria-haspopup="true" aria-label="Мова сайту: українська">UA<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button><div class="drop lang-drop" aria-label="Мова сайту"><a href="#" aria-current="true" lang="uk">Українська</a><a href="#" lang="en">English</a><a href="#" lang="ru">Русский</a></div></div>
+    </div>
+  </div>
+</header>
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{false}}">
+  <nav class="mnav" id="mnav" aria-label="Мобільне меню" onClick="{{menuClick}}">
+    <sc-for list="{{menu}}" as="m" hint-placeholder-count="4">
+      <div class="grp">
+        <a href="{{m.href}}">{{m.t}}<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        <div class="sub"><sc-for list="{{m.items}}" as="i" hint-placeholder-count="4"><a href="{{i.href}}">{{i.t}}</a></sc-for></div>
+      </div>
+    </sc-for>
+    <div class="foot">
+      <a href="#" class="btn btn-line" style="width: 100%">Електронні документи</a>
+      <a href="index.html#contact" class="btn btn-red" style="width: 100%">Зв'язатися з нами</a>
+      <div class="seg" aria-label="Мова сайту" style="align-self: flex-start"><a href="#" aria-current="true">UA</a><a href="#">EN</a><a href="#">RU</a></div>
+    </div>
+  </nav>
+</sc-if>
+
+<main id="main">
+<section class="phead">
+  <div class="wrap">
+    <nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a href="index.html">Головна</a></li><li><a href="about.html">Про нас</a></li><li><a href="partners.html">Наші партнери</a></li><li><span aria-current="page">Кейси та об’єкти</span></li></ol></nav>
+    <h1>Кейси та об’єкти</h1>
+    <p class="lead">Житлові комплекси, промислові об’єкти й водоканали, де працюють прилади та системи обліку NIK.</p>
+    <nav class="tabs" aria-label="Розділ «Про нас»"><a href="about.html">Про компанію</a><a href="history.html">Історія</a><a href="career.html">Кар’єра</a><a href="conformity.html">Центр оцінки відповідності</a><a href="partners.html">Партнери</a><a href="cases.html" aria-current="page">Кейси та об’єкти</a></nav>
+  </div>
+</section>
+
+<div class="wrap pbody">
+  <div class="tabs" role="tablist" aria-label="Тип об’єкта">
+    <sc-for list="{{cats}}" as="c" hint-placeholder-count="4"><button type="button" role="tab" aria-selected="{{c.on}}" aria-controls="case-panel" onClick="{{c.pick}}">{{c.t}}</button></sc-for>
+  </div>
+  <div class="ngrid pair" id="case-panel" role="tabpanel" aria-label="{{catName}}">
+    <sc-for list="{{list}}" as="k" hint-placeholder-count="4">
+      <article class="case">
+        <div class="pi"><sc-if value="{{k.hasFile}}" hint-placeholder-val="{{true}}"><img src="{{k.img}}" alt=""></sc-if></div>
+        <div class="bd">
+          <span class="tag">{{k.c}}</span>
+          <h2>[Назва об’єкта або проєкту]</h2>
+          <p class="cd">[Задача, рішення й результат — 2–3 речення від замовника]</p>
+          <div class="facts"><div class="spec"><span>Місто</span><b>[Місто]</b></div><div class="spec"><span>Точок обліку</span><b>[кількість]</b></div><div class="spec"><span>Рік</span><b>[рік]</b></div></div>
+          <div class="eq"><sc-for list="{{k.eq}}" as="e" hint-placeholder-count="2"><a href="product.html" class="chipx chip-clear">{{e}}</a></sc-for></div>
+        </div>
+      </article>
+    </sc-for>
+  </div>
+</div>
+</main>
+
+<!-- 11. Футер -->
+<footer class="ft">
+  <div class="wrap">
+    <div class="ftop"><img src="../../assets/0fb4110e-nik-logo-white.svg" alt="НІК-ЕЛЕКТРОНІКА" style="height: 64px; width: auto; display: block"></div>
+    <div class="fcols">
+      <div><b>Каталог</b><a href="catalog.html">Облік електроенергії</a><a href="catalog.html">Облік води й тепла</a><a href="catalog.html">АСКОЕ та контролери</a><a href="catalog.html">Стабілізатори напруги</a></div>
+      <div><b>Компанія</b><a href="about.html">Про нас</a><a href="#">Виробництво</a><a href="career.html">Кар’єра</a><a href="vacancies.html">Вакансії</a><a href="news.html">Прес-центр</a></div>
+      <div><b>Партнерам</b><a href="where.html">Де купити</a><a href="index.html#contact">Стати дилером</a><a href="#">Електронні документи</a><a href="service.html">Сервісний центр</a></div>
+      <div><b>Контакти</b><a href="#" class="num">+380 (44) 498-06-19</a><a href="#">info@nikel.com.ua</a><span>Пн–Пт, 8:00–17:00</span></div>
+    </div>
+    <div class="fbot">
+      <span>© 2005–2026 ТОВ «НІК-ЕЛЕКТРОНІКА»</span>
+      <nav aria-label="Правова інформація та соцмережі"><a href="#">Політика конфіденційності</a><a href="#" onClick="{{openCookie}}">Cookie</a><span><a href="#">LinkedIn</a> · <a href="#">Facebook</a> · <a href="#">YouTube</a></span></nav>
+    </div>
+  </div>
+</footer>
+
+<!-- Cookie-банер -->
+<sc-if value="{{cookie}}" hint-placeholder-val="{{true}}">
+  <div class="cookie" role="region" aria-label="Налаштування cookie">
+    <p>Ми використовуємо необхідні cookie, щоб сайт працював. За вашою згодою також використаємо аналітичні cookie і сторонні сервіси — карти та відео. Детальніше — у <a href="#">Політиці cookie</a>.</p>
+    <div class="row">
+      <button class="btn btn-ink" onClick="{{closeCookie}}">Прийняти всі</button>
+      <button class="btn btn-line" onClick="{{closeCookie}}">Лише необхідні</button>
+      <button class="btn lnk" onClick="{{closeCookie}}">Налаштувати</button>
+    </div>
+  </div>
+</sc-if>
+
+</div>
+</script>
+<script>
+window.DC_BLOBS = {"5a730fd2f1cb33a5b04465cf472e04b9":"../../assets/5a730fd2-hero-1.webp","6bad89e8cd66dd4a3f75be4c2902edc5":"../../assets/6bad89e8-hero-2.webp"};
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { cookie: true, menu: false, cat: 'Усі' };
+  }
+  base(s) {
+    const isMenu = (t, href, items) => ({ t, href, items: items.map((x) => (Array.isArray(x) ? { t: x[0], href: x[1] } : { t: x, href })) });
+    return {
+      menu: [
+        isMenu('Каталог', 'catalog.html', ['Продукти', 'Послуги', 'Програмне забезпечення', 'Таблиця взаємозамінності', 'Порівняти товари']),
+        isMenu('Про нас', 'about.html', ['Про компанію', ['Історія компанії', 'history.html'], ['Кар’єра', 'career.html'], ['Вакансії', 'vacancies.html'], ['Центр оцінки відповідності', 'conformity.html'], ['Наші партнери', 'partners.html']]),
+        isMenu('Контакти', 'where.html', ['Де купити', ['Сервісний центр', 'service.html']]),
+        isMenu('Прес-центр', 'news.html', ['Новини', ['НІКіпедія', '#'], ['Ми у ЗМІ', '#']])
+      ],
+      cookie: s.cookie && !s.menu,
+      menuOpen: s.menu, menuExp: String(s.menu), menuLabel: s.menu ? 'Закрити меню' : 'Відкрити меню',
+      burgerPath: s.menu ? 'M6 6l12 12M18 6 6 18' : 'M4 7h16M4 12h16M4 17h16',
+      toggleMenu: () => this.setState({ menu: !s.menu }),
+      menuClick: (e) => { if (e && e.target && e.target.closest && e.target.closest('a')) this.setState({ menu: false }); },
+      closeCookie: () => this.setState({ cookie: false }),
+      openCookie: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ cookie: true }); }
+    };
+  }
+  renderVals() {
+    const s = this.state;
+    const B = '/_blob/';
+    // two photos aren't in assets/ yet (the export leaves out what the code puts together): those cases show the grey photo box until they are added to DC_BLOBS
+    const K = [
+      { c: 'Забудовник', img: '5a730fd2f1cb33a5b04465cf472e04b9', eq: ['NIK 7071', 'NIK 7011', 'NIK AMBUS'] },
+      { c: 'Промисловість', img: '6bad89e8cd66dd4a3f75be4c2902edc5', eq: ['NIK 2306', 'KC-02'] },
+      { c: 'Водоканал', img: 'd388df99ebf0c0b1f372c4851ac78d85', eq: ['NIK 7011', 'KK-01'] },
+      { c: 'Забудовник', img: 'b76b763965df40d22e1607eab06daaab', eq: ['NIK 2104', 'KC-02'] }
+    ];
+    const cats = ['Усі', 'Забудовник', 'Промисловість', 'Водоканал'].map((t) => ({ t, on: String(s.cat === t), pick: () => this.setState({ cat: t }) }));
+    const list = K.filter((k) => s.cat === 'Усі' || k.c === s.cat).map((k) => ({ ...k, hasFile: !!window.DC_BLOBS[k.img], img: B + k.img }));
+    return Object.assign(this.base(s), { cats, catName: s.cat, list });
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>

@@ -326,4 +326,60 @@ Agreed rule for new pages, and the goal of this group: one class = one style. Re
 - **Problem:** the page still shows `[Короткий опис події — від замовника]` and `[фото події — опційно]`. On 2x screens some photos are smaller than they need to be: `cf8e2f1d-news-kc02.webp` and `4ee835b3-h-2023.webp` (700 px wide, shown at 360 and 480 px), and at about 1000 px also `2d5e93a9-c-robot.jpg` (1000 px) and `6567fc3b-news-7071.jpg` (800 px), shown at 480 px.
 - **Fix:** ask the company for the missing texts and photos and for larger originals of these four.
 
+### 59. Career: photos and vacancies
+- **Problem:** the team and office photos are still to come from the company (the note saying so left the page, Anna, 2026-11-07), and only one photo on the page has a person in it. Three photos appear twice, in the mosaic and in the tiles. `e3a26a87-c-calibration.jpg` (655 px wide) and `de1ec571-role-engineer.webp` (1209 px) are soft on 2x screens. «Вакансії» is low on the page, and the other two tiles lead nowhere yet.
+- **Fix:** team and office photos and a larger original of `e3a26a87` from the company; other photos for the tiles; decide whether the page head needs a «Вакансії» button (the export has none).
+
+### 60. Three cards in two columns on tablets
+- **Problem:** from 720 to 1060 px `.ngrid.three` has two columns, so three cards leave the third alone in its row with an empty space beside it: the career tiles and «Читайте також» in the article.
+- **Fix:** decide once for all these blocks, as they share the class.
+
+### 61. Home: the pink card in the catalog
+- **Problem:** on the tabs «Вода та тепло» and «АСКОЕ та контролери» the home page shows `.card.more` with a pink gradient and border. It was the same pink as `.band`, which became neutral (Anna, 2026-11-07, too many shades of red), so it is now the only one on the site.
+- **Fix:** Anna to choose: white like the cards beside it (the top of the card then looks empty; a lower card could help), or dark blue like «Ключові цифри».
+
+### 62. Vacancies: placeholders
+- **Problem:** titles, descriptions and cities are placeholders, and «Відгукнутися» and «Надіслати резюме» lead nowhere.
+- **Fix:** real vacancies from the company. «Відгукнутися» opens an email to an address set in the admin panel (the note saying so left the page, Anna, 2026-11-07).
+
+### 63. Vacancies: keyboard and screen readers
+- **Problem:** the «Кар’єра» tab is marked `aria-current="page"` here although the page is its child, so a screen reader calls it the current page. The filter tabs move with Tab only, not with the arrow keys; the same on the news, partners, cases and where-to-buy pages.
+- **Fix:** `aria-current="true"` for a parent section, with its style and `runtime.js` to match; arrow keys for all filter tabs at once.
+
+### 64. Conformity: photo and texts from the company
+- **Problem:** `e3a26a87-c-calibration.jpg` is 655 px wide and is shown larger (1.06 times on a computer, 1.28 times at about 900 px), so it looks a little soft even on a normal screen. The self-declaration is a placeholder, and the PDF links lead nowhere. The export's round pink seals were left out on purpose (Anna, 2026-11-07), so the short names «ISO 27001» and «ISO 17025» are gone: the exact standard stays under each title.
+- **Fix:** a larger original of the photo; the real self-declaration and certificates. In the real text write the company name with `&#8288;` after the hyphen, or it can break across two lines.
+
+### 65. Partners: the list and long names
+- **Problem:** six names and all the descriptions are placeholders. A very long one-word name can break at any letter: automatic hyphenation is set on `.partner h2`, but it did nothing in Chrome on Windows, most likely for lack of a Ukrainian dictionary. It never sticks out of the card.
+- **Fix:** the list is filled in the admin panel, names only, no logos (the note saying so left the page, Anna, 2026-11-07). In a long one-word name put `&shy;` where it may break, as in «Прикарпаття-обленерго».
+
+### 66. Article: the full text
+- **Problem:** the article shows only a sample of the text.
+- **Fix:** the full text from the original publication on nik-el.com (the note saying so left the page, Anna, 2026-11-07).
+
+### 67. Checking tools: same-check stops
+- **Problem:** on 2026-11-07 `same-check.cjs --tidied --quick` hung twice, once on the catalog after finishing the home page, once on the home page alone; on the catalog and product alone it finished. The reason isn't known. It also compares with the old commit `5ec6136` and doesn't cover the new pages (item 53).
+- **Fix:** find the reason before relying on it again; meanwhile `tools-for-ai/out/news-same.cjs` compares any page with the last commit.
+
+### 68. Cases: photos, texts and device links
+- **Problem:** two cases (Водоканал and the second Забудовник) show a grey box instead of a photo: the images `d388df99ebf0c0b1f372c4851ac78d85` and `b76b763965df40d22e1607eab06daaab` are built at runtime and did not come with the export. Titles, texts, city, number of metering points and year are placeholders. Every device link opens the one product page the prototype has. These links are 40 px tall, like the chip in the catalog, under the 44 px advised for a finger.
+- **Fix:** save the two photos from the Claude Design board, then add them to `assets/` and `DC_BLOBS`. The company supplies the texts and figures, as the export's note said; the note stayed off the page, like the other notes (Anna, 2026-11-07). Link each device to its own page. Settle 40 or 44 px together with the catalog chip.
+
+### 69. Service centre: contacts, map and links
+- **Problem:** the address, phone and email are placeholders, and the map is a drawing with a dot, not a real map; the export's label «Google Maps · мітка офісу» stayed off the page, like the other notes. The text mentions a chat-bot, as the home page does, but the prototype has none. Both red buttons open the form on the home page, where the visitor has to choose the topic «Сервіс» by hand. On tablets the third service card stands alone in its row (item 60).
+- **Fix:** the company's contacts; a Google map with the office marker, in this block. Decide whether there will be a chat-bot, or the sentence goes on both pages. In the real form, open it with the topic already chosen.
+
+### 70. Vacancies: closer to the visitor
+- **Problem:** one card on the career page, about 2.5 screens down, was the only way to the vacancies page.
+- **Fix:** done (Anna, 2026-11-07): the red button «Відкриті вакансії» in the head of the career page, and «Вакансії» after «Кар’єра» in the menus and footers. The words on the button are not from the export. The footer column «Компанія» is now one line longer than the others. If the developers object, commit `83205fa` takes it all back; `git revert` may ask for small manual fixes where later commits changed the lines next to it.
+
+### 71. Where to buy: dealers, map and list
+- **Problem:** dealers, addresses, phones, hours and regions are placeholders, and the map is a drawing with made-up places. Two notes from the export stayed off the page, like the others: the label «Google Maps · мітки дилерів» and «Регіони 1–4 — як у маршрутизації заявок. Перелік областей і дані дилерів надасть замовник.» The route buttons lead nowhere. A click on a dealer in the list doesn't pick it on the map, as in the export. The list uses the same cards as the vacancies, where the export had compact rows, so a long list makes a long page: 8 dealers already take over 5000 px on a phone.
+- **Fix:** the company's regions and dealers; a Google map with their markers. The region filter here also rules the map and the card, which the export didn't do: keep that on the real page. In a long one-word name put `&shy;` where it may break. If the list grows long, choose between compact rows and paging.
+
+### 72. About: texts, photos and the dealer tile
+- **Problem:** the mission and the descriptions of the values are placeholders that name the brandbook (sections 1.1 and 1.2). The tile «Наші партнери» has a grey box: the photo `d388df99ebf0c0b1f372c4851ac78d85` is the one missing in Cases too (item 68). `e3a26a87-c-calibration.jpg` is 655 px wide, so in its tile it looks a little soft on high-density screens (item 64). The tile «Стати дилером» has no photo, so on a computer it has empty space in the middle. At 320 px the tags take three lines, about a third of the photo's height. The export's side menu gave way to the section tabs of the other pages, and its tile «Стати дилером» led to the where-to-buy page; here it opens the form, like the same link in the footer.
+- **Fix:** the texts from the brandbook; the missing photo. Developers replace photos with better originals on the real site (Anna, 2026-11-07).
+
 Item 15 (unused CSS) still waits for the UI kit: 58 rules applied on no page in the check of 2026-11-06 (some, such as `:disabled` states, may be useful for the kit).
