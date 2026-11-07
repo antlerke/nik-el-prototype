@@ -343,7 +343,7 @@ Agreed rule for new pages, and the goal of this group: one class = one style. Re
 - **Fix:** real vacancies from the company. «Відгукнутися» opens an email to an address set in the admin panel (the note saying so left the page, Anna, 2026-11-07).
 
 ### 63. Vacancies: keyboard and screen readers
-- **Problem:** the «Кар’єра» tab is marked `aria-current="page"` here although the page is its child, so a screen reader calls it the current page. The filter tabs move with Tab only, not with the arrow keys; the same on the news page.
+- **Problem:** the «Кар’єра» tab is marked `aria-current="page"` here although the page is its child, so a screen reader calls it the current page. The filter tabs move with Tab only, not with the arrow keys; the same on the news, partners and cases pages.
 - **Fix:** `aria-current="true"` for a parent section, with its style and `runtime.js` to match; arrow keys for all filter tabs at once.
 
 ### 64. Conformity: photo and texts from the company
@@ -365,5 +365,9 @@ Agreed rule for new pages, and the goal of this group: one class = one style. Re
 ### 68. Cases: photos, texts and device links
 - **Problem:** two cases (Водоканал and the second Забудовник) show a grey box instead of a photo: the images `d388df99ebf0c0b1f372c4851ac78d85` and `b76b763965df40d22e1607eab06daaab` are built at runtime and did not come with the export. Titles, texts, city, number of metering points and year are placeholders. Every device link opens the one product page the prototype has. These links are 40 px tall, like the chip in the catalog, under the 44 px advised for a finger.
 - **Fix:** save the two photos from the Claude Design board, then add them to `assets/` and `DC_BLOBS`. The company supplies the texts and figures, as the export's note said; the note stayed off the page, like the other notes (Anna, 2026-11-07). Link each device to its own page. Settle 40 or 44 px together with the catalog chip.
+
+### 69. Service centre: contacts, map and links
+- **Problem:** the address, phone and email are placeholders, and the map is a drawing with a dot, not a real map; the export's label «Google Maps · мітка офісу» stayed off the page, like the other notes. «Де купити» and «Контакти» in the crumbs lead nowhere, because those pages aren't built. The text mentions a chat-bot, as the home page does, but the prototype has none. Both red buttons open the form on the home page, where the visitor has to choose the topic «Сервіс» by hand. On tablets the third service card stands alone in its row (item 60).
+- **Fix:** the company's contacts; a Google map with the office marker, in this block. Decide whether there will be a chat-bot, or the sentence goes on both pages. In the real form, open it with the topic already chosen.
 
 Item 15 (unused CSS) still waits for the UI kit: 58 rules applied on no page in the check of 2026-11-06 (some, such as `:disabled` states, may be useful for the kit).
