@@ -1022,7 +1022,7 @@ a{color:var(--ink)}
 .h3s{margin:0;color:var(--ink)}
 .phead .kick{display:flex;width:fit-content;margin-top:32px}
 .phead h1{margin:16px 0 0;color:var(--ink);text-wrap:balance}
-.phead .lead{max-width:44ch}
+.phead .lead{max-width:44ch;text-wrap:pretty}
 .band{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;border-radius:28px;background:linear-gradient(160deg,var(--red-a),rgba(200,16,46,.02));box-shadow:inset 0 0 0 1px var(--red-b)}
 .band h2{margin:16px 0 0;color:var(--ink)}
 .band p{margin:16px 0 0;font-size:17px;line-height:1.55;max-width:52ch}
