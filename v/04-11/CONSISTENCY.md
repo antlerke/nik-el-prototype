@@ -327,7 +327,7 @@ Agreed rule for new pages, and the goal of this group: one class = one style. Re
 - **Fix:** ask the company for the missing texts and photos and for larger originals of these four.
 
 ### 59. Career: photos and vacancies
-- **Problem:** the page still shows `[Фото команди й офісу — від замовника]`, and only one photo on it has a person in it. Three photos appear twice, in the mosaic and in the tiles. `e3a26a87-c-calibration.jpg` (655 px wide) and `de1ec571-role-engineer.webp` (1209 px) are soft on 2x screens. «Вакансії» is low on the page, and the other two tiles lead nowhere yet.
+- **Problem:** the team and office photos are still to come from the company (the note saying so left the page, Anna, 2026-11-07), and only one photo on the page has a person in it. Three photos appear twice, in the mosaic and in the tiles. `e3a26a87-c-calibration.jpg` (655 px wide) and `de1ec571-role-engineer.webp` (1209 px) are soft on 2x screens. «Вакансії» is low on the page, and the other two tiles lead nowhere yet.
 - **Fix:** team and office photos and a larger original of `e3a26a87` from the company; other photos for the tiles; decide whether the page head needs a «Вакансії» button (the export has none).
 
 ### 60. Three cards in two columns on tablets
@@ -339,8 +339,8 @@ Agreed rule for new pages, and the goal of this group: one class = one style. Re
 - **Fix:** Anna to choose: white like the cards beside it (the top of the card then looks empty; a lower card could help), or dark blue like «Ключові цифри».
 
 ### 62. Vacancies: placeholders
-- **Problem:** titles, descriptions and cities are placeholders, and «Відгукнутися» and «Надіслати резюме» lead nowhere. The line about the address set in the admin panel is a note for developers, not for visitors.
-- **Fix:** real vacancies from the company; the buttons open an email; remove the note on the real site.
+- **Problem:** titles, descriptions and cities are placeholders, and «Відгукнутися» and «Надіслати резюме» lead nowhere.
+- **Fix:** real vacancies from the company. «Відгукнутися» opens an email to an address set in the admin panel (the note saying so left the page, Anna, 2026-11-07).
 
 ### 63. Vacancies: keyboard and screen readers
 - **Problem:** the «Кар’єра» tab is marked `aria-current="page"` here although the page is its child, so a screen reader calls it the current page. The filter tabs move with Tab only, not with the arrow keys; the same on the news page.
@@ -349,5 +349,17 @@ Agreed rule for new pages, and the goal of this group: one class = one style. Re
 ### 64. Conformity: photo and texts from the company
 - **Problem:** `e3a26a87-c-calibration.jpg` is 655 px wide and is shown larger (1.06 times on a computer, 1.28 times at about 900 px), so it looks a little soft even on a normal screen. The self-declaration is a placeholder, and the PDF links lead nowhere. The export's round pink seals were left out on purpose (Anna, 2026-11-07), so the short names «ISO 27001» and «ISO 17025» are gone: the exact standard stays under each title.
 - **Fix:** a larger original of the photo; the real self-declaration and certificates. In the real text write the company name with `&#8288;` after the hyphen, or it can break across two lines.
+
+### 65. Partners: the list and long names
+- **Problem:** six names and all the descriptions are placeholders, and «Дивитися кейси» leads nowhere. A very long one-word name can break at any letter: automatic hyphenation is set on `.partner h2`, but it did nothing in Chrome on Windows, most likely for lack of a Ukrainian dictionary. It never sticks out of the card.
+- **Fix:** the list is filled in the admin panel, names only, no logos (the note saying so left the page, Anna, 2026-11-07). In a long one-word name put `&shy;` where it may break, as in «Прикарпаття-обленерго».
+
+### 66. Article: the full text
+- **Problem:** the article shows only a sample of the text.
+- **Fix:** the full text from the original publication on nik-el.com (the note saying so left the page, Anna, 2026-11-07).
+
+### 67. Checking tools: same-check stops
+- **Problem:** on 2026-11-07 `same-check.cjs --tidied --quick` hung twice, once on the catalog after finishing the home page, once on the home page alone; on the catalog and product alone it finished. The reason isn't known. It also compares with the old commit `5ec6136` and doesn't cover the new pages (item 53).
+- **Fix:** find the reason before relying on it again; meanwhile `tools-for-ai/out/news-same.cjs` compares any page with the last commit.
 
 Item 15 (unused CSS) still waits for the UI kit: 58 rules applied on no page in the check of 2026-11-06 (some, such as `:disabled` states, may be useful for the kit).
