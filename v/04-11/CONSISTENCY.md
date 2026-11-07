@@ -327,11 +327,23 @@ Agreed rule for new pages, and the goal of this group: one class = one style. Re
 - **Fix:** ask the company for the missing texts and photos and for larger originals of these four.
 
 ### 59. Career: photos and vacancies
-- **Problem:** the page still shows `[Фото команди й офісу — від замовника]`, and only one photo on it has a person in it. Three photos appear twice, in the mosaic and in the tiles. `e3a26a87-c-calibration.jpg` (655 px wide) and `de1ec571-role-engineer.webp` (1209 px) are soft on 2x screens. «Вакансії» is low on the page, and all three tiles lead nowhere yet.
-- **Fix:** team and office photos and a larger original of `e3a26a87` from the company; other photos for the tiles; build the vacancies page (its export is in `claude-design-export`), then decide whether the page head needs a «Вакансії» button (the export has none).
+- **Problem:** the page still shows `[Фото команди й офісу — від замовника]`, and only one photo on it has a person in it. Three photos appear twice, in the mosaic and in the tiles. `e3a26a87-c-calibration.jpg` (655 px wide) and `de1ec571-role-engineer.webp` (1209 px) are soft on 2x screens. «Вакансії» is low on the page, and the other two tiles lead nowhere yet.
+- **Fix:** team and office photos and a larger original of `e3a26a87` from the company; other photos for the tiles; decide whether the page head needs a «Вакансії» button (the export has none).
 
 ### 60. Three cards in two columns on tablets
 - **Problem:** from 720 to 1060 px `.ngrid.three` has two columns, so three cards leave the third alone in its row with an empty space beside it: the career tiles and «Читайте також» in the article.
 - **Fix:** decide once for all these blocks, as they share the class.
+
+### 61. Home: the pink card in the catalog
+- **Problem:** on the tabs «Вода та тепло» and «АСКОЕ та контролери» the home page shows `.card.more` with a pink gradient and border. It was the same pink as `.band`, which became neutral (Anna, 2026-11-07, too many shades of red), so it is now the only one on the site.
+- **Fix:** Anna to choose: white like the cards beside it (the top of the card then looks empty; a lower card could help), or dark blue like «Ключові цифри».
+
+### 62. Vacancies: placeholders
+- **Problem:** titles, descriptions and cities are placeholders, and «Відгукнутися» and «Надіслати резюме» lead nowhere. The line about the address set in the admin panel is a note for developers, not for visitors.
+- **Fix:** real vacancies from the company; the buttons open an email; remove the note on the real site.
+
+### 63. Vacancies: keyboard and screen readers
+- **Problem:** the «Кар’єра» tab is marked `aria-current="page"` here although the page is its child, so a screen reader calls it the current page. The filter tabs move with Tab only, not with the arrow keys; the same on the news page.
+- **Fix:** `aria-current="true"` for a parent section, with its style and `runtime.js` to match; arrow keys for all filter tabs at once.
 
 Item 15 (unused CSS) still waits for the UI kit: 58 rules applied on no page in the check of 2026-11-06 (some, such as `:disabled` states, may be useful for the kit).
