@@ -113,7 +113,7 @@
     <div class="fcols">
       <div><b>Каталог</b><a href="catalog.html">Облік електроенергії</a><a href="catalog.html">Облік води й тепла</a><a href="catalog.html">АСКОЕ та контролери</a><a href="catalog.html">Стабілізатори напруги</a></div>
       <div><b>Компанія</b><a href="#">Про нас</a><a href="#">Виробництво</a><a href="career.html">Кар’єра</a><a href="vacancies.html">Вакансії</a><a href="news.html">Прес-центр</a></div>
-      <div><b>Партнерам</b><a href="#">Де купити</a><a href="index.html#contact">Стати дилером</a><a href="#">Електронні документи</a><a href="service.html">Сервісний центр</a></div>
+      <div><b>Партнерам</b><a href="where.html">Де купити</a><a href="index.html#contact">Стати дилером</a><a href="#">Електронні документи</a><a href="service.html">Сервісний центр</a></div>
       <div><b>Контакти</b><a href="#" class="num">+380 (44) 498-06-19</a><a href="#">info@nikel.com.ua</a><span>Пн–Пт, 8:00–17:00</span></div>
     </div>
     <div class="fbot">
@@ -150,7 +150,7 @@ class Component extends DCLogic {
       menu: [
         isMenu('Каталог', 'catalog.html', ['Продукти', 'Послуги', 'Програмне забезпечення', 'Таблиця взаємозамінності', 'Порівняти товари']),
         isMenu('Про нас', '#', ['Про компанію', ['Історія компанії', 'history.html'], ['Кар’єра', 'career.html'], ['Вакансії', 'vacancies.html'], ['Центр оцінки відповідності', 'conformity.html'], ['Наші партнери', 'partners.html']]),
-        isMenu('Контакти', '#', ['Де купити', ['Сервісний центр', 'service.html']]),
+        isMenu('Контакти', 'where.html', ['Де купити', ['Сервісний центр', 'service.html']]),
         isMenu('Прес-центр', 'news.html', ['Новини', ['НІКіпедія', '#'], ['Ми у ЗМІ', '#']])
       ],
       cookie: s.cookie && !s.menu,

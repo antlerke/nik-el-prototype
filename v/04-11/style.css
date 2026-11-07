@@ -1933,8 +1933,8 @@ main>.band-sec{padding-bottom:120px}
 .certs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:48px}
 .cert,.partner,.service,.contact-card{display:flex;flex-direction:column;padding:32px;border-radius:24px;background:#ffffff;box-shadow:0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28)}
 .cert h3,.service h3{margin:0;font-size:24px;line-height:1.2;letter-spacing:-0.02em;color:var(--ink);text-wrap:pretty}
-.cert small,.service small{font-family:var(--mono);font-size:14px;color:var(--muted)}
-.cert small{margin-top:8px}
+.cert small,.service small,.contact-card>small{font-family:var(--mono);font-size:14px;color:var(--muted)}
+.cert small,.contact-card>small{margin-top:8px}
 .cert .cd,.partner .cd,.service .cd{margin:16px 0 0}
 .cert .cgo{color:var(--ink);text-decoration:none}
 .decl .btn,.contact-card .btn{margin-top:32px}
@@ -2016,4 +2016,28 @@ main>.band-sec{padding-bottom:120px}
 .phead .btn{display:flex;width:fit-content;margin-top:32px}
 @media (max-width:600px){
   .phead .btn{width:100%;margin-top:24px}
+}
+
+/* where to buy page */
+.pin-btn{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border:0;border-radius:50%;padding:0;background:transparent;cursor:pointer;display:grid;place-items:center}
+.pin-btn span{width:16px;height:16px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 4px #ffffff,0 6px 14px rgba(19,56,93,.35);transition:transform .25s var(--out)}
+.pin-btn[aria-pressed="true"] span{background:var(--red);box-shadow:0 0 0 4px #ffffff,0 0 0 10px var(--red-b),0 6px 14px rgba(19,56,93,.35)}
+.dealer{grid-template-columns:minmax(0,1.4fr) minmax(0,1.2fr) minmax(0,1fr) minmax(0,1fr) auto}
+.dealer h2,.dealer .spec b,.contact-card h2{overflow-wrap:anywhere}
+@media (hover:hover) and (pointer:fine){
+  .pin-btn:hover span{transform:scale(1.2)}
+}
+@media (max-width:1180px){
+  .dealer{grid-template-columns:repeat(3,minmax(0,1fr)) auto}
+  .dealer>div:first-child{grid-column:1/4}
+  .dealer .btn{grid-column:4;grid-row:1}
+}
+@media (max-width:900px){
+  .dealer{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .dealer>div:first-child,.dealer .addr,.dealer .btn{grid-column:span 2}
+  .dealer .btn{grid-row:auto}
+}
+@media (max-width:600px){
+  .dealer{grid-template-columns:minmax(0,1fr)}
+  .dealer>div:first-child,.dealer .addr,.dealer .btn{grid-column:auto}
 }
