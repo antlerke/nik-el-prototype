@@ -326,4 +326,12 @@ Agreed rule for new pages, and the goal of this group: one class = one style. Re
 - **Problem:** the page still shows `[Короткий опис події — від замовника]` and `[фото події — опційно]`. On 2x screens some photos are smaller than they need to be: `cf8e2f1d-news-kc02.webp` and `4ee835b3-h-2023.webp` (700 px wide, shown at 360 and 480 px), and at about 1000 px also `2d5e93a9-c-robot.jpg` (1000 px) and `6567fc3b-news-7071.jpg` (800 px), shown at 480 px.
 - **Fix:** ask the company for the missing texts and photos and for larger originals of these four.
 
+### 59. Career: photos and vacancies
+- **Problem:** the page still shows `[Фото команди й офісу — від замовника]`, and only one photo on it has a person in it. Three photos appear twice, in the mosaic and in the tiles. `e3a26a87-c-calibration.jpg` (655 px wide) and `de1ec571-role-engineer.webp` (1209 px) are soft on 2x screens. «Вакансії» is low on the page, and all three tiles lead nowhere yet.
+- **Fix:** team and office photos and a larger original of `e3a26a87` from the company; other photos for the tiles; build the vacancies page (its export is in `claude-design-export`), then decide whether the page head needs a «Вакансії» button (the export has none).
+
+### 60. Three cards in two columns on tablets
+- **Problem:** from 720 to 1060 px `.ngrid.three` has two columns, so three cards leave the third alone in its row with an empty space beside it: the career tiles and «Читайте також» in the article.
+- **Fix:** decide once for all these blocks, as they share the class.
+
 Item 15 (unused CSS) still waits for the UI kit: 58 rules applied on no page in the check of 2026-11-06 (some, such as `:disabled` states, may be useful for the kit).
