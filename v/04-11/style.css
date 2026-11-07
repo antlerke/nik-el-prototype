@@ -335,7 +335,7 @@ a{color:var(--ink)}
 .cgrid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:start}
 .clist{display:flex;flex-direction:column;gap:12px;margin-top:40px}
 .clist a,.clist div{display:flex;align-items:center;gap:16px;font-size:20px;font-weight:500;color:var(--ink);text-decoration:none}
-.clist i{width:52px;height:52px;background:#ffffff;box-shadow:inset 0 0 0 1px var(--line);display:grid;place-items:center;color:var(--red);flex:0 0 52px}
+.clist i,.service i{width:52px;height:52px;background:#ffffff;box-shadow:inset 0 0 0 1px var(--line);display:grid;place-items:center;color:var(--red);flex:0 0 52px}
 .clist small{display:block;margin-top:4px;font-weight:400;color:#59636e}
 .note{display:flex;gap:14px;margin-top:36px;padding:20px;background:var(--red-a);box-shadow:inset 0 0 0 1px var(--red-b);font-size:16px;line-height:1.55;color:var(--text)}
 .note svg{flex:0 0 22px;color:var(--red-t);margin-top:1px}
@@ -1755,7 +1755,7 @@ main>.ptop{padding-top:40px !important}
 
 /* shadows on two levels: above the page (cookie, menus, filter panel) = the cookie shadow */
 .menu>li>a{border-radius:8px}
-.info .n,.clist i,.cimg,.steps .ph,.note,.cookie{border-radius:16px}
+.info .n,.clist i,.service i,.cimg,.steps .ph,.note,.cookie{border-radius:16px}
 @media (max-width:600px){
   .info{border-radius:22px}
 }
@@ -2040,4 +2040,24 @@ main>.band-sec{padding-bottom:120px}
 @media (max-width:600px){
   .dealer{grid-template-columns:minmax(0,1fr)}
   .dealer>div:first-child,.dealer .addr,.dealer .btn{grid-column:auto}
+}
+
+/* about page */
+.about-photo{position:relative;height:540px;margin:0;border-radius:16px;overflow:hidden;background:var(--gray)}
+.about-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.about-photo .roles{position:absolute;left:24px;right:24px;bottom:24px;margin:0}
+.about-photo .tag{background:#ffffff;white-space:normal}
+.about-who{margin-top:64px}
+.about-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px;margin-top:32px}
+.band-dark{background:linear-gradient(120deg,var(--ink) 0%,var(--ink-d) 100%);box-shadow:none}
+.band-dark h2{color:#ffffff}
+@media (max-width:900px){
+  .about-photo{height:380px}
+  .about-cols{grid-template-columns:minmax(0,1fr);gap:16px}
+}
+@media (max-width:600px){
+  .about-photo{height:280px}
+  .about-photo .roles{left:16px;right:16px;bottom:16px}
+  .about-who{margin-top:40px}
+  .about-cols{margin-top:24px}
 }
