@@ -346,4 +346,8 @@ Agreed rule for new pages, and the goal of this group: one class = one style. Re
 - **Problem:** the «Кар’єра» tab is marked `aria-current="page"` here although the page is its child, so a screen reader calls it the current page. The filter tabs move with Tab only, not with the arrow keys; the same on the news page.
 - **Fix:** `aria-current="true"` for a parent section, with its style and `runtime.js` to match; arrow keys for all filter tabs at once.
 
+### 64. Conformity: photo and texts from the company
+- **Problem:** `e3a26a87-c-calibration.jpg` is 655 px wide and is shown larger (1.06 times on a computer, 1.28 times at about 900 px), so it looks a little soft even on a normal screen. The self-declaration is a placeholder, and the PDF links lead nowhere. The export's round pink seals were left out on purpose (Anna, 2026-11-07), so the short names «ISO 27001» and «ISO 17025» are gone: the exact standard stays under each title.
+- **Fix:** a larger original of the photo; the real self-declaration and certificates. In the real text write the company name with `&#8288;` after the hyphen, or it can break across two lines.
+
 Item 15 (unused CSS) still waits for the UI kit: 58 rules applied on no page in the check of 2026-11-06 (some, such as `:disabled` states, may be useful for the kit).
