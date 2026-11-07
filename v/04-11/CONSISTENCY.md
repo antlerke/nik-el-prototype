@@ -370,4 +370,8 @@ Agreed rule for new pages, and the goal of this group: one class = one style. Re
 - **Problem:** the address, phone and email are placeholders, and the map is a drawing with a dot, not a real map; the export's label «Google Maps · мітка офісу» stayed off the page, like the other notes. «Де купити» and «Контакти» in the crumbs lead nowhere, because those pages aren't built. The text mentions a chat-bot, as the home page does, but the prototype has none. Both red buttons open the form on the home page, where the visitor has to choose the topic «Сервіс» by hand. On tablets the third service card stands alone in its row (item 60).
 - **Fix:** the company's contacts; a Google map with the office marker, in this block. Decide whether there will be a chat-bot, or the sentence goes on both pages. In the real form, open it with the topic already chosen.
 
+### 70. Vacancies: closer to the visitor
+- **Problem:** one card on the career page, about 2.5 screens down, was the only way to the vacancies page.
+- **Fix:** done (Anna, 2026-11-07): the red button «Відкриті вакансії» in the head of the career page, and «Вакансії» after «Кар’єра» in the menus and footers. The words on the button are not from the export. The footer column «Компанія» is now one line longer than the others. If the developers object, commit `83205fa` takes it all back; `git revert` may ask for small manual fixes where later commits changed the lines next to it.
+
 Item 15 (unused CSS) still waits for the UI kit: 58 rules applied on no page in the check of 2026-11-06 (some, such as `:disabled` states, may be useful for the kit).
