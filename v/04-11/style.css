@@ -1905,3 +1905,25 @@ main>.pbody{padding-bottom:120px}
   .stat-cards em{margin-left:.24em}
   .stat-cards span{margin-top:8px;font-size:16px}
 }
+
+/* vacancies page */
+.mosaic+.pnote,.vlist+.pnote{margin-bottom:0}
+.pbody>.tabs:first-child{margin-top:0}
+.tabs em{margin-left:8px;font-family:var(--mono);font-size:14px;font-style:normal}
+.vlist{display:grid;gap:24px;margin-top:24px}
+.vac{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) minmax(0,1fr) auto;gap:24px;align-items:start;padding:32px;border-radius:24px;background:#ffffff;box-shadow:0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28)}
+.vac h2{margin:0;font-size:24px;line-height:1.2;letter-spacing:-0.02em;color:var(--ink);text-wrap:pretty}
+.vac .cd{margin:8px 0 0}
+.vac .spec{flex-direction:column;gap:4px;padding:0;border-top:0}
+.vac .spec b{text-align:left}
+main>.band-sec{padding-bottom:120px}
+@media (max-width:900px){
+  .vac{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .vac>div:first-child,.vac .btn{grid-column:span 2}
+}
+@media (max-width:600px){
+  .vlist{gap:16px}
+  .vlist+.pnote{text-align:left}
+  .vac{gap:16px;padding:16px}
+  .vac h2{font-size:20px;line-height:1.15}
+}
