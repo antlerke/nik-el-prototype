@@ -351,7 +351,7 @@ Agreed rule for new pages, and the goal of this group: one class = one style. Re
 - **Fix:** a larger original of the photo; the real self-declaration and certificates. In the real text write the company name with `&#8288;` after the hyphen, or it can break across two lines.
 
 ### 65. Partners: the list and long names
-- **Problem:** six names and all the descriptions are placeholders, and «Дивитися кейси» leads nowhere. A very long one-word name can break at any letter: automatic hyphenation is set on `.partner h2`, but it did nothing in Chrome on Windows, most likely for lack of a Ukrainian dictionary. It never sticks out of the card.
+- **Problem:** six names and all the descriptions are placeholders. A very long one-word name can break at any letter: automatic hyphenation is set on `.partner h2`, but it did nothing in Chrome on Windows, most likely for lack of a Ukrainian dictionary. It never sticks out of the card.
 - **Fix:** the list is filled in the admin panel, names only, no logos (the note saying so left the page, Anna, 2026-11-07). In a long one-word name put `&shy;` where it may break, as in «Прикарпаття-обленерго».
 
 ### 66. Article: the full text
@@ -361,5 +361,9 @@ Agreed rule for new pages, and the goal of this group: one class = one style. Re
 ### 67. Checking tools: same-check stops
 - **Problem:** on 2026-11-07 `same-check.cjs --tidied --quick` hung twice, once on the catalog after finishing the home page, once on the home page alone; on the catalog and product alone it finished. The reason isn't known. It also compares with the old commit `5ec6136` and doesn't cover the new pages (item 53).
 - **Fix:** find the reason before relying on it again; meanwhile `tools-for-ai/out/news-same.cjs` compares any page with the last commit.
+
+### 68. Cases: photos, texts and device links
+- **Problem:** two cases (Водоканал and the second Забудовник) show a grey box instead of a photo: the images `d388df99ebf0c0b1f372c4851ac78d85` and `b76b763965df40d22e1607eab06daaab` are built at runtime and did not come with the export. Titles, texts, city, number of metering points and year are placeholders. Every device link opens the one product page the prototype has. These links are 40 px tall, like the chip in the catalog, under the 44 px advised for a finger.
+- **Fix:** save the two photos from the Claude Design board, then add them to `assets/` and `DC_BLOBS`. The company supplies the texts and figures, as the export's note said; the note stayed off the page, like the other notes (Anna, 2026-11-07). Link each device to its own page. Settle 40 or 44 px together with the catalog chip.
 
 Item 15 (unused CSS) still waits for the UI kit: 58 rules applied on no page in the check of 2026-11-06 (some, such as `:disabled` states, may be useful for the kit).
