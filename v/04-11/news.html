@@ -64,20 +64,19 @@
 <section class="phead">
   <div class="wrap">
     <nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a href="index.html">Головна</a></li><li><a href="#">Прес-центр</a></li><li><span aria-current="page">Новини</span></li></ol></nav>
-    <h1>Прес-центр</h1>
+    <h1>Новини</h1>
+    <p class="lead">Нові продукти, сертифікація, розвиток виробництва, виставки та проєкти НІК-&#8288;ЕЛЕКТРОНІКА.</p>
     <div class="tabs"><a href="news.html" aria-current="page">Новини</a><a href="#">НІКіпедія</a><a href="#">Ми у ЗМІ</a></div>
   </div>
 </section>
 
 <div class="wrap pbody">
+  <sc-if value="{{hasNews}}" hint-placeholder-val="{{true}}">
   <a href="article.html" class="nc wide">
     <span class="pi"><img src="{{top.img}}" alt=""></span>
     <span class="bd"><span class="meta"><span class="{{top.tagCls}}">{{top.c}}</span><time datetime="{{top.iso}}">{{top.d}}</time></span><span class="t">{{top.t}}</span><span class="more">Читати далі<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span>
   </a>
-  <div class="tabs" role="tablist" aria-label="Тема">
-    <sc-for list="{{cats}}" as="c" hint-placeholder-count="7"><button type="button" role="tab" aria-selected="{{c.on}}" aria-controls="news-panel" onClick="{{c.pick}}">{{c.t}}</button></sc-for>
-  </div>
-  <div class="ngrid three" id="news-panel" role="tabpanel" aria-label="{{catName}}">
+  <div class="ngrid three">
     <sc-for list="{{list}}" as="n" hint-placeholder-count="9">
   <a href="article.html" class="nc">
     <span class="pi"><img src="{{n.img}}" alt=""></span>
@@ -85,7 +84,9 @@
   </a>
     </sc-for>
   </div>
-  <sc-if value="{{multi}}" hint-placeholder-val="{{true}}"><nav class="pager" aria-label="Сторінки"><span aria-current="page">1</span><a href="#" aria-label="Сторінка 2">2</a><a href="#" aria-label="Наступна сторінка"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: block"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></nav></sc-if>
+  <sc-if value="{{more}}" hint-placeholder-val="{{true}}"><div class="hbtns"><button type="button" class="btn btn-line" onClick="{{showMore}}">Показати ще</button></div></sc-if>
+  </sc-if>
+  <sc-if value="{{noNews}}" hint-placeholder-val="{{false}}"><div class="empty">Новин поки немає.</div></sc-if>
 </div>
 </main>
 
@@ -125,7 +126,7 @@ window.DC_BLOBS = {"c0704521db1416ec66e4d8545678ba60":"../../assets/c0704521-pro
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = Object.assign({ cookie: true, menu: false }, { cat: 'Усі' });
+    this.state = Object.assign({ cookie: true, menu: false }, { shown: 6 });
   }
   base(s) {
     const isMenu = (t, href, items) => ({ t, href, items: items.map((x) => (Array.isArray(x) ? { t: x[0], href: x[1] } : { t: x, href })) });
@@ -148,7 +149,8 @@ class Component extends DCLogic {
   renderVals() {
     const s = this.state;
     const B = '/_blob/';
-    const NEWS = [
+    // the address with ?empty shows the state with no news
+    const NEWS = new URLSearchParams(location.search).has('empty') ? [] : [
       { d: '26.08.2026', c: 'Компанія', t: 'Звіт незалежного аудитора щодо фінансової звітності за 2025 рік', img: 'c0704521db1416ec66e4d8545678ba60' },
       { d: '29.09.2025', c: 'Компанія', t: 'Звіт незалежного аудитора щодо фінансової звітності за 2024 рік', img: 'c78a58ccbebb1066392f86ffe8a8c1f2' },
       { d: '05.11.2024', c: 'Партнерство', t: 'НІК-ЕЛЕКТРОНІКА подовжила членство в ICC', img: '64d3854c808afc98f555fddf056f74b8' },
@@ -160,11 +162,8 @@ class Component extends DCLogic {
       { d: '08.12.2020', c: 'Сертифікація', t: 'Сертифікат експертизи типу для KC-\u206002', img: 'cf8e2f1dd66b397312a466e40c80f839' },
       { d: '17.07.2020', c: 'Виробництво', t: 'Запуск автоматизованого тамподруку', img: '1695fc08e5d7c1a2fcd4fbc761e00a02' }
     ].map((n) => ({ ...n, iso: n.d.split('.').reverse().join('-'), img: B + n.img, tagCls: 'tag' + (n.c === 'Компанія' ? ' r' : '') }));
-    const C = ['Усі', 'Компанія', 'Сертифікація', 'Продукти', 'Виробництво', 'Партнерство', 'Події'];
-    const cats = C.map((t) => ({ t, on: String(s.cat === t), pick: () => this.setState({ cat: t }) }));
-    const rest = NEWS.slice(1).filter((n) => s.cat === 'Усі' || n.c === s.cat);
-    // page buttons only when there is more than one page, as in the catalog: every theme fits on one page
-    return Object.assign(this.base(s), { top: NEWS[0], cats, catName: s.cat, list: rest, multi: s.cat === 'Усі' });
+    const rest = NEWS.slice(1);
+    return Object.assign(this.base(s), { top: NEWS[0] || {}, list: rest.slice(0, s.shown), more: s.shown < rest.length, showMore: () => this.setState({ shown: s.shown + 6 }), hasNews: NEWS.length > 0, noNews: !NEWS.length });
   }
 }
 

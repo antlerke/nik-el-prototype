@@ -2082,6 +2082,11 @@ main>.band-sec{padding-bottom:120px}
 .about-who>.about-cols:first-child{margin-top:0}
 .art>.feat:first-child{margin-top:0}
 .pbody>.vlist:first-child{margin-top:0}
+.nc.wide+.ngrid{margin-top:24px}
+.share-t{align-self:center;margin-right:8px;font-size:16px;font-weight:500;color:var(--ink)}
+@media (max-width:600px){
+  .share-t{margin-left:12px}
+}
 .ngrid+.band{margin-top:64px}
 .text-rows .about-cols{margin-top:64px}
 .text-rows .about-cols:first-child{margin-top:0}
