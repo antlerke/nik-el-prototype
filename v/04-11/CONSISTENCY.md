@@ -354,6 +354,7 @@ Agreed rule for new pages, and the goal of this group: one class = one style. Re
 - **Fix:** `aria-current="true"` for a parent section, with its style and `runtime.js` to match; arrow keys for all filter tabs at once.
 
 ### 64. Conformity: photo and texts from the company
+- **Update 2026-11-10:** the page was rebuilt from the client's texts. The photo and the self-declaration block are gone, so of the points below only the real certificates remain. Where the brief repeated a block, the version from its mockups stayed (Anna). New pattern: answers that open and close (`.qa`, native `details` marked `data-dc-keep`, so they stay open when the page redraws). Use it for other lists of questions.
 - **Problem:** `e3a26a87-c-calibration.jpg` is 655 px wide and is shown larger (1.06 times on a computer, 1.28 times at about 900 px), so it looks a little soft even on a normal screen. The self-declaration is a placeholder, and the PDF links lead nowhere. The export's round pink seals were left out on purpose (Anna, 2026-11-07), so the short names «ISO 27001» and «ISO 17025» are gone: the exact standard stays under each title.
 - **Fix:** a larger original of the photo; the real self-declaration and certificates. In the real text write the company name with `&#8288;` after the hyphen, or it can break across two lines.
 
