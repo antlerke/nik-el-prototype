@@ -2080,12 +2080,15 @@ main>.band-sec{padding-bottom:120px}
 
 /* About: the text under the photo, and text blocks with the heading on the left and the text on the right */
 .about-who>.about-cols:first-child{margin-top:0}
+.art>.feat:first-child{margin-top:0}
+.ngrid+.band{margin-top:64px}
 .text-rows .about-cols{margin-top:64px}
 .text-rows .about-cols:first-child{margin-top:0}
 .shead+.stat-cards{margin-top:48px}
 @media (max-width:600px){
   .text-rows .about-cols{margin-top:40px}
   .shead+.stat-cards{margin-top:24px}
+  .ngrid+.band{margin-top:40px}
 }
 /* long numbers such as 150 000 in three columns */
 @media (min-width:901px) and (max-width:1180px){
