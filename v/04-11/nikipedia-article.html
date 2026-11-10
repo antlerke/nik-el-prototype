@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[Тема статті] — НІКіпедія</title>
+<meta name="description" content="[Коротка відповідь з початку статті]">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
+<script src="runtime.js"></script>
+<script src="shell.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/x-template" id="tpl">
+<shell-top></shell-top>
+<main id="main">
+<section class="phead">
+  <div class="wrap">
+    <div class="narrow">
+      <nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a href="index.html">Головна</a></li><li><a href="news.html">Прес-центр</a></li><li><a href="nikipedia.html">НІКіпедія</a></li><li><span aria-current="page">[Тема статті]</span></li></ol></nav>
+      <div class="meta"><span class="tag">[Тема]</span><span>Оновлено: [дата] · Автор: [ім’я, посада]</span></div>
+      <h1>[Тема статті]</h1>
+      <p class="lead">[Коротка відповідь з початку статті]</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap pbody">
+  <div class="agrid">
+    <article class="art">
+      <p>[Текст статті]</p>
+    </article>
+  </div>
+  <div class="about-who">
+    <div class="shead"><div><h2 class="h2">Пов’язані продукти NIK</h2></div></div>
+    <div class="ngrid three">
+      <sc-for list="{{products}}" as="p" hint-placeholder-count="3">
+        <a href="#" class="nc"><span class="bd"><span class="t">{{p}}</span><span class="more">Детальніше<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span></a>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<section class="sec on-paper">
+  <div class="wrap">
+    <div class="shead"><div><h2 class="h2">Читайте також</h2></div></div>
+    <div class="ngrid three">
+      <sc-for list="{{list}}" as="a" hint-placeholder-count="3">
+        <a href="nikipedia-article.html" class="nc">
+          <span class="bd"><span class="meta"><span class="tag">{{a.c}}</span><span>Час читання: N хв</span></span><span class="t">{{a.t}}</span><span class="more">Читати статтю<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+</main>
+<shell-bottom></shell-bottom>
+</script>
+<script>
+window.DC_BLOBS = {};
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { cookie: true, menu: false };
+  }
+  renderVals() {
+    return Object.assign(this.base(this.state), {
+      products: ['[Назва продукту]', '[Назва продукту]', '[Назва продукту]'],
+      list: ['Лічильники', 'Принципи роботи', 'Передача даних'].map((c) => ({ c, t: '[Тема статті]' }))
+    });
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>

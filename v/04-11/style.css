@@ -1691,7 +1691,7 @@ main>.ptop{padding-top:40px !important}
 /* search runs on «Знайти» or Enter (the phone keyboard's «Пошук»), not while typing; the button sits inside the field, 40 px */
 .search{padding-right:8px;min-width:0}
 .search>svg{flex:0 0 auto}
-#cat-res .search .sgo{flex:0 0 auto;width:auto;min-height:40px;height:40px;padding:0 16px 3px;margin:0 !important;align-self:center}
+#cat-res .search .sgo,main>.pbody>.search .sgo{flex:0 0 auto;width:auto;min-height:40px;height:40px;padding:0 16px 3px;margin:0 !important;align-self:center}
 
 /* «Від чипа»: the selected hotspot button keeps its weight (600 made the text wider and the button jump); the selection shows by colour */
 .chips button[aria-pressed="true"]{font-weight:500}
@@ -1785,7 +1785,7 @@ main>.pbody{padding-bottom:120px}
 .nc.wide{flex-direction:row}
 .nc.wide .pi{flex:0 0 58%;min-height:420px}
 .ngrid.three{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:none}
-.tabs+.ngrid{margin-top:24px}
+.tabs+.ngrid,.tabs+.empty{margin-top:24px}
 .ngrid.three .pi{aspect-ratio:16/10}
 .ngrid.three .bd{flex:1 1 auto}
 .nc.wide .t,.ngrid.three .t{text-wrap:pretty}
