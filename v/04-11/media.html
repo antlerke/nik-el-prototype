@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>НІК-ЕЛЕКТРОНІКА у ЗМІ — публікації та згадки</title>
+<meta name="description" content="Публікації, інтерв’ю та згадки про НІК-ЕЛЕКТРОНІКА в медіа та на галузевих ресурсах.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
+<script src="runtime.js"></script>
+<script src="shell.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/x-template" id="tpl">
+<shell-top></shell-top>
+<main id="main">
+<section class="phead">
+  <div class="wrap">
+    <nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a href="index.html">Головна</a></li><li><a href="news.html">Прес-центр</a></li><li><span aria-current="page">Ми у ЗМІ</span></li></ol></nav>
+    <h1>Ми у ЗМІ</h1>
+    <p class="lead">Публікації та згадки про НІК-&#8288;ЕЛЕКТРОНІКА в медіа й на галузевих ресурсах.</p>
+    <div class="tabs"><a href="news.html">Новини</a><a href="nikipedia.html">НІКіпедія</a><a href="media.html" aria-current="page">Ми у ЗМІ</a></div>
+  </div>
+</section>
+
+<div class="wrap pbody">
+  <sc-if value="{{hasList}}" hint-placeholder-val="{{true}}">
+  <div class="ngrid three">
+    <sc-for list="{{list}}" as="p" hint-placeholder-count="6">
+      <a href="#" target="_blank" rel="noopener" class="nc tile">
+        <span class="bd"><span class="meta"><span>{{p.s}}</span><time>{{p.d}}</time></span><span class="t">{{p.t}}</span><span class="cd">{{p.o}}</span><span class="more">Читати на сайті видання<span class="sr"> (відкривається в новій вкладці)</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span>
+      </a>
+    </sc-for>
+  </div>
+  </sc-if>
+  <sc-if value="{{noList}}" hint-placeholder-val="{{false}}"><div class="empty">Публікацій поки немає.</div></sc-if>
+  <p class="pnote">Для журналістів: запити на коментарі та інтерв’ю надсилайте на <a href="mailto:smm.nikel2@gmail.com">smm.nikel2@gmail.com</a>.</p>
+</div>
+</main>
+<shell-bottom></shell-bottom>
+</script>
+<script>
+window.DC_BLOBS = {};
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { cookie: true, menu: false };
+  }
+  renderVals() {
+    // the address with ?empty shows the state with no publications
+    const list = new URLSearchParams(location.search).has('empty') ? [] : Array.from({ length: 6 }, () => ({ s: '[Видання]', d: '[Дата]', t: '[Заголовок публікації]', o: '[Опис]' }));
+    return Object.assign(this.base(this.state), { list, hasList: list.length > 0, noList: !list.length });
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>
