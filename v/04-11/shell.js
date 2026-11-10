@@ -47,7 +47,7 @@ window.SHELL = {
   <div class="wrap">
     <div class="ftop"><img src="../../assets/0fb4110e-nik-logo-white.svg" alt="НІК-ЕЛЕКТРОНІКА" style="height: 64px; width: auto; display: block"></div>
     <div class="fcols">
-      <div><b>Контакти</b><span>Тел./факс: <a href="tel:+380444980619" class="num">+380 (44) 498-06-19</a></span><a href="mailto:info@nikel.com.ua">info@nikel.com.ua</a><span>Пн–Пт, 8:00–17:00</span></div>
+      <div><b>Контакти</b><span>Тел./факс:<br><a href="tel:+380444980619" class="num">+380 (44) 498-06-19</a></span><a href="mailto:info@nikel.com.ua">info@nikel.com.ua</a><span>Пн–Пт, 8:00–17:00</span></div>
       <div><b>Ми в соцмережах</b><a href="https://www.linkedin.com/company/nik-el-ua/" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/nik.elektronika" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/nik.elektronika.ua" target="_blank" rel="noopener">Facebook</a><a href="https://www.youtube.com/@nik-elektronika" target="_blank" rel="noopener">YouTube</a></div>
       <div><b>Юридична інформація</b><a href="#">Політика конфіденційності</a><a href="#">Політика використання файлів cookie</a><a href="#">Згода на обробку персональних даних</a><a href="#" onClick="{{openCookie}}">Налаштування cookie</a></div>
       <div><b>Навігація</b><a href="index.html#contact">Зв'язатися з нами</a></div>

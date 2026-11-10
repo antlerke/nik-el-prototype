@@ -2064,6 +2064,12 @@ main>.band-sec{padding-bottom:120px}
 
 .fcols .num{white-space:nowrap}
 
+/* Home, small news cards: where they are narrow the photo goes above the text, as on smaller screens */
+@media (min-width:901px) and (max-width:1060px){
+  .nc.sm{flex-direction:column}
+  .nc.sm .pi{flex:none;height:200px;min-height:0}
+}
+
 /* Home hero: long slide labels need two columns where the text column is narrow */
 @media (min-width:901px) and (max-width:1300px){
   .idx{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 24px}
