@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Контрактне виробництво електроніки — НІК-ЕЛЕКТРОНІКА</title>
+<meta name="description" content="SMT- та DIP-монтаж друкованих плат, лиття пластику на ARBURG, розробка й збирання пристроїв. Понад 20 років досвіду виробництва електроніки в Україні.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
+<script src="runtime.js"></script>
+<script src="shell.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/x-template" id="tpl">
+<shell-top></shell-top>
+<main id="main">
+<section class="phead">
+  <div class="wrap">
+    <nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a href="index.html">Головна</a></li><li><a href="catalog.html">Каталог</a></li><li><a href="services.html">Послуги</a></li><li><span aria-current="page">Контрактне виробництво</span></li></ol></nav>
+    <h1>Контрактне виробництво електроніки</h1>
+    <p class="lead">Понад 20 років ми розробляємо й виробляємо лічильники, комунікаційні модулі, трансформатори струму та супутнє обладнання. Ті самі лінії, інженери й система контролю якості працюють і на ваші замовлення — від монтажу плат до готового пристрою.</p>
+  </div>
+</section>
+
+<div class="wrap pbody">
+  <div class="ngrid three trio">
+    <h2 class="sr">Переваги</h2>
+    <article class="service"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></i><h3>20+&nbsp;років розробки та виробництва</h3></article>
+    <article class="service"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"></path></svg></i><h3>Гнучкість та оперативність</h3></article>
+    <article class="service"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 3 3 5-6"></path></svg></i><h3>Відповідність стандартам</h3></article>
+  </div>
+  <div class="about-who">
+    <div class="shead"><div><h2 class="h2">Послуги та можливості</h2></div></div>
+    <div class="ngrid three">
+      <sc-for list="{{items}}" as="c" hint-placeholder-count="6">
+        <article class="cert"><h3>{{c.t}}</h3><p class="cd">{{c.d}}</p></article>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<section class="sec on-paper">
+  <div class="wrap">
+    <div class="shead"><div><h2 class="h2">Потужності в цифрах</h2></div></div>
+    <div class="stat-cards long">
+      <div><small>до</small><b>150&nbsp;000</b><span>приладів на місяць</span></div>
+      <div><small>до</small><b>100&nbsp;000</b><span>SMD-компонентів за годину</span></div>
+      <div><small>менше</small><b>1%</b><span>рівень браку</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap text-rows">
+    <div class="about-cols"><h2 class="h2">Контроль якості</h2><div class="art"><p>Кожна партія проходить розмірний контроль, механічні випробування, перевірку герметичності, функціональні та ресурсні випробування, а також вибіркову перевірку готової продукції.</p><p><b>Система управління якістю сертифікована за ISO&nbsp;9001.</b></p></div></div>
+  </div>
+</section>
+
+<section class="wrap band-sec">
+  <div class="band">
+    <div><h2>Ми націлені на довгострокове партнерство та успіх вашого бізнесу</h2><p>Зв’яжіться з нами, щоб обговорити спільний проєкт.</p></div>
+    <a href="index.html#contact" class="btn btn-red">Обговорити проєкт<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+  </div>
+</section>
+</main>
+<shell-bottom></shell-bottom>
+</script>
+<script>
+window.DC_BLOBS = {};
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { cookie: true, menu: false };
+  }
+  renderVals() {
+    return Object.assign(this.base(this.state), {
+      items: [
+        { t: 'Монтаж друкованих плат', d: 'Високоточний SMT-монтаж на автоматизованих лініях. Контроль якості — системи 3D SPI та AOI, надійне ESD-пакування.' },
+        { t: 'Контрактне виробництво', d: 'Повний цикл SMD- та DIP-монтажу з сертифікованих матеріалів на сучасному обладнанні. Швидко збираємо навіть складні пристрої.' },
+        { t: 'Виготовлення виробів із пластику', d: 'Власне виробництво на термопластавтоматах ARBURG: від розробки дизайну до лиття деталей із термопластів та еластомерів за індивідуальними формами.' },
+        { t: 'Розробка пристроїв і R&D', d: 'Проєктування, оптимізація та підготовка нових продуктів до виробництва.' },
+        { t: 'Проєктування нестандартного обладнання', d: 'Розробка й впровадження засобів автоматизації, зокрема тамподрукарських машин і роботизованих маніпуляторів.' },
+        { t: 'Сервісна підтримка', d: 'Післяпродажне обслуговування та технічний супровід.' }
+      ]
+    });
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>
