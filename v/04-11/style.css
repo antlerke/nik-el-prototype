@@ -2062,6 +2062,22 @@ main>.band-sec{padding-bottom:120px}
   .about-cols{margin-top:24px}
 }
 
+/* History: the labels are dates and words, not only years, so they are smaller; with no photos the text takes the rest of the row */
+.dated .ev{grid-template-columns:180px minmax(0,1fr)}
+.dated .ev::before{top:53px}
+.dated .ev .y{font-size:36px;line-height:1.1}
+.dated .ev>div>:first-child{margin-top:0}
+@media (max-width:1100px){
+  .dated .ev{grid-template-columns:120px minmax(0,1fr)}
+  .dated .ev::before{top:47px}
+  .dated .ev .y{font-size:26px}
+}
+@media (max-width:600px){
+  .dated .ev{grid-template-columns:minmax(0,1fr)}
+  .dated .ev::before{top:48px}
+  .dated .ev .y{font-size:28px}
+}
+
 /* About: the text under the photo, and text blocks with the heading on the left and the text on the right */
 .about-who>.about-cols:first-child{margin-top:0}
 .text-rows .about-cols{margin-top:64px}

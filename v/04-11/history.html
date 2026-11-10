@@ -65,21 +65,23 @@
   <div class="wrap">
     <nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a href="index.html">Головна</a></li><li><a href="about.html">Про нас</a></li><li><span aria-current="page">Історія компанії</span></li></ol></nav>
     <h1>Історія компанії</h1>
-    <p class="lead">Від невеликого конструкторського бюро до виробника з повним циклом&nbsp;— ключові події НІК-&#8288;ЕЛЕКТРОНІКА з 2005&nbsp;року.</p>
+    <p class="lead">З 2005 року ми розробляємо й виробляємо прилади обліку енергоресурсів. Ось ключові етапи нашого шляху.</p>
     <nav class="tabs" aria-label="Розділ «Про нас»"><a href="about.html">Про компанію</a><a href="history.html" aria-current="page">Історія</a><a href="career.html">Кар’єра</a><a href="conformity.html">Центр оцінки відповідності</a><a href="partners.html">Партнери</a><a href="cases.html">Кейси та об’єкти</a></nav>
   </div>
 </section>
 
 <div class="wrap pbody">
-  <div class="timeline">
-    <sc-for list="{{events}}" as="e" hint-placeholder-count="8">
+  <div class="timeline dated">
+    <sc-for list="{{events}}" as="e" hint-placeholder-count="6">
       <article class="ev">
-        <time class="y" datetime="{{e.y}}">{{e.y}}</time>
-        <div><span class="{{e.tagCls}}">{{e.tag}}</span><h2>{{e.t}}</h2><p>{{e.d}}</p></div>
-        <sc-if value="{{e.fig}}" hint-placeholder-val="{{true}}"><figure><sc-if value="{{e.hasFile}}" hint-placeholder-val="{{true}}"><img class="{{e.imgCls}}" src="{{e.img}}" alt="{{e.alt}}"></sc-if></figure></sc-if>
-        <sc-if value="{{e.noimg}}" hint-placeholder-val="{{false}}"><div class="placeholder">[фото події — опційно]</div></sc-if>
+        <time class="y" datetime="{{e.iso}}">{{e.y}}</time>
+        <div><sc-if value="{{e.t}}" hint-placeholder-val="{{true}}"><h2>{{e.t}}</h2></sc-if><p>{{e.d}}</p></div>
       </article>
     </sc-for>
+  </div>
+  <div class="hbtns">
+    <a href="about.html" class="btn btn-line">Про компанію</a>
+    <a href="career.html" class="btn btn-line">Кар’єра</a>
   </div>
 </div>
 </main>
@@ -142,19 +144,14 @@ class Component extends DCLogic {
   }
   renderVals() {
     const s = this.state;
-    const B = '/_blob/';
-    // two photos aren't in assets/ yet (the export leaves out what the code puts together): those events show the grey photo box until they are added to DC_BLOBS
-    const E = [
-      { y: '2005', tag: 'Компанія', t: 'Засновано НІК-⁠ЕЛЕКТРОНІКА', d: 'Початок роботи українського розробника й виробника приладів обліку.', img: '9bb3587e288fe3654d1b5a9b91c28df5', alt: 'Перевірка лічильників на стенді' },
-      { y: '2017', tag: 'Програмне забезпечення', t: 'Нова версія ПЗ\u00a0UNIK', d: '[Короткий опис події — від замовника]' },
-      { y: '2018', tag: 'Партнерство', t: 'Членство в PRIME\u00a0PLC і G3-\u2060PLC', d: 'Компанія приєдналася до галузевих альянсів технологій передачі даних по силовій мережі.', img: 'cf8e2f1dd66b397312a466e40c80f839', alt: 'Обладнання АСКОЕ на тлі мережі передачі даних' },
-      { y: '2020', tag: 'Виробництво', t: 'Автоматизоване складання й тамподрук', d: 'Запуск автоматизованих ділянок складання та тамподруку на власному виробництві.', img: '2d5e93a952ee95766eb8b2734477ce42', alt: 'Роботизована ділянка складання' },
-      { y: '2020', tag: 'Сертифікація', t: 'Сертифікат експертизи типу для KC-\u206002', d: 'Концентратор даних KC-\u206002 отримав сертифікат експертизи типу.', img: '4ce6a1a267f55b6584b1fe34fbf7dc05', alt: 'Концентратор даних KC-02' },
-      { y: '2021', tag: 'Продукти', t: 'Новий теплолічильник NIK\u00a07071', d: 'Київська торгово-промислова палата відзначила новий теплолічильник NIK\u00a07071.', img: '6567fc3b643335bde19852dd0048394a', alt: 'Теплолічильник NIK 7071', whole: true },
-      { y: '2023', tag: 'Сертифікація', t: 'Ресертифікація за ISO\u00a027001', d: 'Система управління інформаційною безпекою підтвердила відповідність міжнародному стандарту.', img: '4ee835b35f0ce1c5b4662a723809ed42', alt: 'Лічильники NIK на тлі карти Європи' },
-      { y: '2024', tag: 'Партнерство', t: 'Подовжено членство в ICC', d: 'НІК-⁠ЕЛЕКТРОНІКА подовжила членство в Міжнародній торговій палаті.', img: '64d3854c808afc98f555fddf056f74b8', alt: 'Прозора деталь на тлі електронної плати' }
+    const events = [
+      { y: '8 квітня 2005', iso: '2005-04-08', t: 'Заснування компанії', d: 'НІК-⁠ЕЛЕКТРОНІКА починає розробляти й виробляти прилади обліку енергоресурсів.' },
+      { y: '2009', iso: '2009', t: 'Розширення виробництва', d: 'Відкриваємо нове виробництво та запускаємо нові напрямки: [уточнити, які].' },
+      { y: '2021', iso: '2021', t: 'Власне виробництво плат', d: 'Запускаємо новий завод та автоматизовану лінію SMT.' },
+      { y: '2022 — дотепер', iso: '2022', t: 'Працюємо попри війну', d: 'Продовжуємо виробляти прилади та розвивати smart-рішення для енергетики в умовах повномасштабної війни.' },
+      { y: '30 вересня 2026', iso: '2026-09-30', t: 'Незалежний випробувальний центр НІК-⁠ЕЛЕКТРОНІКА отримує акредитацію', d: 'відповідно до вимог ДСТУ EN ISO/IEC 17025:2019 (EN ISO/IEC 17025:2017, IDT; ISO/IEC 17025:2017, IDT) у сфері випробування лічильників електричної енергії та програмного забезпечення засобів вимірювальної техніки.' },
+      { y: 'Сьогодні', iso: '2026', t: 'Понад 600 людей у команді', d: 'Понад 10 млн виготовлених приладів і експорт до країн ЄС, Близького Сходу та Азії.' }
     ];
-    const events = E.map((e) => ({ ...e, tagCls: 'tag' + (e.tag === 'Компанія' ? ' r' : ''), fig: !!e.img, hasFile: !!window.DC_BLOBS[e.img], imgCls: e.whole ? 'whole' : '', img: e.img ? B + e.img : '', noimg: !e.img }));
     return Object.assign(this.base(s), { events });
   }
 }
