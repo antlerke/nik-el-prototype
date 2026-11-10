@@ -83,7 +83,6 @@
       <sc-for list="{{steps}}" as="st" hint-placeholder-count="5">
         <li><div class="ph"><img src="{{st.img}}" alt="{{st.alt}}"></div><div class="lb"><b>{{st.no}}</b>{{st.t}}</div></li>
       </sc-for>
-      <li><div class="ph svc">Гарантійне й післягарантійне обслуговування, ремонт і консультації інженерів.</div><div class="lb"><b>06</b>Сервісний центр</div></li>
     </ol>
     <a href="about.html" class="btn btn-line about-more">Дізнатися більше<svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
   </div>
@@ -115,7 +114,6 @@
       <span class="kick on-dark">Відеоекскурсія виробництвом</span>
       <h2 id="h-vid">Відео про компанію</h2>
       <p>Як створюються прилади NIK: від SMT-лінії та лиття корпусів до повірки на власному обладнанні.</p>
-      <div class="vrow"><span>SMT-монтаж</span><span>Лиття корпусів</span><span>Роботизоване складання</span><span>Акредитований випробувальний центр</span></div>
     </div>
   </div>
 </section>
@@ -142,9 +140,6 @@
         <span class="mname ph" aria-hidden="true"><span class="mlogo"><span class="mlab">[Назва партнера]</span></span></span>
         <span class="mname ph" aria-hidden="true"><span class="mlogo"><span class="mlab">[Назва партнера]</span></span></span>
         <span class="mname ph" aria-hidden="true"><span class="mlogo"><span class="mlab">[Назва партнера]</span></span></span>
-    </div>
-    <div class="mrow rev">
-      <sc-for list="{{segs}}" as="g" hint-placeholder-count="2"><span class="mseg"><sc-for list="{{g}}" as="x" hint-placeholder-count="6"><span>{{x}}</span></sc-for></span></sc-for>
     </div>
   </div>
 </section>
@@ -177,27 +172,24 @@
   <div class="wrap cgrid">
     <div>
       <span class="kick">Зв'яжіться з нами</span>
-      <h2 class="h2" id="h-cta">Готові до співпраці?</h2>
+      <h2 class="h2" id="h-cta">Напишіть нам</h2>
       <p class="lead" style="margin-top: 20px">Оберіть тему звернення та коротко опишіть запит. Ми передамо його профільному фахівцю і відповімо протягом 1 робочого дня.</p>
-      <div class="clist">
-        <a href="#"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"></path></svg></i><span class="num">+380 (44) 498-06-19<small>Пн–Пт, 8:00–17:00</small></span></a>
-        <a href="#"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></i><span>info@nikel.com.ua<small>Відповідаємо протягом 1&nbsp;робочого&nbsp;дня</small></span></a>
-      </div>
-      <div class="note"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16.5v.5"></path></svg><span>Ми працюємо з компаніями та організаціями. Якщо ви побутовий споживач, зверніться до дилера у вашому регіоні — <a href="where.html">Де купити</a> — або знайдіть відповідь у чат-боті.</span></div>
+      <div class="note"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16.5v.5"></path></svg><span>Ми працюємо з компаніями та організаціями. Якщо ви побутовий споживач, зверніться до дилера у вашому регіоні — <a href="where.html">Де купити</a> — або знайдіть відповідь на своє питання в чат-боті.</span></div>
     </div>
     <div class="fcard">
       <sc-if value="{{notSent}}" hint-placeholder-val="{{true}}">
         <form class="{{formCls}}" novalidate="" onSubmit="{{submit}}" aria-label="Форма зв'язку">
           <div class="fgrid2">
-            <div class="fld w"><label for="f-name">ПІБ*</label><input id="f-name" name="name" required="" autocomplete="name" placeholder="Прізвище, ім’я, по батькові"><span class="err" id="f-name-err"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5v.5"></path></svg>Вкажіть прізвище та ім’я</span></div>
-            <div class="fld"><label for="f-tel">Телефон*</label><div class="tel"><span class="pre" aria-hidden="true">+380</span><input id="f-tel" name="tel" type="tel" inputmode="numeric" required="" pattern="(\d ?){9}" maxlength="12" autocomplete="tel-national" placeholder="00 000 00 00" aria-describedby="f-tel-hint" onInput="{{telFmt}}"></div><span class="hint" id="f-tel-hint">Код +380 уже вписано — введіть 9 цифр</span><span class="err" id="f-tel-err"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5v.5"></path></svg>Вкажіть 9 цифр номера</span></div>
-            <div class="fld"><label for="f-mail">Електронна пошта*</label><input id="f-mail" name="email" type="email" required="" autocomplete="email" placeholder="name@company.com"><span class="hint">Надішлемо відповідь сюди</span><span class="err" id="f-mail-err"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5v.5"></path></svg>Вкажіть коректну пошту</span></div>
-            <div class="fld"><label for="f-reg">Регіон</label><select id="f-reg" name="region"><option value="">Оберіть регіон</option><option>Вінницька область</option><option>Волинська область</option><option>Дніпропетровська область</option><option>Донецька область</option><option>Житомирська область</option><option>Закарпатська область</option><option>Запорізька область</option><option>Івано-Франківська область</option><option>Київська область</option><option>Кіровоградська область</option><option>Луганська область</option><option>Львівська область</option><option>Миколаївська область</option><option>Одеська область</option><option>Полтавська область</option><option>Рівненська область</option><option>Сумська область</option><option>Тернопільська область</option><option>Харківська область</option><option>Херсонська область</option><option>Хмельницька область</option><option>Черкаська область</option><option>Чернівецька область</option><option>Чернігівська область</option><option>м. Київ</option><option disabled="">АР Крим — тимчасово не працюємо</option><option disabled="">м. Севастополь — тимчасово не працюємо</option><option>Інша країна</option></select><span class="err" id="f-reg-err">Заповніть це поле</span></div>
-            <div class="fld"><label for="f-topic">Тема звернення</label><select id="f-topic" name="topic"><option value="">Оберіть тему</option><option>Сервіс</option><option>Хочу стати дистриб’ютором</option><option>Замовити прорахунок високовольтних мереж</option><option>Технічна підтримка</option><option>Замовити випробування</option><option>Маркетингові запити</option></select><span class="err" id="f-topic-err">Заповніть це поле</span></div>
-            <div class="fld w"><label for="f-desc">Короткий опис запиту</label><textarea id="f-desc" name="desc" placeholder="Кілька речень про вашу задачу"></textarea><span class="hint">Модель, кількість, терміни</span></div>
-            <div class="fld w"><div class="captcha" aria-label="Капча"><span style="width: 24px; height: 24px; border-radius: 4px; border: 2px solid #8592a0"></span>[Капча — стандартний віджет]</div></div>
-            <div class="fld w"><label class="consent" style="font-weight: 400"><input type="checkbox" required=""><span>Я погоджуюся на обробку моїх персональних даних відповідно до <a href="#">Політики конфіденційності</a>.</span></label></div>
+            <div class="fld w"><label for="f-name">ПІБ*</label><input id="f-name" name="name" required="" autocomplete="name"><span class="err" id="f-name-err"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5v.5"></path></svg>Заповніть це поле</span></div>
+            <div class="fld"><label for="f-tel">Телефон*</label><div class="tel"><span class="pre" aria-hidden="true">+380</span><input id="f-tel" name="tel" type="tel" inputmode="numeric" required="" pattern="(\d ?){9}" maxlength="12" autocomplete="tel-national" placeholder=" " onInput="{{telFmt}}"></div><span class="err" id="f-tel-err"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5v.5"></path></svg><span class="miss">Заповніть це поле</span><span class="bad">Вкажіть коректний номер телефону</span></span></div>
+            <div class="fld"><label for="f-mail">Електронна пошта*</label><input id="f-mail" name="email" type="email" required="" autocomplete="email" placeholder=" "><span class="err" id="f-mail-err"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5v.5"></path></svg><span class="miss">Заповніть це поле</span><span class="bad">Вкажіть коректну email-адресу</span></span></div>
+            <div class="fld"><label for="f-reg">Регіон*</label><select id="f-reg" name="region" required=""><option value="">Оберіть регіон</option><option>Вінницька область</option><option>Волинська область</option><option>Дніпропетровська область</option><option>Донецька область</option><option>Житомирська область</option><option>Закарпатська область</option><option>Запорізька область</option><option>Івано-Франківська область</option><option>Київська область</option><option>Кіровоградська область</option><option>Луганська область</option><option>Львівська область</option><option>Миколаївська область</option><option>Одеська область</option><option>Полтавська область</option><option>Рівненська область</option><option>Сумська область</option><option>Тернопільська область</option><option>Харківська область</option><option>Херсонська область</option><option>Хмельницька область</option><option>Черкаська область</option><option>Чернівецька область</option><option>Чернігівська область</option><option>м. Київ</option><option disabled="">АР Крим — тимчасово не працюємо</option><option disabled="">м. Севастополь — тимчасово не працюємо</option><option>Інша країна</option></select><span class="err" id="f-reg-err"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5v.5"></path></svg>Заповніть це поле</span></div>
+            <div class="fld"><label for="f-topic">Тема звернення*</label><select id="f-topic" name="topic" required=""><option value="">Оберіть тему</option><option>Сервіс</option><option>Хочу стати дистриб’ютором</option><option>Замовити прорахунок високовольтних мереж</option><option>Технічна підтримка</option><option>Замовити випробування</option><option>Маркетингові запити</option></select><span class="err" id="f-topic-err"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5v.5"></path></svg>Заповніть це поле</span></div>
+            <div class="fld w"><label for="f-desc">Короткий опис запиту*</label><textarea id="f-desc" name="desc" required="" placeholder="Кілька речень про вашу задачу"></textarea><span class="err" id="f-desc-err"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5v.5"></path></svg>Заповніть це поле</span></div>
+            <div class="fld w"><label class="captcha consent"><input id="f-cap" type="checkbox" required=""><span>[Капча — стандартний віджет]</span></label><span class="err" id="f-cap-err"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5v.5"></path></svg>Підтвердіть, що ви не робот</span></div>
+            <div class="fld w"><label class="consent" style="font-weight: 400"><input id="f-agree" type="checkbox" required=""><span>Я погоджуюся на обробку моїх персональних даних відповідно до <a href="#">Політики конфіденційності</a>.</span></label><span class="err" id="f-agree-err"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5v.5"></path></svg>Щоб надіслати форму, підтвердіть згоду на обробку персональних даних.</span></div>
           </div>
+          <sc-if value="{{failed}}" hint-placeholder-val="{{false}}"><div class="note" role="alert"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16.5v.5"></path></svg><span>Не вдалося надіслати запит. Спробуйте ще раз або зателефонуйте нам: <a href="tel:+380444980619">+380 (44) 498-06-19</a>.</span></div></sc-if>
           <button type="submit" class="btn btn-red" style="margin-top: 28px; width: 100%">Надіслати запит<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"></path></svg></button>
         </form>
       </sc-if>
@@ -206,7 +198,6 @@
           <i><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></i>
           <h3 style="margin: 24px 0 0; font-size: 36px; letter-spacing: -0.03em; color: #13385d">Дякуємо</h3>
           <p style="margin: 14px auto 0; max-width: 40ch; font-size: 18px; line-height: 1.55; color: #36434f">Ми отримали ваш запит і зв'яжемося з вами протягом 1 робочого дня.</p>
-          <button class="btn btn-line" style="margin-top: 28px" onClick="{{again}}">Надіслати ще один запит</button>
         </div>
       </sc-if>
     </div>
@@ -223,11 +214,32 @@ class Component extends DCLogic {
     super(props);
     this.state = { s: 0, stop: false, paused: false, sent: false, tried: false, cookie: true, menu: false, vid: true, p: 0, railStart: true, railEnd: false };
     if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) this.state.p = 1;
+    // the address opens a state of the contact form at once: ?errors, ?fail, ?sent
+    if (new URLSearchParams(location.search).has('sent')) this.state.sent = true;
+    this.previewTimer = setTimeout(() => this.previewForm(), 300);
     this.statsTimer = setTimeout(() => this.watchStats(), 300);
     this.railTimer = setTimeout(() => this.initRail(), 300);
+    this.topicTimer = setTimeout(() => this.presetTopic(), 300);
     if (typeof window !== 'undefined' && window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       /* autoplay: the next slide opens when the active progress bar fills (see slideDone) */
     }
+  }
+  // what ?errors and ?fail show: a form someone has filled in. Only the wrong fields are marked, the others keep their values
+  previewForm() {
+    const q = new URLSearchParams(location.search), mode = q.has('errors') ? 'errors' : q.has('fail') ? 'fail' : '';
+    if (!mode) return;
+    const set = (id, v) => { document.getElementById(id).value = v; };
+    set('f-name', 'Іваненко Іван Іванович'); set('f-tel', '67 123 45 67'); set('f-reg', 'м. Київ'); set('f-topic', 'Сервіс');
+    set('f-mail', mode === 'errors' ? 'ivan.company.ua' : 'ivan@company.ua');
+    if (mode === 'fail') set('f-desc', 'Потрібна консультація щодо ремонту лічильника NIK 2104.');
+    document.getElementById('f-cap').checked = true; document.getElementById('f-agree').checked = true;
+    this.setState(mode === 'errors' ? { tried: true } : { failed: true });
+  }
+  // buttons on other pages open this form with the topic already chosen: index.html?topic=service#contact
+  presetTopic() {
+    const topics = { service: 'Сервіс', dealer: 'Хочу стати дистриб’ютором', hv: 'Замовити прорахунок високовольтних мереж', test: 'Замовити випробування' };
+    const t = topics[new URLSearchParams(location.search).get('topic')], el = document.getElementById('f-topic');
+    if (t && el) el.value = t;
   }
   // catalog categories: the arrows move the row one tile at a time and grey out at its ends
   initRail() {
@@ -319,7 +331,6 @@ class Component extends DCLogic {
       { label: '[Назва партнера]', ph: 1 }, { label: '[Назва партнера]', ph: 1 }, { label: '[Назва партнера]', ph: 1 }
     ];
     const marquee = names.concat(names).map((n) => ({ img: n.img || '', alt: n.alt || '', label: n.label || '', cls: 'mname' + (n.ph ? ' ph' : '') }));
-    const seg = ['Оператори систем розподілу', 'Державні установи', 'Муніципальні підприємства', 'Девелопери', 'Промислові підприємства', 'Дистриб’ютори в ЄС та Азії'];
 
     // key figures: count up with ease-out, columns start one after another
     const ease = (t) => 1 - Math.pow(1 - t, 3);
@@ -344,17 +355,16 @@ class Component extends DCLogic {
       vidCls: 'vbox' + (s.vid ? '' : ' paused'), vidLabel: s.vid ? 'Зупинити відео' : 'Відтворити відео', vidText: s.vid ? 'Пауза' : 'Відтворити',
       vidIcon: s.vid ? 'M7 5h4v14H7zM13 5h4v14h-4z' : 'M8 5v14l11-7z',
       toggleVid: () => this.setState({ vid: !s.vid }),
-      marquee, segs: [seg, seg],
+      marquee,
       news: [
         { cls: 'nc big', d: '26.08.2026', tag: 'Компанія', tagCls: tagR, t: 'Звіт незалежного аудитора щодо фінансової звітності за 2025 рік', img: B + 'c0704521db1416ec66e4d8545678ba60' },
         { cls: 'nc sm', d: '05.11.2024', tag: 'Партнерство', tagCls: tagN, t: 'НІК-ЕЛЕКТРОНІКА подовжила членство в ICC', img: B + '64d3854c808afc98f555fddf056f74b8' },
         { cls: 'nc sm', d: '01.02.2023', tag: 'Сертифікація', tagCls: tagN, t: 'Успішно пройшли ресертифікацію за ISO 27001', img: B + '4ee835b35f0ce1c5b4662a723809ed42' }
       ].map((n) => ({ ...n, iso: n.d.split('.').reverse().join('-') })),
-      notSent: !s.sent, sent: s.sent, formCls: s.tried ? 'tried' : '',
+      notSent: !s.sent, sent: s.sent, failed: s.failed, formCls: s.tried ? 'tried' : '',
       // phone: digits only, grouped as 67 123 45 67 (+380 is fixed in front)
       telFmt: (e) => { const d = e.target.value.replace(/\D/g, '').slice(0, 9); e.target.value = [d.slice(0, 2), d.slice(2, 5), d.slice(5, 7), d.slice(7, 9)].filter(Boolean).join(' '); },
-      submit: (e) => { e.preventDefault(); const f = e.currentTarget; this.markForm(f); if (!f.checkValidity()) { f.oninput = f.onchange = () => this.markForm(f); this.setState({ tried: true }); const bad = f.querySelector(':invalid'); if (bad) bad.focus(); return; } this.setState({ sent: true }); },
-      again: () => this.setState({ sent: false, tried: false }),
+      submit: (e) => { e.preventDefault(); const f = e.currentTarget; this.markForm(f); if (!f.checkValidity()) { f.oninput = f.onchange = () => this.markForm(f); this.setState({ tried: true }); const bad = f.querySelector(':invalid'); if (bad) bad.focus(); return; } if (new URLSearchParams(location.search).has('fail')) { this.setState({ failed: true }); return; } this.setState({ sent: true, failed: false }); },
     });
   }
 }

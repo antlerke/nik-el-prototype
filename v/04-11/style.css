@@ -60,7 +60,7 @@ a{color:var(--ink)}
 
 /* footer narrower than 360 px: «Контакти» takes the full width, so the phone number (never broken) fits */
 @media (max-width:359px){
-  .fcols>div:last-child{grid-column:1/-1}
+  .fcols>div:first-child{grid-column:1/-1}
 }
 
 /* header logo link: 48 px tap area up to 900 px (the logo is 34 px there), invisible — padding offset by negative margin */
@@ -244,7 +244,7 @@ a{color:var(--ink)}
 .cyc>div:last-child .btn{margin-top:0 !important;flex:0 0 auto}
 .hl{display:block;white-space:nowrap}
 .cyc p{margin:0;font-size:clamp(20px,1.6vw,23px);line-height:1.55;color:var(--text)}
-.steps{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;counter-reset:st}
+.steps{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;counter-reset:st}
 .steps li{position:relative;display:flex;flex-direction:column;gap:14px}
 .steps .ph{aspect-ratio:4/5;overflow:hidden;background:var(--gray)}
 .steps .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s var(--out)}
@@ -2062,6 +2062,33 @@ main>.band-sec{padding-bottom:120px}
   .about-cols{margin-top:24px}
 }
 
+.fcols .num{white-space:nowrap}
+
+/* Home hero: long slide labels need two columns where the text column is narrow */
+@media (min-width:901px) and (max-width:1300px){
+  .idx{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 24px}
+}
+/* Home, five photos: on a phone the last one takes the whole row */
+@media (max-width:600px){
+  .steps li:last-child{grid-column:1/-1}
+  .steps li:last-child .ph{aspect-ratio:16/9}
+}
+
+/* Contact form: any field that is wrong shows its message; a filled-in field with a wrong value says why, an empty one asks to fill it */
+.err .bad{display:none}
+.fld:has(input:not(:placeholder-shown):invalid) .err .bad{display:inline}
+.fld:has(input:not(:placeholder-shown):invalid) .err .miss{display:none}
+.captcha.consent{align-items:center}
+
+/* Cookie settings panel */
+.cookie-set{flex-direction:column;align-items:stretch;gap:16px;left:auto;width:560px;max-width:calc(100vw - 64px);margin:0}
+.cookie-set h2{margin:0;font-size:24px;line-height:1.2;letter-spacing:-0.02em;color:var(--ink)}
+.cookie-set input:checked:disabled{background:var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12.5 4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/16px no-repeat;border-color:var(--ink);opacity:.5}
+@media (max-width:600px){
+  .cookie-set{left:16px;width:auto;max-width:none}
+  .cookie-set h2{font-size:20px;line-height:1.15}
+}
+
 /* History: the labels are dates and words, not only years, so they are smaller; with no photos the text takes the rest of the row */
 .dated .ev{grid-template-columns:180px minmax(0,1fr)}
 .dated .ev::before{top:53px}
@@ -2097,6 +2124,7 @@ main>.band-sec{padding-bottom:120px}
 .share-t{align-self:center;margin-right:8px;font-size:16px;font-weight:500;color:var(--ink)}
 @media (max-width:600px){
   .share-t{margin-left:12px}
+  .fcols>div>span>a{display:inline-block;padding:6px 0;margin:-6px 0}
   .contact-card h3{font-size:20px;line-height:1.15}
   .case .btn{align-self:stretch}
   .partner h3{font-size:20px;line-height:1.15}

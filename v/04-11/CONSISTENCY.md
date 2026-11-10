@@ -395,7 +395,7 @@ Agreed rule for new pages, and the goal of this group: one class = one style. Re
 - **Fix:** the texts from the brandbook; the missing photo. Developers replace photos with better originals on the real site (Anna, 2026-11-07).
 
 ### 73. Pages rebuilt from the client's texts (`brief/TZ.md`, 2026-11-10)
-- **What changed:** home, about, history, career, vacancies, news, article, partners, cases and service follow the brief; what the brief doesn't have was removed (Anna). Home lost the blocks «Від чипа до корпусу» and «NIK 2306 у розрізі», the catalog tabs and «Також у каталозі», so items 2, 9, 14, 26, 30 and 37 no longer apply to the home page. The product page keeps its own 3D model.
+- **What changed:** home, about, history, career, vacancies, news, article, partners, cases and service follow the brief; what the brief doesn't have was removed (Anna). Home lost the blocks «Від чипа до корпусу» and «NIK 2306 у розрізі», the catalog tabs and «Також у каталозі», so items 2, 9, 14, 26, 30 and 37 no longer apply to the home page. The product page had already replaced its 3D model with photos (commit `d4ad97c`), so no page uses `assets/fe973e1e-nik-2308.glb` or its poster now.
 - **Still open:** the CSS of the removed blocks stays in `style.css` until item 15. Section labels above headings (`.kick`) remain on home, article and conformity, but the rebuilt pages have none, because the brief doesn't give that text: decide once for all pages. The home hero waits for the client's wireframe.
 
 Item 15 (unused CSS) still waits for the UI kit: 58 rules applied on no page in the check of 2026-11-06 (some, such as `:disabled` states, may be useful for the kit).

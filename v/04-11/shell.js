@@ -47,14 +47,13 @@ window.SHELL = {
   <div class="wrap">
     <div class="ftop"><img src="../../assets/0fb4110e-nik-logo-white.svg" alt="НІК-ЕЛЕКТРОНІКА" style="height: 64px; width: auto; display: block"></div>
     <div class="fcols">
-      <div><b>Каталог</b><a href="catalog.html">Облік електроенергії</a><a href="catalog.html">Облік води й тепла</a><a href="catalog.html">АСКОЕ та контролери</a><a href="catalog.html">Стабілізатори напруги</a></div>
-      <div><b>Компанія</b><a href="about.html">Про нас</a><a href="#">Виробництво</a><a href="career.html">Кар’єра</a><a href="vacancies.html">Вакансії</a><a href="news.html">Прес-центр</a></div>
-      <div><b>Партнерам</b><a href="where.html">Де купити</a><a href="index.html#contact">Стати дилером</a><a href="#">Електронні документи</a><a href="service.html">Сервісний центр</a></div>
-      <div><b>Контакти</b><a href="#" class="num">+380 (44) 498-06-19</a><a href="#">info@nikel.com.ua</a><span>Пн–Пт, 8:00–17:00</span></div>
+      <div><b>Контакти</b><span>Тел./факс: <a href="tel:+380444980619" class="num">+380 (44) 498-06-19</a></span><a href="mailto:info@nikel.com.ua">info@nikel.com.ua</a><span>Пн–Пт, 8:00–17:00</span></div>
+      <div><b>Ми в соцмережах</b><a href="https://www.linkedin.com/company/nik-el-ua/" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/nik.elektronika" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/nik.elektronika.ua" target="_blank" rel="noopener">Facebook</a><a href="https://www.youtube.com/@nik-elektronika" target="_blank" rel="noopener">YouTube</a></div>
+      <div><b>Юридична інформація</b><a href="#">Політика конфіденційності</a><a href="#">Політика використання файлів cookie</a><a href="#">Згода на обробку персональних даних</a><a href="#" onClick="{{openCookie}}">Налаштування cookie</a></div>
+      <div><b>Навігація</b><a href="index.html#contact">Зв'язатися з нами</a></div>
     </div>
     <div class="fbot">
-      <span>© 2005–2026 ТОВ «НІК-ЕЛЕКТРОНІКА»</span>
-      <nav aria-label="Правова інформація та соцмережі"><a href="#">Політика конфіденційності</a><a href="#" onClick="{{openCookie}}">Cookie</a><span><a href="#">LinkedIn</a> · <a href="#">Facebook</a> · <a href="#">YouTube</a></span></nav>
+      <span>© 2005–2026 ТОВ «НІК-ЕЛЕКТРОНІКА». Усі права захищено.</span>
     </div>
   </div>
 </footer>
@@ -66,8 +65,17 @@ window.SHELL = {
     <div class="row">
       <button class="btn btn-ink" onClick="{{closeCookie}}">Прийняти всі</button>
       <button class="btn btn-line" onClick="{{closeCookie}}">Лише необхідні</button>
-      <button class="btn lnk" onClick="{{closeCookie}}">Налаштувати</button>
+      <button class="btn lnk" onClick="{{openCookie}}">Налаштувати</button>
     </div>
+  </div>
+</sc-if>
+<sc-if value="{{cookieSet}}" hint-placeholder-val="{{false}}">
+  <div class="cookie cookie-set" role="region" aria-labelledby="cookie-set-h">
+    <h2 id="cookie-set-h">Налаштування cookie</h2>
+    <label class="consent"><input type="checkbox" checked="" disabled=""><span><b>Необхідні</b> (завжди увімкнені) — мова сайту, вхід до кабінету, захист форм.</span></label>
+    <label class="consent"><input type="checkbox"><span><b>Аналітичні</b> — допомагають нам розуміти, як користуються сайтом.</span></label>
+    <label class="consent"><input type="checkbox"><span><b>Сторонні сервіси</b> — карти Google Maps і відео YouTube.</span></label>
+    <div class="row"><button class="btn btn-ink" onClick="{{closeCookie}}">Зберегти вибір</button></div>
   </div>
 </sc-if>
 
@@ -84,12 +92,13 @@ DCLogic.prototype.base = function (s) {
       isMenu('Контакти', 'where.html', ['Де купити', ['Сервісний центр', 'service.html']]),
       isMenu('Прес-центр', 'news.html', ['Новини', ['НІКіпедія', '#'], ['Ми у ЗМІ', '#']])
     ],
-    cookie: s.cookie && !s.menu,
+    cookie: s.cookie && !s.menu && !s.cookieSet,
+    cookieSet: s.cookieSet && !s.menu,
     menuOpen: s.menu, menuExp: String(s.menu), menuLabel: s.menu ? 'Закрити меню' : 'Відкрити меню',
     burgerPath: s.menu ? 'M6 6l12 12M18 6 6 18' : 'M4 7h16M4 12h16M4 17h16',
     toggleMenu: () => this.setState({ menu: !s.menu }),
     menuClick: (e) => { if (e && e.target && e.target.closest && e.target.closest('a')) this.setState({ menu: false }); },
-    closeCookie: () => this.setState({ cookie: false }),
-    openCookie: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ cookie: true }); }
+    closeCookie: () => this.setState({ cookie: false, cookieSet: false }),
+    openCookie: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ cookieSet: true }); }
   };
 };
