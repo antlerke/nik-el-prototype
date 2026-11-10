@@ -65,14 +65,15 @@
   <div class="wrap">
     <nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a href="index.html">Головна</a></li><li><a href="about.html">Про нас</a></li><li><a href="partners.html">Наші партнери</a></li><li><span aria-current="page">Кейси та об’єкти</span></li></ol></nav>
     <h1>Кейси та об’єкти</h1>
-    <p class="lead">Житлові комплекси, промислові об’єкти й водоканали, де працюють прилади та системи обліку NIK.</p>
+    <p class="lead">Об’єкти, де працюють лічильники, системи обліку та обладнання NIK. Для кожного — задача клієнта, рішення та результат.</p>
     <nav class="tabs" aria-label="Розділ «Про нас»"><a href="about.html">Про компанію</a><a href="history.html">Історія</a><a href="career.html">Кар’єра</a><a href="conformity.html">Центр оцінки відповідності</a><a href="partners.html">Партнери</a><a href="cases.html" aria-current="page">Кейси та об’єкти</a></nav>
   </div>
 </section>
 
 <div class="wrap pbody">
-  <div class="tabs" role="tablist" aria-label="Тип об’єкта">
-    <sc-for list="{{cats}}" as="c" hint-placeholder-count="4"><button type="button" role="tab" aria-selected="{{c.on}}" aria-controls="case-panel" onClick="{{c.pick}}">{{c.t}}</button></sc-for>
+  <sc-if value="{{hasCases}}" hint-placeholder-val="{{true}}">
+  <div class="tabs" role="tablist" aria-label="Тип клієнта">
+    <sc-for list="{{cats}}" as="c" hint-placeholder-count="5"><button type="button" role="tab" aria-selected="{{c.on}}" aria-controls="case-panel" onClick="{{c.pick}}">{{c.t}}</button></sc-for>
   </div>
   <div class="ngrid pair" id="case-panel" role="tabpanel" aria-label="{{catName}}">
     <sc-for list="{{list}}" as="k" hint-placeholder-count="4">
@@ -80,15 +81,23 @@
         <div class="pi"><sc-if value="{{k.hasFile}}" hint-placeholder-val="{{true}}"><img src="{{k.img}}" alt=""></sc-if></div>
         <div class="bd">
           <span class="tag">{{k.c}}</span>
-          <h2>[Назва об’єкта або проєкту]</h2>
-          <p class="cd">[Задача, рішення й результат — 2–3 речення від замовника]</p>
-          <div class="facts"><div class="spec"><span>Місто</span><b>[Місто]</b></div><div class="spec"><span>Точок обліку</span><b>[кількість]</b></div><div class="spec"><span>Рік</span><b>[рік]</b></div></div>
-          <div class="eq"><sc-for list="{{k.eq}}" as="e" hint-placeholder-count="2"><a href="product.html" class="chipx chip-clear">{{e}}</a></sc-for></div>
+          <h2>[Назва об’єкта]</h2>
+          <div class="facts"><div class="spec"><span>Регіон</span><b>[Регіон]</b></div></div>
+          <a href="case.html" class="btn btn-line">Детальніше<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
         </div>
       </article>
     </sc-for>
   </div>
+  </sc-if>
+  <sc-if value="{{noCases}}" hint-placeholder-val="{{false}}"><div class="empty">Кейси з’являться найближчим часом.</div></sc-if>
 </div>
+
+<section class="wrap band-sec">
+  <div class="band">
+    <div><h2>Опишіть ваш об’єкт — ми запропонуємо рішення</h2></div>
+    <a href="index.html#contact" class="btn btn-red">Зв'язатися з нами<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+  </div>
+</section>
 </main>
 
 <!-- 11. Футер -->
@@ -151,15 +160,16 @@ class Component extends DCLogic {
     const s = this.state;
     const B = '/_blob/';
     // two photos aren't in assets/ yet (the export leaves out what the code puts together): those cases show the grey photo box until they are added to DC_BLOBS
-    const K = [
-      { c: 'Забудовник', img: '5a730fd2f1cb33a5b04465cf472e04b9', eq: ['NIK 7071', 'NIK 7011', 'NIK AMBUS'] },
-      { c: 'Промисловість', img: '6bad89e8cd66dd4a3f75be4c2902edc5', eq: ['NIK 2306', 'KC-02'] },
-      { c: 'Водоканал', img: 'd388df99ebf0c0b1f372c4851ac78d85', eq: ['NIK 7011', 'KK-01'] },
-      { c: 'Забудовник', img: 'b76b763965df40d22e1607eab06daaab', eq: ['NIK 2104', 'KC-02'] }
+    // the address with ?empty shows the state with no cases
+    const K = new URLSearchParams(location.search).has('empty') ? [] : [
+      { c: 'Забудовники', img: '5a730fd2f1cb33a5b04465cf472e04b9' },
+      { c: 'Промислові об’єкти', img: '6bad89e8cd66dd4a3f75be4c2902edc5' },
+      { c: 'Водоканали', img: 'd388df99ebf0c0b1f372c4851ac78d85' },
+      { c: 'Оператори систем розподілу', img: 'b76b763965df40d22e1607eab06daaab' }
     ];
-    const cats = ['Усі', 'Забудовник', 'Промисловість', 'Водоканал'].map((t) => ({ t, on: String(s.cat === t), pick: () => this.setState({ cat: t }) }));
+    const cats = ['Усі', 'Забудовники', 'Промислові об’єкти', 'Водоканали', 'Оператори систем розподілу'].map((t) => ({ t, on: String(s.cat === t), pick: () => this.setState({ cat: t }) }));
     const list = K.filter((k) => s.cat === 'Усі' || k.c === s.cat).map((k) => ({ ...k, hasFile: !!window.DC_BLOBS[k.img], img: B + k.img }));
-    return Object.assign(this.base(s), { cats, catName: s.cat, list });
+    return Object.assign(this.base(s), { cats, catName: s.cat, list, hasCases: K.length > 0, noCases: !K.length });
   }
 }
 

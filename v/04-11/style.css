@@ -2082,6 +2082,9 @@ main>.band-sec{padding-bottom:120px}
 .about-who>.about-cols:first-child{margin-top:0}
 .art>.feat:first-child{margin-top:0}
 .pbody>.vlist:first-child{margin-top:0}
+.case .btn{align-self:flex-start;margin-top:auto}
+.tech-links{display:flex;flex-wrap:wrap;align-content:flex-start;gap:8px}
+.tech-links a{text-decoration:none}
 .pgroup:first-child .art h2{margin-top:0}
 .pgroup .ngrid{margin-top:24px}
 .partner h3{margin:0;font-size:24px;line-height:1.2;letter-spacing:-0.02em;color:var(--ink);text-wrap:pretty;overflow-wrap:anywhere;-webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:14 6 6}
@@ -2089,6 +2092,7 @@ main>.band-sec{padding-bottom:120px}
 .share-t{align-self:center;margin-right:8px;font-size:16px;font-weight:500;color:var(--ink)}
 @media (max-width:600px){
   .share-t{margin-left:12px}
+  .case .btn{align-self:stretch}
   .partner h3{font-size:20px;line-height:1.15}
 }
 .ngrid+.band{margin-top:64px}
