@@ -2081,6 +2081,7 @@ main>.band-sec{padding-bottom:120px}
 /* About: the text under the photo, and text blocks with the heading on the left and the text on the right */
 .about-who>.about-cols:first-child{margin-top:0}
 .art>.feat:first-child{margin-top:0}
+.art .doc{font-size:16px}
 .pbody>.vlist:first-child{margin-top:0}
 .pbody>.note:first-child{margin-top:0}
 .about-who>.shead+.ngrid{margin-top:24px}

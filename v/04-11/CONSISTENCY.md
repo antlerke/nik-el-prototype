@@ -293,6 +293,7 @@ Agreed rule for new pages, and the goal of this group: one class = one style. Re
 - **Fix:** rename, and look for other such names.
 
 ### 50. Header and footer copied into every page
+- **Update 2026-11-10:** ✅ done. Header, mobile menu, footer, cookie panel and their data are in `shell.js`, once; every page has `<shell-top>` and `<shell-bottom>` in its template and `runtime.js` puts them in place.
 - **Problem:** a change in the menu has to be repeated on each page; the cost grows with every new page.
 - **Fix:** one shared header and footer.
 
