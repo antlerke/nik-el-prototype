@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Результати пошуку — НІК-ЕЛЕКТРОНІКА</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
+<script src="runtime.js"></script>
+<script src="shell.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/x-template" id="tpl">
+<shell-top></shell-top>
+<main id="main">
+<section class="phead">
+  <div class="wrap">
+    <nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a href="index.html">Головна</a></li><li><span aria-current="page">Результати пошуку</span></li></ol></nav>
+    <h1 class="query">Результати пошуку: «{{shown}}»</h1>
+    <p class="lead">Знайдено: {{count}}</p>
+  </div>
+</section>
+
+<div class="wrap pbody">
+  <form class="search" role="search" onSubmit="{{onQ}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><label class="sr" for="site-q">Пошук моделі, документа або статті</label><input type="search" id="site-q" placeholder="Пошук моделі, документа або статті" value="{{q}}"><button type="submit" class="btn btn-ink sgo">Знайти</button></form>
+  <div class="tabs" role="tablist" aria-label="Розділи результатів">
+    <sc-for list="{{tabs}}" as="c" hint-placeholder-count="5"><button type="button" role="tab" aria-selected="{{c.on}}" aria-controls="search-panel" onClick="{{c.pick}}">{{c.t}}</button></sc-for>
+  </div>
+  <sc-if value="{{hasList}}" hint-placeholder-val="{{true}}">
+  <div class="ngrid three" id="search-panel" role="tabpanel" aria-label="{{tab}}">
+    <sc-for list="{{list}}" as="r" hint-placeholder-count="6">
+      <a href="{{r.href}}" class="nc tile">
+        <span class="bd"><span class="meta"><span class="tag">{{r.c}}</span><sc-if value="{{r.hasD}}" hint-placeholder-val="{{false}}"><time>{{r.d}}</time></sc-if></span><span class="t">{{r.t}}</span><sc-if value="{{r.hasO}}" hint-placeholder-val="{{false}}"><span class="cd">{{r.o}}</span></sc-if><span class="more">{{r.more}}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span>
+      </a>
+    </sc-for>
+  </div>
+  </sc-if>
+  <sc-if value="{{none}}" hint-placeholder-val="{{false}}"><div class="empty" id="search-panel">За вашим запитом нічого не знайдено. Перевірте написання, введіть модель лічильника цифрами (наприклад, 2104) або поставте питання в чаті.</div></sc-if>
+</div>
+</main>
+<shell-bottom></shell-bottom>
+</script>
+<script>
+window.DC_BLOBS = {};
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    // the address with ?q=word opens the page with that search; without it all sample results are shown
+    this.state = { cookie: true, menu: false, tab: 'Усе', q: new URLSearchParams(location.search).get('q') || '' };
+  }
+  renderVals() {
+    const s = this.state;
+    const product = (t, o) => ({ c: 'Продукти', t, o, more: 'Детальніше', href: 'product.html' });
+    const doc = (t) => ({ c: 'Документи', t, o: 'NIK 2306 · PDF', more: 'Завантажити', href: '#' });
+    // articles have no text yet, so the keywords stand in for it
+    const article = { c: 'Статті', t: '[Тема статті]', k: 'NIK лічильник', more: 'Читати статтю', href: 'nikipedia-article.html' };
+    const news = (d, t) => ({ c: 'Новини', d, t, more: 'Читати далі', href: 'article.html' });
+    const ITEMS = [
+      product('NIK 2306', 'Лічильник електроенергії трифазний'),
+      product('NIK 2300', 'Лічильник електроенергії трифазний'),
+      product('NIK 2303', 'Лічильник електроенергії трифазний'),
+      product('NIK 2104', 'Лічильник електроенергії однофазний'),
+      product('NIK 2100', 'Лічильник електроенергії однофазний'),
+      product('NIK 7071', 'Теплолічильник'),
+      product('NIK 7011', 'Лічильник холодної води'),
+      doc('Настанова з експлуатації'),
+      doc('Сертифікат відповідності'),
+      article,
+      article,
+      news('10.12.2021', 'Лічильник 7021 сертифіковано'),
+      news('25.03.2021', 'Розробка пересувних електротехнічних лабораторій від NIK'),
+      news('27.01.2021', 'Київська торгово-промислова палата про новий теплолічильник NIK 7071')
+    ].map((i) => ({ ...i, hasD: !!i.d, hasO: !!i.o }));
+    const flat = (x) => x.replace(/ /g, ' ').toLowerCase();
+    const q = flat(s.q);
+    const list = ITEMS.filter((i) => (s.tab === 'Усе' || i.c === s.tab) && (!q || flat([i.c, i.t, i.o, i.k].join(' ')).includes(q)));
+    const tabs = ['Усе', 'Продукти', 'Документи', 'Статті', 'Новини'].map((t) => ({ t, on: String(s.tab === t), pick: () => this.setState({ tab: t }) }));
+    return Object.assign(this.base(s), {
+      tabs, tab: s.tab, q: s.q, shown: s.q || '[запит]', count: list.length, list, hasList: list.length > 0, none: !list.length,
+      onQ: (e) => { e.preventDefault(); this.setState({ q: e.target.querySelector('input').value.trim(), tab: 'Усе' }); }
+    });
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>
