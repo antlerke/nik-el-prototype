@@ -2200,7 +2200,7 @@ main>.band-sec{padding-bottom:120px}
 .art>.feat:first-child{margin-top:0}
 .art .doc{font-size:16px}
 .pbody>.vlist:first-child,.pbody>.ngrid:first-child,.pbody>.hbtns:first-child{margin-top:0}
-.vlist+.pnote,.ngrid+.pnote,.empty+.pnote{margin-top:24px;text-align:left}
+.vlist+.pnote{margin-top:24px;text-align:left}
 @media (min-width:720px) and (max-width:1060px){.ngrid.trio>:last-child{grid-column:1/-1}}
 .pbody>.note:first-child{margin-top:0}
 .about-who>.shead+.ngrid{margin-top:24px}
