@@ -19,7 +19,7 @@ window.SHELL = {
         </sc-for>
       </ul>
     </nav>
-    <a href="#" class="docs"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg>Електронні документи</a>
+    <a href="documents.html" class="docs"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg>Електронні документи</a>
     <div style="display: flex; align-items: center; gap: 6px">
       <button class="icon burger" type="button" aria-label="{{menuLabel}}" aria-expanded="{{menuExp}}" aria-controls="mnav" onClick="{{toggleMenu}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="{{burgerPath}}"></path></svg></button>
       <a href="search.html" class="icon" aria-label="Пошук моделі, документа або статті" title="Пошук моделі, документа або статті"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></a>
@@ -37,7 +37,7 @@ window.SHELL = {
       </div>
     </sc-for>
     <div class="foot">
-      <a href="#" class="btn btn-line" style="width: 100%">Електронні документи</a>
+      <a href="documents.html" class="btn btn-line" style="width: 100%">Електронні документи</a>
       <a href="index.html#contact" class="btn btn-red" style="width: 100%">Зв'язатися з нами</a>
       <div class="seg" aria-label="Мова сайту" style="align-self: flex-start"><a href="#" aria-current="true">UA</a><a href="#">EN</a><a href="#">RU</a></div>
     </div>
