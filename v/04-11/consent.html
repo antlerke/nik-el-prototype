@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Згода на обробку персональних даних — НІК</title>
+<meta name="description" content="Текст згоди на обробку персональних даних, яку ви надаєте, надсилаючи форму на сайті nik-el.com.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
+<script src="runtime.js"></script>
+<script src="shell.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/x-template" id="tpl">
+<shell-top></shell-top>
+<main id="main">
+<section class="phead">
+  <div class="wrap">
+    <div class="narrow">
+      <nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a href="index.html">Головна</a></li><li><span aria-current="page">Згода на обробку персональних даних</span></li></ol></nav>
+      <div class="meta"><span>Редакція від [дата публікації]</span></div>
+      <h1>Згода на обробку персональних даних</h1>
+    </div>
+  </div>
+</section>
+
+<div class="wrap pbody">
+  <div class="agrid left">
+    <article class="art">
+      <p>Надсилаючи форму на сайті nik-el.com, реєструючись в особистому кабінеті або надсилаючи резюме, ви даєте ТОВ «НІК-&#8288;ЕЛЕКТРОНІКА» (код ЄДРПОУ&nbsp;33401202) згоду на обробку ваших персональних даних на таких умовах.</p>
+      <p><b>Які дані.</b> Дані, які ви вказали у формі, листі чи резюме: ПІБ, телефон, email, регіон, тема і опис запиту; для особистого кабінету&nbsp;— також назва компанії. Для резюме&nbsp;— також дані про освіту та досвід роботи.</p>
+      <p><b>Мета.</b> Відповісти на ваш запит, підготувати пропозицію, надати доступ до особистого кабінету, розглянути вашу кандидатуру на вакансію чи практику. Якщо ви окремо погодилися на розсилку,&nbsp;— також надсилати новини та пропозиції компанії на email.</p>
+      <p><b>Дії з даними.</b> Збирання, реєстрація, накопичення, зберігання, зміна, поновлення, використання, передача постачальникам, які забезпечують роботу сайту, знеособлення і знищення&nbsp;— лише в межах цієї мети.</p>
+      <p><b>Строк.</b> Протягом строків, вказаних у <a href="privacy.html">Політиці конфіденційності</a>, або до відкликання згоди.</p>
+      <p><b>Ваші права.</b> Ви повідомлені про володільця даних, мету обробки, осіб, яким дані можуть передаватися, і про свої права за статтею&nbsp;8 Закону України «Про захист персональних даних». Детальніше&nbsp;— у <a href="privacy.html">Політиці конфіденційності</a>.</p>
+      <p><b>Відкликання.</b> Ви можете відкликати згоду будь-коли, написавши на [email&nbsp;— уточнити]. Ми припинимо обробку і видалимо дані, якщо закон не вимагає їх зберігати.</p>
+    </article>
+  </div>
+</div>
+</main>
+<shell-bottom></shell-bottom>
+</script>
+<script>
+window.DC_BLOBS = {};
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { cookie: true, menu: false };
+  }
+  renderVals() {
+    return this.base(this.state);
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>
