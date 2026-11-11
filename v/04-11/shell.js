@@ -147,8 +147,8 @@ DCLogic.prototype.base = function (s) {
     searchType: (e) => this.setState({ sq: e.target.value }),
     searchGo: (e) => { e.preventDefault(); const q = e.target.querySelector('input').value.trim(); location.href = 'search.html' + (q ? '?q=' + encodeURIComponent(q) : ''); },
     menu: [
-      isMenu('Каталог', 'catalog.html', ['Продукти', ['Послуги', 'services.html'], ['Програмне забезпечення', 'software.html'], 'Таблиця взаємозамінності', 'Порівняти товари']),
-      isMenu('Про нас', 'about.html', ['Про компанію', ['Історія компанії', 'history.html'], ['Кар’єра', 'career.html'], ['Вакансії', 'vacancies.html'], ['Центр оцінки відповідності', 'conformity.html'], ['Наші партнери', 'partners.html']]),
+      isMenu('Каталог', 'catalog.html', ['Продукти', ['Послуги', 'services.html'], ['Програмне забезпечення', 'software.html'], ['Таблиця взаємозамінності', '#'], ['Порівняти товари', '#']]),
+      isMenu('Про нас', 'about.html', ['Про компанію', ['Історія компанії', 'history.html'], ['Кар’єра', 'career.html'], ['Центр оцінки відповідності', 'conformity.html'], ['Наші партнери', 'partners.html']]),
       isMenu('Контакти', 'where.html', ['Де купити', ['Сервісний центр', 'service.html']]),
       isMenu('Прес-центр', 'news.html', ['Новини', ['НІКіпедія', 'nikipedia.html'], ['Ми у ЗМІ', 'media.html']])
     ],
