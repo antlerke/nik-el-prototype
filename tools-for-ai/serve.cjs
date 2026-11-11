@@ -6,7 +6,7 @@ const http = require('http'), fs = require('fs'), path = require('path'), { exec
 
 const ROOT = path.resolve(__dirname, '..');
 const PORT = +process.argv[2] || 8740;
-const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.cjs': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.png': 'image/png', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.glb': 'model/gltf-binary' };
+const TYPES = { '.html': 'text/html; charset=utf-8', '.txt': 'text/plain; charset=utf-8', '.md': 'text/markdown; charset=utf-8', '.js': 'text/javascript', '.cjs': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.png': 'image/png', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.glb': 'model/gltf-binary' };
 
 function blobs() {
   const map = {};
@@ -21,7 +21,7 @@ function blobs() {
 }
 
 http.createServer((req, res) => {
-  const send = (code, body, type) => { res.writeHead(code, { 'Content-Type': type || 'text/plain', 'Cache-Control': 'no-store' }); res.end(body); };
+  const send = (code, body, type) => { res.writeHead(code, { 'Content-Type': type || 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' }); res.end(body); };
   let url = decodeURIComponent(req.url.split('?')[0]);
   const blob = url.match(/\/_blob\/([0-9a-f]{32})/);
   if (blob) url = '/' + (blobs()[blob[1]] || 'missing');
