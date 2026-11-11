@@ -2107,7 +2107,7 @@ main>.band-sec{padding-bottom:120px}
 .dtable.fixed th:first-child{width:30%}
 .dtable.fixed th:last-child{width:28%}
 .dtable td:last-child,.dtable th:last-child{padding-right:0}
-.art .dtable+p{margin-top:24px}
+.art .dtable+p,.art .ngrid,.art .ngrid+p{margin-top:24px}
 .art h3{margin:40px 0 0;font-size:24px;line-height:1.2;letter-spacing:-0.02em;color:var(--ink);text-wrap:pretty}
 .art h3:first-child{margin-top:0}
 .nums{list-style:none;counter-reset:n;display:grid;gap:12px;margin:16px 0 0;padding:0}
