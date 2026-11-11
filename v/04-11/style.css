@@ -2139,7 +2139,7 @@ main>.band-sec{padding-bottom:120px}
 }
 
 /* Conformity: contact card inside text; questions whose answers open and close */
-.art .contact-card{margin-top:32px}
+.art .contact-card{margin-top:32px}.art>.contact-card:first-child,.contact-card>.clist:first-child{margin-top:0}
 .art>.qa:first-child{margin-top:-16px}
 .qa details+details{border-top:1px solid var(--line)}
 .qa summary{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:16px 0;font-weight:700;color:var(--ink);cursor:pointer;list-style:none}
