@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Політика cookie — НІК</title>
+<meta name="description" content="Які файли cookie використовує сайт nik-el.com, навіщо вони потрібні і як змінити свій вибір.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
+<script src="runtime.js"></script>
+<script src="shell.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/x-template" id="tpl">
+<shell-top></shell-top>
+<main id="main">
+<section class="phead">
+  <div class="wrap">
+    <div class="narrow">
+      <nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a href="index.html">Головна</a></li><li><span aria-current="page">Політика використання файлів cookie</span></li></ol></nav>
+      <div class="meta"><span>Редакція від [дата публікації]</span></div>
+      <h1>Політика використання файлів cookie</h1>
+    </div>
+  </div>
+</section>
+
+<div class="wrap pbody">
+  <div class="agrid">
+    <article class="art">
+      <p>Cookie&nbsp;— це невеликі текстові файли, які сайт зберігає у вашому браузері. Вони допомагають сайту працювати і запам’ятовувати ваші налаштування.</p>
+
+      <h2>Які cookie ми використовуємо</h2>
+      <p><b>Необхідні.</b> Потрібні для роботи сайту: запам’ятовують мову і ваш вибір щодо cookie, підтримують вхід до особистого кабінету, захищають форми від спаму. Їх не можна вимкнути: без них сайт працюватиме некоректно.</p>
+      <p><b>Аналітичні.</b> Показують, які сторінки відвідують і як користуються сайтом. Ми дивимося на загальну статистику, а не на дії окремої людини. Вмикаються лише за вашою згодою.</p>
+      <p><b>Сторонні сервіси.</b> Карта Google&nbsp;Maps на сторінках контактів і відео YouTube на головній можуть встановлювати власні cookie. Ми завантажуємо їх лише після вашої згоди.</p>
+
+      <h2>Перелік cookie</h2>
+      <!-- one table per category; under each name, in grey, who sets the cookie -->
+      <h3>Необхідні</h3>
+      <table class="dtable fixed">
+        <thead><tr><th scope="col">Назва<small>Хто встановлює</small></th><th scope="col">Призначення</th><th scope="col">Строк</th></tr></thead>
+        <tbody>
+          <tr><td>[уточнити]<small>nik-el.com</small></td><td>Запам’ятовує мову сайту</td><td>[12 місяців]</td></tr>
+          <tr><td>[уточнити]<small>nik-el.com</small></td><td>Запам’ятовує ваш вибір щодо cookie</td><td>[12 місяців]</td></tr>
+          <tr><td>[уточнити]<small>nik-el.com</small></td><td>Підтримує вхід до особистого кабінету</td><td>до виходу або закриття браузера</td></tr>
+        </tbody>
+      </table>
+      <h3>Аналітичні</h3>
+      <table class="dtable fixed">
+        <thead><tr><th scope="col">Назва<small>Хто встановлює</small></th><th scope="col">Призначення</th><th scope="col">Строк</th></tr></thead>
+        <tbody>
+          <tr><td>_ga<small>Google Analytics</small></td><td>Розрізняє відвідувачів</td><td>2&nbsp;роки</td></tr>
+          <tr><td>ga[ID]<small>Google Analytics</small></td><td>Зберігає стан сеансу</td><td>2&nbsp;роки</td></tr>
+        </tbody>
+      </table>
+      <h3>Сторонні сервіси</h3>
+      <table class="dtable fixed">
+        <thead><tr><th scope="col">Назва<small>Хто встановлює</small></th><th scope="col">Призначення</th><th scope="col">Строк</th></tr></thead>
+        <tbody>
+          <tr><td>[уточнити]<small>Google Maps, YouTube</small></td><td>Показ карти і відео</td><td>за правилами Google</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Як змінити вибір</h2>
+      <p>Змінити вибір можна будь-коли через посилання «<a href="#" onClick="{{openCookie}}">Налаштування cookie</a>» у футері сайту.</p>
+      <p>Також cookie можна видалити або заблокувати в налаштуваннях браузера. Якщо заблокувати необхідні cookie, частина сайту може не працювати.</p>
+
+      <h2>Персональні дані</h2>
+      <p>Як ми обробляємо дані, зібрані за допомогою cookie, описано в <a href="#">Політиці конфіденційності</a>.</p>
+    </article>
+  </div>
+</div>
+</main>
+<shell-bottom></shell-bottom>
+</script>
+<script>
+window.DC_BLOBS = {};
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { cookie: true, menu: false };
+  }
+  renderVals() {
+    return this.base(this.state);
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>
