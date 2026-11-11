@@ -78,7 +78,10 @@
   };
   window.DC = {
     mount: function (Component) {
-      var tpl = document.getElementById('tpl').textContent;
+      var shell = window.SHELL || { top: '', bottom: '' };
+      var tpl = document.getElementById('tpl').textContent
+        .replace('<shell-top></shell-top>', function () { return shell.top; })
+        .replace('<shell-bottom></shell-bottom>', function () { return shell.bottom; });
       var app = document.getElementById('app');
       var c = new Component({});
       c.__render = function () {

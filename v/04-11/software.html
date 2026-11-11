@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>АСКОЕ та програмне забезпечення обліку енергоресурсів — NIK</title>
+<meta name="description" content="Веб-платформи та мобільні застосунки NIK для збору, обробки й аналізу даних із приладів обліку: NovaSys, NIK Space, NIK-Surfer та інші">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
+<script src="runtime.js"></script>
+<script src="shell.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/x-template" id="tpl">
+<shell-top></shell-top>
+<main id="main">
+<section class="phead">
+  <div class="wrap">
+    <nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a href="index.html">Головна</a></li><li><a href="catalog.html">Каталог</a></li><li><span aria-current="page">Програмне забезпечення</span></li></ol></nav>
+    <h1>АСКОЕ та Програмне забезпечення</h1>
+    <p class="lead">Програмне забезпечення NIK для збору, обробки та аналізу даних із приладів обліку. Ми розробляємо його самі, тому воно повністю сумісне з лічильниками та контролерами NIK.</p>
+  </div>
+</section>
+
+<div class="wrap pbody">
+  <sc-for list="{{groups}}" as="g" hint-placeholder-count="2">
+    <div class="pgroup">
+      <div class="art"><h2>{{g.t}}</h2></div>
+      <div class="ngrid pair">
+        <sc-for list="{{g.items}}" as="c" hint-placeholder-count="4">
+          <article class="case">
+            <div class="bd">
+              <h3>{{c.t}}</h3>
+              <p class="cd">{{c.d}}</p>
+              <a href="#" class="btn btn-line">Детальніше<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </sc-for>
+</div>
+
+<section class="wrap band-sec">
+  <div class="band">
+    <div><h2>Допоможемо підібрати рішення для вас</h2></div>
+    <a href="index.html#contact" class="btn btn-red">Зв'язатися з нами<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+  </div>
+</section>
+</main>
+<shell-bottom></shell-bottom>
+</script>
+<script>
+window.DC_BLOBS = {};
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { cookie: true, menu: false };
+  }
+  renderVals() {
+    return Object.assign(this.base(this.state), {
+      groups: [
+        { t: 'Веб-платформи', items: [
+          { t: 'NovaSyS', d: 'Автоматизована система контролю та обліку енергоресурсів від виробника лічильників NIK. Сама збирає дані з лічильників, перевіряє їх і перетворює на облік, баланси та звіти. Дві модифікації — для енергопостачання і для промисловості.' },
+          { t: 'NIK Space', d: 'Комплексна система віддаленого збору показань лічильників для енергокомпаній та ОСББ. Оптимізує обслуговування будинку, заощаджує споживачам час і зменшує витрати.' },
+          { t: 'UNIK', d: 'Програма для Windows, через яку налаштовують і зчитують лічильники NIK на місці встановлення. До оптичного порту лічильника вона підключається через оптичну головку OP-03.' },
+          { t: 'AGSM GURU', d: '[уточнити]' }
+        ] },
+        { t: 'Мобільні застосунки', items: [
+          { t: 'NIK-Surfer', d: 'Застосунок для збору показань лічильників по радіоканалу wM-Bus у парі з апаратним RF-to-USB модулем NIK-Surfer.' },
+          { t: 'NIK BT-DLMS', d: '[уточнити]' }
+        ] }
+      ]
+    });
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>

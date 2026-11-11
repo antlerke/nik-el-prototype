@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[Назва об’єкта]: [що зроблено] — кейс NIK</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
+<script src="runtime.js"></script>
+<script src="shell.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/x-template" id="tpl">
+<shell-top></shell-top>
+<main id="main">
+<section class="phead">
+  <div class="wrap">
+    <nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a href="index.html">Головна</a></li><li><a href="about.html">Про нас</a></li><li><a href="partners.html">Наші партнери</a></li><li><a href="cases.html">Кейси та об’єкти</a></li><li><span aria-current="page">[Назва об’єкта]</span></li></ol></nav>
+    <h1>[Назва об’єкта]</h1>
+  </div>
+</section>
+
+<div class="wrap pbody">
+  <div class="text-rows">
+    <div class="about-cols"><h2 class="h2">Задача</h2><div class="art"><p>[Задача клієнта — від замовника]</p></div></div>
+    <div class="about-cols"><h2 class="h2">Рішення</h2><div class="art"><p>[Рішення — від замовника]</p></div></div>
+    <div class="about-cols"><h2 class="h2">Результат</h2><div class="art"><p>[Результат — від замовника]</p></div></div>
+    <div class="about-cols"><h2 class="h2">Використане обладнання</h2><div class="tech-links"><a href="product.html" class="chipx chip-clear">NIK 7071</a><a href="product.html" class="chipx chip-clear">NIK 7011</a><a href="product.html" class="chipx chip-clear">NIK AMBUS</a></div></div>
+  </div>
+  <div class="hbtns"><a href="cases.html" class="btn btn-line"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Усі кейси</a></div>
+</div>
+</main>
+<shell-bottom></shell-bottom>
+</script>
+<script>
+window.DC_BLOBS = {"5a730fd2f1cb33a5b04465cf472e04b9":"../../assets/5a730fd2-hero-1.webp","6bad89e8cd66dd4a3f75be4c2902edc5":"../../assets/6bad89e8-hero-2.webp"};
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { cookie: true, menu: false };
+  }
+  renderVals() {
+    return this.base(this.state);
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>

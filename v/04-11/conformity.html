@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Центр оцінки відповідності — НІК-ЕЛЕКТРОНІКА</title>
+<title>Центр оцінки відповідності та випробування лічильників — НІК</title>
+<meta name="description" content="Акредитований НААУ випробувальний центр НІК-ЕЛЕКТРОНІКА: 28 видів випробувань лічильників електроенергії та випробування ПЗ ЗВТ. Атестат чинний до 2031 року.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -12,136 +13,138 @@
 
 <script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
 <script src="runtime.js"></script>
+<script src="shell.js"></script>
 </head>
 <body>
 <div id="app"></div>
 <script type="text/x-template" id="tpl">
-<div style="font-family: Geologica, sans-serif; color: var(--text); background: #ffffff; overflow-x: clip">
-
-<a href="#main" class="skip">Перейти до змісту</a>
-<header class="hd">
-  <div class="wrap">
-    <a href="index.html" aria-label="НІК-ЕЛЕКТРОНІКА — на головну" style="display: flex"><img src="../../assets/4acb50f3-nik-logo.svg" alt="НІК-ЕЛЕКТРОНІКА — на головну" style="height: 34px; width: auto; display: block; position: relative; top: -6px"></a>
-    <nav aria-label="Головне меню" style="flex: 1 1 auto">
-      <ul class="menu">
-        <sc-for list="{{menu}}" as="m" hint-placeholder-count="4">
-          <li>
-            <a href="{{m.href}}" aria-haspopup="true">{{m.t}}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></a>
-            <div class="drop">
-              <sc-for list="{{m.items}}" as="i" hint-placeholder-count="4"><a href="{{i.href}}">{{i.t}}</a></sc-for>
-            </div>
-          </li>
-        </sc-for>
-      </ul>
-    </nav>
-    <a href="#" class="docs"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg>Електронні документи</a>
-    <div style="display: flex; align-items: center; gap: 6px">
-      <button class="icon burger" type="button" aria-label="{{menuLabel}}" aria-expanded="{{menuExp}}" aria-controls="mnav" onClick="{{toggleMenu}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="{{burgerPath}}"></path></svg></button>
-      <button class="icon" aria-label="Пошук моделі, документа або статті" title="Пошук моделі, документа або статті"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></button>
-      <a href="#" class="icon" aria-label="Увійти в особистий кабінет" title="Увійти в особистий кабінет"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></a>
-      <div class="lang"><button type="button" class="lang-btn" aria-haspopup="true" aria-label="Мова сайту: українська">UA<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button><div class="drop lang-drop" aria-label="Мова сайту"><a href="#" aria-current="true" lang="uk">Українська</a><a href="#" lang="en">English</a><a href="#" lang="ru">Русский</a></div></div>
-    </div>
-  </div>
-</header>
-<sc-if value="{{menuOpen}}" hint-placeholder-val="{{false}}">
-  <nav class="mnav" id="mnav" aria-label="Мобільне меню" onClick="{{menuClick}}">
-    <sc-for list="{{menu}}" as="m" hint-placeholder-count="4">
-      <div class="grp">
-        <a href="{{m.href}}">{{m.t}}<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-        <div class="sub"><sc-for list="{{m.items}}" as="i" hint-placeholder-count="4"><a href="{{i.href}}">{{i.t}}</a></sc-for></div>
-      </div>
-    </sc-for>
-    <div class="foot">
-      <a href="#" class="btn btn-line" style="width: 100%">Електронні документи</a>
-      <a href="index.html#contact" class="btn btn-red" style="width: 100%">Зв'язатися з нами</a>
-      <div class="seg" aria-label="Мова сайту" style="align-self: flex-start"><a href="#" aria-current="true">UA</a><a href="#">EN</a><a href="#">RU</a></div>
-    </div>
-  </nav>
-</sc-if>
-
+<shell-top></shell-top>
 <main id="main">
 <section class="phead">
   <div class="wrap">
     <nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a href="index.html">Головна</a></li><li><a href="about.html">Про нас</a></li><li><span aria-current="page">Центр оцінки відповідності</span></li></ol></nav>
+    <span class="kick">ВИПРОБУВАЛЬНИЙ ЦЕНТР НІК-&#8288;ЕЛЕКТРОНІКА</span>
     <h1>Центр оцінки відповідності</h1>
-    <p class="lead">Якість підтверджуємо міжнародними стандартами й власним акредитованим випробувальним центром.</p>
+    <p class="lead">Акредитовані випробування лічильників електричної енергії та програмного забезпечення засобів вимірювальної техніки</p>
     <nav class="tabs" aria-label="Розділ «Про нас»"><a href="about.html">Про компанію</a><a href="history.html">Історія</a><a href="career.html">Кар’єра</a><a href="conformity.html" aria-current="page">Центр оцінки відповідності</a><a href="partners.html">Партнери</a><a href="cases.html">Кейси та об’єкти</a></nav>
   </div>
 </section>
 
 <div class="wrap pbody">
-  <div class="lab">
-    <figure><img src="../../assets/e3a26a87-c-calibration.jpg" alt="Випробування лічильників на стенді"></figure>
-    <div class="stat-cards">
-      <div><b>28</b><span>Видів випробувань лічильників</span><small>а також випробування ПЗ</small></div>
-      <div><b>НААУ</b><span>Акредитований випробувальний центр</span><small>ДСТУ EN ISO/IEC 17025:2019</small></div>
+    <div class="tiles">
+      <div class="ftile"><b>29</b><p>видів випробувань (лічильники електроенергії та ПЗ)</p></div>
+      <div class="ftile"><b>Welmec</b></div>
+      <div class="ftile"><b>2031</b><p>рік, до якого чинний атестат про акредитацію</p></div>
+      <div class="ftile dark"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"></path></svg><h3>EA MLA</h3><p>міжнародне визнання результатів випробувань</p></div>
+    </div>
+</div>
+
+<section class="sec on-paper">
+  <div class="wrap text-rows">
+    <div class="about-cols"><h2 class="h2">Випробувальний центр</h2><div class="art"><p>Наш випробувальний центр акредитований Національним агентством з акредитації України на відповідність ДСТУ&nbsp;EN&nbsp;ISO/IEC&nbsp;17025:2019 у сфері випробувань лічильників електричної енергії та програмного забезпечення засобів вимірювальної техніки.</p><p>Це означає, що результати наших випробувань мають офіційно визнану достовірність.</p><p>Ми випробовуємо не лише власну продукцію. До нас звертаються виробники, імпортери й дистриб’ютори лічильників, органи з оцінки відповідності та розробники програмного забезпечення для засобів вимірювальної техніки.</p></div></div>
+    <div class="about-cols"><h2 class="h2">Атестат про акредитацію</h2><div class="art"><table class="dtable"><thead><tr><th scope="col">Параметр</th><th scope="col">Значення</th></tr></thead><tbody><tr><td>Орган з акредитації</td><td>Національне агентство з акредитації України (НААУ)</td></tr><tr><td>Стандарт</td><td>ДСТУ EN ISO/IEC 17025:2019</td></tr><tr><td>Номер атестата</td><td>202502</td></tr><tr><td>Дата реєстрації</td><td>30 вересня 2026 року</td></tr><tr><td>Чинний до</td><td>29 вересня 2031 року</td></tr><tr><td>Сфера</td><td>Лічильники електричної енергії та програмне забезпечення засобів вимірювальної техніки</td></tr><tr><td>Додаток</td><td>Сфера акредитації на 19 аркушах</td></tr></tbody></table><p>НААУ — підписант Угоди EA MLA та Угоди Global ACI MRA у сфері «Випробування». Тому наші протоколи видаються в системі акредитації, визнаній на європейському та міжнародному рівнях.</p><p>Чинність атестата можна перевірити у відкритому реєстрі НААУ [посилання на запис у реєстрі].</p></div></div>
+  </div>
+</section>
+
+<section class="figs">
+  <div class="wrap">
+    <div class="shead"><div><span class="kick on-dark">СФЕРА АКРЕДИТАЦІЇ</span><h2 class="h2">Два напрями робіт</h2></div></div>
+    <div class="ngrid pair">
+      <article class="service"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"></path></svg></i><h3>Лічильники електричної енергії</h3><b class="val">28 видів випробувань</b><p class="cd">Випробування, що стосуються безпеки, загальні вимоги щодо точності, на несприйнятливість до інших впливних чинників (гармонік, зміни напруги тощо)</p></article>
+      <article class="service"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"></path></svg></i><h3>Програмне забезпечення ЗВТ</h3><b class="val">3 документи</b><p class="cd">Законодавчо значуще ПЗ засобів вимірювальної техніки за національними, міжнародними та європейськими вимогами.</p></article>
     </div>
   </div>
-</div>
+</section>
+
+<section class="sec">
+  <div class="wrap text-rows">
+    <div class="about-cols"><h2 class="h2">Навіщо лічильнику випробування</h2><div class="art"><p>Лічильники активної електричної енергії — законодавчо регульовані засоби вимірювальної техніки: категорія MI-003 Технічного регламенту засобів вимірювальної техніки, затвердженого постановою КМУ від 24.02.2016 №&nbsp;163.</p><p>Без оцінки відповідності лічильник не можна розмитнити, продати та ввести в експлуатацію. А для сертифіката потрібен протокол акредитованої лабораторії.</p></div></div>
+  </div>
+</section>
+
+<section class="sec on-paper">
+  <div class="wrap">
+    <div class="shead"><div><h2 class="h2">Як лічильник потрапляє на ринок України</h2></div></div>
+    <p class="lead flow-lead">Лічильники електричної енергії — законодавчо регульовані засоби вимірювальної техніки. Лічильник повинен пройти сертифікацію. До нас може звернутися як ООВ, так і виробник чи імпортер.</p>
+    <ol class="flow">
+      <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"></circle><path d="M2 21v-1a7 7 0 0 1 14 0v1M16 4.5a4 4 0 0 1 0 7M19 15a7 7 0 0 1 3 5v1"></path></svg><small>КРОК 1</small><h3>Виробник або імпортер</h3><p>Планує постачати прилад на український ринок</p></li>
+      <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.4 1.8 3-.2.9 2.9 2.5 1.7-1 2.8 1 2.8-2.5 1.7-.9 2.9-3-.2L12 21l-2.4-1.8-3 .2-.9-2.9-2.5-1.7 1-2.8-1-2.8 2.5-1.7.9-2.9 3 .2z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg><small>КРОК 2</small><h3>Орган з оцінки відповідності</h3><p>Обирає процедуру та лабораторію</p></li>
+      <li class="us"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="2"></rect><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 14h18M8 13v2M16 13v2"></path></svg><small>КРОК 3 — ЦЕ МИ</small><h3>Випробувальний центр</h3><p>Випробування і протокол</p></li>
+      <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.4 1.8 3-.2.9 2.9 2.5 1.7-1 2.8 1 2.8-2.5 1.7-.9 2.9-3-.2L12 21l-2.4-1.8-3 .2-.9-2.9-2.5-1.7 1-2.8-1-2.8 2.5-1.7.9-2.9 3 .2z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg><small>КРОК 4</small><h3>Орган з оцінки відповідності</h3></li>
+      <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 12.5l2.7 2.7L16 9.5"></path></svg><small>КРОК 5</small><h3>Сертифікат</h3><p>Продаж, митниця, експлуатація</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap text-rows">
+    <div class="about-cols"><h2 class="h2">Випробування лічильників</h2><div class="art"><h3>Метрологічна точність</h3><table class="dtable"><thead><tr><th scope="col">№</th><th scope="col">Випробування</th><th scope="col">Що підтверджує</th></tr></thead><tbody><tr><td>1.4</td><td>Передатне число (стала)</td><td>Імпульсний вихід відповідає сталій</td></tr><tr><td>1.5</td><td>Початковий запуск</td><td>Прилад стартує за нормований час</td></tr><tr><td>1.6</td><td>Відсутність самоходу</td><td>Без навантаження енергія не накручується</td></tr><tr><td>1.7</td><td>Поріг чутливості</td><td>Облік при мінімальному струмі</td></tr><tr><td>1.8</td><td>Збіжність</td><td>Повторюваність результатів</td></tr><tr><td>1.9</td><td>Межі похибки за струмом</td><td>Клас точності в робочому діапазоні</td></tr><tr><td>1.10</td><td>Точність відліку часу</td><td>Годинник для багатозонного обліку</td></tr></tbody></table><h3>Точність у реальній мережі</h3><p>Спотворення форми кривої:</p><ul class="feat"><li><span>1.11 Гармоніки в колах струму та напруги</span></li><li><span>1.12 Інтергармоніки в колі струму</span></li><li><span>1.13 Непарні гармоніки в колі струму</span></li><li><span>1.14 Постійний струм і парні гармоніки</span></li></ul><p>Зокрема, перевіряємо стійкість до типових схем спотворення обліку випрямленим сигналом.</p><p>Аномалії мережі та зовнішні впливи:</p><ul class="feat"><li><span>1.15 Зміна напруги</span></li><li><span>1.16 Зміна температури середовища</span></li><li><span>1.17 Переривання фазної напруги</span></li><li><span>1.18 Зміна частоти</span></li><li><span>1.19 Зворотна послідовність фаз</span></li><li><span>1.20 Зміна допоміжної напруги</span></li><li><span>1.21 Робота допоміжних пристроїв</span></li><li><span>1.24 Швидкі зміни струму навантаження</span></li><li><span>1.25 Замикання на землю</span></li></ul><h3>Надійність в експлуатації</h3><ul class="feat"><li><span>1.22 Короткочасні перевантаження струмом</span></li><li><span>1.23 Самонагрівання</span></li><li><span>1.26 Випробування на сухе тепло</span></li><li><span>1.27 Випробування на холод</span></li><li><span>1.28 Випробування на довговічність</span></li></ul><p>Довговічність — за ДСТУ&nbsp;EN&nbsp;62059-32-1:2016.</p><h3>Безпека, споживання, маркування</h3><ul class="feat"><li><span>1.1 Випробування, що стосуються безпеки</span></li><li><span>1.2 Потужність власного споживання</span></li><li><span>1.3 Маркування лічильника</span></li></ul><p>Безпека — за ДСТУ&nbsp;EN&nbsp;62052-31:2022 та ДСТУ&nbsp;EN&nbsp;50470-3:2022.</p><p>Нумерація — за додатком до атестата про акредитацію №&nbsp;202502. Повний перелік 28 позицій надаємо за запитом.</p></div></div>
+    <div class="about-cols"><h2 class="h2">Випробування програмного забезпечення</h2><div class="art"><p>Перевіряємо законодавчо значуще ПЗ:</p><ul class="feat"><li><span>вимірювання та облік енергії;</span></li><li><span>тарифікацію;</span></li><li><span>журнал подій;</span></li><li><span>збереження даних під час оновлення;</span></li><li><span>розділення та захист від змін.</span></li></ul><p>А також функції поза метрологією: інтерфейси зв’язку, дисплей і сервісні режими, оновлення прошивки.</p><p>Нормативні документи: ДСТУ 7363:2013 (національні вимоги), ДСТУ OIML D 31:2018 (міжнародні вимоги OIML), WELMEC 7.2:2020 (європейський документ до директиви MID).</p></div></div>
+    <div class="about-cols"><h2 class="h2">Нормативна база</h2><div class="art"><p>У сфері акредитації — чинні й попередні редакції стандартів. Тож ми проводимо випробування і для нової сертифікації, і для підтримки виробів, що вже на ринку.</p><table class="dtable"><thead><tr><th scope="col">Стандарт</th><th scope="col">Про що</th></tr></thead><tbody><tr><td>ДСТУ EN IEC 62052-11:2024 · EN 62052-11:2015</td><td>Загальні вимоги та умови випробувань</td></tr><tr><td>ДСТУ EN 62052-31:2022</td><td>Вимоги безпеки та випробування на безпеку</td></tr><tr><td>ДСТУ EN IEC 62053-21 · 62053-22</td><td>Активна енергія: класи 0,5–2 та 0,1S–0,5S</td></tr><tr><td>ДСТУ EN IEC 62053-23 · 62053-24</td><td>Реактивна енергія, зокрема за основною гармонікою</td></tr><tr><td>ДСТУ EN 50470-3:2022</td><td>Європейська серія: класи A, B, C</td></tr><tr><td>ДСТУ EN 62054-21:2015</td><td>Реле часу, багатозонний облік</td></tr><tr><td>ДСТУ EN 62059-32-1:2016</td><td>Надійність і довговічність</td></tr><tr><td>ДСТУ 7363:2013 · OIML D 31 · WELMEC 7.2:2020</td><td>Програмне забезпечення ЗВТ</td></tr></tbody></table></div></div>
+  </div>
+</section>
+
+<section class="sec on-paper">
+  <div class="wrap text-rows">
+    <div class="about-cols"><h2 class="h2">Для кого</h2><div class="art"><h3>Органам з оцінки відповідності: лабораторія, яку можна внести до свого переліку</h3><ul class="feat"><li><span>Випробування лічильників за 28 позиціями та ПЗ засобів вимірювальної техніки.</span></li><li><span>Чинні й попередні редакції стандартів, серії IEC 62053 та EN 50470 одночасно.</span></li><li><span>Програму випробувань узгоджуємо заздалегідь, угода про конфіденційність — стандартний крок.</span></li><li><span>Представник замовника може бути присутнім, протокол містить посилання на пункти стандартів.</span></li></ul><p>Надамо повний пакет для внесення до вашого переліку лабораторій: атестат, додаток зі сферою, відомості про обладнання та персонал.</p></div></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="shead"><div><h2 class="h2">Неупередженість — не обіцянка, а процедура</h2></div></div>
+    <p class="lead flow-lead">Вимоги ДСТУ&nbsp;EN&nbsp;ISO/IEC&nbsp;17025:2019 щодо неупередженості та конфіденційності є предметом акредитаційної оцінки. На практиці це означає чотири речі.</p>
+    <div class="tiles">
+      <div class="ftile"><b>01</b><h3>Окремий статус</h3><p>Центр відокремлений від виробничих підрозділів</p></div>
+      <div class="ftile"><b>02</b><h3>NDA до початку</h3><p>Угода підписується перед передачею зразків</p></div>
+      <div class="ftile"><b>03</b><h3>Знеособлення</h3><p>Зразки маркуються внутрішніми кодами</p></div>
+      <div class="ftile dark"><b>04</b><h3>Усі необхідні документи</h3><p>Надаємо верифіковані підтвердження щодо якості усіх наших випробувань та простежуваності</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec on-paper">
+  <div class="wrap">
+    <div class="shead"><div><span class="kick">ДЛЯ ІМПОРТЕРІВ І ДИСТРИБ’ЮТОРІВ</span><h2 class="h2">Випробування в Україні для імпортованих приладів</h2></div></div>
+    <div class="tiles">
+      <div class="ftile"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg><h3>Кожне випробування триває рівно стільки, скільки вимагає методика, без затримок.</h3></div>
+      <div class="ftile"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 3 3 5-6"></path></svg><h3>Протокол, який приймають</h3><p>Документ акредитованої лабораторії для оцінки відповідності</p></div>
+      <div class="ftile"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"></path></svg><h3>Будь-яка серія</h3><p>Проводимо випробовування приладів за IEC 62053, і EN 50470</p></div>
+      <div class="ftile dark"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path></svg><h3>Одна контактна особа</h3><p>Програма випробувань узгоджується до початку робіт</p></div>
+    </div>
+    <div class="art tiles-note"><ul class="feat"><li><span>Програма випробувань узгоджується заздалегідь.</span></li><li><span>Узгоджуємо час проведення випробування (притримуємося домовлених термінів)</span></li><li><span>Угода про конфіденційність як стандартний крок.</span></li><li><span>Протокол із посиланням на пункти стандартів.</span></li></ul></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap text-rows">
+    <div class="about-cols"><h2 class="h2">Як замовити випробування</h2><div class="art"><ol class="nums"><li><span>Надішліть перелік приладів або опис програмного забезпечення.</span></li><li><span>Узгодимо програму випробувань, строки й вартість. За потреби підпишемо угоду про конфіденційність.</span></li><li><span>Проведемо випробування та видамо протокол.</span></li></ol><p>За запитом надаємо копію атестата з додатком на 19 аркушах, повний перелік позицій випробувань, відомості про обладнання та комерційну пропозицію під вашу програму.</p><div class="contact-card"><h3>Контактна особа</h3><div class="clist"><div><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></i><span>Світлана Паталах<small>Начальниця випробувального центру</small></span></div><a href="tel:+380684481852"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"></path></svg></i><span class="num">+380&nbsp;(68)&nbsp;448-&#8288;18-&#8288;52<small>Телефон</small></span></a><a href="mailto:svitlana.patalakh@nikel.com.ua"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></i><span>svitlana.patalakh@<wbr>nikel.com.ua<small>Електронна пошта</small></span></a></div><a href="index.html?topic=test#contact" class="btn btn-red">Замовити випробування<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div></div></div>
+    <div class="about-cols"><h2 class="h2">Часті питання</h2><div class="art"><div class="qa"><details data-dc-keep><summary><span>Це повірка лічильників?</span><svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary><p>Ні. Ми проводимо випробування. Повірка приладів в експлуатації до нашої сфери акредитації не входить.</p></details><details data-dc-keep><summary><span>Скільки триває випробування?</span><svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary><p>Залежить від програми. Строк називаємо після узгодження переліку позицій. [типові строки — уточнити]</p></details><details data-dc-keep><summary><span>Скільки це коштує?</span><svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary><p>Вартість залежить від програми випробувань. Комерційну пропозицію готуємо на запит.</p></details><details data-dc-keep><summary><span>Якою мовою протокол?</span><svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary><p>Українською.</p></details><details data-dc-keep><summary><span>Чи захищена наша інформація?</span><svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary><p>Так. Конфіденційність — вимога ДСТУ&nbsp;EN&nbsp;ISO/IEC&nbsp;17025:2019, угоду про конфіденційність підписуємо до передачі зразків.</p></details><details data-dc-keep><summary><span>Що робити, якщо потрібне випробування поза сферою акредитації?</span><svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary><p>Ми скажемо про це прямо й підкажемо лабораторію. Поза атестатом нічого не обіцяємо.</p></details></div></div></div>
+  </div>
+</section>
 
 <section class="sec on-paper" aria-labelledby="h-certs">
   <div class="wrap">
-    <div class="shead"><div><span class="kick">Сертифікати компанії</span><h2 class="h2" id="h-certs">Системи менеджменту</h2></div><p class="lead">Сертифікати системи управління компанії. Сертифікати продукції — у картках товарів.</p></div>
+    <div class="shead"><div><h2 class="h2" id="h-certs">Сертифікати компанії</h2></div></div>
     <div class="certs">
       <sc-for list="{{certs}}" as="c" hint-placeholder-count="4">
         <article class="cert">
           <h3>{{c.t}}</h3>
-          <small>{{c.st}}</small>
           <p class="cd">{{c.d}}</p>
-          <a href="#" class="cgo" aria-label="Сертифікат PDF: {{c.t}}">Сертифікат PDF<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a href="#" class="cgo" aria-label="Сертифікат PDF: {{c.t}}">PDF<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
         </article>
       </sc-for>
     </div>
   </div>
 </section>
 
-<section class="sec" aria-labelledby="h-decl">
-  <div class="wrap">
-    <div class="cgrid decl">
-      <div><span class="kick">Для тендерів</span><h2 class="h2" id="h-decl">Самодекларація щодо дитячої праці</h2><a href="#" class="btn btn-line">Завантажити PDF</a></div>
-      <div class="decl-text"><p>[Текст самодекларації компанії щодо неприпустимості дитячої праці — від замовника. В англомовній версії сайту цей блок обов’язковий для тендерів.]</p><p class="pnote">Підпис · дата · посада відповідальної особи</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="wrap band-sec">
-  <div class="band">
-    <div><span class="kick">Випробувальний центр</span><h2>Замовити випробування</h2><p>Випробуємо лічильники та ПЗ за акредитованими методиками. Заявку отримає фахівець центру.</p></div>
-    <a href="index.html#contact" class="btn btn-red">Залишити заявку<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<section class="sec">
+  <div class="wrap text-rows">
+    <div class="about-cols"><h2 class="h2">Політика щодо дитячої праці</h2><div class="art"><p>НІК-&#8288;ЕЛЕКТРОНІКА не використовує дитячу працю в жодній формі. Ми не приймаємо на роботу осіб, молодших за мінімальний вік, встановлений законодавством України, і дотримуємося принципів конвенцій Міжнародної організації праці №&nbsp;138 про мінімальний вік і №&nbsp;182 про найгірші форми дитячої праці.</p></div></div>
   </div>
 </section>
 </main>
-
-<!-- 11. Футер -->
-<footer class="ft">
-  <div class="wrap">
-    <div class="ftop"><img src="../../assets/0fb4110e-nik-logo-white.svg" alt="НІК-ЕЛЕКТРОНІКА" style="height: 64px; width: auto; display: block"></div>
-    <div class="fcols">
-      <div><b>Каталог</b><a href="catalog.html">Облік електроенергії</a><a href="catalog.html">Облік води й тепла</a><a href="catalog.html">АСКОЕ та контролери</a><a href="catalog.html">Стабілізатори напруги</a></div>
-      <div><b>Компанія</b><a href="about.html">Про нас</a><a href="#">Виробництво</a><a href="career.html">Кар’єра</a><a href="vacancies.html">Вакансії</a><a href="news.html">Прес-центр</a></div>
-      <div><b>Партнерам</b><a href="where.html">Де купити</a><a href="index.html#contact">Стати дилером</a><a href="#">Електронні документи</a><a href="service.html">Сервісний центр</a></div>
-      <div><b>Контакти</b><a href="#" class="num">+380 (44) 498-06-19</a><a href="#">info@nikel.com.ua</a><span>Пн–Пт, 8:00–17:00</span></div>
-    </div>
-    <div class="fbot">
-      <span>© 2005–2026 ТОВ «НІК-ЕЛЕКТРОНІКА»</span>
-      <nav aria-label="Правова інформація та соцмережі"><a href="#">Політика конфіденційності</a><a href="#" onClick="{{openCookie}}">Cookie</a><span><a href="#">LinkedIn</a> · <a href="#">Facebook</a> · <a href="#">YouTube</a></span></nav>
-    </div>
-  </div>
-</footer>
-
-<!-- Cookie-банер -->
-<sc-if value="{{cookie}}" hint-placeholder-val="{{true}}">
-  <div class="cookie" role="region" aria-label="Налаштування cookie">
-    <p>Ми використовуємо необхідні cookie, щоб сайт працював. За вашою згодою також використаємо аналітичні cookie і сторонні сервіси — карти та відео. Детальніше — у <a href="#">Політиці cookie</a>.</p>
-    <div class="row">
-      <button class="btn btn-ink" onClick="{{closeCookie}}">Прийняти всі</button>
-      <button class="btn btn-line" onClick="{{closeCookie}}">Лише необхідні</button>
-      <button class="btn lnk" onClick="{{closeCookie}}">Налаштувати</button>
-    </div>
-  </div>
-</sc-if>
-
-</div>
+<shell-bottom></shell-bottom>
 </script>
 <script>
 window.DC_BLOBS = {};
@@ -150,30 +153,12 @@ class Component extends DCLogic {
     super(props);
     this.state = { cookie: true, menu: false };
   }
-  base(s) {
-    const isMenu = (t, href, items) => ({ t, href, items: items.map((x) => (Array.isArray(x) ? { t: x[0], href: x[1] } : { t: x, href })) });
-    return {
-      menu: [
-        isMenu('Каталог', 'catalog.html', ['Продукти', 'Послуги', 'Програмне забезпечення', 'Таблиця взаємозамінності', 'Порівняти товари']),
-        isMenu('Про нас', 'about.html', ['Про компанію', ['Історія компанії', 'history.html'], ['Кар’єра', 'career.html'], ['Вакансії', 'vacancies.html'], ['Центр оцінки відповідності', 'conformity.html'], ['Наші партнери', 'partners.html']]),
-        isMenu('Контакти', 'where.html', ['Де купити', ['Сервісний центр', 'service.html']]),
-        isMenu('Прес-центр', 'news.html', ['Новини', ['НІКіпедія', '#'], ['Ми у ЗМІ', '#']])
-      ],
-      cookie: s.cookie && !s.menu,
-      menuOpen: s.menu, menuExp: String(s.menu), menuLabel: s.menu ? 'Закрити меню' : 'Відкрити меню',
-      burgerPath: s.menu ? 'M6 6l12 12M18 6 6 18' : 'M4 7h16M4 12h16M4 17h16',
-      toggleMenu: () => this.setState({ menu: !s.menu }),
-      menuClick: (e) => { if (e && e.target && e.target.closest && e.target.closest('a')) this.setState({ menu: false }); },
-      closeCookie: () => this.setState({ cookie: false }),
-      openCookie: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ cookie: true }); }
-    };
-  }
   renderVals() {
     const certs = [
-      { t: 'Управління якістю', st: 'ISO 9001', d: 'Вимоги до системи управління якістю: від розробки до сервісу.' },
-      { t: 'Екологічний менеджмент', st: 'ISO 14001', d: 'Вимоги до системи екологічного менеджменту виробництва.' },
-      { t: 'Інформаційна безпека', st: 'ISO/IEC 27001', d: 'Вимоги до системи управління інформаційною безпекою.' },
-      { t: 'Компетентність лабораторії', st: 'ДСТУ EN ISO/IEC 17025:2019', d: 'Акредитація НААУ випробувального центру: 28 видів випробувань лічильників і випробування ПЗ.' }
+      { t: 'ISO\u00a09001:2015', d: 'Система управління якістю' },
+      { t: 'ISO\u00a014001:2015', d: 'Система екологічного управління' },
+      { t: 'ISO/IEC 27001:2022', d: 'Система управління інформаційною безпекою' },
+      { t: 'ДСТУ EN ISO/IEC 17025:2019', d: 'Акредитація випробувального центру НААУ' }
     ];
     return Object.assign(this.base(this.state), { certs });
   }

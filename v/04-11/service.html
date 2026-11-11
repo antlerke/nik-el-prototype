@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Сервісний центр — НІК-ЕЛЕКТРОНІКА</title>
+<title>Сервісний центр NIK — ремонт і повірка лічильників</title>
+<meta name="description" content="Ремонт і експертиза лічильників та обладнання NIK: пункти прийому в Києві та Дніпрі, відправлення Новою поштою. Адреси, телефони, графік.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -12,130 +13,77 @@
 
 <script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
 <script src="runtime.js"></script>
+<script src="shell.js"></script>
 </head>
 <body>
 <div id="app"></div>
 <script type="text/x-template" id="tpl">
-<div style="font-family: Geologica, sans-serif; color: var(--text); background: #ffffff; overflow-x: clip">
-
-<a href="#main" class="skip">Перейти до змісту</a>
-<header class="hd">
-  <div class="wrap">
-    <a href="index.html" aria-label="НІК-ЕЛЕКТРОНІКА — на головну" style="display: flex"><img src="../../assets/4acb50f3-nik-logo.svg" alt="НІК-ЕЛЕКТРОНІКА — на головну" style="height: 34px; width: auto; display: block; position: relative; top: -6px"></a>
-    <nav aria-label="Головне меню" style="flex: 1 1 auto">
-      <ul class="menu">
-        <sc-for list="{{menu}}" as="m" hint-placeholder-count="4">
-          <li>
-            <a href="{{m.href}}" aria-haspopup="true">{{m.t}}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></a>
-            <div class="drop">
-              <sc-for list="{{m.items}}" as="i" hint-placeholder-count="4"><a href="{{i.href}}">{{i.t}}</a></sc-for>
-            </div>
-          </li>
-        </sc-for>
-      </ul>
-    </nav>
-    <a href="#" class="docs"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg>Електронні документи</a>
-    <div style="display: flex; align-items: center; gap: 6px">
-      <button class="icon burger" type="button" aria-label="{{menuLabel}}" aria-expanded="{{menuExp}}" aria-controls="mnav" onClick="{{toggleMenu}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="{{burgerPath}}"></path></svg></button>
-      <button class="icon" aria-label="Пошук моделі, документа або статті" title="Пошук моделі, документа або статті"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></button>
-      <a href="#" class="icon" aria-label="Увійти в особистий кабінет" title="Увійти в особистий кабінет"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></a>
-      <div class="lang"><button type="button" class="lang-btn" aria-haspopup="true" aria-label="Мова сайту: українська">UA<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button><div class="drop lang-drop" aria-label="Мова сайту"><a href="#" aria-current="true" lang="uk">Українська</a><a href="#" lang="en">English</a><a href="#" lang="ru">Русский</a></div></div>
-    </div>
-  </div>
-</header>
-<sc-if value="{{menuOpen}}" hint-placeholder-val="{{false}}">
-  <nav class="mnav" id="mnav" aria-label="Мобільне меню" onClick="{{menuClick}}">
-    <sc-for list="{{menu}}" as="m" hint-placeholder-count="4">
-      <div class="grp">
-        <a href="{{m.href}}">{{m.t}}<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-        <div class="sub"><sc-for list="{{m.items}}" as="i" hint-placeholder-count="4"><a href="{{i.href}}">{{i.t}}</a></sc-for></div>
-      </div>
-    </sc-for>
-    <div class="foot">
-      <a href="#" class="btn btn-line" style="width: 100%">Електронні документи</a>
-      <a href="index.html#contact" class="btn btn-red" style="width: 100%">Зв'язатися з нами</a>
-      <div class="seg" aria-label="Мова сайту" style="align-self: flex-start"><a href="#" aria-current="true">UA</a><a href="#">EN</a><a href="#">RU</a></div>
-    </div>
-  </nav>
-</sc-if>
-
+<shell-top></shell-top>
 <main id="main">
 <section class="phead">
   <div class="wrap">
     <nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a href="index.html">Головна</a></li><li><a href="where.html">Контакти</a></li><li><span aria-current="page">Сервісний центр</span></li></ol></nav>
     <h1>Сервісний центр</h1>
-    <p class="lead">Власний сервісний центр компанії: ремонт приладів NIK і консультації інженерів.</p>
+    <p class="lead">Сервісний центр НІК-&#8288;ЕЛЕКТРОНІКА ремонтує та проводить експертизу лічильників і обладнання NIK. Технічну консультацію можна отримати телефоном або через форму на сайті.</p>
     <nav class="tabs" aria-label="Розділ «Контакти»"><a href="where.html">Де купити</a><a href="service.html" aria-current="page">Сервісний центр</a></nav>
   </div>
 </section>
 
 <div class="wrap pbody">
-  <div class="lab lab-rev">
-    <div class="contact-card">
-      <h2>Контакти сервісу</h2>
-      <div class="clist">
-        <div><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg></i><span>[Адреса сервісного центру]<small>Адреса</small></span></div>
-        <a href="#"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"></path></svg></i><span class="num">[Телефон сервісу]<small>Телефон</small></span></a>
-        <a href="#"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></i><span>[email сервісу]<small>Email</small></span></a>
-        <div><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></i><span class="num">Пн–Пт, 8:00–17:00<small>Графік</small></span></div>
+  <div class="note"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16.5v.5"></path></svg><span>На жаль, через війну можливі логістичні та технічні затримки ремонту. Актуальні строки уточнюйте телефоном.</span></div>
+  <div class="about-who">
+    <div class="shead"><div><h2 class="h2">Пункти прийому</h2></div></div>
+    <div class="ngrid pair">
+      <div class="contact-card">
+        <h3>Київ</h3>
+        <div class="clist">
+          <div><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg></i><span>вул. Левка Лук’яненка, 13А<small>Адреса</small></span></div>
+          <a href="tel:+380443387850"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"></path></svg></i><span class="num">+380 (44) 338-78-50<small>Телефон</small></span></a>
+          <a href="tel:+380503876110"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"></path></svg></i><span class="num">+380 (50) 387-61-10<small>Телефон</small></span></a>
+          <div><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></i><span class="num">вівторок і четвер, 9:00–&#8288;17:00<small>Графік</small></span></div>
+        </div>
       </div>
-      <a href="index.html#contact" class="btn btn-red">Звернутися до сервісу<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <div class="contact-card">
+        <h3>Дніпро</h3>
+        <div class="clist">
+          <div><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg></i><span>вул. Будівельників, 34<small>Адреса</small></span></div>
+          <a href="tel:+380503559345"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"></path></svg></i><span class="num">+380 (50) 355-93-45<small>Телефон</small></span></a>
+          <div><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></i><span class="num">понеділок–п’ятниця, 8:00–&#8288;16:30<small>Графік</small></span></div>
+        </div>
+      </div>
     </div>
-    <figure class="map" role="img" aria-label="Карта: розташування сервісного центру"><span class="pin"></span></figure>
   </div>
 </div>
 
-<section class="sec on-paper" aria-labelledby="h-services">
-  <div class="wrap">
-    <div class="shead"><div><span class="kick">Послуги</span><h2 class="h2" id="h-services">Чим допоможемо</h2></div></div>
-    <div class="ngrid three">
-      <article class="service"><small>01</small><h3>Гарантійний ремонт</h3><p class="cd">Ремонт і заміна приладів NIK протягом гарантійного строку.</p></article>
-      <article class="service"><small>02</small><h3>Післягарантійний ремонт</h3><p class="cd">Діагностика й відновлення приладів після закінчення гарантії.</p></article>
-      <article class="service"><small>03</small><h3>Консультації інженерів</h3><p class="cd">Підключення, налаштування й інтеграція приладів у систему обліку.</p></article>
-    </div>
-  </div>
-</section>
-
-<section class="sec">
-  <div class="wrap">
-    <div class="band">
-      <div><span class="kick">Підтримка</span><h2>Маєте питання щодо приладу?</h2><p>Відповіді на часті питання — у чат-боті. Для ремонту залиште заявку з темою «Сервіс».</p></div>
-      <a href="index.html#contact" class="btn btn-red">Залишити заявку<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-    </div>
+<section class="sec on-paper">
+  <div class="wrap text-rows">
+    <div class="about-cols"><h2 class="h2">Що де ремонтуємо</h2><div class="art">
+      <p><b>Дніпро — ремонт:</b></p>
+      <ul class="feat"><li>однофазні лічильники NIK&nbsp;2102 і NIK&nbsp;2104 (усі модифікації);</li><li>електронні багатотарифні лічильники NIK&nbsp;2303 і NIK&nbsp;2307;</li><li>електромеханічний лічильник NIK&nbsp;2301;</li><li>теплолічильники;</li><li>автоматичні вимикачі, трансформатори струму, колодки.</li></ul>
+      <p><b>Вишгород:</b></p>
+      <ul class="feat"><li>ремонт контролерів збору даних, комутаційних контролерів, точок доступу, оптичних головок, радіоретрансляторів і подовжувачів радіоканалу;</li><li>експертиза (обстеження) всіх модифікацій лічильників електроенергії, води та тепла.</li></ul>
+    </div></div>
+    <div class="about-cols"><h2 class="h2">Відправлення Новою поштою</h2><div class="art">
+      <p>Якщо немає змоги приїхати, надішліть прилад Новою поштою. Адреса залежить від приладу — див. блок «Що де ремонтуємо».</p>
+      <ul class="feat"><li><span><b>Дніпро:</b> ТОВ «НІК-&#8288;ЕЛЕКТРОНІКА», м.&nbsp;Дніпро, відділення №&nbsp;2, просп. Богдана Хмельницького, 31-Д. Контактна особа: Сергій Шаранов, +380&nbsp;(50)&nbsp;355-&#8288;93-&#8288;45.</span></li><li><span><b>Вишгород:</b> ТОВ «НІК-&#8288;ЕЛЕКТРОНІКА», м.&nbsp;Вишгород, відділення №&nbsp;1, вул. Кургузова, 14. Контактна особа: Віктор Лінійчук, +380&nbsp;(50)&nbsp;387-&#8288;61-&#8288;10.</span></li></ul>
+      <p><b>Обов’язково</b> вкладіть у посилку супровідний лист. Коли прилад буде готовий, ми повідомимо вас телефоном.</p>
+      <p><b>Документи для завантаження:</b></p>
+      <div class="docs2"><a class="doc" href="#"><em>.docx</em>Супровідний лист на експертизу</a><a class="doc" href="#"><em>.docx</em>Супровідний лист на ремонт</a></div>
+    </div></div>
+    <div class="about-cols"><h2 class="h2">Загальні контакти</h2><div class="art">
+      <div class="contact-card">
+        <div class="clist">
+          <a href="tel:+380444980619"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"></path></svg></i><span class="num">+380&nbsp;(44)&nbsp;498-06-19<small>Телефон</small></span></a>
+          <a href="mailto:info@nikel.com.ua"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></i><span>info@nikel.com.ua<small>Електронна пошта</small></span></a>
+        </div>
+        <a href="index.html?topic=service#contact" class="btn btn-red">Технічна консультація<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </div>
+      <p class="pnote">Інформація на сторінці може змінюватися. Актуальні умови уточнюйте телефоном.</p>
+    </div></div>
   </div>
 </section>
 </main>
-
-<!-- 11. Футер -->
-<footer class="ft">
-  <div class="wrap">
-    <div class="ftop"><img src="../../assets/0fb4110e-nik-logo-white.svg" alt="НІК-ЕЛЕКТРОНІКА" style="height: 64px; width: auto; display: block"></div>
-    <div class="fcols">
-      <div><b>Каталог</b><a href="catalog.html">Облік електроенергії</a><a href="catalog.html">Облік води й тепла</a><a href="catalog.html">АСКОЕ та контролери</a><a href="catalog.html">Стабілізатори напруги</a></div>
-      <div><b>Компанія</b><a href="about.html">Про нас</a><a href="#">Виробництво</a><a href="career.html">Кар’єра</a><a href="vacancies.html">Вакансії</a><a href="news.html">Прес-центр</a></div>
-      <div><b>Партнерам</b><a href="where.html">Де купити</a><a href="index.html#contact">Стати дилером</a><a href="#">Електронні документи</a><a href="service.html">Сервісний центр</a></div>
-      <div><b>Контакти</b><a href="#" class="num">+380 (44) 498-06-19</a><a href="#">info@nikel.com.ua</a><span>Пн–Пт, 8:00–17:00</span></div>
-    </div>
-    <div class="fbot">
-      <span>© 2005–2026 ТОВ «НІК-ЕЛЕКТРОНІКА»</span>
-      <nav aria-label="Правова інформація та соцмережі"><a href="#">Політика конфіденційності</a><a href="#" onClick="{{openCookie}}">Cookie</a><span><a href="#">LinkedIn</a> · <a href="#">Facebook</a> · <a href="#">YouTube</a></span></nav>
-    </div>
-  </div>
-</footer>
-
-<!-- Cookie-банер -->
-<sc-if value="{{cookie}}" hint-placeholder-val="{{true}}">
-  <div class="cookie" role="region" aria-label="Налаштування cookie">
-    <p>Ми використовуємо необхідні cookie, щоб сайт працював. За вашою згодою також використаємо аналітичні cookie і сторонні сервіси — карти та відео. Детальніше — у <a href="#">Політиці cookie</a>.</p>
-    <div class="row">
-      <button class="btn btn-ink" onClick="{{closeCookie}}">Прийняти всі</button>
-      <button class="btn btn-line" onClick="{{closeCookie}}">Лише необхідні</button>
-      <button class="btn lnk" onClick="{{closeCookie}}">Налаштувати</button>
-    </div>
-  </div>
-</sc-if>
-
-</div>
+<shell-bottom></shell-bottom>
 </script>
 <script>
 window.DC_BLOBS = {};
@@ -143,24 +91,6 @@ class Component extends DCLogic {
   constructor(props) {
     super(props);
     this.state = { cookie: true, menu: false };
-  }
-  base(s) {
-    const isMenu = (t, href, items) => ({ t, href, items: items.map((x) => (Array.isArray(x) ? { t: x[0], href: x[1] } : { t: x, href })) });
-    return {
-      menu: [
-        isMenu('Каталог', 'catalog.html', ['Продукти', 'Послуги', 'Програмне забезпечення', 'Таблиця взаємозамінності', 'Порівняти товари']),
-        isMenu('Про нас', 'about.html', ['Про компанію', ['Історія компанії', 'history.html'], ['Кар’єра', 'career.html'], ['Вакансії', 'vacancies.html'], ['Центр оцінки відповідності', 'conformity.html'], ['Наші партнери', 'partners.html']]),
-        isMenu('Контакти', 'where.html', ['Де купити', ['Сервісний центр', 'service.html']]),
-        isMenu('Прес-центр', 'news.html', ['Новини', ['НІКіпедія', '#'], ['Ми у ЗМІ', '#']])
-      ],
-      cookie: s.cookie && !s.menu,
-      menuOpen: s.menu, menuExp: String(s.menu), menuLabel: s.menu ? 'Закрити меню' : 'Відкрити меню',
-      burgerPath: s.menu ? 'M6 6l12 12M18 6 6 18' : 'M4 7h16M4 12h16M4 17h16',
-      toggleMenu: () => this.setState({ menu: !s.menu }),
-      menuClick: (e) => { if (e && e.target && e.target.closest && e.target.closest('a')) this.setState({ menu: false }); },
-      closeCookie: () => this.setState({ cookie: false }),
-      openCookie: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ cookie: true }); }
-    };
   }
   renderVals() {
     return this.base(this.state);

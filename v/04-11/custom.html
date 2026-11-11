@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Лічильники на замовлення: розробка та виробництво — НІК</title>
+<meta name="description" content="Адаптуємо лічильники та пристрої під вимоги вашого ринку чи проєкту: інтерфейси, протоколи, корпус, функції. Власне конструкторське бюро та виробництво.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
+<script src="runtime.js"></script>
+<script src="shell.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/x-template" id="tpl">
+<shell-top></shell-top>
+<main id="main">
+<section class="phead">
+  <div class="wrap">
+    <nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a href="index.html">Головна</a></li><li><a href="catalog.html">Каталог</a></li><li><a href="services.html">Послуги</a></li><li><span aria-current="page">Розробка на замовлення</span></li></ol></nav>
+    <h1>Лічильники та пристрої на замовлення</h1>
+    <p class="lead">Увесь цикл проходить під нашим контролем: власне конструкторське бюро, SMT-лінія монтажу друкованих плат, лиття пластикових корпусів, складання, повірка, випробування та сервісний центр. Завдяки цьому ми швидко адаптуємо прилади під вимоги конкретного ринку чи замовника&nbsp;— або створюємо новий пристрій під ваше завдання.</p>
+  </div>
+</section>
+
+<div class="wrap pbody">
+  <div class="shead"><div><h2 class="h2">Що можна адаптувати</h2></div></div>
+  <div class="ngrid three">
+    <sc-for list="{{items}}" as="c" hint-placeholder-count="6">
+      <article class="cert"><h3>{{c.t}}</h3><p class="cd">{{c.d}}</p></article>
+    </sc-for>
+  </div>
+  <div class="about-who">
+    <div class="about-cols"><h2 class="h2">Як ми створюємо пристрій</h2><div class="art"><ol class="nums"><li><span><b>Аналіз вимог.</b> Вивчаємо задачу та готуємо технічне завдання.</span></li><li><span><b>Електроніка.</b> Розробляємо плати та апаратну частину.</span></li><li><span><b>Корпус.</b> Створюємо 3D-модель, прес-форму та робимо пробне лиття.</span></li><li><span><b>Програмне забезпечення.</b> Тестове, виробниче та ПЗ верхнього рівня.</span></li><li><span><b>Випробування та пробна партія.</b> Перевіряємо апаратну частину й функції, готуємо технічну документацію.</span></li><li><span><b>Сертифікація.</b> Підтверджуємо відповідність вимогам цільового ринку.</span></li><li><span><b>Серійне виробництво.</b></span></li></ol></div></div>
+  </div>
+</div>
+
+<section class="wrap band-sec">
+  <div class="band">
+    <div><h2>Опишіть задачу&nbsp;— наші інженери запропонують рішення під ваші вимоги</h2></div>
+    <a href="index.html#contact" class="btn btn-red">Обговорити задачу<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+  </div>
+</section>
+</main>
+<shell-bottom></shell-bottom>
+</script>
+<script>
+window.DC_BLOBS = {};
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { cookie: true, menu: false };
+  }
+  renderVals() {
+    return Object.assign(this.base(this.state), {
+      items: [
+        { t: 'Зв’язок', d: 'Інтерфейси PLC, GSM/LTE, RF, RS-485 та їх поєднання.' },
+        { t: 'Протоколи', d: 'Підтримка DLMS/COSEM та IDIS.' },
+        { t: 'Функції', d: 'Тарифи та зони, передплата, реле відключення навантаження, захист від втручань.' },
+        { t: 'Корпус', d: 'Власна розробка прес-форм і лиття.' },
+        { t: 'Маркування та пакування', d: 'Під вимоги замовника.' },
+        { t: 'Сертифікація', d: 'Лічильники NIK мають сертифікати CE, CCC, IDIS та DLMS. Готуємо пристрій до сертифікації на цільовому ринку.' }
+      ]
+    });
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>

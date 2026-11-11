@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>НІКіпедія — технічна енциклопедія про облік енергії</title>
+<meta name="description" content="Статті про лічильники електроенергії, води й тепла, системи АСКОЕ, протоколи передачі даних і сертифікацію. Від інженерів NIK.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
+<script src="runtime.js"></script>
+<script src="shell.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/x-template" id="tpl">
+<shell-top></shell-top>
+<main id="main">
+<section class="phead">
+  <div class="wrap">
+    <nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a href="index.html">Головна</a></li><li><a href="news.html">Прес-центр</a></li><li><span aria-current="page">НІКіпедія</span></li></ol></nav>
+    <h1>НІКіпедія</h1>
+    <p class="lead">Технічна енциклопедія NIK про облік енергоресурсів. Пояснюємо, як працюють лічильники та системи АСКОЕ, як передаються дані та що означає сертифікація.</p>
+    <div class="tabs"><a href="news.html">Новини</a><a href="nikipedia.html" aria-current="page">НІКіпедія</a><a href="media.html">Ми у ЗМІ</a></div>
+  </div>
+</section>
+
+<div class="wrap pbody">
+  <form class="search" role="search" onSubmit="{{onQ}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><label class="sr" for="wiki-q">Пошук статей</label><input type="search" id="wiki-q" placeholder="Пошук статей" value="{{q}}"><button type="submit" class="btn btn-ink sgo">Знайти</button></form>
+  <div class="tabs" role="tablist" aria-label="Теми">
+    <sc-for list="{{cats}}" as="c" hint-placeholder-count="5"><button type="button" role="tab" aria-selected="{{c.on}}" aria-controls="wiki-panel" onClick="{{c.pick}}">{{c.t}}</button></sc-for>
+  </div>
+  <sc-if value="{{hasList}}" hint-placeholder-val="{{true}}">
+  <div class="ngrid three" id="wiki-panel" role="tabpanel" aria-label="{{cat}}">
+    <sc-for list="{{list}}" as="a" hint-placeholder-count="6">
+      <a href="nikipedia-article.html" class="nc">
+        <span class="bd"><span class="meta"><span class="tag">{{a.c}}</span><span>Час читання: N хв</span></span><span class="t">{{a.t}}</span><span class="more">Читати статтю<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span>
+      </a>
+    </sc-for>
+  </div>
+  </sc-if>
+  <sc-if value="{{none}}" hint-placeholder-val="{{false}}"><div class="empty" id="wiki-panel">Статей за цим запитом немає. Спробуйте інше слово або поставте питання в чаті.</div></sc-if>
+</div>
+</main>
+<shell-bottom></shell-bottom>
+</script>
+<script>
+window.DC_BLOBS = {};
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    // the address with ?q=word opens the page with that search, so the "nothing found" state can be seen
+    this.state = { cookie: true, menu: false, cat: 'Усі статті', q: new URLSearchParams(location.search).get('q') || '' };
+  }
+  renderVals() {
+    const s = this.state;
+    const A = ['Сертифікації', 'Лічильники', 'Принципи роботи', 'Передача даних', 'Лічильники', 'Передача даних'].map((c) => ({ c, t: '[Тема статті]' }));
+    const cats = ['Усі статті', 'Сертифікації', 'Лічильники', 'Принципи роботи', 'Передача даних'].map((t) => ({ t, on: String(s.cat === t), pick: () => this.setState({ cat: t }) }));
+    const q = s.q.toLowerCase();
+    const list = A.filter((a) => (s.cat === 'Усі статті' || a.c === s.cat) && (!q || (a.t + ' ' + a.c).toLowerCase().includes(q)));
+    return Object.assign(this.base(s), {
+      cats, cat: s.cat, q: s.q, list, hasList: list.length > 0, none: !list.length,
+      onQ: (e) => { e.preventDefault(); this.setState({ q: e.target.querySelector('input').value.trim() }); }
+    });
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>

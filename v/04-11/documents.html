@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Електронні документи NIK — застосунок NIK Документи</title>
+<meta name="description" content="[після уточнення: які документи доступні та як їх отримати]">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
+<script src="runtime.js"></script>
+<script src="shell.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/x-template" id="tpl">
+<shell-top></shell-top>
+<main id="main">
+<section class="phead">
+  <div class="wrap">
+    <nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a href="index.html">Головна</a></li><li><span aria-current="page">Електронні документи</span></li></ol></nav>
+    <h1>Електронні документи</h1>
+    <p class="lead">У застосунку NIK&nbsp;Документи ви можете [уточнити: що саме&nbsp;— отримати паспорт приладу, сертифікати, підписати документи з партнером?].</p>
+  </div>
+</section>
+
+<div class="wrap pbody text-rows">
+  <div class="about-cols"><h2 class="h2">Як це працює</h2><div class="art"><ol class="nums"><li><span>Завантажте застосунок.</span></li><li><span>[крок].</span></li><li><span>[крок].</span></li></ol><div class="hbtns"><a href="#" target="_blank" rel="noopener" class="btn btn-ink">Завантажити в App Store</a><a href="#" target="_blank" rel="noopener" class="btn btn-ink">Завантажити в Google Play</a></div><p class="pnote">Виникли труднощі з застосунком&nbsp;— напишіть у чат або зателефонуйте <a href="tel:+380444980619">+380&nbsp;(44)&nbsp;498-06-19</a>.</p></div></div>
+</div>
+</main>
+<shell-bottom></shell-bottom>
+</script>
+<script>
+window.DC_BLOBS = {};
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { cookie: true, menu: false };
+  }
+  renderVals() {
+    return this.base(this.state);
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>

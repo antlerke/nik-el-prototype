@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Впровадження АСКОЕ під ключ — НІК-ЕЛЕКТРОНІКА</title>
+<meta name="description" content="Аудит, проєктування, монтаж і супровід систем автоматизованого обліку на базі лічильників NIK і ПЗ NovaSys. Підтримка від виробника.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/morphdom@2.7.4/dist/morphdom-umd.min.js"></script>
+<script src="runtime.js"></script>
+<script src="shell.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/x-template" id="tpl">
+<shell-top></shell-top>
+<main id="main">
+<section class="phead">
+  <div class="wrap">
+    <nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a href="index.html">Головна</a></li><li><a href="catalog.html">Каталог</a></li><li><a href="services.html">Послуги</a></li><li><span aria-current="page">Впровадження АСКОЕ</span></li></ol></nav>
+    <h1>Впровадження АСКОЕ</h1>
+    <p class="lead">Передача даних між лічильниками та контролерами збору даних з NovaSys відбувається через PLC (лінії електроживлення), RF (радіоканал) або RS-485. Від контролера до сервера&nbsp;— мережа мобільного оператора або Ethernet.</p>
+  </div>
+</section>
+
+<div class="wrap pbody text-rows">
+  <div class="about-cols"><h2 class="h2">Що входить у послугу</h2><div class="art"><ol class="nums"><li><span><b>Аудит.</b> Діагностика технічного стану приладів обліку та мереж передачі даних.</span></li><li><span><b>Проєктування.</b> Розробка проєкту AMI-системи під ваш об’єкт.</span></li><li><span><b>Монтаж.</b> Встановлення багатотарифних лічильників і їх параметризація, налаштування передачі даних різними каналами зв’язку, переведення споживачів на тариф із диференціацією за часом доби.</span></li><li><span><b>Сервіс.</b> Обслуговування чинних і нових AMI-систем, подальша підтримка сервісного центру.</span></li></ol></div></div>
+  <div class="about-cols"><h2 class="h2">АСКОЕ NovaSys</h2><div class="art"><ul class="feat"><li><span>Понад 98% первинних даних збирається з першої спроби, 100%&nbsp;— з&nbsp;наступних ітерацій, без втрат даних</span></li><li><span>Необмежене масштабування системи</span></li><li><span>Сумісність зі смарт-лічильниками інших брендів</span></li><li><span>Мобільний додаток</span></li><li><span>Рішення «під ключ» з індивідуальним налаштуванням</span></li><li><span>Сервісна та технічна підтримка безпосередньо від виробника</span></li></ul></div></div>
+</div>
+
+<section class="wrap band-sec">
+  <div class="band">
+    <div><span class="kick">ВАЖЛИВО</span><h2>Послугу надає офіційний дистриб’ютор NIK — ТОВ&nbsp;«НІК»</h2><p>Він проєктує, монтує та обслуговує системи автоматизованого обліку (AMI) для житлових і промислових об’єктів на базі лічильників, контролерів збору даних і програмного забезпечення NovaSys.</p></div>
+    <a href="https://nik.net.ua" target="_blank" rel="noopener" class="btn btn-red">Зв'язатися з ТОВ&nbsp;«НІК»<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+  </div>
+</section>
+</main>
+<shell-bottom></shell-bottom>
+</script>
+<script>
+window.DC_BLOBS = {};
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { cookie: true, menu: false };
+  }
+  renderVals() {
+    return this.base(this.state);
+  }
+}
+
+DC.mount(Component);
+</script>
+</body>
+</html>
