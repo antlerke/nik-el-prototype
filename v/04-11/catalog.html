@@ -25,13 +25,10 @@
     <span class="kick">Продуктовий портфель</span>
     <h1>Каталог</h1>
     <p class="lead">Прилади обліку енергоресурсів, компоненти АСКОЕ, стабілізатори напруги та послуги&nbsp;— з документацією й сертифікатами.</p>
-    <div class="tabs" role="tablist" aria-label="Розділ каталогу">
-        <sc-for list="{{tabs}}" as="t" hint-placeholder-count="3"><button type="button" role="tab" aria-selected="{{t.on}}" onClick="{{t.pick}}">{{t.label}}</button></sc-for>
-    </div>
+    <div class="tabs"><a href="catalog.html" aria-current="page">Продукти</a><a href="services.html">Послуги</a><a href="software.html">Програмне забезпечення</a></div>
   </div>
 </section>
 
-<sc-if value="{{isProd}}" hint-placeholder-val="{{true}}">
 <div class="wrap cat pbody">
   <sc-if value="{{sheet}}" hint-placeholder-val="{{false}}"><div class="veil" onClick="{{closeSheet}}"></div></sc-if>
   <aside class="{{filtCls}}" aria-labelledby="filt-h">
@@ -68,24 +65,6 @@
     <sc-if value="{{multi}}" hint-placeholder-val="{{true}}"><nav class="pager" aria-label="Сторінки"><sc-for list="{{pages}}" as="pg" hint-placeholder-count="2"><sc-if value="{{pg.cur}}" hint-placeholder-val="{{false}}"><span aria-current="page">{{pg.n}}</span></sc-if><sc-if value="{{pg.other}}" hint-placeholder-val="{{true}}"><a href="#" aria-label="{{pg.aria}}" onClick="{{pg.go}}">{{pg.n}}</a></sc-if></sc-for><sc-if value="{{hasNext}}" hint-placeholder-val="{{true}}"><a href="#" aria-label="Наступна сторінка" onClick="{{next}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: block"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></sc-if><sc-if value="{{noNext}}" hint-placeholder-val="{{false}}"><span class="off" aria-disabled="true" aria-label="Наступна сторінка"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: block"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></sc-if></nav></sc-if>
   </div>
 </div>
-</sc-if>
-
-<sc-if value="{{isSvc}}" hint-placeholder-val="{{false}}">
-<div class="wrap pbody" style="padding-top: 48px; padding-bottom: 120px">
-  <div class="svc-grid">
-    <sc-for list="{{svcs}}" as="v" hint-placeholder-count="4"><a href="#" class="scard"><img src="{{v.img}}" alt=""><b>{{v.t}}</b><span>{{v.d}}</span></a></sc-for>
-  </div>
-</div>
-</sc-if>
-
-<sc-if value="{{isSoft}}" hint-placeholder-val="{{false}}">
-<div class="wrap pbody" style="padding-top: 48px; padding-bottom: 120px">
-  <div class="pgrid soft" style="margin-top: 0">
-    <a href="#" class="card"><span class="ctop"><span class="tag">Програмне забезпечення</span></span><span class="cimg"><img class="flat" src="../../assets/fdc858a8-p-space.jpg" alt="Логотип NIK SPACE"></span><span class="ct">NIK SPACE</span><span class="cd">ПЗ для дистанційного збору та обробки даних з приладів обліку.</span><span class="cgo"><span class="cgo-in">Детальніше<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span></a>
-    <div class="placeholder" style="min-height: 360px">[Опис платформи, скриншоти інтерфейсу та документація — від замовника]</div>
-  </div>
-</div>
-</sc-if>
 
 <section class="wrap band-sec" style="padding-bottom: 120px">
   <div class="band">
@@ -101,7 +80,7 @@ window.DC_BLOBS = {"f17070b288dd9e18e46b94068534e6a7":"../../assets/f17070b2-nik
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = Object.assign({ cookie: true, menu: false }, { tab: 'prod', sheet: false, q: '', sort: 'new', page: 1, applied: { dir: [], ph: [], ch: [], cert: [], eol: false }, open: { dir: true, ph: true, ch: true, cert: true }, more: {} });
+    this.state = Object.assign({ cookie: true, menu: false }, { sheet: false, q: '', sort: 'new', page: 1, applied: { dir: [], ph: [], ch: [], cert: [], eol: false }, open: { dir: true, ph: true, ch: true, cert: true }, more: {} });
   }
   renderVals() {
     const s = this.state;
@@ -160,13 +139,6 @@ class Component extends DCLogic {
     G.forEach((g) => f[g.id].forEach((v) => active.push({ label: label[g.id + v], aria: 'Прибрати фільтр ' + label[g.id + v], remove: rm(g.id, v) })));
     const n = active.length;
     const empty = { dir: [], ph: [], ch: [], cert: [], eol: false };
-    const tabs = [['prod', 'Продукти'], ['svc', 'Послуги'], ['soft', 'Програмне забезпечення']].map(([id, l]) => ({ label: l, on: String(s.tab === id), pick: () => this.setState({ tab: id }) }));
-    const svcs = [
-      { t: 'Контрактне виробництво', d: 'SMT-монтаж плат, лиття корпусів і складання за вашою документацією.', img: B + '1695fc08e5d7c1a2fcd4fbc761e00a02' },
-      { t: 'Високовольтні мережі', d: 'Обладнання 0,4–35 кВ і реконструкція підстанцій.', img: B + '5a730fd2f1cb33a5b04465cf472e04b9' },
-      { t: 'Випробування та сертифікація', d: 'Акредитований випробувальний центр: 28 видів випробувань лічильників і випробування ПЗ.', img: B + 'e3a26a87fafda2aa0c87ff6cdb2b951e' },
-      { t: 'Сервісне обслуговування', d: 'Гарантійний і післягарантійний ремонт, консультації інженерів.', img: B + '2d5e93a952ee95766eb8b2734477ce42' }
-    ];
     // long groups show the first 4 values and «Показати ще»; a chosen value is never hidden
     const MORE = 4;
     groups.forEach((g, i) => {
@@ -177,7 +149,6 @@ class Component extends DCLogic {
       g.toggleMore = () => this.setState({ more: { ...(this.state.more || {}), [gid]: !more } });
     });
     return Object.assign(this.base(s), {
-      tabs, isProd: s.tab === 'prod', isSvc: s.tab === 'svc', isSoft: s.tab === 'soft', svcs,
       groups, items, none: !list.length, found: list.length + ' ' + (list.length % 10 === 1 && list.length % 100 !== 11 ? 'модель' : [2, 3, 4].includes(list.length % 10) && ![12, 13, 14].includes(list.length % 100) ? 'моделі' : 'моделей'), active,
       q: s.q, sort: s.sort, onQ: (e) => { e.preventDefault(); this.setState({ q: e.target.querySelector('input').value.trim(), page: 1 }); }, onSort: (e) => this.setState({ sort: e.target.value, page: 1 }),
       // page buttons only when there is more than one page (not for one page, not for «нічого не знайдено»)
