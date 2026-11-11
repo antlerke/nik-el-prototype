@@ -22,9 +22,22 @@ window.SHELL = {
     <a href="documents.html" class="docs"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg>Електронні документи</a>
     <div style="display: flex; align-items: center; gap: 6px">
       <button class="icon burger" type="button" aria-label="{{menuLabel}}" aria-expanded="{{menuExp}}" aria-controls="mnav" onClick="{{toggleMenu}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="{{burgerPath}}"></path></svg></button>
-      <a href="search.html" class="icon" aria-label="Пошук моделі, документа або статті" title="Пошук моделі, документа або статті"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></a>
+      <button type="button" class="icon hs-btn" aria-label="{{hsLabel}}" title="{{hsLabel}}" aria-expanded="{{hsExp}}" aria-controls="hsearch" onClick="{{toggleSearch}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><sc-if value="{{hsShut}}" hint-placeholder-val="{{true}}"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></sc-if><sc-if value="{{hsOpen}}" hint-placeholder-val="{{false}}"><path d="M6 6l12 12M18 6 6 18" stroke-linecap="round"></path></sc-if></svg></button>
       <a href="#" class="icon" aria-label="Увійти в особистий кабінет" title="Увійти в особистий кабінет"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></a>
       <div class="lang"><button type="button" class="lang-btn" aria-haspopup="true" aria-label="Мова сайту: українська">UA<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button><div class="drop lang-drop" aria-label="Мова сайту"><a href="#" aria-current="true" lang="uk">Українська</a><a href="#" lang="en">English</a><a href="#" lang="ru">Русский</a></div></div>
+    </div>
+  </div>
+  <!-- search panel: the header's search icon slides it open under the header; Enter opens search.html with the query -->
+  <div class="hsearch{{hsCls}}" id="hsearch">
+    <div class="wrap">
+      <form class="search" role="search" onSubmit="{{searchGo}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><label class="sr" for="hs-q">Пошук моделі, документа або статті</label><input type="search" id="hs-q" placeholder="Пошук моделі, документа або статті" autocomplete="off" onInput="{{searchType}}"><button type="submit" class="btn btn-ink sgo">Знайти</button></form>
+      <sc-if value="{{hsHas}}" hint-placeholder-val="{{false}}">
+        <div class="hs-res">
+          <ul class="hs-list"><sc-for list="{{hsList}}" as="r" hint-placeholder-count="5"><li><a href="{{r.href}}"><span class="t">{{r.t}}<small>{{r.o}}</small></span><span class="tag">{{r.c}}</span></a></li></sc-for></ul>
+          <a href="{{hsAll}}" class="hs-all">Усі результати ({{hsCount}})<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </div>
+      </sc-if>
+      <sc-if value="{{hsNone}}" hint-placeholder-val="{{false}}"><p class="hs-none">За вашим запитом нічого не знайдено. Перевірте написання або перегляньте <a href="catalog.html">каталог</a>.</p></sc-if>
     </div>
   </div>
 </header>
@@ -82,21 +95,68 @@ window.SHELL = {
 </div>`
 };
 
+// what the site search finds (sample entries): the header panel shows the first five, search.html shows them all
+window.NIK_SEARCH = (() => {
+  const product = (t, o) => ({ c: 'Продукти', t, o, more: 'Детальніше', href: 'product.html' });
+  const doc = (t) => ({ c: 'Документи', t, o: 'NIK 2306 · PDF', more: 'Завантажити', href: '#' });
+  // articles have no text yet, so the keywords stand in for it
+  const article = { c: 'Статті', t: '[Тема статті]', k: 'NIK лічильник', more: 'Читати статтю', href: 'nikipedia-article.html' };
+  const news = (d, t) => ({ c: 'Новини', d, t, more: 'Читати далі', href: 'article.html' });
+  return [
+    product('NIK 2306', 'Лічильник електроенергії трифазний'),
+    product('NIK 2300', 'Лічильник електроенергії трифазний'),
+    product('NIK 2303', 'Лічильник електроенергії трифазний'),
+    product('NIK 2104', 'Лічильник електроенергії однофазний'),
+    product('NIK 2100', 'Лічильник електроенергії однофазний'),
+    product('NIK 7071', 'Теплолічильник'),
+    product('NIK 7011', 'Лічильник холодної води'),
+    doc('Настанова з експлуатації'),
+    doc('Сертифікат відповідності'),
+    article,
+    article,
+    news('10.12.2021', 'Лічильник 7021 сертифіковано'),
+    news('25.03.2021', 'Розробка пересувних електротехнічних лабораторій від NIK'),
+    news('27.01.2021', 'Київська торгово-промислова палата про новий теплолічильник NIK 7071')
+  ].map((i) => ({ ...i, hasD: !!i.d, hasO: !!i.o }));
+})();
+window.NIK_FIND = (query) => {
+  const flat = (x) => String(x || '').replace(/ /g, ' ').toLowerCase(), q = flat(query).trim();
+  return window.NIK_SEARCH.filter((i) => !q || flat([i.c, i.t, i.o, i.k].join(' ')).includes(q));
+};
+
 // what the shared parts need from every page: Object.assign(this.base(s), { ...the page's own values })
 DCLogic.prototype.base = function (s) {
   const isMenu = (t, href, items) => ({ t, href, items: items.map((x) => (Array.isArray(x) ? { t: x[0], href: x[1] } : { t: x, href })) });
+  // the search panel closes with Esc or a click anywhere outside it (set up once per page)
+  if (!window.__hsKeys) {
+    window.__hsKeys = true;
+    const c = this;
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && c.state.search) { c.setState({ search: false }); const b = document.querySelector('.hs-btn'); if (b) b.focus(); } });
+    document.addEventListener('click', (e) => { if (c.state.search && e.target.closest && !e.target.closest('.hsearch, .hs-btn')) c.setState({ search: false }); });
+  }
+  const sq = (s.sq || '').trim(), found = sq ? window.NIK_FIND(sq) : [];
   return {
+    hsCls: s.search ? ' open' : '', hsExp: String(!!s.search), hsLabel: s.search ? 'Закрити пошук' : 'Пошук моделі, документа або статті',
+    hsShut: !s.search, hsOpen: !!s.search,
+    hsList: found.slice(0, 5), hsHas: found.length > 0, hsNone: !!sq && !found.length, hsCount: found.length, hsAll: 'search.html?q=' + encodeURIComponent(sq),
+    toggleSearch: () => {
+      const open = !s.search;
+      this.setState({ search: open, menu: false });
+      if (open) setTimeout(() => { const i = document.getElementById('hs-q'); if (i) i.focus(); }, 60);
+    },
+    searchType: (e) => this.setState({ sq: e.target.value }),
+    searchGo: (e) => { e.preventDefault(); const q = e.target.querySelector('input').value.trim(); location.href = 'search.html' + (q ? '?q=' + encodeURIComponent(q) : ''); },
     menu: [
       isMenu('Каталог', 'catalog.html', ['Продукти', ['Послуги', 'services.html'], ['Програмне забезпечення', 'software.html'], 'Таблиця взаємозамінності', 'Порівняти товари']),
       isMenu('Про нас', 'about.html', ['Про компанію', ['Історія компанії', 'history.html'], ['Кар’єра', 'career.html'], ['Вакансії', 'vacancies.html'], ['Центр оцінки відповідності', 'conformity.html'], ['Наші партнери', 'partners.html']]),
       isMenu('Контакти', 'where.html', ['Де купити', ['Сервісний центр', 'service.html']]),
       isMenu('Прес-центр', 'news.html', ['Новини', ['НІКіпедія', 'nikipedia.html'], ['Ми у ЗМІ', 'media.html']])
     ],
-    cookie: s.cookie && !s.menu && !s.cookieSet,
-    cookieSet: s.cookieSet && !s.menu,
+    cookie: s.cookie && !s.menu && !s.cookieSet && !s.search,
+    cookieSet: s.cookieSet && !s.menu && !s.search,
     menuOpen: s.menu, menuExp: String(s.menu), menuLabel: s.menu ? 'Закрити меню' : 'Відкрити меню',
     burgerPath: s.menu ? 'M6 6l12 12M18 6 6 18' : 'M4 7h16M4 12h16M4 17h16',
-    toggleMenu: () => this.setState({ menu: !s.menu }),
+    toggleMenu: () => this.setState({ menu: !s.menu, search: false }),
     menuClick: (e) => { if (e && e.target && e.target.closest && e.target.closest('a')) this.setState({ menu: false }); },
     closeCookie: () => this.setState({ cookie: false, cookieSet: false }),
     openCookie: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ cookieSet: true }); }

@@ -56,30 +56,8 @@ class Component extends DCLogic {
   }
   renderVals() {
     const s = this.state;
-    const product = (t, o) => ({ c: 'Продукти', t, o, more: 'Детальніше', href: 'product.html' });
-    const doc = (t) => ({ c: 'Документи', t, o: 'NIK 2306 · PDF', more: 'Завантажити', href: '#' });
-    // articles have no text yet, so the keywords stand in for it
-    const article = { c: 'Статті', t: '[Тема статті]', k: 'NIK лічильник', more: 'Читати статтю', href: 'nikipedia-article.html' };
-    const news = (d, t) => ({ c: 'Новини', d, t, more: 'Читати далі', href: 'article.html' });
-    const ITEMS = [
-      product('NIK 2306', 'Лічильник електроенергії трифазний'),
-      product('NIK 2300', 'Лічильник електроенергії трифазний'),
-      product('NIK 2303', 'Лічильник електроенергії трифазний'),
-      product('NIK 2104', 'Лічильник електроенергії однофазний'),
-      product('NIK 2100', 'Лічильник електроенергії однофазний'),
-      product('NIK 7071', 'Теплолічильник'),
-      product('NIK 7011', 'Лічильник холодної води'),
-      doc('Настанова з експлуатації'),
-      doc('Сертифікат відповідності'),
-      article,
-      article,
-      news('10.12.2021', 'Лічильник 7021 сертифіковано'),
-      news('25.03.2021', 'Розробка пересувних електротехнічних лабораторій від NIK'),
-      news('27.01.2021', 'Київська торгово-промислова палата про новий теплолічильник NIK 7071')
-    ].map((i) => ({ ...i, hasD: !!i.d, hasO: !!i.o }));
-    const flat = (x) => x.replace(/ /g, ' ').toLowerCase();
-    const q = flat(s.q);
-    const list = ITEMS.filter((i) => (s.tab === 'Усе' || i.c === s.tab) && (!q || flat([i.c, i.t, i.o, i.k].join(' ')).includes(q)));
+    // the sample entries and the matching live in shell.js, shared with the header's search panel
+    const list = window.NIK_FIND(s.q).filter((i) => s.tab === 'Усе' || i.c === s.tab);
     const tabs = ['Усе', 'Продукти', 'Документи', 'Статті', 'Новини'].map((t) => ({ t, on: String(s.tab === t), pick: () => this.setState({ tab: t }) }));
     return Object.assign(this.base(s), {
       tabs, tab: s.tab, q: s.q, shown: s.q || '[запит]', count: list.length, list, hasList: list.length > 0, none: !list.length,
