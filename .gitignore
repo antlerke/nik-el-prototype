@@ -1,1 +1,4 @@
 tools-for-ai/out/
+# Claude Design exports: the unpacked folders are kept; the .zip copies and PDF prints of them are not
+v/04-11/claude-design-export/*.zip
+v/04-11/claude-design-export/*.pdf

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сторінки прототипу NIK</title>
+<meta name="robots" content="noindex">
+<style>
+body { margin: 0; background: #ffffff; color: #36434f; font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 760px; margin: 0 auto; padding: 40px 20px 64px; }
+h1 { margin: 0 0 8px; font-size: 30px; line-height: 1.2; color: #13385d; }
+.date { margin: 0; color: #59636e; }
+.legend { margin: 16px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+h2 { margin: 40px 0 8px; font-size: 22px; color: #13385d; }
+h3 { margin: 20px 0 4px; font-size: 15px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: #59636e; }
+ul { margin: 0; padding-left: 20px; }
+li { margin: 6px 0; }
+a { color: #13385d; text-underline-offset: 3px; }
+.why { color: #59636e; }
+/* one of three states next to every page; the two that need something from the company jump to the description below */
+.st { display: inline-block; margin-left: 8px; padding: 0 8px; border-radius: 6px; font-size: 13px; line-height: 22px; text-decoration: none; white-space: nowrap; }
+.legend .st { margin: 0 8px 0 0; }
+.st.ok { background: #e5f3eb; color: #1d6b45; }
+.st.part { background: #fdf0dc; color: #8a4b00; }
+.st.most { background: #fde8ea; color: #a50d26; }
+a.st:hover { text-decoration: underline; }
+.need li { scroll-margin-top: 16px; border-radius: 6px; }
+.need li:target { background: #fdf0dc; box-shadow: 0 0 0 6px #fdf0dc; }
+@media (max-width: 560px) { .st { white-space: normal; } }
+</style>
+</head>
+<body>
+<main>
+<h1>Сторінки прототипу сайту НІК-ЕЛЕКТРОНІКА</h1>
+<p class="date">Стан на 11.11.2026. Натисніть назву, щоб відкрити сторінку.</p>
+<ul class="legend">
+  <li><span class="st ok">готово</span>15 сторінок</li>
+  <li><span class="st part">готово, але бракує деталей від компанії</span>10 сторінок</li>
+  <li><span class="st most">бракує більшої частини вмісту від компанії</span>8 сторінок</li>
+</ul>
+
+<h2>Усі сторінки <span class="why">· 33</span></h2>
+
+<h3>Головна</h3>
+<ul>
+  <li><a href="index.html">Головна</a><a class="st part" href="#need-index">перший екран, 3 партнери</a></li>
+</ul>
+
+<h3>Каталог</h3>
+<ul>
+  <li><a href="catalog.html">Каталог продукції</a><span class="st ok">готово</span></li>
+  <li><a href="product.html">Картка товару</a><span class="st ok">готово</span></li>
+  <li><a href="services.html">Послуги</a><span class="st ok">готово</span></li>
+  <li><a href="contract.html">Контрактне виробництво</a><span class="st ok">готово</span></li>
+  <li><a href="hv.html">Високовольтні мережі</a><a class="st part" href="#need-hv">текст «Гарантія та сервіс»</a></li>
+  <li><a href="askoe.html">Впровадження АСКОЕ</a><span class="st ok">готово</span></li>
+  <li><a href="custom.html">Розробка на замовлення</a><span class="st ok">готово</span></li>
+  <li><a href="repair.html">Ремонт лічильників</a><a class="st part" href="#need-repair">підтвердити один пункт</a></li>
+  <li><a href="software.html">Програмне забезпечення</a><a class="st part" href="#need-software">описи двох програм</a></li>
+</ul>
+
+<h3>Про нас</h3>
+<ul>
+  <li><a href="about.html">Про компанію</a><span class="st ok">готово</span></li>
+  <li><a href="history.html">Історія компанії</a><a class="st part" href="#need-history">текст про 2009 рік</a></li>
+  <li><a href="career.html">Кар'єра</a><span class="st ok">готово</span></li>
+  <li><a href="vacancies.html">Вакансії</a><span class="st ok">готово</span></li>
+  <li><a href="culture.html">Корпоративна культура</a><a class="st part" href="#need-culture">фото команди</a></li>
+  <li><a href="students.html">Студентам і випускникам</a><span class="st ok">готово</span></li>
+  <li><a href="conformity.html">Центр оцінки відповідності</a><a class="st part" href="#need-conformity">28 чи 29?</a></li>
+  <li><a href="partners.html">Наші партнери</a><a class="st most" href="#need-partners">бракує більшої частини вмісту від компанії</a></li>
+  <li><a href="cases.html">Кейси та об'єкти</a><a class="st most" href="#need-cases">бракує більшої частини вмісту від компанії</a></li>
+  <li><a href="case.html">Сторінка кейсу</a><a class="st most" href="#need-cases">бракує більшої частини вмісту від компанії</a></li>
+</ul>
+
+<h3>Контакти</h3>
+<ul>
+  <li><a href="where.html">Де купити</a><a class="st most" href="#need-where">бракує більшої частини вмісту від компанії</a></li>
+  <li><a href="service.html">Сервісний центр</a><span class="st ok">готово</span></li>
+</ul>
+
+<h3>Прес-центр</h3>
+<ul>
+  <li><a href="news.html">Новини</a><span class="st ok">готово</span></li>
+  <li><a href="article.html">Сторінка новини</a><span class="st ok">готово</span></li>
+  <li><a href="nikipedia.html">НІКіпедія</a><a class="st most" href="#need-nikipedia">бракує більшої частини вмісту від компанії</a></li>
+  <li><a href="nikipedia-article.html">Стаття НІКіпедії</a><a class="st most" href="#need-nikipedia">бракує більшої частини вмісту від компанії</a></li>
+  <li><a href="media.html">Ми у ЗМІ</a><a class="st most" href="#need-media">бракує більшої частини вмісту від компанії</a></li>
+</ul>
+
+<h3>Службові</h3>
+<ul>
+  <li><a href="documents.html">Електронні документи</a><a class="st most" href="#need-documents">бракує більшої частини вмісту від компанії</a></li>
+  <li><a href="search.html">Результати пошуку</a><span class="st ok">готово</span></li>
+  <li><a href="404.html">Сторінка 404</a><span class="st ok">готово</span></li>
+</ul>
+
+<h3>Юридичні</h3>
+<ul>
+  <li><a href="privacy.html">Політика конфіденційності</a><a class="st part" href="#need-legal">дані в квадратних дужках</a></li>
+  <li><a href="cookies.html">Політика cookie</a><a class="st part" href="#need-legal">дані в квадратних дужках</a></li>
+  <li><a href="consent.html">Згода на обробку даних</a><a class="st part" href="#need-legal">дані в квадратних дужках</a></li>
+</ul>
+
+<h2>Що саме бракує</h2>
+<ul class="need">
+  <li id="need-index"><a href="index.html">Головна</a>
+    <ul class="why">
+      <li>Перший екран: за ТЗ заголовок і опис мають лежати поверх великого фото, за схемою (вайрфреймом) замовника. Схеми в нас немає, тому зараз текст стоїть поруч із фото приладу.</li>
+      <li>Стрічка «Клієнти та партнери»: 3 партнери справжні, з логотипами. Ще 3 місця — заглушки «[Назва партнера]»: бракує назв і логотипів.</li>
+    </ul>
+  </li>
+  <li id="need-hv"><a href="hv.html">Високовольтні мережі</a> <span class="why">— у переліку є пункт «Гарантія та сервіс», але без пояснення: у ТЗ лише назва. Потрібне одне-два речення.</span></li>
+  <li id="need-repair"><a href="repair.html">Ремонт лічильників</a> <span class="why">— у ТЗ біля пункту «Перевірка після ремонту» стоїть «[уточнити: чи так]». Компанія має підтвердити, що так і є.</span></li>
+  <li id="need-software"><a href="software.html">Програмне забезпечення</a> <span class="why">— у картках AGSM GURU і NIK BT-DLMS замість опису стоїть «[уточнити]». Потрібне одне речення про кожну програму.</span></li>
+  <li id="need-history"><a href="history.html">Історія компанії</a> <span class="why">— у події 2009 року написано «запускаємо нові напрямки: [уточнити, які]». Потрібні назви цих напрямів.</span></li>
+  <li id="need-culture"><a href="culture.html">Корпоративна культура</a> <span class="why">— у галереї зараз фото виробництва, а за задумом там мають бути люди. Потрібні 5 фото команди.</span></li>
+  <li id="need-conformity"><a href="conformity.html">Центр оцінки відповідності</a> <span class="why">— у ТЗ двічі написано «28 видів випробувань» і один раз «29». Треба знати правильне число.</span></li>
+  <li id="need-partners"><a href="partners.html">Наші партнери</a> <span class="why">— справжні лише 3 оператори систем розподілу (Житомир-, Прикарпаття- і Харківобленерго). У решті груп — державні замовники, девелопери, дистриб’ютори, міжнародні партнери — стоять заглушки «[Назва компанії]». Потрібні назви компаній і, якщо є, логотипи.</span></li>
+  <li id="need-cases"><a href="cases.html">Кейси та об'єкти</a>, <a href="case.html">сторінка кейсу</a> <span class="why">— усі кейси зараз заглушки «[Назва об’єкта]» з тимчасовими фото. Для кожного потрібні: назва об’єкта, тип клієнта, регіон, задача, рішення, результат, фото.</span></li>
+  <li id="need-where"><a href="where.html">Де купити</a> <span class="why">— усі дилери зараз заглушки «[Дилер А]», «[Адреса]», «[Телефон]». Потрібен список дилерів: назва, регіон, адреса, телефон, графік роботи.</span></li>
+  <li id="need-nikipedia"><a href="nikipedia.html">НІКіпедія</a>, <a href="nikipedia-article.html">стаття</a> <span class="why">— усі статті зараз заглушки «[Тема статті]». Для кожної потрібні: тема, текст, автор, дата.</span></li>
+  <li id="need-media"><a href="media.html">Ми у ЗМІ</a> <span class="why">— усі публікації зараз заглушки. Для кожної потрібні: видання, дата, заголовок, короткий опис, посилання.</span></li>
+  <li id="need-documents"><a href="documents.html">Електронні документи</a> <span class="why">— вступ і кроки 2–3 зараз заглушки. Потрібно: що можна робити в застосунку NIK Документи, як ним почати користуватися, посилання на App Store і Google Play.</span></li>
+  <li id="need-legal"><a href="privacy.html">Політика конфіденційності</a>, <a href="cookies.html">Політика cookie</a>, <a href="consent.html">Згода на обробку даних</a> <span class="why">— у тексті є місця в квадратних дужках: дата редакції, пошта для запитів, посада відповідальної особи, строки зберігання даних, назви cookie і місця, які має перевірити юрист.</span></li>
+</ul>
+
+<h2>Ще не зроблено</h2>
+<ul>
+  <li>Усі товари з Google-таблиці</li>
+  <li>Чат-бот</li>
+  <li>Вхід в особистий кабінет</li>
+  <li>Особистий кабінет (друга фаза)</li>
+</ul>
+</main>
+</body>
+</html>
