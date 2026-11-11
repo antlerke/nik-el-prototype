@@ -1940,7 +1940,7 @@ main>.band-sec{padding-bottom:120px}
 .cert small,.contact-card>small{margin-top:8px}
 .cert .cd,.partner .cd,.service .cd{margin:16px 0 0}
 .cert .cgo{color:var(--ink);text-decoration:none}
-.decl .btn,.contact-card .btn{margin-top:32px}
+.decl .btn,.contact-card .btn{margin-top:32px}.contact-card .btn{align-self:flex-start}
 .decl-text{padding:32px;border-radius:24px;background:#ffffff;box-shadow:0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28)}
 .decl-text p:not(.pnote){margin:0;font-size:20px;line-height:1.5;color:var(--text)}
 .decl-text p:not(.pnote)+p:not(.pnote){margin-top:16px}
