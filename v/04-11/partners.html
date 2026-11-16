@@ -29,15 +29,25 @@
   </div>
 </section>
 
-<div class="wrap pbody">
-  <sc-for list="{{groups}}" as="g" hint-placeholder-count="5">
-    <div class="pgroup">
-      <div class="art"><h2>{{g.t}}</h2></div>
+<div class="pbody">
+  <section class="pgroup-dark">
+    <div class="wrap pgroup">
+      <div class="art"><h2>Оператори систем розподілу</h2></div>
       <div class="ngrid three">
-        <sc-for list="{{g.items}}" as="p" hint-placeholder-count="3"><article class="partner"><h3>{{p}}</h3></article></sc-for>
+        <article class="partner"><img src="../../assets/1f435041-logo-zhytomyroblenergo.png" alt=""><h3>Житомиробленерго</h3></article>
+        <article class="partner"><h3>Прикарпаття­обленерго</h3></article>
+        <article class="partner"><img src="../../assets/c352c673-logo-kharkivoblenergo.png" alt=""><h3>Харківобленерго</h3></article>
       </div>
     </div>
-  </sc-for>
+  </section>
+  <div class="wrap">
+    <div class="pcats">
+      <article class="pcat"><span class="pcat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v9M9.7 10v9M14.3 10v9M19 10v9M3 21h18"></path></svg></span><h2>Державні й муніципальні замовники</h2><ul class="pchips"><li class="ph">[Назва компанії]</li><li class="ph">[Назва компанії]</li><li class="ph">[Назва компанії]</li></ul></article>
+      <article class="pcat"><span class="pcat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V8l6-4v17M9 21V10h12v11M13 14h4M13 17.5h4M5.5 11h1.5M5.5 15h1.5M2 21h20"></path></svg></span><h2>Девелопери</h2><ul class="pchips"><li class="ph">[Назва компанії]</li><li class="ph">[Назва компанії]</li><li class="ph">[Назва компанії]</li></ul></article>
+      <article class="pcat"><span class="pcat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6h12v10H2zM14 9h4l3 3v4h-7"></path><circle cx="6" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg></span><h2>Дистриб’ютори</h2><ul class="pchips"><li class="ph">[Назва компанії]</li><li class="ph">[Назва компанії]</li><li class="ph">[Назва компанії]</li></ul></article>
+      <article class="pcat"><span class="pcat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c3.5 3.5 3.5 14.5 0 18M12 3c-3.5 3.5-3.5 14.5 0 18"></path></svg></span><h2>Міжнародні партнери</h2><ul class="pchips"><li class="ph">[Назва компанії]</li><li class="ph">[Назва компанії]</li><li class="ph">[Назва компанії]</li></ul></article>
+    </div>
+  </div>
 </div>
 
 <section class="wrap band-sec">
@@ -61,16 +71,7 @@ class Component extends DCLogic {
     this.state = { cookie: true, menu: false };
   }
   renderVals() {
-    const s = this.state;
-    const more = ['[Назва компанії]', '[Назва компанії]', '[Назва компанії]'];
-    const groups = [
-      { t: 'Оператори систем розподілу', items: ['Житомиробленерго', 'Прикарпаття­обленерго', 'Харківобленерго'] },
-      { t: 'Державні й муніципальні замовники', items: more },
-      { t: 'Девелопери', items: more },
-      { t: 'Дистриб’ютори', items: more },
-      { t: 'Міжнародні партнери', items: more }
-    ];
-    return Object.assign(this.base(s), { groups });
+    return this.base(this.state);
   }
 }
 

@@ -2318,3 +2318,32 @@ main>.band-sec{padding-bottom:120px}
   .hs-all,.hs-none{margin-left:8px;margin-right:8px}
 }
 @media (prefers-reduced-motion:reduce){.hsearch,.hsearch.open{transition:none;transform:none}}
+/* Dark band for one group of cards that should stand out (partners: distribution operators; software: mobile apps).
+   It runs from screen edge to screen edge; the .wrap inside keeps its heading and cards on the page column */
+.pgroup-dark{margin-top:48px;padding:48px 0;background:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1.5px) 0 0/24px 24px,linear-gradient(120deg,var(--ink) 0%,var(--ink-d) 100%)}
+.pgroup-dark:first-child{margin-top:0}
+.pgroup-dark .art h2{margin-top:0;color:#ffffff}
+/* Partners: company tiles on the dark band show the logo, the name small under it; a company without a logo shows its name */
+.pgroup-dark .partner{align-items:center;justify-content:center;gap:12px;min-height:96px;text-align:center;box-shadow:none}
+.pgroup-dark .partner img{max-width:70%;max-height:72px;object-fit:contain}
+.pgroup-dark .partner img+h3{font-size:14px;line-height:1.3;font-weight:500;letter-spacing:0;color:var(--muted)}
+/* Partners: the other groups as cards: icon, group name, companies as plates; [Назва компанії] plates are outlined */
+.pcats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:48px}
+.pcat{display:flex;flex-direction:column;gap:16px;padding:32px;border-radius:24px;background:#ffffff;box-shadow:0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28)}
+.pcat h2{margin:0;font-size:24px;line-height:1.2;letter-spacing:-0.02em;color:var(--ink);text-wrap:pretty}
+.pcat-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:8px;background:var(--paper);color:var(--ink)}
+.pchips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.pchips li{padding:8px 14px;border-radius:8px;background:var(--paper);font-size:16px;line-height:1.5;font-weight:500;color:var(--ink)}
+.pchips .ph{color:#8592a0;background:transparent;box-shadow:inset 0 0 0 1px var(--line)}
+/* Software: mobile app cards on the dark band: see-through card, light text */
+.pgroup-dark .case{background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+.pgroup-dark .case h3{color:#ffffff}
+.pgroup-dark .case .cd{color:#d3deea}
+.pgroup-dark .case .btn-line{box-shadow:inset 0 0 0 1.5px #ffffff;color:#ffffff}
+@media (max-width:600px){
+  .pgroup-dark{padding:32px 0}
+  .pgroup-dark .partner{min-height:80px}
+  .pcats{grid-template-columns:minmax(0,1fr);gap:16px;margin-top:32px}
+  .pcat{padding:16px}
+  .pcat h2{font-size:20px;line-height:1.15}
+}
