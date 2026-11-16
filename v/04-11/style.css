@@ -2335,6 +2335,11 @@ main>.band-sec{padding-bottom:120px}
 .pchips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
 .pchips li{padding:8px 14px;border-radius:8px;background:var(--paper);font-size:16px;line-height:1.5;font-weight:500;color:var(--ink)}
 .pchips .ph{color:#8592a0;background:transparent;box-shadow:inset 0 0 0 1px var(--line)}
+/* «Показати ще (N)» / «Згорнути» closes a long list: a dark plate; cards keep their own height, so opening one does not stretch its neighbour */
+.pcats{align-items:start}
+.pchips .more{padding:0;background:none}
+.pmore{padding:8px 14px;border:0;border-radius:8px;background:var(--ink);font:500 16px/1.5 Geologica,sans-serif;color:#ffffff;cursor:pointer;transition:background-color .2s ease}
+.pmore:hover{background:var(--ink-d)}
 /* Software: mobile app cards on the dark band: see-through card, light text */
 .pgroup-dark .case{background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
 .pgroup-dark .case h3{color:#ffffff}

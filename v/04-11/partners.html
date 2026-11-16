@@ -42,10 +42,10 @@
   </section>
   <div class="wrap">
     <div class="pcats">
-      <article class="pcat"><span class="pcat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v9M9.7 10v9M14.3 10v9M19 10v9M3 21h18"></path></svg></span><h2>Державні й муніципальні замовники</h2><ul class="pchips"><li class="ph">[Назва компанії]</li><li class="ph">[Назва компанії]</li><li class="ph">[Назва компанії]</li></ul></article>
-      <article class="pcat"><span class="pcat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V8l6-4v17M9 21V10h12v11M13 14h4M13 17.5h4M5.5 11h1.5M5.5 15h1.5M2 21h20"></path></svg></span><h2>Девелопери</h2><ul class="pchips"><li class="ph">[Назва компанії]</li><li class="ph">[Назва компанії]</li><li class="ph">[Назва компанії]</li></ul></article>
-      <article class="pcat"><span class="pcat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6h12v10H2zM14 9h4l3 3v4h-7"></path><circle cx="6" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg></span><h2>Дистриб’ютори</h2><ul class="pchips"><li class="ph">[Назва компанії]</li><li class="ph">[Назва компанії]</li><li class="ph">[Назва компанії]</li></ul></article>
-      <article class="pcat"><span class="pcat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c3.5 3.5 3.5 14.5 0 18M12 3c-3.5 3.5-3.5 14.5 0 18"></path></svg></span><h2>Міжнародні партнери</h2><ul class="pchips"><li class="ph">[Назва компанії]</li><li class="ph">[Назва компанії]</li><li class="ph">[Назва компанії]</li></ul></article>
+      <article class="pcat"><span class="pcat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v9M9.7 10v9M14.3 10v9M19 10v9M3 21h18"></path></svg></span><h2>Державні й муніципальні замовники</h2><ul class="pchips"><sc-for list="{{gov.shown}}" as="p" hint-placeholder-count="6"><li class="{{p.cls}}">{{p.n}}</li></sc-for><sc-if value="{{gov.long}}" hint-placeholder-val="{{true}}"><li class="more"><button type="button" class="pmore" aria-expanded="{{gov.exp}}" onClick="{{gov.toggle}}">{{gov.label}}</button></li></sc-if></ul></article>
+      <article class="pcat"><span class="pcat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V8l6-4v17M9 21V10h12v11M13 14h4M13 17.5h4M5.5 11h1.5M5.5 15h1.5M2 21h20"></path></svg></span><h2>Девелопери</h2><ul class="pchips"><sc-for list="{{dev.shown}}" as="p" hint-placeholder-count="6"><li class="{{p.cls}}">{{p.n}}</li></sc-for><sc-if value="{{dev.long}}" hint-placeholder-val="{{true}}"><li class="more"><button type="button" class="pmore" aria-expanded="{{dev.exp}}" onClick="{{dev.toggle}}">{{dev.label}}</button></li></sc-if></ul></article>
+      <article class="pcat"><span class="pcat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6h12v10H2zM14 9h4l3 3v4h-7"></path><circle cx="6" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg></span><h2>Дистриб’ютори</h2><ul class="pchips"><sc-for list="{{dist.shown}}" as="p" hint-placeholder-count="6"><li class="{{p.cls}}">{{p.n}}</li></sc-for><sc-if value="{{dist.long}}" hint-placeholder-val="{{true}}"><li class="more"><button type="button" class="pmore" aria-expanded="{{dist.exp}}" onClick="{{dist.toggle}}">{{dist.label}}</button></li></sc-if></ul></article>
+      <article class="pcat"><span class="pcat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c3.5 3.5 3.5 14.5 0 18M12 3c-3.5 3.5-3.5 14.5 0 18"></path></svg></span><h2>Міжнародні партнери</h2><ul class="pchips"><sc-for list="{{intl.shown}}" as="p" hint-placeholder-count="6"><li class="{{p.cls}}">{{p.n}}</li></sc-for><sc-if value="{{intl.long}}" hint-placeholder-val="{{true}}"><li class="more"><button type="button" class="pmore" aria-expanded="{{intl.exp}}" onClick="{{intl.toggle}}">{{intl.label}}</button></li></sc-if></ul></article>
     </div>
   </div>
 </div>
@@ -71,7 +71,18 @@ class Component extends DCLogic {
     this.state = { cookie: true, menu: false };
   }
   renderVals() {
-    return this.base(this.state);
+    const s = this.state, open = s.open || {}, MORE = 6;
+    // [Назва компанії] until the client sends the names; the counts only show how «Показати ще» works
+    const ph = (k) => Array.from({ length: k }, () => ({ n: '[Назва компанії]', cls: 'ph' }));
+    // a long group shows its first six companies and «Показати ще (N)», as the catalog filters do;
+    // a button for one hidden name is not worth a click, so a group of seven shows all seven
+    const group = (id, names) => {
+      const more = !!open[id], long = names.length > MORE + 1;
+      return { shown: long && !more ? names.slice(0, MORE) : names, long, exp: String(more),
+        label: more ? 'Згорнути' : 'Показати ще (' + (names.length - MORE) + ')',
+        toggle: () => this.setState({ open: { ...open, [id]: !more } }) };
+    };
+    return Object.assign(this.base(s), { gov: group('gov', ph(10)), dev: group('dev', ph(7)), dist: group('dist', ph(14)), intl: group('intl', ph(6)) });
   }
 }
 
