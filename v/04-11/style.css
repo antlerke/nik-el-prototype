@@ -2467,3 +2467,25 @@ main>.band-sec{padding-bottom:120px}
   .std-part{white-space:normal}
   .tpanel{padding:16px 8px}
 }
+/* The accreditation certificate as a document card: number and «valid until» big, the other fields as label/value pairs (conformity) */
+.accr{padding:32px;border-radius:24px;background:#ffffff;box-shadow:0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28)}
+.accr-top{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:20px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.accr-icon{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--red-a);color:var(--red)}
+.accr-lab{display:block;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.accr-no{display:block;margin-top:4px;font-family:var(--mono);font-size:32px;line-height:1.1;font-weight:600;color:var(--ink)}
+.accr-until{text-align:right}
+.accr-until b{display:block;margin-top:4px;font-size:22px;line-height:1.2;color:var(--red-t)}
+.accr-kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 32px;margin:24px 0 0}
+.accr-kv dt{font-size:14px;line-height:1.4;color:var(--muted)}
+.accr-kv dd{margin:4px 0 0;font-size:17px;line-height:1.45;font-weight:500;color:var(--ink)}
+.accr+p{margin-top:24px}
+/* the text column is narrow up to 1180 px: «valid until» goes under the number, the fields in one column */
+@media (max-width:1180px){
+  .accr-top{grid-template-columns:auto minmax(0,1fr);row-gap:16px}
+  .accr-until{grid-column:1/-1;text-align:left}
+  .accr-kv{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:600px){
+  .accr{padding:20px}
+  .accr-no{font-size:26px}
+}
