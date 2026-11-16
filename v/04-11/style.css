@@ -2432,3 +2432,38 @@ main>.band-sec{padding-bottom:120px}
   .bcard{grid-template-columns:48px minmax(0,1fr);column-gap:16px;padding:16px}
   .bcard-icon{width:48px;height:48px}
 }
+/* A text block with its heading on top and the text across the full width (conformity: the meter tests) */
+.about-cols.stack{grid-template-columns:minmax(0,1fr);gap:24px}
+/* Meter tests in tabs by group (the site's usual tabs: the chosen one dark); the chosen group on a white card under them */
+.ttabs{gap:6px;margin-top:8px}
+.ttabs button{display:inline-flex;align-items:center;gap:10px}
+.ttabs .cnt{font-family:var(--mono);font-size:13px;font-weight:600;opacity:.6}
+.tpanel{margin-top:16px;padding:32px;border-radius:24px;background:#ffffff;box-shadow:0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28)}
+.folded{display:none}
+.tpanel .dtable{margin-top:0}
+.tpanel .dtable td:first-child{width:72px}
+.tpanel .feat{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 32px;margin:12px 0 0;padding:0;border-top:0}
+.tpanel .feat li::before{display:none}
+.tpanel .feat span{display:flex;align-items:baseline;gap:12px;color:var(--ink)}
+/* test number as a code plate: «1.11» */
+.tcode{flex:none;display:inline-grid;place-items:center;min-width:44px;height:26px;padding:0 8px;box-sizing:border-box;border-radius:4px;background:var(--paper);font-family:var(--mono);font-size:13px;font-weight:600;color:var(--red-t)}
+.tpanel .tlabel{margin:28px 0 0;font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.tpanel .tlabel:first-child{margin-top:0}
+.tpanel .tsmall{margin:20px 0 0;font-size:16px;color:var(--muted)}
+.art .tnote{margin-top:32px;font-size:16px;color:var(--muted)}
+/* Standards: codes in mono, each code kept whole; the list folds to three rows behind «Показати ще (N)» */
+.dtable .tstd{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--ink)}
+.std-part{white-space:nowrap}
+.smore{margin-top:20px}
+@media (max-width:900px){
+  .tpanel .feat{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:600px){
+  .tpanel{padding:20px 16px;border-radius:16px}
+  .tpanel .dtable td:first-child{width:52px}
+}
+/* the narrowest phones: a long standard code may wrap, the panel gives the table a little more room */
+@media (max-width:359px){
+  .std-part{white-space:normal}
+  .tpanel{padding:16px 8px}
+}
