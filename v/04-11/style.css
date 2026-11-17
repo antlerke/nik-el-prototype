@@ -2727,3 +2727,41 @@ main>.band-sec{padding-bottom:120px}
   .srv-close{padding:24px 16px;border-radius:22px}
   .srv-close .clist{flex-direction:column}
 }
+
+/* AMI implementation: the four steps along a line; NovaSys on a dark band: its first point as a big figure in a white card
+   («Понад» small, «98%» big, the rest of the sentence under it), the other points as tiles */
+.ak-road{grid-template-columns:minmax(0,1fr);gap:40px}
+.ak-road .nums{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.ak-road .nums li{position:relative;flex-direction:column;gap:20px;font-size:17px;line-height:1.5}
+.ak-road .nums li::before{flex:none;width:56px;height:56px;font-size:18px;background:#ffffff;box-shadow:inset 0 0 0 2px var(--red);color:var(--red)}
+.ak-road .nums li:not(:last-child)::after{content:"";position:absolute;left:68px;right:-12px;top:27px;border-top:2px dashed #c3ccd6}
+.ak-road .nums b{display:block;margin-bottom:6px;font-size:20px;color:var(--ink)}
+.ak-dark{background:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1.5px) 0 0/24px 24px,linear-gradient(120deg,var(--ink) 0%,var(--ink-d) 100%)}
+.ak-dark .h2{color:#ffffff}
+.ak-dark+.band-sec{margin-top:120px}
+.ak-nova{grid-template-columns:minmax(0,1fr);gap:40px;margin-top:0}
+.ak-nova .art{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px;align-items:stretch}
+.ak-statbox{display:flex;flex-direction:column;justify-content:flex-end;margin:0;padding:32px;border-radius:16px;background:#ffffff;font-size:20px;line-height:1.45;color:var(--ink)}
+.ak-pre{font-family:var(--mono);font-size:14px;color:var(--muted)}
+.ak-num{margin:4px 0 8px;font-size:96px;line-height:1;font-weight:800;letter-spacing:-0.04em;color:var(--red)}
+.ak-nova .feat{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0}
+.ak-nova .feat li{align-items:center;padding:20px;border-radius:16px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);font-size:17px;color:#ffffff}
+.ak-nova .feat li::before{margin-top:0;background:#f4a9b6}
+@media (max-width:1180px){
+  .ak-road .nums{grid-template-columns:minmax(0,1fr);gap:0}
+  .ak-road .nums li{flex-direction:row;gap:20px;padding-bottom:24px}
+  .ak-road .nums li:not(:last-child)::after{left:27px;right:auto;top:60px;bottom:4px;border-top:0;border-left:2px dashed #c3ccd6}
+  .ak-road .nums span{padding-top:14px}
+  .ak-nova .art{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:900px){
+  .ak-dark+.band-sec{margin-top:64px}
+}
+@media (max-width:600px){
+  .ak-road .nums li::before{width:44px;height:44px;font-size:16px}
+  .ak-road .nums li:not(:last-child)::after{left:21px;top:48px}
+  .ak-road .nums span{padding-top:8px}
+  .ak-statbox{padding:20px}
+  .ak-num{font-size:64px}
+  .ak-nova .feat{grid-template-columns:minmax(0,1fr)}
+}
