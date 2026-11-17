@@ -26,6 +26,10 @@ a { color: #13385d; text-underline-offset: 3px; }
 a.st:hover { text-decoration: underline; }
 .need li { scroll-margin-top: 16px; border-radius: 6px; }
 .need li:target { background: #fdf0dc; box-shadow: 0 0 0 6px #fdf0dc; }
+/* «Що бракує» numbered 1, 2, 3… like the change list; the points inside an item keep their bullets */
+.need { padding-left: 0; list-style: none; counter-reset: need; }
+.need > li { position: relative; padding-left: 32px; counter-increment: need; }
+.need > li::before { content: counter(need) "."; position: absolute; left: 0; color: #59636e; font-variant-numeric: tabular-nums; }
 @media (max-width: 560px) { .st { white-space: normal; } }
 /* tabs: «Усі сторінки», «Зміни», «Що бракує»; without JavaScript all three parts show one under another */
 .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 0; }
@@ -39,6 +43,12 @@ a.st:hover { text-decoration: underline; }
 .changes th, .changes td { padding: 10px 16px 10px 0; text-align: left; vertical-align: top; border-bottom: 1px solid #dde3e9; }
 .changes th { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: #59636e; }
 .changes td:first-child { width: 32%; }
+/* rows numbered 1, 2, 3… by the page itself, so a new row needs no renumbering */
+.changes tbody { counter-reset: row; }
+.changes tbody tr { counter-increment: row; }
+.changes tbody td:first-child { position: relative; padding-left: 32px; }
+.changes tbody td:first-child::before { content: counter(row) "."; position: absolute; left: 0; color: #59636e; font-variant-numeric: tabular-nums; }
+@media (max-width: 560px) { .changes tbody td + td { padding-left: 32px; } }
 @media (max-width: 560px) {
   .changes thead { display: none; }
   .changes, .changes tbody, .changes tr, .changes td { display: block; width: auto; }
