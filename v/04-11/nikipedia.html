@@ -31,13 +31,15 @@
 
 <div class="wrap pbody">
   <form class="search" role="search" onSubmit="{{onQ}}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><label class="sr" for="wiki-q">Пошук статей</label><input type="search" id="wiki-q" placeholder="Пошук статей" value="{{q}}"><button type="submit" class="btn btn-ink sgo">Знайти</button></form>
+  <svg class="wiki-sprite" aria-hidden="true"><defs><symbol id="wiki-cert" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M7 8h10M7 12h5"></path><circle cx="16" cy="15" r="3"></circle><path d="M14.5 17.6 14 21l2-1 2 1-.5-3.4"></path></symbol><symbol id="wiki-meter" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"></rect><rect x="8" y="5" width="8" height="5" rx="1"></rect><circle cx="12" cy="14" r="1.5"></circle><path d="M8 18.5h8"></path></symbol><symbol id="wiki-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"></path></symbol><symbol id="wiki-data" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"></circle><path d="M8.5 8.5a5 5 0 0 0 0 7M15.5 8.5a5 5 0 0 1 0 7M5.5 5.5a9 9 0 0 0 0 13M18.5 5.5a9 9 0 0 1 0 13"></path></symbol></defs></svg>
   <div class="tabs" role="tablist" aria-label="Теми">
     <sc-for list="{{cats}}" as="c" hint-placeholder-count="5"><button type="button" role="tab" aria-selected="{{c.on}}" aria-controls="wiki-panel" onClick="{{c.pick}}">{{c.t}}</button></sc-for>
   </div>
   <sc-if value="{{hasList}}" hint-placeholder-val="{{true}}">
-  <div class="ngrid three" id="wiki-panel" role="tabpanel" aria-label="{{cat}}">
+  <div class="ngrid wiki-index" id="wiki-panel" role="tabpanel" aria-label="{{cat}}">
     <sc-for list="{{list}}" as="a" hint-placeholder-count="6">
       <a href="nikipedia-article.html" class="nc">
+        <span class="wiki-icon"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#wiki-{{a.k}}"></use></svg></span>
         <span class="bd"><span class="meta"><span class="tag">{{a.c}}</span><span>Час читання: N хв</span></span><span class="t">{{a.t}}</span><span class="more">Читати статтю<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span>
       </a>
     </sc-for>
@@ -58,7 +60,9 @@ class Component extends DCLogic {
   }
   renderVals() {
     const s = this.state;
-    const A = ['Сертифікації', 'Лічильники', 'Принципи роботи', 'Передача даних', 'Лічильники', 'Передача даних'].map((c) => ({ c, t: '[Тема статті]' }));
+    // topic → its icon in the sprite above the list
+    const KEY = { 'Сертифікації': 'cert', 'Лічильники': 'meter', 'Принципи роботи': 'gear', 'Передача даних': 'data' };
+    const A = ['Сертифікації', 'Лічильники', 'Принципи роботи', 'Передача даних', 'Лічильники', 'Передача даних'].map((c) => ({ c, k: KEY[c], t: '[Тема статті]' }));
     const cats = ['Усі статті', 'Сертифікації', 'Лічильники', 'Принципи роботи', 'Передача даних'].map((t) => ({ t, on: String(s.cat === t), pick: () => this.setState({ cat: t }) }));
     const q = s.q.toLowerCase();
     const list = A.filter((a) => (s.cat === 'Усі статті' || a.c === s.cat) && (!q || (a.t + ' ' + a.c).toLowerCase().includes(q)));

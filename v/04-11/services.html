@@ -30,25 +30,16 @@
 </section>
 
 <div class="wrap pbody">
-  <div class="ngrid three">
-    <sc-for list="{{services}}" as="s" hint-placeholder-count="6">
-      <article class="case">
-        <div class="bd">
-          <h2>{{s.t}}</h2>
-          <p class="cd">{{s.d}}</p>
-          <a href="{{s.href}}" class="btn btn-line">Детальніше<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-        </div>
-      </article>
-    </sc-for>
+  <div class="ngrid case-mosaic">
+    <article class="case case-cover"><img src="../../assets/1695fc08-c-tampo.jpg" alt="SMT-монтаж, лиття корпусів, складання"><div class="bd"><h2>Контрактне виробництво</h2><p class="cd">SMT-монтаж друкованих плат, лиття пластику та збирання пристроїв за вашою документацією.</p><a href="contract.html" class="btn btn-line">Детальніше<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div></article>
+    <article class="case case-aside"><div class="pi"><img src="../../assets/e3a26a87-c-calibration.jpg" alt="Фахівчиня випробувального центру"></div><div class="bd"><h2>Випробувальний центр</h2><p class="cd">Випробування лічильників електроенергії та ПЗ засобів вимірювання в акредитованій лабораторії.</p><a href="conformity.html" class="btn btn-line">Детальніше<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div></article>
+    <article class="case case-aside case-aside-end"><div class="pi"><img src="../../assets/5a730fd2-hero-1.webp" alt="Обладнання 0,4–35 кВ і реконструкція підстанцій"></div><div class="bd"><h2>Високовольтні мережі</h2><p class="cd">Реконструкція підстанцій «під ключ» з розподільчим обладнанням 0,4–35 кВ.</p><a href="hv.html" class="btn btn-line">Детальніше<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div></article>
+    <article class="case"><div class="bd"><h2>Впровадження АСКОЕ</h2><p class="cd">Аудит, проєктування, монтаж і супровід систем автоматизованого обліку. Надає офіційний дистриб’ютор ТОВ «НІК».</p><a href="askoe.html" class="btn btn-line">Детальніше<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div></article>
+    <article class="case"><div class="bd"><h2>Розробка на замовлення</h2><p class="cd">Лічильники й пристрої, адаптовані під вимоги вашого ринку чи проєкту.</p><a href="custom.html" class="btn btn-line">Детальніше<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div></article>
+    <article class="case"><div class="bd"><h2>Ремонт лічильників</h2><p class="cd">Діагностика, ремонт і сервісне обслуговування лічильників у нашому сервісному центрі.</p><a href="repair.html" class="btn btn-line">Детальніше<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div></article>
+    <article class="case case-call"><div class="bd"><h2>Опишіть свій проєкт — ми запропонуємо рішення</h2><a href="index.html#contact" class="btn btn-red">Зв'язатися з нами<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div></article>
   </div>
 </div>
-
-<section class="wrap band-sec">
-  <div class="band">
-    <div><h2>Опишіть свій проєкт — ми запропонуємо рішення</h2></div>
-    <a href="index.html#contact" class="btn btn-red">Зв'язатися з нами<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-  </div>
-</section>
 </main>
 <shell-bottom></shell-bottom>
 </script>
@@ -60,16 +51,7 @@ class Component extends DCLogic {
     this.state = { cookie: true, menu: false };
   }
   renderVals() {
-    return Object.assign(this.base(this.state), {
-      services: [
-        { t: 'Контрактне виробництво', d: 'SMT-монтаж друкованих плат, лиття пластику та збирання пристроїв за вашою документацією.', href: 'contract.html' },
-        { t: 'Випробувальний центр', d: 'Випробування лічильників електроенергії та ПЗ засобів вимірювання в акредитованій лабораторії.', href: 'conformity.html' },
-        { t: 'Високовольтні мережі', d: 'Реконструкція підстанцій «під ключ» з розподільчим обладнанням 0,4–35 кВ.', href: 'hv.html' },
-        { t: 'Впровадження АСКОЕ', d: 'Аудит, проєктування, монтаж і супровід систем автоматизованого обліку. Надає офіційний дистриб’ютор ТОВ «НІК».', href: 'askoe.html' },
-        { t: 'Розробка на замовлення', d: 'Лічильники й пристрої, адаптовані під вимоги вашого ринку чи проєкту.', href: 'custom.html' },
-        { t: 'Ремонт лічильників', d: 'Діагностика, ремонт і сервісне обслуговування лічильників у нашому сервісному центрі.', href: 'repair.html' }
-      ]
-    });
+    return this.base(this.state);
   }
 }
 
