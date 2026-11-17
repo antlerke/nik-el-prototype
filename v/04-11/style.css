@@ -2605,3 +2605,51 @@ main>.band-sec{padding-bottom:120px}
   .hv-benefits li{padding:16px}
   .hv-benefits b{font-size:20px}
 }
+
+/* Students: «for whom» as a big statement; the places of practice as photo cards, four in a row;
+   «what you get» as a ticked list in two columns; «how to get there» closes the page as a dark block
+   (inside the column, so it does not run into the dark footer; a deep shadow lifts it): three numbered cards and the button */
+.stu-who .art{font-size:28px;line-height:1.35;font-weight:500;letter-spacing:-0.01em;color:var(--ink)}
+.ngrid.stu-places{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.stu-places .cert{padding:0;overflow:hidden}
+.stu-places .cert>h3,.stu-places .cert>.cd{margin-left:24px;margin-right:24px}
+.stu-places .cert>h3{margin-top:24px}
+.stu-places .cert>.cd{margin-bottom:24px}
+.stu-pic{position:relative;margin:0;aspect-ratio:4/3;background:var(--gray);overflow:hidden}
+.stu-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.stu-pic.fit{background:#ffffff}
+.stu-pic.fit img{object-fit:contain;padding:16px;box-sizing:border-box}
+.stu-ticks .feat{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 32px;margin-top:0}
+.stu-ticks .feat li::before{content:"";flex:0 0 9px;width:9px;height:16px;margin:2px 8px 0 6px;border:solid var(--red);border-width:0 2.5px 2.5px 0;border-radius:0;background:none;transform:rotate(45deg)}
+.stu-steps{grid-template-columns:minmax(0,1fr);gap:40px;margin-top:0;padding:48px;border-radius:28px;box-shadow:0 40px 80px -32px rgba(19,56,93,.6);background:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1.5px) 0 0/24px 24px,linear-gradient(120deg,var(--ink) 0%,var(--ink-d) 100%)}
+.stu-steps .h2{margin-top:0;color:#ffffff}
+.stu-steps .nums{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.stu-steps .nums li{flex-direction:column;gap:24px;padding:28px;border-radius:16px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);font-size:20px;line-height:1.45;color:#ffffff}
+.stu-steps .nums li::before{flex:none;width:auto;height:auto;border-radius:0;background:none;place-items:start;font-family:Geologica,sans-serif;font-size:56px;line-height:1;font-weight:800;letter-spacing:-0.04em;color:#f4a9b6}
+.stu-steps .hbtns{margin-top:32px}
+.stu-steps .pnote{color:#b9c6d4}
+.stu-steps .pnote a{color:#ffffff}
+@media (max-width:1180px){
+  .ngrid.stu-places{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* two narrow text columns only from 901 to 1060 px: the ticked list goes into one */
+@media (min-width:901px) and (max-width:1060px){
+  .stu-ticks .feat{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:900px){
+  .stu-steps{padding:32px}
+  .stu-steps .nums{grid-template-columns:minmax(0,1fr)}
+  .stu-steps .nums li{flex-direction:row;align-items:center;gap:20px}
+}
+@media (max-width:600px){
+  .stu-who .art{font-size:22px}
+  .ngrid.stu-places{grid-template-columns:minmax(0,1fr)}
+  .stu-pic{aspect-ratio:16/9}
+  .stu-places .cert>h3,.stu-places .cert>.cd{margin-left:16px;margin-right:16px}
+  .stu-places .cert>h3{margin-top:16px}
+  .stu-places .cert>.cd{margin-bottom:16px}
+  .stu-ticks .feat{grid-template-columns:minmax(0,1fr);gap:12px}
+  .stu-steps{gap:24px;padding:24px 16px;border-radius:22px}
+  .stu-steps .nums li{padding:16px;font-size:17px}
+  .stu-steps .nums li::before{font-size:40px}
+}
