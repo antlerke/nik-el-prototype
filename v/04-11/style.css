@@ -2529,7 +2529,7 @@ main>.band-sec{padding-bottom:120px}
 .wiki-index .nc .bd{padding:0}
 /* the four topic icons are drawn once in this hidden SVG and reused by every row */
 .wiki-sprite{display:none}
-.wiki-icon{flex:none;display:grid;place-items:center;width:52px;height:52px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--line);color:var(--red);transition:background-color .2s ease,color .2s ease}
+.wiki-icon{flex:none;display:grid;place-items:center;width:48px;height:48px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--line);color:var(--red);transition:background-color .2s ease,color .2s ease}
 /* a row stays in place under the pointer (cards lift); its icon fills instead */
 .wiki-index .nc:hover,.media-timeline .nc:hover{transform:none}
 .wiki-index .nc:hover .wiki-icon{background:var(--ink);color:#ffffff;box-shadow:none}
@@ -2559,7 +2559,6 @@ main>.band-sec{padding-bottom:120px}
 }
 @media (max-width:600px){
   .wiki-index .nc{gap:14px;padding:20px 0}
-  .wiki-icon{width:44px;height:44px}
   .media-timeline::before{left:6px}
   .media-timeline .nc{grid-template-columns:minmax(0,1fr);row-gap:6px;padding:0 0 32px 32px}
   .media-timeline .nc .bd::before{left:-32px;top:-22px}
@@ -2695,12 +2694,12 @@ main>.band-sec{padding-bottom:120px}
 .srv-dark-cards .clist i,.srv-close .clist i{background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);color:#f4a9b6}
 .srv-what{grid-template-columns:minmax(0,1fr);gap:32px}
 .srv-what .art{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start}
-.srv-place{padding:24px;border-radius:16px;background:#ffffff;box-shadow:0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28)}
+.srv-place{padding:24px;border-radius:24px;background:#ffffff;box-shadow:0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28)}
 .srv-place>p{margin:0 0 4px}
 .srv-np .feat{gap:12px}
 .srv-label{display:flex;gap:16px;padding:20px 24px;border-radius:16px;background:#ffffff;box-shadow:0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28);line-height:1.5}
 .srv-np .feat .srv-label::before{display:none}
-.srv-label i{flex:0 0 44px;height:44px;display:grid;place-items:center;border-radius:50%;background:var(--red-a);color:var(--red)}
+.srv-label i{flex:0 0 48px;height:48px;display:grid;place-items:center;border-radius:50%;background:var(--red-a);color:var(--red)}
 .srv-np .docs2{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .srv-np .doc{min-height:72px}
 .srv-close{grid-template-columns:minmax(0,1fr);gap:24px;padding:48px;border-radius:28px;background:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1.5px) 0 0/24px 24px,linear-gradient(120deg,var(--ink) 0%,var(--ink-d) 100%);box-shadow:0 40px 80px -32px rgba(19,56,93,.6)}
@@ -2722,7 +2721,6 @@ main>.band-sec{padding-bottom:120px}
 @media (max-width:600px){
   .srv-place{padding:16px}
   .srv-label{padding:16px}
-  .srv-label i{flex-basis:36px;height:36px}
   .srv-np .docs2{grid-template-columns:minmax(0,1fr)}
   .srv-close{padding:24px 16px;border-radius:22px}
   .srv-close .clist{flex-direction:column}
@@ -2770,19 +2768,22 @@ main>.band-sec{padding-bottom:120px}
    dark with the steps and the button); recycling under them as a white callout with a recycle icon */
 .rp-pair{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px;align-items:stretch}
 .rp-pair>.rp-panel{grid-template-columns:minmax(0,1fr);align-content:start;gap:24px;margin:0;padding:40px;border-radius:24px;background:#ffffff;box-shadow:0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28)}
-.rp-panel .h2,.rp-rec>.h2{margin:0;font-size:clamp(28px,2.6vw,40px)}
+.rp-panel .h2,.rp-rec>.h2{margin:0}
+@media (min-width:901px){
+  .rp-panel .h2,.rp-rec>.h2{font-size:clamp(28px,2.6vw,40px)}
+}
 .rp-panel .feat{gap:16px;margin:0}
 .rp-panel .feat li{align-items:center;gap:16px;font-weight:500;color:var(--ink)}
 .rp-panel .feat li::before{display:none}
 .rp-icon{flex:0 0 48px;height:48px;display:grid;place-items:center;border-radius:50%;background:var(--red-a);color:var(--red)}
-.rp-pair>.rp-panel-dark{background:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1.5px) 0 0/24px 24px,linear-gradient(120deg,var(--ink) 0%,var(--ink-d) 100%);box-shadow:none}
+.rp-pair>.rp-panel-dark{background:linear-gradient(120deg,var(--ink) 0%,var(--ink-d) 100%);box-shadow:none}
 .rp-panel-dark .h2{color:#ffffff}
 .rp-panel-dark .nums{gap:16px;margin:0}
 .rp-panel-dark .nums li{gap:16px;font-size:18px;color:#ffffff}
-.rp-panel-dark .nums li::before{flex:0 0 36px;height:36px;background:rgba(255,255,255,.1);font-size:15px;color:#ffffff}
+.rp-panel-dark .nums li::before{flex:0 0 40px;height:40px;background:rgba(255,255,255,.1);color:#ffffff}
 .rp-panel-dark .hbtns{margin-top:32px}
 .rp-rec{grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto auto;column-gap:32px;row-gap:12px;align-items:start;padding:40px;border-radius:28px;background:#ffffff;box-shadow:0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28)}
-.rp-rec-icon{grid-row:1/span 2;display:grid;place-items:center;width:72px;height:72px;border-radius:50%;background:var(--red-a);color:var(--red)}
+.rp-rec-icon{grid-row:1/span 2;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--red-a);color:var(--red)}
 .rp-rec>.art{grid-column:2;max-width:760px}
 .rp-rec .hbtns{margin-top:24px}
 @media (max-width:900px){
@@ -2792,6 +2793,6 @@ main>.band-sec{padding-bottom:120px}
 @media (max-width:600px){
   .rp-pair>.rp-panel{padding:20px 16px;border-radius:16px}
   .rp-rec{grid-template-columns:minmax(0,1fr);padding:24px 16px;border-radius:22px}
-  .rp-rec-icon{grid-row:auto;width:56px;height:56px}
+  .rp-rec-icon{grid-row:auto;width:48px;height:48px}
   .rp-rec>.art{grid-column:1}
 }
