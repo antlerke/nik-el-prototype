@@ -2765,3 +2765,33 @@ main>.band-sec{padding-bottom:120px}
   .ak-num{font-size:64px}
   .ak-nova .feat{grid-template-columns:minmax(0,1fr)}
 }
+
+/* Repair: «Що ми робимо» and «Як здати лічильник у ремонт» side by side as two panels (white with an icon per point,
+   dark with the steps and the button); recycling under them as a white callout with a recycle icon */
+.rp-pair{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px;align-items:stretch}
+.rp-pair>.rp-panel{grid-template-columns:minmax(0,1fr);align-content:start;gap:24px;margin:0;padding:40px;border-radius:24px;background:#ffffff;box-shadow:0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28)}
+.rp-panel .h2,.rp-rec>.h2{margin:0;font-size:clamp(28px,2.6vw,40px)}
+.rp-panel .feat{gap:16px;margin:0}
+.rp-panel .feat li{align-items:center;gap:16px;font-weight:500;color:var(--ink)}
+.rp-panel .feat li::before{display:none}
+.rp-icon{flex:0 0 48px;height:48px;display:grid;place-items:center;border-radius:50%;background:var(--red-a);color:var(--red)}
+.rp-pair>.rp-panel-dark{background:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1.5px) 0 0/24px 24px,linear-gradient(120deg,var(--ink) 0%,var(--ink-d) 100%);box-shadow:none}
+.rp-panel-dark .h2{color:#ffffff}
+.rp-panel-dark .nums{gap:16px;margin:0}
+.rp-panel-dark .nums li{gap:16px;font-size:18px;color:#ffffff}
+.rp-panel-dark .nums li::before{flex:0 0 36px;height:36px;background:rgba(255,255,255,.1);font-size:15px;color:#ffffff}
+.rp-panel-dark .hbtns{margin-top:32px}
+.rp-rec{grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto auto;column-gap:32px;row-gap:12px;align-items:start;padding:40px;border-radius:28px;background:#ffffff;box-shadow:0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28)}
+.rp-rec-icon{grid-row:1/span 2;display:grid;place-items:center;width:72px;height:72px;border-radius:50%;background:var(--red-a);color:var(--red)}
+.rp-rec>.art{grid-column:2;max-width:760px}
+.rp-rec .hbtns{margin-top:24px}
+@media (max-width:900px){
+  .rp-pair{grid-template-columns:minmax(0,1fr)}
+  .rp-pair>.rp-panel{padding:32px}
+}
+@media (max-width:600px){
+  .rp-pair>.rp-panel{padding:20px 16px;border-radius:16px}
+  .rp-rec{grid-template-columns:minmax(0,1fr);padding:24px 16px;border-radius:22px}
+  .rp-rec-icon{grid-row:auto;width:56px;height:56px}
+  .rp-rec>.art{grid-column:1}
+}
