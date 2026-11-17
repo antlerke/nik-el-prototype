@@ -2653,3 +2653,34 @@ main>.band-sec{padding-bottom:120px}
   .stu-steps .nums li{padding:16px;font-size:17px}
   .stu-steps .nums li::before{font-size:40px}
 }
+
+/* Custom devices: the six things to adapt as cards with an icon (symbols from the page's sprite);
+   the steps on a grey band beside a production photo that stays in view, a timeline down the right, the last step dark */
+.cu-sprite{display:none}
+.cu-icon{display:grid;place-items:center;width:56px;height:56px;margin-bottom:20px;border-radius:50%;background:var(--red-a);color:var(--red)}
+.cu-band+.band-sec{margin-top:120px}
+.cu-split{grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-rows:auto 1fr;column-gap:64px;row-gap:32px;align-items:start;margin-top:0}
+.cu-photo{grid-row:1/span 2;position:sticky;top:120px;aspect-ratio:4/5;margin:0;border-radius:16px;overflow:hidden;background:var(--gray)}
+.cu-photo img{display:block;width:100%;height:100%;object-fit:cover}
+.cu-split>.h2,.cu-split>.art{grid-column:2}
+.cu-split .nums{gap:0}
+.cu-split .nums li{position:relative;gap:20px;padding-bottom:28px}
+.cu-split .nums li::before{flex:0 0 40px;height:40px;background:#ffffff;box-shadow:inset 0 0 0 2px var(--red);color:var(--red)}
+.cu-split .nums li:not(:last-child)::after{content:"";position:absolute;left:19px;top:44px;bottom:4px;border-left:2px dashed #c3ccd6}
+.cu-split .nums span{padding-top:6px}
+.cu-split .nums b{display:block;margin-bottom:4px;font-size:20px;color:var(--ink)}
+.cu-split .nums li:last-child{align-items:center;margin-left:-20px;padding:16px 20px;border-radius:16px;background:linear-gradient(120deg,var(--ink) 0%,var(--ink-d) 100%)}
+.cu-split .nums li:last-child::before{background:var(--red);box-shadow:none;color:#ffffff}
+.cu-split .nums li:last-child span{padding-top:0}
+.cu-split .nums li:last-child b{margin:0;color:#ffffff}
+@media (max-width:900px){
+  .cu-band+.band-sec{margin-top:64px}
+  .cu-split{grid-template-columns:minmax(0,1fr)}
+  .cu-photo{grid-row:auto;position:static;aspect-ratio:16/9}
+  .cu-split>.h2,.cu-split>.art{grid-column:1}
+  .cu-split .nums li:last-child{margin-left:0}
+}
+@media (max-width:600px){
+  .cu-icon{width:48px;height:48px;margin-bottom:16px}
+  .cu-split .nums b{font-size:18px}
+}
