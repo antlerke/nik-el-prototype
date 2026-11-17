@@ -2489,3 +2489,45 @@ main>.band-sec{padding-bottom:120px}
   .accr{padding:20px}
   .accr-no{font-size:26px}
 }
+/* NIKipedia: the articles as an encyclopedia index — rows in two columns, the topic's icon in a circle, lines between rows */
+.ngrid.wiki-index{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;column-gap:48px;row-gap:0;border-top:1px solid var(--line)}
+.wiki-index .nc{flex-direction:row;align-items:flex-start;gap:20px;padding:24px 0;border-radius:0;background:none;box-shadow:none;border-bottom:1px solid var(--line)}
+.wiki-index .nc .bd{padding:0}
+/* the four topic icons are drawn once in this hidden SVG and reused by every row */
+.wiki-sprite{display:none}
+.wiki-icon{flex:none;display:grid;place-items:center;width:52px;height:52px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--line);color:var(--red);transition:background-color .2s ease,color .2s ease}
+/* a row stays in place under the pointer (cards lift); its icon fills instead */
+.wiki-index .nc:hover,.media-timeline .nc:hover{transform:none}
+.wiki-index .nc:hover .wiki-icon{background:var(--ink);color:#ffffff;box-shadow:none}
+/* Press: the publications as a timeline — up to 900 px the date on the left, a line with dots, the publication on the right */
+.ngrid.media-timeline{position:relative;grid-template-columns:minmax(0,1fr);grid-template-rows:none;gap:0;max-width:960px}
+.media-timeline::before{content:"";position:absolute;left:167px;top:12px;bottom:12px;width:2px;background:var(--line)}
+.media-timeline .nc{display:grid;grid-template-columns:136px minmax(0,1fr);column-gap:64px;padding:0 0 40px;border-radius:0;background:none;box-shadow:none;overflow:visible}
+.media-timeline .nc .bd{position:relative;padding:0}
+.media-timeline .nc .bd::before{content:"";position:absolute;left:-39px;top:6px;width:14px;height:14px;border-radius:50%;background:#ffffff;box-shadow:inset 0 0 0 3px var(--red)}
+.media-date{padding-top:2px;text-align:right;font-family:var(--mono);font-size:14px;font-weight:600;color:var(--ink)}
+.media-timeline .meta span{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--red-t)}
+/* from 901 px: the line in the middle, the publications in white cards take turns left and right, the date on the other side of the dot */
+@media (min-width:901px){
+  .ngrid.media-timeline{max-width:none}
+  .media-timeline::before{left:50%;margin-left:-1px}
+  .media-timeline .nc{position:relative;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:96px;padding-bottom:32px}
+  .media-timeline .nc .bd{padding:28px;border-radius:24px;background:#ffffff;box-shadow:0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28)}
+  .media-timeline .nc .bd::before{display:none}
+  .media-timeline .nc::after{content:"";position:absolute;left:50%;top:34px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:#ffffff;box-shadow:inset 0 0 0 3px var(--red)}
+  .media-date{padding-top:30px}
+  .media-timeline .nc:nth-child(odd) .bd{grid-column:1;grid-row:1}
+  .media-timeline .nc:nth-child(odd) .media-date{grid-column:2;grid-row:1;text-align:left}
+  .media-timeline .nc:nth-child(even) .media-date{grid-column:1;text-align:right}
+}
+@media (max-width:900px){
+  .ngrid.wiki-index{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:600px){
+  .wiki-index .nc{gap:14px;padding:20px 0}
+  .wiki-icon{width:44px;height:44px}
+  .media-timeline::before{left:6px}
+  .media-timeline .nc{grid-template-columns:minmax(0,1fr);row-gap:6px;padding:0 0 32px 32px}
+  .media-timeline .nc .bd::before{left:-32px;top:-22px}
+  .media-date{text-align:left}
+}

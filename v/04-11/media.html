@@ -31,10 +31,11 @@
 
 <div class="wrap pbody">
   <sc-if value="{{hasList}}" hint-placeholder-val="{{true}}">
-  <div class="ngrid three">
+  <div class="ngrid media-timeline">
     <sc-for list="{{list}}" as="p" hint-placeholder-count="6">
       <a href="#" target="_blank" rel="noopener" class="nc tile">
-        <span class="bd"><span class="meta"><span>{{p.s}}</span><time>{{p.d}}</time></span><span class="t">{{p.t}}</span><span class="cd">{{p.o}}</span><span class="more">Читати на сайті видання<span class="sr"> (відкривається в новій вкладці)</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span>
+        <time class="media-date">{{p.d}}</time>
+        <span class="bd"><span class="meta"><span>{{p.s}}</span></span><span class="t">{{p.t}}</span><span class="cd">{{p.o}}</span><span class="more">Читати на сайті видання<span class="sr"> (відкривається в новій вкладці)</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span>
       </a>
     </sc-for>
   </div>
