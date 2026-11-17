@@ -2565,3 +2565,43 @@ main>.band-sec{padding-bottom:120px}
   .media-timeline .nc .bd::before{left:-32px;top:-22px}
   .media-date{text-align:left}
 }
+
+/* High-voltage networks: the letters of each device (ГРЩ, КСО…) as a big red headline, four cards in a row;
+   medium voltage on a dark band; retrofit beside the night city photo; «why us» as three cards with an icon */
+.ngrid.hv-cards{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.hv-cards .cert{padding:28px 24px}
+.hv-cards .cert h3{display:flex;flex-direction:column;gap:12px;font-size:18px;line-height:1.3;font-weight:600;letter-spacing:0}
+.hv-code{font-size:48px;line-height:1;font-weight:800;letter-spacing:-0.04em;color:var(--red)}
+.hv-cards .cert .cd{font-size:16px}
+.hv-dark{background:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1.5px) 0 0/24px 24px,linear-gradient(120deg,var(--ink) 0%,var(--ink-d) 100%)}
+.hv-dark .h2{color:#ffffff}
+.hv-dark .cert{background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+.hv-dark .cert h3{color:#ffffff}
+.hv-dark .hv-code{color:#f4a9b6}
+.hv-dark .cert .cd{color:#d3deea}
+.hv-split{grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-rows:auto 1fr;column-gap:64px;row-gap:24px}
+.hv-side{grid-row:1/span 2;position:relative;min-height:440px;margin:0;border-radius:16px;overflow:hidden;background:var(--gray)}
+.hv-side img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% center}
+.hv-split>.h2,.hv-split>.art{grid-column:2}
+.hv-why{grid-template-columns:minmax(0,1fr)}
+.hv-benefits{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.hv-benefits li{display:flex;flex-direction:column;gap:16px;padding:28px;border-radius:16px;background:var(--paper);box-shadow:inset 0 0 0 1px var(--line);font-size:17px;line-height:1.5;color:var(--text)}
+.hv-benefits .bcard-icon{background:#ffffff}
+.hv-benefits b{display:block;margin-bottom:8px;font-size:24px;line-height:1.2;letter-spacing:-0.02em;color:var(--ink)}
+@media (max-width:1180px){
+  .ngrid.hv-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  .hv-split{grid-template-columns:minmax(0,1fr)}
+  .hv-side{grid-row:auto;min-height:260px}
+  .hv-split>.h2,.hv-split>.art{grid-column:1}
+  .hv-benefits{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:600px){
+  .ngrid.hv-cards{grid-template-columns:minmax(0,1fr)}
+  .hv-cards .cert{padding:16px}
+  .hv-code{font-size:40px}
+  .hv-side{min-height:200px}
+  .hv-benefits li{padding:16px}
+  .hv-benefits b{font-size:20px}
+}
