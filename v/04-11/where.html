@@ -29,35 +29,41 @@
 </section>
 
 <div class="wrap pbody">
-  <div class="lab">
-    <figure class="map" role="group" aria-label="Карта дилерів">
-      <sc-for list="{{pins}}" as="p" hint-placeholder-count="8"><button type="button" class="pin-btn" style="{{p.st}}" aria-pressed="{{p.on}}" aria-label="{{p.aria}}" onClick="{{p.pick}}"><span></span></button></sc-for>
-    </figure>
-    <div class="contact-card" aria-live="polite">
-      <h2>{{dealer.n}}</h2>
-      <small>{{dealer.reg}}</small>
-      <div class="clist">
-        <div><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg></i><span>[Адреса]</span></div>
-        <a href="#"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"></path></svg></i><span class="num">[Телефон]</span></a>
-        <div><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></i><span class="num">[Пн–Пт, графік]</span></div>
-      </div>
-      <a href="#" class="btn btn-ink">Прокласти маршрут</a>
+<div class="locator">
+  <div class="locator-list">
+    <div class="tabs" role="tablist" aria-label="Регіон">
+      <sc-for list="{{regs}}" as="r" hint-placeholder-count="5"><button type="button" role="tab" aria-selected="{{r.on}}" aria-controls="dealer-panel" onClick="{{r.pick}}">{{r.t}}</button></sc-for>
+    </div>
+    <div class="vlist" id="dealer-panel" role="tabpanel" aria-label="{{regName}}">
+      <sc-for list="{{rows}}" as="d" hint-placeholder-count="8">
+        <article class="vac dealer {{d.cls}}">
+          <div><h2><button type="button" class="dealer-pick" aria-pressed="{{d.on}}" onClick="{{d.pick}}">{{d.n}}</button></h2><p class="cd">{{d.reg}}</p></div>
+          <div class="spec addr"><span>Адреса</span><b>[Адреса]</b></div>
+          <div class="spec spec-tel"><span>Телефон</span><b>[Телефон]</b></div>
+          <div class="spec spec-hours"><span>Графік</span><b>[Графік роботи]</b></div>
+          <a href="#" class="btn btn-line" aria-label="Маршрут: {{d.n}}">Маршрут</a>
+        </article>
+      </sc-for>
     </div>
   </div>
-  <div class="tabs" role="tablist" aria-label="Регіон">
-    <sc-for list="{{regs}}" as="r" hint-placeholder-count="5"><button type="button" role="tab" aria-selected="{{r.on}}" aria-controls="dealer-panel" onClick="{{r.pick}}">{{r.t}}</button></sc-for>
+  <div class="locator-map">
+    <div class="lab">
+      <figure class="map" role="group" aria-label="Карта дилерів">
+        <sc-for list="{{pins}}" as="p" hint-placeholder-count="8"><button type="button" class="pin-btn" style="{{p.st}}" aria-pressed="{{p.on}}" aria-label="{{p.aria}}" onClick="{{p.pick}}"><span></span></button></sc-for>
+      </figure>
+      <div class="contact-card" aria-live="polite">
+        <h2>{{dealer.n}}</h2>
+        <small>{{dealer.reg}}</small>
+        <div class="clist">
+          <div><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg></i><span>[Адреса]</span></div>
+          <a href="#"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"></path></svg></i><span class="num">[Телефон]</span></a>
+          <div><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></i><span class="num">[Пн–Пт, графік]</span></div>
+        </div>
+        <a href="#" class="btn btn-ink">Прокласти маршрут</a>
+      </div>
+    </div>
   </div>
-  <div class="vlist" id="dealer-panel" role="tabpanel" aria-label="{{regName}}">
-    <sc-for list="{{rows}}" as="d" hint-placeholder-count="8">
-      <article class="vac dealer">
-        <div><h2>{{d.n}}</h2><p class="cd">{{d.reg}}</p></div>
-        <div class="spec addr"><span>Адреса</span><b>[Адреса]</b></div>
-        <div class="spec"><span>Телефон</span><b>[Телефон]</b></div>
-        <div class="spec"><span>Графік</span><b>[Графік роботи]</b></div>
-        <a href="#" class="btn btn-line" aria-label="Маршрут: {{d.n}}">Маршрут</a>
-      </article>
-    </sc-for>
-  </div>
+</div>
 </div>
 
 <section class="wrap band-sec">
@@ -89,11 +95,14 @@ class Component extends DCLogic {
       { n: '[Дилер Є]', r: 4, x: 60, y: 72 }, { n: '[Дилер Ж]', r: 4, x: 74, y: 36 }
     ];
     const inRegion = (d) => !s.reg || d.r === s.reg;
-    const pins = D.map((d, i) => ({ d, i })).filter((x) => inRegion(x.d)).map(({ d, i }) => ({ st: 'left: ' + d.x + '%; top: ' + d.y + '%', on: String(s.pin === i), aria: d.n + ', регіон ' + d.r, pick: () => this.setState({ pin: i }) }));
+    // when the list scrolls (wide screens), the dealer picked on the map is brought into it
+    const showInList = () => requestAnimationFrame(() => { const l = document.getElementById('dealer-panel'), r = l && l.querySelector('.dealer.on'); if (!r || l.scrollHeight <= l.clientHeight) return; const a = l.getBoundingClientRect(), b = r.getBoundingClientRect(); if (b.top < a.top) l.scrollTop += b.top - a.top - 8; else if (b.bottom > a.bottom) l.scrollTop += b.bottom - a.bottom + 8; });
+    const pins = D.map((d, i) => ({ d, i })).filter((x) => inRegion(x.d)).map(({ d, i }) => ({ st: 'left: ' + d.x + '%; top: ' + d.y + '%', on: String(s.pin === i), aria: d.n + ', регіон ' + d.r, pick: () => { this.setState({ pin: i }); showInList(); } }));
     const dd = D[s.pin];
     const R = [[0, 'Усі регіони'], [1, 'Регіон 1'], [2, 'Регіон 2'], [3, 'Регіон 3'], [4, 'Регіон 4']];
     const regs = R.map(([id, t]) => ({ t, on: String(s.reg === id), pick: () => this.setState({ reg: id, pin: !id || D[s.pin].r === id ? s.pin : D.findIndex((d) => d.r === id) }) }));
-    const rows = D.filter(inRegion).map((d) => ({ n: d.n, reg: 'Регіон ' + d.r + ' · [область]' }));
+    // the chosen dealer is marked in the list; a row picks its dealer as a pin on the map does
+    const rows = D.map((d, i) => ({ d, i })).filter((x) => inRegion(x.d)).map(({ d, i }) => ({ n: d.n, reg: 'Регіон ' + d.r + ' · [область]', cls: s.pin === i ? 'on' : '', on: String(s.pin === i), pick: () => this.setState({ pin: i }) }));
     return Object.assign(this.base(s), { pins, dealer: { n: dd.n, reg: 'Регіон ' + dd.r + ' · [область, місто]' }, regs, regName: R[s.reg][1], rows });
   }
 }

@@ -2025,24 +2025,58 @@ main>.band-sec{padding-bottom:120px}
 .pin-btn{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border:0;border-radius:50%;padding:0;background:transparent;cursor:pointer;display:grid;place-items:center}
 .pin-btn span{width:16px;height:16px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 4px #ffffff,0 6px 14px rgba(19,56,93,.35);transition:transform .25s var(--out)}
 .pin-btn[aria-pressed="true"] span{background:var(--red);box-shadow:0 0 0 4px #ffffff,0 0 0 10px var(--red-b),0 6px 14px rgba(19,56,93,.35)}
-.dealer{grid-template-columns:minmax(0,1.4fr) minmax(0,1.2fr) minmax(0,1fr) minmax(0,1fr) auto}
 .dealer h2,.dealer .spec b,.contact-card h2{overflow-wrap:anywhere}
 @media (hover:hover) and (pointer:fine){
   .pin-btn:hover span{transform:scale(1.2)}
 }
-@media (max-width:1180px){
-  .dealer{grid-template-columns:repeat(3,minmax(0,1fr)) auto}
-  .dealer>div:first-child{grid-column:1/4}
-  .dealer .btn{grid-column:4;grid-row:1}
+/* a store locator: regions and the dealer list on the left, the map and the chosen dealer's card on the right.
+   A row picks its dealer as a pin on the map does; the chosen row is dark. Phone and hours are in the card */
+.locator{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:32px;align-items:start}
+.locator .tabs{margin-top:0}
+.locator .vlist{max-height:720px;overflow:auto;margin-top:16px;gap:8px;padding:2px 8px 2px 2px}
+.dealer{position:relative;grid-template-columns:minmax(0,1fr) auto;column-gap:16px;row-gap:8px;padding:16px 24px;border-radius:16px}
+.dealer h2{font-size:20px;line-height:1.15}
+.dealer .cd{margin-top:4px;font-size:16px}
+.dealer>div:first-child{grid-column:1}
+.dealer .spec{grid-column:1;flex-direction:row;justify-content:flex-start;gap:8px}
+.dealer .spec-tel,.dealer .spec-hours{display:none}
+.dealer .btn{position:relative;z-index:1;grid-column:2;grid-row:1/span 2;align-self:center;min-height:44px;padding:0 16px 2px}
+.dealer-pick{padding:0;border:0;background:none;font:inherit;letter-spacing:inherit;color:inherit;text-align:left;cursor:pointer}
+.dealer-pick::before{content:"";position:absolute;inset:0}
+.dealer-pick:focus-visible{outline:0}
+.dealer:has(.dealer-pick:focus-visible){outline:3px solid #007ac2;outline-offset:3px}
+.dealer.on{background:linear-gradient(120deg,var(--ink) 0%,var(--ink-d) 100%);box-shadow:none}
+.dealer.on h2,.dealer.on .spec b{color:#ffffff}
+.dealer.on .cd,.dealer.on .spec span{color:#d3deea}
+.dealer.on .btn-line{box-shadow:inset 0 0 0 1.5px #ffffff;color:#ffffff}
+.dealer.on .dealer-pick{cursor:default}
+.locator-map{position:sticky;top:120px}
+.locator .lab{grid-template-columns:minmax(0,1fr);gap:16px}
+.locator .map{min-height:440px}
+@media (hover:hover) and (pointer:fine) and (min-width:901px){
+  .dealer:not(.on):hover{box-shadow:0 0 0 1.5px var(--ink),0 12px 32px -24px rgba(19,56,93,.28)}
 }
+/* tablets and phones: the tabs, a small map, then short rows (name and region) with a chevron;
+   the chosen row opens dark with the address, phone, hours and the route button, so the card beside the map is not shown */
 @media (max-width:900px){
-  .dealer{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-  .dealer>div:first-child,.dealer .addr,.dealer .btn{grid-column:span 2}
-  .dealer .btn{grid-row:auto}
+  .locator{display:flex;flex-direction:column;align-items:stretch;gap:0}
+  .locator-list{display:contents}
+  .locator .tabs{order:1}
+  .locator-map{order:2;position:static;margin-top:16px}
+  .locator .contact-card{display:none}
+  .locator .map{min-height:320px}
+  .locator .vlist{order:3;max-height:none;overflow:visible;gap:0;margin-top:16px;padding:0;border-top:1px solid var(--line)}
+  .dealer{grid-template-columns:minmax(0,1fr);gap:8px;padding:16px 48px 16px 0;border-radius:0;background:none;box-shadow:none;border-bottom:1px solid var(--line)}
+  .dealer::after{content:"";position:absolute;right:8px;top:24px;width:9px;height:9px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg)}
+  .dealer:not(.on) .spec,.dealer:not(.on) .btn{display:none}
+  .dealer.on{margin:8px 0;padding:16px 48px 16px 16px;border-radius:16px;border-bottom:0}
+  .dealer.on::after{right:20px;top:28px;border-color:#ffffff;transform:rotate(-135deg)}
+  .dealer.on .spec{display:grid;grid-template-columns:84px minmax(0,1fr);gap:8px}
+  .dealer .btn{grid-column:auto;grid-row:auto;justify-self:start;margin-top:8px}
 }
 @media (max-width:600px){
-  .dealer{grid-template-columns:minmax(0,1fr)}
-  .dealer>div:first-child,.dealer .addr,.dealer .btn{grid-column:auto}
+  .locator .map{min-height:220px}
+  .dealer .btn{justify-self:stretch}
 }
 
 /* about page */
