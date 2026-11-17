@@ -27,12 +27,38 @@ a.st:hover { text-decoration: underline; }
 .need li { scroll-margin-top: 16px; border-radius: 6px; }
 .need li:target { background: #fdf0dc; box-shadow: 0 0 0 6px #fdf0dc; }
 @media (max-width: 560px) { .st { white-space: normal; } }
+/* tabs: «Усі сторінки», «Зміни», «Що бракує»; without JavaScript all three parts show one under another */
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 0; }
+.tabs button { padding: 8px 16px; border: 0; border-radius: 8px; background: #ffffff; box-shadow: inset 0 0 0 1px #dde3e9; font-family: inherit; font-size: 15px; font-weight: 600; line-height: 1.4; color: #13385d; cursor: pointer; }
+.tabs button:hover { box-shadow: inset 0 0 0 1.5px #13385d; }
+.tabs button[aria-selected="true"] { background: #13385d; box-shadow: none; color: #ffffff; }
+.tabs button:focus-visible { outline: 3px solid #007ac2; outline-offset: 2px; }
+[role=tabpanel] > h2:first-child, [role=tabpanel] > .legend:first-child { margin-top: 24px; }
+/* changes by date: the page name opens the page, the second column says what changed; on phones each row stacks */
+.changes { width: 100%; margin: 8px 0 0; border-collapse: collapse; font-size: 16px; }
+.changes th, .changes td { padding: 10px 16px 10px 0; text-align: left; vertical-align: top; border-bottom: 1px solid #dde3e9; }
+.changes th { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: #59636e; }
+.changes td:first-child { width: 32%; }
+@media (max-width: 560px) {
+  .changes thead { display: none; }
+  .changes, .changes tbody, .changes tr, .changes td { display: block; width: auto; }
+  .changes tr { padding: 10px 0; border-bottom: 1px solid #dde3e9; }
+  .changes td, .changes td:first-child { width: auto; padding: 0; border: 0; }
+  .changes td:first-child { margin-bottom: 4px; }
+}
 </style>
 </head>
 <body>
 <main>
 <h1>Сторінки прототипу сайту НІК-ЕЛЕКТРОНІКА</h1>
 <p class="date">Стан на 11.11.2026. Натисніть назву, щоб відкрити сторінку.</p>
+<div class="tabs" role="tablist" aria-label="Розділи">
+  <button type="button" role="tab" id="tab-pages" aria-controls="pages" aria-selected="true">Усі сторінки</button>
+  <button type="button" role="tab" id="tab-changes" aria-controls="changes" aria-selected="false">Зміни</button>
+  <button type="button" role="tab" id="tab-need" aria-controls="need" aria-selected="false">Що бракує</button>
+</div>
+
+<section id="pages" role="tabpanel" aria-labelledby="tab-pages">
 <ul class="legend">
   <li><span class="st ok">готово</span>15 сторінок</li>
   <li><span class="st part">готово, але бракує деталей від компанії</span>10 сторінок</li>
@@ -102,29 +128,6 @@ a.st:hover { text-decoration: underline; }
   <li><a href="consent.html">Згода на обробку даних</a><a class="st part" href="#need-legal">дані в квадратних дужках</a></li>
 </ul>
 
-<h2>Що саме бракує</h2>
-<ul class="need">
-  <li id="need-index"><a href="index.html">Головна</a>
-    <ul class="why">
-      <li>Перший екран: за ТЗ заголовок і опис мають лежати поверх великого фото, за схемою (вайрфреймом) замовника. Схеми в нас немає, тому зараз текст стоїть поруч із фото приладу.</li>
-      <li>Стрічка «Клієнти та партнери»: 3 партнери справжні, з логотипами. Ще 3 місця — заглушки «[Назва партнера]»: бракує назв і логотипів.</li>
-    </ul>
-  </li>
-  <li id="need-hv"><a href="hv.html">Високовольтні мережі</a> <span class="why">— у переліку є пункт «Гарантія та сервіс», але без пояснення: у ТЗ лише назва. Потрібне одне-два речення.</span></li>
-  <li id="need-repair"><a href="repair.html">Ремонт лічильників</a> <span class="why">— у ТЗ біля пункту «Перевірка після ремонту» стоїть «[уточнити: чи так]». Компанія має підтвердити, що так і є.</span></li>
-  <li id="need-software"><a href="software.html">Програмне забезпечення</a> <span class="why">— у картках AGSM GURU і NIK BT-DLMS замість опису стоїть «[уточнити]». Потрібне одне речення про кожну програму.</span></li>
-  <li id="need-history"><a href="history.html">Історія компанії</a> <span class="why">— у події 2009 року написано «запускаємо нові напрямки: [уточнити, які]». Потрібні назви цих напрямів.</span></li>
-  <li id="need-culture"><a href="culture.html">Корпоративна культура</a> <span class="why">— у галереї зараз фото виробництва, а за задумом там мають бути люди. Потрібні 5 фото команди.</span></li>
-  <li id="need-conformity"><a href="conformity.html">Центр оцінки відповідності</a> <span class="why">— у ТЗ двічі написано «28 видів випробувань» і один раз «29». Треба знати правильне число.</span></li>
-  <li id="need-partners"><a href="partners.html">Наші партнери</a> <span class="why">— справжні лише 3 оператори систем розподілу (Житомир-, Прикарпаття- і Харківобленерго). У решті груп — державні замовники, девелопери, дистриб’ютори, міжнародні партнери — стоять заглушки «[Назва компанії]». Потрібні назви компаній і, якщо є, логотипи.</span></li>
-  <li id="need-cases"><a href="cases.html">Кейси та об'єкти</a>, <a href="case.html">сторінка кейсу</a> <span class="why">— усі кейси зараз заглушки «[Назва об’єкта]» з тимчасовими фото. Для кожного потрібні: назва об’єкта, тип клієнта, регіон, задача, рішення, результат, фото.</span></li>
-  <li id="need-where"><a href="where.html">Де купити</a> <span class="why">— усі дилери зараз заглушки «[Дилер А]», «[Адреса]», «[Телефон]». Потрібен список дилерів: назва, регіон, адреса, телефон, графік роботи.</span></li>
-  <li id="need-nikipedia"><a href="nikipedia.html">НІКіпедія</a>, <a href="nikipedia-article.html">стаття</a> <span class="why">— усі статті зараз заглушки «[Тема статті]». Для кожної потрібні: тема, текст, автор, дата.</span></li>
-  <li id="need-media"><a href="media.html">Ми у ЗМІ</a> <span class="why">— усі публікації зараз заглушки. Для кожної потрібні: видання, дата, заголовок, короткий опис, посилання.</span></li>
-  <li id="need-documents"><a href="documents.html">Електронні документи</a> <span class="why">— вступ і кроки 2–3 зараз заглушки. Потрібно: що можна робити в застосунку NIK Документи, як ним почати користуватися, посилання на App Store і Google Play.</span></li>
-  <li id="need-legal"><a href="privacy.html">Політика конфіденційності</a>, <a href="cookies.html">Політика cookie</a>, <a href="consent.html">Згода на обробку даних</a> <span class="why">— у тексті є місця в квадратних дужках: дата редакції, пошта для запитів, посада відповідальної особи, строки зберігання даних, назви cookie і місця, які має перевірити юрист.</span></li>
-</ul>
-
 <h2>Ще не зроблено</h2>
 <ul>
   <li>Усі товари з Google-таблиці</li>
@@ -132,6 +135,88 @@ a.st:hover { text-decoration: underline; }
   <li>Вхід в особистий кабінет</li>
   <li>Особистий кабінет (друга фаза)</li>
 </ul>
+</section>
+
+<section id="changes" role="tabpanel" aria-labelledby="tab-changes">
+<h2>17.11.2026 — зміни</h2>
+<p class="why">Сторінки виглядали однаково, тому ми змінили вигляд блоків. Тексти не змінювали: усі слова як у ТЗ.</p>
+<table class="changes">
+  <thead><tr><th>Сторінка</th><th>Що змінилося</th></tr></thead>
+  <tbody>
+    <tr><td><a href="services.html">Послуги</a></td><td>Мозаїка: велика картка з фото, дві картки з фото збоку, три прості картки і темна картка із закликом</td></tr>
+    <tr><td><a href="hv.html">Високовольтні мережі</a></td><td>Великі червоні скорочення (ГРЩ, КСО…), по 4 картки в ряд. Середня напруга на темній смузі. Ретрофіт поруч із фото. «Чому обирають» — 3 картки з іконками</td></tr>
+    <tr><td><a href="askoe.html">Впровадження АСКОЕ</a></td><td>4 кроки на лінії. «АСКОЕ NovaSys» на темній смузі, «98%» великою цифрою</td></tr>
+    <tr><td><a href="custom.html">Розробка на замовлення</a></td><td>6 карток з іконками. Кроки на сірій смузі поруч із фото виробництва, «Серійне виробництво» на темній плашці</td></tr>
+    <tr><td><a href="repair.html">Ремонт лічильників</a></td><td>«Що ми робимо» і «Як здати лічильник у ремонт» стоять поруч двома панелями: білою та темною. Утилізація — плашка з іконкою</td></tr>
+    <tr><td><a href="software.html">Програмне забезпечення</a></td><td>Мобільні застосунки на темній смузі</td></tr>
+    <tr><td><a href="students.html">Студентам і випускникам</a></td><td>«Для кого» великим шрифтом. Напрями практики — 4 картки з фото. Список з галочками. Темний блок у кінці: кроки 1–2–3 і кнопка</td></tr>
+    <tr><td><a href="conformity.html">Центр оцінки відповідності</a></td><td>Шлях лічильника на ринок — кроки кружками на лінії поруч із фото лабораторії. «Неупередженість» — нумеровані рядки. «Для імпортерів» — три картки переваг, поруч «Для кого». 28 випробувань у вкладках за групами, таблиця стандартів згорнута. Атестат акредитації — картка документа</td></tr>
+    <tr><td><a href="partners.html">Наші партнери</a></td><td>Оператори систем розподілу з логотипами на темній смузі, інші групи — картки з іконкою в рожевому кружку. У кожній групі 6 компаній, решта за кнопкою «Показати ще»</td></tr>
+    <tr><td><a href="where.html">Де купити</a></td><td>Зліва регіони і список дилерів, справа карта і картка дилера. На телефоні — вкладки, мала карта і рядки, що розкриваються</td></tr>
+    <tr><td><a href="service.html">Сервісний центр</a></td><td>Пункти прийому — темні картки. «Що де ремонтуємо» — дві білі картки. Адреси Нової пошти — картки з іконкою, документи — плитки. «Загальні контакти» — темний блок у кінці</td></tr>
+    <tr><td><a href="nikipedia.html">НІКіпедія</a></td><td>Статті як покажчик енциклопедії, біля кожної іконка теми в рожевому кружку</td></tr>
+    <tr><td><a href="media.html">Ми у ЗМІ</a></td><td>Публікації на стрічці часу, на комп’ютері по черзі зліва і справа</td></tr>
+    <tr><td>Усі перероблені сторінки</td><td>Вирівняно однакові елементи: розміри іконок, заокруглення, крапковий візерунок, кружечки кроків, заголовки на телефоні</td></tr>
+  </tbody>
+</table>
+</section>
+
+<section id="need" role="tabpanel" aria-labelledby="tab-need">
+<h2>Що саме бракує</h2>
+<ul class="need">
+  <li id="need-photos">Фото <span class="why">— на всіх сторінках зараз тимчасові фото з наявних матеріалів, тому ті самі повторюються: лабораторія, виробнича лінія, панорама Києва. Потрібні справжні фото виробництва, лабораторії та обладнання.</span></li>
+  <li id="need-index"><a href="index.html">Головна</a>
+    <ul class="why">
+      <li>Перший екран: за ТЗ заголовок і опис мають лежати поверх великого фото, за схемою (вайрфреймом) замовника. Схеми в нас немає, тому зараз текст стоїть поруч із фото приладу.</li>
+      <li>Стрічка «Клієнти та партнери»: 3 партнери справжні, з логотипами. Ще 3 місця — заглушки «[Назва партнера]»: бракує назв і логотипів.</li>
+    </ul>
+  </li>
+  <li id="need-hv"><a href="hv.html">Високовольтні мережі</a> <span class="why">— у переліку є пункт «Гарантія та сервіс», але без пояснення: у ТЗ лише назва. Потрібне одне-два речення. Фото обладнання теж немає: зараз там нічна панорама Києва, як на головній і в «Послугах».</span></li>
+  <li id="need-repair"><a href="repair.html">Ремонт лічильників</a> <span class="why">— у ТЗ біля пункту «Перевірка після ремонту» стоїть «[уточнити: чи так]». Компанія має підтвердити, що так і є.</span></li>
+  <li id="need-software"><a href="software.html">Програмне забезпечення</a> <span class="why">— у картках AGSM GURU і NIK BT-DLMS замість опису стоїть «[уточнити]». Потрібне одне речення про кожну програму. Також перевірити: UNIK — програма для Windows, а стоїть серед вебплатформ.</span></li>
+  <li id="need-history"><a href="history.html">Історія компанії</a> <span class="why">— у події 2009 року написано «запускаємо нові напрямки: [уточнити, які]». Потрібні назви цих напрямів.</span></li>
+  <li id="need-culture"><a href="culture.html">Корпоративна культура</a> <span class="why">— у галереї зараз фото виробництва, а за задумом там мають бути люди. Потрібні 5 фото команди.</span></li>
+  <li id="need-conformity"><a href="conformity.html">Центр оцінки відповідності</a> <span class="why">— у ТЗ двічі написано «28 видів випробувань» і один раз «29». Треба знати правильне число. Ще три питання: чи потрібен підпис під плиткою «Welmec»; де на сторінці має стояти «Політика щодо дитячої праці»; текст «Навіщо лічильнику випробування» повторює вступ до кроків — чи лишати обидва.</span></li>
+  <li id="need-partners"><a href="partners.html">Наші партнери</a> <span class="why">— справжні лише 3 оператори систем розподілу (Житомир-, Прикарпаття- і Харківобленерго). У решті груп — державні замовники, девелопери, дистриб’ютори, міжнародні партнери — стоять заглушки «[Назва компанії]». Потрібні назви компаній і, якщо є, логотипи. У Прикарпаттяобленерго логотипа теж немає.</span></li>
+  <li id="need-cases"><a href="cases.html">Кейси та об'єкти</a>, <a href="case.html">сторінка кейсу</a> <span class="why">— усі кейси зараз заглушки «[Назва об’єкта]» з тимчасовими фото. Для кожного потрібні: назва об’єкта, тип клієнта, регіон, задача, рішення, результат, фото.</span></li>
+  <li id="need-where"><a href="where.html">Де купити</a> <span class="why">— усі дилери зараз заглушки «[Дилер А]», «[Адреса]», «[Телефон]». Потрібен список дилерів: назва, регіон, адреса, телефон, графік роботи.</span></li>
+  <li id="need-nikipedia"><a href="nikipedia.html">НІКіпедія</a>, <a href="nikipedia-article.html">стаття</a> <span class="why">— усі статті зараз заглушки «[Тема статті]». Для кожної потрібні: тема, текст, автор, дата.</span></li>
+  <li id="need-media"><a href="media.html">Ми у ЗМІ</a> <span class="why">— усі публікації зараз заглушки. Для кожної потрібні: видання, дата, заголовок, короткий опис, посилання.</span></li>
+  <li id="need-documents"><a href="documents.html">Електронні документи</a> <span class="why">— вступ і кроки 2–3 зараз заглушки. Потрібно: що можна робити в застосунку NIK Документи, як ним почати користуватися, посилання на App Store і Google Play.</span></li>
+  <li id="need-legal"><a href="privacy.html">Політика конфіденційності</a>, <a href="cookies.html">Політика cookie</a>, <a href="consent.html">Згода на обробку даних</a> <span class="why">— у тексті є місця в квадратних дужках: дата редакції, пошта для запитів, посада відповідальної особи, строки зберігання даних, назви cookie і місця, які має перевірити юрист.</span></li>
+</ul>
+</section>
 </main>
+<script>
+// tabs: one part of the page at a time. The address keeps the open part (#pages, #changes, #need),
+// and a link to an item in «Що бракує» (#need-…) opens that tab and scrolls to the item, which :target highlights
+(() => {
+  const tabs = [...document.querySelectorAll('[role=tab]')];
+  const panels = tabs.map((t) => document.getElementById(t.getAttribute('aria-controls')));
+  const show = (i, focus) => {
+    tabs.forEach((t, k) => { const on = k === i; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; panels[k].hidden = !on; });
+    if (focus) tabs[i].focus();
+  };
+  const fromHash = () => {
+    const el = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    const i = el ? panels.findIndex((p) => p.contains(el)) : -1;
+    show(i < 0 ? 0 : i);
+    // an item: bring it into view; a whole tab (#pages): start from the top, where the tabs are
+    if (el && i >= 0) { if (el !== panels[i]) el.scrollIntoView(); else scrollTo(0, 0); }
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => { show(i); history.replaceState(null, '', '#' + panels[i].id); });
+    t.addEventListener('keydown', (e) => {
+      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!d) return;
+      e.preventDefault();
+      const j = (i + d + tabs.length) % tabs.length;
+      show(j, true); history.replaceState(null, '', '#' + panels[j].id);
+    });
+  });
+  addEventListener('hashchange', fromHash);
+  fromHash();
+})();
+</script>
 </body>
 </html>
