@@ -3126,13 +3126,15 @@ main>.band-sec{padding-bottom:7.5rem}
 .ftile.dark>p{grid-column:2;grid-row:2}
 
 /* Client feedback 19.11 — «Випробувальний центр» and «Атестат про акредитацію» as one block (Anna chose option I):
-   the heading, the centre's text in three columns (the middle sentence, what accreditation means, darker and a little
-   bolder, at the same size as its neighbours — Anna 19.11: larger looked uneven),
+   the heading, the centre's text in two columns (Anna 19.11, option K of tools-for-ai/options/centre-text/; three columns
+   looked uneven): the first paragraph and «Це означає…» — what accreditation means, darker and a little bolder, at the same
+   size — on the left, «Ми випробовуємо…» on the right, as the two notes under the certificate;
    then the certificate as one wide document across the page — number and «valid until» on the left, the fields in three
    columns on the right — and its two notes under it */
 .about-cols.cf-centre{grid-template-columns:minmax(0,1fr);gap:2.5rem}
-.cf-txt{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2.5rem}
+.cf-txt{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2.5rem}
 .cf-txt p{margin:0;font-size:1.125rem;line-height:1.6;color:var(--text)}
+.cf-txt p+p{margin-top:1rem}
 .cf-txt .cf-key{font-weight:500;color:var(--ink)}
 .cf-doc h3{margin:0 0 1rem;font-size:1.5rem;line-height:1.2;letter-spacing:-0.02em;color:var(--ink)}
 .cf-doc .accr{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);column-gap:2.5rem;align-items:start;padding:2.5rem}
