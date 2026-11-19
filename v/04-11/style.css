@@ -2841,7 +2841,7 @@ main>.band-sec{padding-bottom:120px}
 
 /* Career: «why» on a dark band across the page (see-through cards, an icon in a pink circle); «we offer» beside a photo
    of the line, a ticked list; «who we look for» as a big statement; the sections as tiles whose photo fills them, the title
-   on the photo; the call closes the page as a dark block with a deep shadow (as on «Студентам») */
+   on the photo */
 .cr-dark{background:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1.5px) 0 0/24px 24px,linear-gradient(120deg,var(--ink) 0%,var(--ink-d) 100%)}
 .cr-dark .h2{color:#ffffff}
 .ngrid.cr-why4{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
@@ -2865,7 +2865,6 @@ main>.band-sec{padding-bottom:120px}
 .cr-cover .t{color:#ffffff}
 .cr-cover .cd{color:#e3eaf2}
 .cr-cover .more{color:#ffffff}
-.band.cr-close{margin-top:64px;padding:48px;background:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1.5px) 0 0/24px 24px,linear-gradient(120deg,var(--ink) 0%,var(--ink-d) 100%);box-shadow:0 40px 80px -32px rgba(19,56,93,.6)}
 /* from 720 to 1060 px the tiles go two in a row: the first takes the whole row, so the last is not left alone */
 @media (min-width:720px) and (max-width:1060px){
   .ngrid.three>.cr-cover:first-child{grid-column:1/-1;min-height:360px}
@@ -2877,7 +2876,6 @@ main>.band-sec{padding-bottom:120px}
   .about-cols.cr-split{grid-template-columns:minmax(0,1fr)}
   .cr-side{grid-row:auto;min-height:260px}
   .cr-split>.h2,.cr-split>.art{grid-column:1}
-  .band.cr-close{padding:32px}
 }
 /* two columns are too narrow for «енергоменеджменту» below 720 px; the why cards hold only a title, so the icon goes beside it */
 @media (max-width:719px){
@@ -2890,7 +2888,6 @@ main>.band-sec{padding-bottom:120px}
   .cr-side{min-height:200px}
   .cr-who .art{font-size:22px}
   .nc.cr-cover{min-height:320px}
-  .band.cr-close{margin-top:48px;padding:24px 16px;border-radius:22px}
 }
 /* the narrowest phones */
 @media (max-width:374px){
