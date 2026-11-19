@@ -3077,3 +3077,10 @@ main>.band-sec{padding-bottom:120px}
 
 /* Review 19.11, step 3 — a word or two set off in running text: the heading colour and semi-bold, no new colour */
 .kw{font-weight:600;color:var(--ink)}
+
+/* Client feedback 19.11: «Неупередженість — не обіцянка, а процедура» moved up into the section with the testing centre and
+   the accreditation certificate; as the third block there it keeps the same space above as the blocks before it */
+.text-rows>.split-list{margin-top:64px}
+@media (max-width:900px){
+  .text-rows>.split-list{margin-top:40px}
+}
