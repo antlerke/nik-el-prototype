@@ -3084,3 +3084,11 @@ main>.band-sec{padding-bottom:120px}
 @media (max-width:900px){
   .text-rows>.split-list{margin-top:40px}
 }
+
+/* Client feedback 19.11 — the four tiles at the top of conformity («29», «Welmec», «2031», «EA MLA») built the same way:
+   the value big at the top, the caption under it; «EA MLA» is a value like the others (pink on dark), the badge of European
+   recognition stands at the start of its caption instead of above the value (in a corner it would run into «EA MLA») */
+.ftile.dark{display:grid;grid-template-columns:auto minmax(0,1fr);align-content:start;column-gap:10px;row-gap:8px}
+.ftile.dark>b{grid-column:1/-1;grid-row:1}
+.ftile.dark>svg{grid-column:1;grid-row:2;margin:2px 0 0}
+.ftile.dark>p{grid-column:2;grid-row:2}
