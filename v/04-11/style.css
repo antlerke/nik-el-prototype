@@ -3092,3 +3092,36 @@ main>.band-sec{padding-bottom:120px}
 .ftile.dark>b{grid-column:1/-1;grid-row:1}
 .ftile.dark>svg{grid-column:1;grid-row:2;margin:2px 0 0}
 .ftile.dark>p{grid-column:2;grid-row:2}
+
+/* Client feedback 19.11 — «Випробувальний центр» and «Атестат про акредитацію» as one block (Anna chose option I):
+   the heading, the centre's text in three columns (the middle sentence, what accreditation means, larger and darker),
+   then the certificate as one wide document across the page — number and «valid until» on the left, the fields in three
+   columns on the right — and its two notes under it */
+.about-cols.cf-centre{grid-template-columns:minmax(0,1fr);gap:40px}
+.cf-txt{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}
+.cf-txt p{margin:0;font-size:18px;line-height:1.6;color:var(--text)}
+.cf-txt .cf-key{font-size:22px;line-height:1.4;font-weight:500;color:var(--ink)}
+.cf-doc h3{margin:0 0 16px;font-size:24px;line-height:1.2;letter-spacing:-0.02em;color:var(--ink)}
+.cf-doc .accr{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);column-gap:40px;align-items:start;padding:40px}
+.cf-doc .accr-top{grid-template-columns:auto minmax(0,1fr);row-gap:20px;align-self:stretch;align-content:start;padding:0 40px 0 0;border-bottom:0;border-right:1px solid var(--line)}
+.cf-doc .accr-until{grid-column:1/-1;text-align:left}
+.cf-doc .accr-kv{grid-template-columns:repeat(3,minmax(0,1fr));margin:0}
+.cf-notes{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:-16px}
+.cf-notes p{margin:0;font-size:15px;line-height:1.5;color:var(--muted)}
+@media (max-width:1180px){
+  .cf-doc .accr{grid-template-columns:minmax(0,1fr)}
+  .cf-doc .accr-top{padding:0 0 24px;border-right:0;border-bottom:1px solid var(--line)}
+  .cf-doc .accr-kv{grid-template-columns:1fr 1fr;margin-top:24px}
+}
+@media (max-width:900px){
+  .cf-txt{grid-template-columns:minmax(0,1fr);gap:16px}
+  .cf-notes{grid-template-columns:minmax(0,1fr);gap:12px;margin-top:0}
+}
+@media (max-width:600px){
+  .about-cols.cf-centre{gap:24px}
+  .cf-txt p{font-size:17px}
+  .cf-txt .cf-key{font-size:20px}
+  .cf-doc h3{font-size:20px}
+  .cf-doc .accr{padding:20px}
+  .cf-doc .accr-kv{grid-template-columns:minmax(0,1fr)}
+}
