@@ -2943,3 +2943,25 @@ main>.band-sec{padding-bottom:120px}
   .mosaic.cc-gal{grid-template-rows:220px;grid-auto-rows:140px}
   .cc-call{padding:20px 16px;font-size:20px}
 }
+
+/* Electronic documents: «Як це працює» as the dark block of «Студентам» (inside the column, so it does not run into the dark
+   footer; a deep shadow lifts it): the steps as see-through cards with big pink numbers, the store buttons outlined in white (as on the dark band of «Програмне забезпечення») */
+.about-cols.dc-steps{grid-template-columns:minmax(0,1fr);gap:40px;margin-top:0;padding:48px;border-radius:28px;box-shadow:0 40px 80px -32px rgba(19,56,93,.6);background:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1.5px) 0 0/24px 24px,linear-gradient(120deg,var(--ink) 0%,var(--ink-d) 100%)}
+.dc-steps .h2{margin-top:0;color:#ffffff}
+.dc-steps .nums{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:0}
+.dc-steps .nums li{flex-direction:column;gap:24px;padding:28px;border-radius:16px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);font-size:20px;line-height:1.45;color:#ffffff}
+.dc-steps .nums li::before{flex:none;width:auto;height:auto;border-radius:0;background:none;place-items:start;font-family:Geologica,sans-serif;font-size:56px;line-height:1;font-weight:800;letter-spacing:-0.04em;color:#f4a9b6}
+.dc-steps .hbtns{margin-top:32px}
+.dc-steps .btn-line{box-shadow:inset 0 0 0 1.5px #ffffff;color:#ffffff}
+.dc-steps .pnote{color:#b9c6d4}
+.dc-steps .pnote a{color:#ffffff}
+@media (max-width:900px){
+  .about-cols.dc-steps{padding:32px}
+  .dc-steps .nums{grid-template-columns:minmax(0,1fr)}
+  .dc-steps .nums li{flex-direction:row;align-items:center;gap:20px}
+}
+@media (max-width:600px){
+  .about-cols.dc-steps{gap:24px;padding:24px 16px;border-radius:22px}
+  .dc-steps .nums li{padding:16px;font-size:17px}
+  .dc-steps .nums li::before{font-size:40px}
+}
