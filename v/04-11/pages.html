@@ -45,16 +45,16 @@ a.st:hover { text-decoration: underline; }
 .changes th, .changes td { padding: 10px 16px 10px 0; text-align: left; vertical-align: top; border-bottom: 1px solid #dde3e9; }
 .changes th { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: #59636e; }
 .changes td:first-child { width: 24%; }
-/* «Фідбек»: three columns — where, what changed, what to check */
-.changes.check td:first-child { width: 22%; }
-.changes.check td + td { width: 39%; }
-.changes.check td + td + td { color: #36434f; }
-[role=tabpanel] > h3 { margin: 32px 0 0; font-size: 18px; }
-@media (max-width: 560px) {
-  .changes.check td:first-child, .changes.check td + td { width: auto; }
-  .changes.check td + td + td { margin-top: 6px; }
-  .changes.check td + td + td::before { content: "Перевірити: "; font-weight: 600; color: #13385d; }
-}
+/* «Фідбек»: a short checklist — the page as a heading, then one line per place: the block in bold, what you should see.
+   Numbered 1, 2, 3… across the whole tab; no lines between the items (Anna) */
+.fb { max-width: 800px; counter-reset: fb; }
+.fb h3 { margin: 28px 0 4px; font-size: 18px; letter-spacing: 0; text-transform: none; color: #13385d; }
+.fb ol { margin: 0; padding: 0; list-style: none; }
+.fb li { position: relative; margin: 0; padding: 5px 0 5px 28px; font-size: 15px; line-height: 1.5; counter-increment: fb; }
+.fb li::before { content: counter(fb) "."; position: absolute; left: 0; color: #59636e; font-variant-numeric: tabular-nums; }
+.fb li b { font-weight: 600; color: #13385d; }
+/* every link in the tab ends with a small arrow, so it is clear it opens the page */
+.fb a::after { content: ""; display: inline-block; width: 0.75em; height: 0.75em; margin-left: 0.2em; vertical-align: -0.02em; background: currentColor; -webkit-mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M7 17L17 7M8 7h9v9'/></svg>") center / contain no-repeat; mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M7 17L17 7M8 7h9v9'/></svg>") center / contain no-repeat; }
 /* rows numbered 1, 2, 3… by the page itself, so a new row needs no renumbering */
 .changes tbody { counter-reset: row; }
 .changes tbody tr { counter-increment: row; }
@@ -76,8 +76,8 @@ a.st:hover { text-decoration: underline; }
 <p class="date">Стан на 11.11.2026. Натисніть назву, щоб відкрити сторінку.</p>
 <div class="tabs" role="tablist" aria-label="Розділи">
   <button type="button" role="tab" id="tab-pages" aria-controls="pages" aria-selected="true">Усі сторінки</button>
-  <button type="button" role="tab" id="tab-changes" aria-controls="changes" aria-selected="false">Зміни</button>
   <button type="button" role="tab" id="tab-feedback" aria-controls="feedback" aria-selected="false">Фідбек 19.11</button>
+  <button type="button" role="tab" id="tab-changes" aria-controls="changes" aria-selected="false">Зміни</button>
   <button type="button" role="tab" id="tab-need" aria-controls="need" aria-selected="false">Що бракує</button>
 </div>
 
@@ -160,6 +160,30 @@ a.st:hover { text-decoration: underline; }
 </ul>
 </section>
 
+<section id="feedback" role="tabpanel" aria-labelledby="tab-feedback">
+<h2>Фідбек 19.11 — що перевірити</h2>
+<p class="why">Відкрийте сторінку й перевірте, чи так. Масштаб браузера — 100 % (Ctrl 0).</p>
+<div class="fb">
+<h3><a href="conformity.html">Центр оцінки відповідності</a></h3>
+<ol>
+  <li><b>4 плитки вгорі</b> — усі однакові: велике значення, під ним підпис.</li>
+  <li><b>«Випробувальний центр»</b> — текст у дві колонки, під ним атестат на всю ширину.</li>
+  <li><b>«Неупередженість — не обіцянка, а процедура»</b> — одразу під атестатом, заголовок в один рядок.</li>
+  <li><b>«Як замовити випробування»</b> — у картці «Контактна особа» немає телефону Світлани.</li>
+</ol>
+<h3><a href="about.html">Увесь сайт</a></h3>
+<ol>
+  <li><b>На комп’ютері</b> усе на 10 % менше: текст, заголовки, відступи. На планшеті й телефоні — як було.</li>
+</ol>
+<h3>Також змінено</h3>
+<ol>
+  <li><a href="privacy.html"><b>Політика конфіденційності</b></a>, <a href="cookies.html"><b>Політика cookie</b></a> — праворуч зміст розділів; під час прокрутки він лишається поруч і показує, де ви.</li>
+  <li><a href="consent.html"><b>Згода на обробку даних</b></a> — текст по центру сторінки.</li>
+  <li><a href="index.html#contact"><b>Головна, форма зв’язку</b></a> — у полях знову є підказки.</li>
+</ol>
+</div>
+</section>
+
 <section id="changes" role="tabpanel" aria-labelledby="tab-changes">
 <h2>19.11.2026 — зміни</h2>
 <p class="why">Сторінки виглядали однаково, тому ми змінили вигляд блоків. Тексти не змінювали: усі слова як у ТЗ.</p>
@@ -193,30 +217,6 @@ a.st:hover { text-decoration: underline; }
     <tr><td><a href="privacy.html">Політика конфіденційності</a></td><td>Праворуч від тексту — зміст із 12 розділів: тримається поруч під час читання, поточний розділ підсвічений; на планшеті й телефоні — картка над текстом</td></tr>
     <tr><td><a href="cookies.html">Політика cookie</a></td><td>Праворуч від тексту — зміст, як у «Політиці конфіденційності»</td></tr>
     <tr><td><a href="consent.html">Згода на обробку даних</a></td><td>Текст і заголовок по центру сторінки, без порожнечі праворуч</td></tr>
-  </tbody>
-</table>
-</section>
-
-<section id="feedback" role="tabpanel" aria-labelledby="tab-feedback">
-<h2>Фідбек 19.11.2026 — що перевірити</h2>
-<p class="why">Лише зміни за цим фідбеком: де дивитись і що перевірити. Перевіряти з масштабом браузера 100 % (Ctrl 0). Усі зміни — також у вкладці «Зміни».</p>
-<table class="changes check">
-  <thead><tr><th>Де</th><th>Що змінилося</th><th>Що перевірити</th></tr></thead>
-  <tbody>
-    <tr><td><a href="conformity.html">Центр оцінки відповідності, «Як замовити випробування»</a></td><td>З картки «Контактна особа» прибрано телефон Світлани (у ТЗ він є — прибрано за фідбеком)</td><td>Лишились ім’я, посада і пошта</td></tr>
-    <tr><td><a href="conformity.html">Центр оцінки відповідності, «Неупередженість — не обіцянка, а процедура»</a></td><td>Блок перенесено вище — одразу після «Випробувальний центр» і «Атестат про акредитацію»</td><td>Третій блок на першій сірій смузі; заголовок на всю ширину — на комп’ютері в один рядок, як «Випробувальний центр», вступ і пункти під ним; лінії лише між пунктами, без першої й останньої; сірі й білі смуги далі чергуються; «Для кого» — останній блок секції з тестами</td></tr>
-    <tr><td><a href="conformity.html">Центр оцінки відповідності, 4 плитки вгорі</a></td><td>«EA MLA» — таке саме велике значення, як 29, Welmec і 2031; значок перед підписом</td><td>Значення й підписи в усіх плитках на одній висоті. Підпис під «Welmec» ще чекаємо (див. «Що бракує»)</td></tr>
-    <tr><td><a href="conformity.html">Центр оцінки відповідності, «Випробувальний центр»</a></td><td>«Випробувальний центр» і «Атестат про акредитацію» — один блок: текст у дві колонки (перший абзац і «Це означає…» зліва, «Ми випробовуємо…» справа), під ним атестат широким документом</td><td>Середнє речення темніше, розміром як сусідні; на планшеті картка атестата складається; на телефоні спершу текст, потім атестат</td></tr>
-    <tr><td><a href="about.html">Усі сторінки</a></td><td>На комп’ютері (екран від 1181 px) увесь сайт на 10 % менший: текст, заголовки, картки, відступи — як у браузері з масштабом 90 %</td><td>Планшет і телефон без змін (звузьте вікно); дрібний текст карток на комп’ютері — 14,4 px: чи не задрібно</td></tr>
-  </tbody>
-</table>
-<h3>Також після фідбеку</h3>
-<table class="changes check">
-  <thead><tr><th>Де</th><th>Що змінилося</th><th>Що перевірити</th></tr></thead>
-  <tbody>
-    <tr><td><a href="privacy.html">Політика конфіденційності, Політика cookie</a></td><td>Праворуч від тексту — зміст розділів</td><td>Зміст тримається поруч під час прокрутки, поточний розділ підсвічений; клік веде до розділу; на телефоні — картка над текстом</td></tr>
-    <tr><td><a href="consent.html">Згода на обробку даних</a></td><td>Текст і заголовок по центру сторінки</td><td>Заголовок і текст на одній лінії</td></tr>
-    <tr><td><a href="index.html#contact">Головна, форма зв’язку</a></td><td>Повернуто підказки в полях ПІБ, телефон, пошта (у ТЗ їх немає — додано свідомо)</td><td>Підказки видно в порожніх полях; помилки показуються, як раніше: «Заповніть це поле», «Вкажіть коректну email-адресу»</td></tr>
   </tbody>
 </table>
 </section>
