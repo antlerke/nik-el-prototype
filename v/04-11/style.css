@@ -2971,3 +2971,44 @@ main>.band-sec{padding-bottom:120px}
   .service .bcard-icon{width:48px;height:48px}
   .service .bcard-icon+h3{margin-top:16px}
 }
+
+/* Contract manufacturing: the three advantages with the round pink icon; the six services as photo cards (as the places of
+   practice on «Студентам»; a photo on white is shown whole, .fit); the figures on a dark band across the page (as on
+   «Про компанію»); quality control beside the testing photo, «ISO 9001» as a white plate with a medal in a pink circle */
+.service .ct-icon{display:grid;place-items:center;width:56px;height:56px;flex:none;border-radius:50%;background:var(--red-a);box-shadow:none;color:var(--red)}
+.service .ct-icon+h3{margin-top:20px}
+.ct-photos .cert{padding:0;overflow:hidden}
+.ct-photos .cert>h3,.ct-photos .cert>.cd{margin-left:28px;margin-right:28px}
+.ct-photos .cert>h3{margin-top:24px}
+.ct-photos .cert>.cd{margin-bottom:28px}
+.ct-pic{position:relative;margin:0;aspect-ratio:16/10;background:var(--gray);overflow:hidden}
+.ct-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ct-pic.fit{background:#ffffff}
+.ct-pic.fit img{object-fit:contain;padding:12px;box-sizing:border-box}
+.ct-dark{background:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1.5px) 0 0/24px 24px,linear-gradient(120deg,var(--ink) 0%,var(--ink-d) 100%)}
+.ct-dark .h2{color:#ffffff}
+.ct-dark .stat-cards>div{background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+.ct-dark .stat-cards b{color:#f4a9b6}
+.ct-dark .stat-cards span{color:#ffffff}
+.ct-dark .stat-cards small{color:#b9c6d4}
+.about-cols.ct-split{grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-rows:auto 1fr;column-gap:64px;row-gap:24px;align-items:start}
+.ct-side{grid-row:1/span 2;position:relative;align-self:stretch;min-height:360px;margin:0;border-radius:16px;overflow:hidden;background:var(--gray)}
+.ct-side img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ct-split>.h2,.ct-split>.art{grid-column:2}
+.ct-split>.h2{margin:0}
+.art p.ct-iso{display:flex;align-items:center;gap:16px;margin-top:24px;padding:20px 24px;border-radius:16px;background:#ffffff;box-shadow:0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28);font-size:18px;line-height:1.4;color:var(--ink)}
+.ct-iso-icon{flex:0 0 48px;height:48px;display:grid;place-items:center;border-radius:50%;background:var(--red-a);color:var(--red)}
+@media (max-width:900px){
+  .about-cols.ct-split{grid-template-columns:minmax(0,1fr)}
+  .ct-side{grid-row:auto;min-height:240px}
+  .ct-split>.h2,.ct-split>.art{grid-column:1}
+}
+@media (max-width:600px){
+  .service .ct-icon{width:48px;height:48px}
+  .service .ct-icon+h3{margin-top:16px}
+  .ct-photos .cert>h3,.ct-photos .cert>.cd{margin-left:16px;margin-right:16px}
+  .ct-photos .cert>h3{margin-top:16px}
+  .ct-photos .cert>.cd{margin-bottom:16px}
+  .ct-side{min-height:200px}
+  .art p.ct-iso{padding:16px;font-size:16px}
+}
