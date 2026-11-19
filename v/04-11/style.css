@@ -3041,3 +3041,32 @@ main>.band-sec{padding-bottom:120px}
 @media (max-width:600px){
   .nrows li{padding-left:16px}
 }
+
+/* Review 19.11, step 2 — phones: the round icon goes beside the card's title instead of above it, and the text of the card
+   runs the full width under them (Anna, 19.11; the ticked lists on the culture page stay under the title, as she asked there).
+   From 719 px: conformity's two test cards, custom's six things to adapt, high-voltage «why us», about's clients / quality /
+   team. From 600 px, when the cards stand one per row: about's values, the partner groups, repair's
+   recycling note (its icon is already beside from 601 px) */
+@media (max-width:719px){
+  .ab-cols3 .about-cols,.service:has(>.bcard-icon),.cert:has(>.cu-icon){display:grid;grid-template-columns:48px minmax(0,1fr);column-gap:16px;row-gap:0;align-items:start}
+  .ab-icon,.service .bcard-icon,.cu-icon{grid-column:1;grid-row:1;width:48px;height:48px;margin:0}
+  .ab-cols3 .about-cols>.h2,.service:has(>.bcard-icon)>h3,.cert:has(>.cu-icon)>h3{grid-column:2;grid-row:1;align-self:center;margin:0}
+  .service .bcard-icon+h3{margin-top:0}
+  .service:has(>.bcard-icon)>:not(.bcard-icon):not(h3),.cert:has(>.cu-icon)>:not(.cu-icon):not(h3),.ab-cols3 .about-cols>.art{grid-column:1/-1}
+  /* «why us» (title and text in one line of text): the icon floats left, the title stands beside it, the text runs under both */
+  .hv-benefits li{display:block}
+  .hv-benefits .bcard-icon{float:left;width:48px;height:48px;margin-right:16px}
+  .hv-benefits b{display:flex;align-items:center;min-height:48px;margin-bottom:8px}
+}
+@media (max-width:600px){
+  .ab-values4 .service,.pcat{display:grid;grid-template-columns:48px minmax(0,1fr);column-gap:16px;row-gap:0;align-items:start}
+  .pcat{row-gap:16px}
+  .service .ab-vicon,.pcat-icon{grid-column:1;grid-row:1;width:48px;height:48px;margin:0}
+  .ab-values4 .service>h3,.pcat>h2{grid-column:2;grid-row:1;align-self:center;margin:0}
+  .ab-values4 .service h3{margin-top:0}
+  .ab-values4 .service>:not(.ab-vicon):not(h3),.pcat>:not(.pcat-icon):not(h2){grid-column:1/-1}
+  .rp-rec{grid-template-columns:48px minmax(0,1fr);column-gap:16px}
+  .rp-rec-icon{grid-row:1}
+  .rp-rec>.h2{grid-column:2;align-self:center}
+  .rp-rec>.art{grid-column:1/-1}
+}
