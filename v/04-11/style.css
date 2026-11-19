@@ -2944,7 +2944,6 @@ main>.band-sec{padding-bottom:120px}
   .cc-side .service{grid-template-columns:48px minmax(0,1fr);column-gap:16px;padding:20px 16px}
   .service .cc-icon{grid-row:auto;width:48px;height:48px}
   .cc-side .service h3{margin:0;align-self:center;font-size:24px}
-  .cc-side .service .feat{grid-column:1/-1}
   .cc-big .art>p{font-size:22px}
   .cc-big .feat{grid-template-columns:minmax(0,1fr)}
   .cc-big .feat li{padding:12px 0;font-size:20px}
@@ -3029,4 +3028,16 @@ main>.band-sec{padding-bottom:120px}
   .trio .service{flex-direction:row;align-items:center;gap:16px;padding:16px}
   .trio .service .ct-icon{width:48px;height:48px}
   .trio .service .ct-icon+h3{margin-top:0;font-size:20px}
+}
+
+/* The dark last row or step («Неупередженість» on conformity, «Як ми створюємо пристрій» on custom): where it can no longer
+   hang into the gap on its left (900 px and less), every row takes its inner left padding, so the numbers and the marks
+   stay on one line and the dashed line reaches the last mark (Anna, 19.11) */
+@media (max-width:900px){
+  .nrows li{padding-left:24px}
+  .cu-split .nums li{padding-left:20px}
+  .cu-split .nums li:not(:last-child)::after{left:39px}
+}
+@media (max-width:600px){
+  .nrows li{padding-left:16px}
 }
