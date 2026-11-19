@@ -2965,3 +2965,12 @@ main>.band-sec{padding-bottom:120px}
   .dc-steps .nums li{padding:16px;font-size:17px}
   .dc-steps .nums li::before{font-size:40px}
 }
+
+/* Conformity: the two test cards on the dark band («28 видів випробувань», «3 документи») take the page's round pink icon,
+   as the importer cards (.service i would otherwise draw the old white square) */
+.service .bcard-icon{width:56px;height:56px;flex:none;border-radius:50%;background:var(--red-a);box-shadow:none}
+.service .bcard-icon+h3{margin-top:20px}
+@media (max-width:600px){
+  .service .bcard-icon{width:48px;height:48px}
+  .service .bcard-icon+h3{margin-top:16px}
+}
