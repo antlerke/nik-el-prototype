@@ -3142,3 +3142,30 @@ main>.band-sec{padding-bottom:7.5rem}
   .cf-doc .accr{padding:1.25rem}
   .cf-doc .accr-kv{grid-template-columns:minmax(0,1fr)}
 }
+
+/* Legal pages (Anna, 19.11, option A): the contents of «Політика конфіденційності» and «Політика cookie» in the empty column on
+   the right; it stays in view while reading and marks the current section. On tablets and phones it is a card above the text.
+   «Згода на обробку даних» has no sections: its text stands in the middle */
+.agrid.lg-has-toc{grid-template-columns:minmax(0,45rem) minmax(0,17rem);column-gap:5rem}
+.lg-has-toc>.art{grid-column:1;grid-row:1}
+.lg-has-toc>.lg-toc{grid-column:2;grid-row:1}
+.lg-toc{position:sticky;top:7.5rem;align-self:start;max-height:calc(100vh - 10rem);overflow:auto}
+.lg-toc-t{margin:0 0 .75rem;font-family:var(--mono);font-size:.8125rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.lg-toc ol{list-style:none;margin:0;padding:0;border-left:1px solid var(--line)}
+.lg-toc a{display:block;margin-left:-1px;padding:.5rem 0 .5rem 1rem;border-left:2px solid transparent;font-size:.9375rem;line-height:1.35;color:var(--muted);text-decoration:none}
+.lg-toc a:hover{color:var(--ink)}
+.lg-toc a.on{border-left-color:var(--red);font-weight:600;color:var(--ink)}
+.art h2[id]{scroll-margin-top:7.5rem}
+@media (max-width:1180px){
+  .agrid.lg-has-toc{grid-template-columns:minmax(0,45rem)}
+  .lg-has-toc>.art,.lg-has-toc>.lg-toc{grid-column:1;grid-row:auto}
+  .lg-toc{position:static;max-height:none;margin-bottom:2.5rem;padding:1.5rem;border-radius:1.5rem;background:var(--paper)}
+  .lg-toc ol{border-left:0;columns:2;column-gap:2rem}
+  .lg-toc a{margin:0;padding:.375rem 0;border-left:0}
+  .lg-toc a.on{font-weight:500}
+}
+@media (max-width:600px){
+  .lg-toc ol{columns:1}
+}
+/* «Згода на обробку даних»: the title stands over the text column in the middle */
+.narrow.lg-center{max-width:45rem;margin-left:auto;margin-right:auto}

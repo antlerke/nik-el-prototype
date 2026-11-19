@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Юридичні сторінки — варіанти</title>
+<!-- Switcher for Anna (19.11): the legal pages (privacy, cookies, consent) of the site in a frame, each option applied to the
+     real page inside the frame (the site's files stay as they are). Scroll inside the frame: option A's contents follow it.
+     Open: http://127.0.0.1:8740/tools-for-ai/options/legal/ -->
+<style>
+  :root{--ink:#13385d;--red:#c8102e;--line:#dde3e9;--paper:#f4f6f8}
+  html,body{height:100%}
+  body{margin:0;display:flex;flex-direction:column;font:15px/1.45 system-ui,sans-serif;color:#1d2833;background:#cfd4da}
+  header{padding:12px 16px;background:#ffffff;box-shadow:0 1px 0 var(--line)}
+  h1{margin:0 0 8px;font-size:16px;color:var(--ink)}
+  .row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .row+.row{margin-top:8px}
+  .row span{min-width:110px;font-size:13px;color:#59636e}
+  button{min-height:34px;padding:0 12px;border:0;border-radius:8px;background:var(--paper);box-shadow:inset 0 0 0 1px var(--line);font:600 14px system-ui,sans-serif;color:var(--ink);cursor:pointer}
+  button[aria-pressed="true"]{background:var(--ink);box-shadow:none;color:#ffffff}
+  #desc{margin:10px 0 0;max-width:960px;color:#36434f}
+  .stage{flex:1;display:flex;justify-content:center;padding:12px;min-height:0}
+  iframe{display:block;height:100%;border:0;background:#ffffff;box-shadow:0 8px 24px -12px rgba(0,0,0,.35)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Юридичні сторінки: Політика конфіденційності, Політика cookie, Згода на обробку даних</h1>
+  <div class="row" id="pages"><span>Сторінка:</span></div>
+  <div class="row" id="looks"><span>Варіант:</span></div>
+  <div class="row" id="widths"><span>Ширина:</span></div>
+  <p id="desc"></p>
+</header>
+<div class="stage"><iframe id="f" title="Сторінка"></iframe></div>
+<script>
+const CARD = '0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28)';
+// the article's sections: each h2 with everything after it up to the next h2
+const sections = (art) => { const out = []; let cur = null; [...art.children].forEach((n) => { if (n.tagName === 'H2') { cur = { h: n, nodes: [] }; out.push(cur); } else if (cur) cur.nodes.push(n); }); return out; };
+const ids = (secs) => secs.forEach((s, i) => { if (!s.h.id) s.h.id = 'lg-' + (i + 1); });
+const tocList = (doc, secs) => { const ol = doc.createElement('ol'); secs.forEach((s) => { const li = doc.createElement('li'), a = doc.createElement('a'); a.href = '#' + s.h.id; a.textContent = s.h.textContent; li.append(a); ol.append(li); }); return ol; };
+const LOOKS = [
+  ['now', 'Зараз', 'Як зараз: вузька колонка тексту притиснута вліво, праворуч порожньо; розділи суцільною стрічкою.', () => ''],
+  ['A', 'A', 'Зміст праворуч, на місці порожнечі: їде разом із прокруткою, поточний розділ підсвічений. На планшеті й телефоні зміст — карткою над текстом. «Згода» (без розділів) — текст по центру.',
+    (doc, win, art, secs) => {
+      if (!secs.length) return '.agrid.left{justify-content:center}';
+      ids(secs);
+      const nav = doc.createElement('nav'); nav.className = 'lg-toc'; nav.setAttribute('aria-label', 'Зміст');
+      const t = doc.createElement('p'); t.className = 'lg-toc-t'; t.textContent = 'Зміст'; nav.append(t, tocList(doc, secs));
+      art.parentElement.append(nav);
+      const links = [...nav.querySelectorAll('a')];
+      const spy = () => { let cur = 0; secs.forEach((s, i) => { if (s.h.getBoundingClientRect().top < win.innerHeight * 0.3) cur = i; }); links.forEach((a, i) => a.classList.toggle('on', i === cur)); };
+      win.addEventListener('scroll', spy, { passive: true }); spy();
+      return `
+.agrid.left{grid-template-columns:minmax(0,45rem) minmax(0,17rem);column-gap:5rem}
+.lg-toc{position:sticky;top:7.5rem;align-self:start;max-height:calc(100vh - 10rem);overflow:auto}
+.lg-toc-t{margin:0 0 .75rem;font-family:var(--mono);font-size:.8125rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.lg-toc ol{list-style:none;margin:0;padding:0;border-left:1px solid var(--line)}
+.lg-toc a{display:block;padding:.5rem 0 .5rem 1rem;margin-left:-1px;border-left:2px solid transparent;font-size:.9375rem;line-height:1.35;color:var(--muted);text-decoration:none}
+.lg-toc a:hover{color:var(--ink)}
+.lg-toc a.on{border-left-color:var(--red);font-weight:600;color:var(--ink)}
+@media (max-width:1180px){
+  .agrid.left{grid-template-columns:minmax(0,45rem)}
+  .lg-toc{position:static;order:-1;max-height:none;margin-bottom:2.5rem;padding:1.5rem;border-radius:1.5rem;background:var(--paper)}
+  .lg-toc ol{border-left:0;columns:2;column-gap:2rem}
+  .lg-toc a{padding:.375rem 0;border-left:0;margin:0}
+}
+@media (max-width:600px){ .lg-toc ol{columns:1} }`;
+    }],
+  ['B', 'B', 'Текст по центру сторінки; на початку — зміст карткою у дві колонки; розділи відділені лінією, номер розділу червоний.',
+    (doc, win, art, secs) => {
+      if (secs.length) {
+        ids(secs);
+        const box = doc.createElement('nav'); box.className = 'lg-box'; box.setAttribute('aria-label', 'Зміст'); box.append(tocList(doc, secs));
+        secs[0].h.before(box);
+        secs.forEach((s) => { const m = s.h.textContent.match(/^(\d+\.)\s*(.*)$/); if (m) { s.h.innerHTML = ''; const n = doc.createElement('span'); n.className = 'lg-n'; n.textContent = m[1]; s.h.append(n, ' ' + m[2]); } });
+      }
+      return `
+.agrid.left{justify-content:center}
+.phead .narrow{max-width:45rem;margin:0 auto}
+.lg-box{margin:2rem 0 1rem;padding:1.75rem 2rem;border-radius:1.5rem;background:var(--paper)}
+.lg-box ol{margin:0;padding-left:1.25rem;columns:2;column-gap:2.5rem;font-size:.9375rem;line-height:1.4}
+.lg-box li{margin:.25rem 0;break-inside:avoid}
+.lg-box a{color:var(--ink);text-decoration:none}
+.lg-box a:hover{text-decoration:underline}
+.art > h2{margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--line)}
+.lg-n{color:var(--red)}
+@media (max-width:600px){ .lg-box{padding:1.25rem 1rem} .lg-box ol{columns:1} }`;
+    }],
+  ['C', 'C', 'Сторінка на сірому тлі, кожен розділ — у своїй білій картці; колонка по центру. «Згода» — одна картка.',
+    (doc, win, art, secs) => {
+      const wrap = (nodes, cls) => { const c = doc.createElement('section'); c.className = cls; nodes[0].before(c); nodes.forEach((n) => c.append(n)); };
+      const intro = []; for (const n of [...art.children]) { if (n.tagName === 'H2') break; intro.push(n); }
+      if (intro.length) wrap(intro, 'lg-card lg-intro');
+      secs.forEach((s) => wrap([s.h, ...s.nodes], 'lg-card'));
+      return `
+main{background:var(--paper)}
+.phead{background:var(--paper)}
+.phead .narrow{max-width:52rem;margin:0 auto}
+.agrid.left{grid-template-columns:minmax(0,52rem);justify-content:center}
+.lg-card{margin:0 0 1.25rem;padding:2.5rem;border-radius:1.5rem;background:#ffffff;box-shadow:${CARD}}
+.lg-card > h2:first-child{margin-top:0}
+.lg-card .cert{background:var(--paper);box-shadow:none}
+@media (max-width:600px){ .lg-card{padding:1.25rem 1rem;border-radius:1rem} }`;
+    }],
+  ['D', 'D', 'Розділи згорнуті в рядки з назвою (як «Часті питання»), перший відкритий; кнопка «Розгорнути все» вгорі. Компактно, але текст захований — для юридичних сторінок це мінус.',
+    (doc, win, art, secs) => {
+      if (!secs.length) return '.agrid.left{justify-content:center}';
+      const all = doc.createElement('button'); all.type = 'button'; all.className = 'btn btn-line lg-all'; all.textContent = 'Розгорнути все';
+      secs[0].h.before(all);
+      // each section becomes a fold: its heading is the line you click, the rest opens under it
+      const boxes = secs.map((s, i) => { const d = doc.createElement('details'); d.className = 'lg-acc'; if (!i) d.open = true; const sm = doc.createElement('summary'); sm.append(s.h); d.append(sm, ...s.nodes); return d; });
+      boxes.forEach((d) => art.append(d));
+      all.onclick = () => { const open = !boxes.every((d) => d.open); boxes.forEach((d) => (d.open = open)); all.textContent = open ? 'Згорнути все' : 'Розгорнути все'; };
+      return `
+.agrid.left{justify-content:center}
+.lg-all{margin:1.5rem 0 1rem}
+.lg-acc{border-top:1px solid var(--line)}
+.lg-acc:last-of-type{border-bottom:1px solid var(--line)}
+.lg-acc summary{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.25rem 0;cursor:pointer;list-style:none}
+.lg-acc summary::-webkit-details-marker{display:none}
+.lg-acc summary::after{content:"";flex:none;width:.625rem;height:.625rem;margin-right:.25rem;border:solid var(--ink);border-width:0 2px 2px 0;transform:rotate(45deg) translateY(-25%);transition:transform .2s}
+.lg-acc[open] summary::after{transform:rotate(-135deg)}
+.lg-acc summary h2{margin:0}
+.lg-acc > :last-child{margin-bottom:1.5rem}`;
+    }],
+];
+const PAGES = [['privacy', 'Політика конфіденційності'], ['cookies', 'Політика cookie'], ['consent', 'Згода на обробку даних']];
+const WIDTHS = [['1440', 'Комп’ютер 1440'], ['1000', 'Планшет 1000'], ['390', 'Телефон 390']];
+const f = document.getElementById('f'), desc = document.getElementById('desc');
+const state = { page: 'privacy', look: 'now', w: '1440' };
+try { Object.assign(state, JSON.parse(localStorage.getItem('legal-options') || '{}')); } catch (e) {}
+const show = () => {
+  f.style.width = state.w + 'px';
+  f.src = '../../../v/04-11/' + state.page + '.html';
+  for (const [row, key] of [['pages', 'page'], ['looks', 'look'], ['widths', 'w']]) document.querySelectorAll('#' + row + ' button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.k === state[key]));
+  desc.textContent = LOOKS.find((l) => l[0] === state.look)[2];
+  try { localStorage.setItem('legal-options', JSON.stringify(state)); } catch (e) {}
+};
+f.addEventListener('load', () => {
+  const doc = f.contentDocument, win = f.contentWindow;
+  const apply = (tries) => {
+    const art = doc.querySelector('.agrid .art');
+    if (!art) { if (tries < 60) setTimeout(() => apply(tries + 1), 100); return; }
+    const look = LOOKS.find((l) => l[0] === state.look);
+    const css = look[3](doc, win, art, sections(art));
+    const s = doc.createElement('style'); s.textContent = '.cookie{display:none!important}' + css; doc.head.append(s);
+  };
+  apply(0);
+});
+const add = (row, k, text, key) => { const b = document.createElement('button'); b.type = 'button'; b.dataset.k = k; b.textContent = text; b.onclick = () => { state[key] = k; show(); }; document.getElementById(row).append(b); };
+PAGES.forEach(([k, t]) => add('pages', k, t, 'page'));
+LOOKS.forEach(([k, t]) => add('looks', k, t, 'look'));
+WIDTHS.forEach(([k, t]) => add('widths', k, t, 'w'));
+show();
+</script>
+</body>
+</html>
