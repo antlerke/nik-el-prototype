@@ -2585,16 +2585,22 @@ main>.band-sec{padding-bottom:120px}
 
 /* High-voltage networks: the letters of each device (ГРЩ, КСО…) as a big red headline, four cards in a row;
    medium voltage on a dark band; retrofit beside the night city photo; «why us» as three cards with an icon */
-.ngrid.hv-cards{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
-.hv-cards .cert{padding:28px 24px}
-.hv-cards .cert h3{display:flex;flex-direction:column;gap:12px;font-size:18px;line-height:1.3;font-weight:600;letter-spacing:0}
-.hv-code{font-size:48px;line-height:1;font-weight:800;letter-spacing:-0.04em;color:var(--red)}
+/* Review 19.11: the plain name is the card title and the letters (ГРЩ, КСО…) a small code plate above it, as the test numbers
+   on conformity; two cards in a row, so the text lines are longer */
+.ngrid.hv-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.hv-cards .cert h3{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+.hv-name::first-letter{text-transform:uppercase}
+.hv-code{display:inline-grid;place-items:center;min-width:44px;height:26px;padding:0 8px;box-sizing:border-box;border-radius:4px;background:var(--paper);font-family:var(--mono);font-size:13px;line-height:1;font-weight:600;letter-spacing:0;color:var(--red-t)}
 .hv-cards .cert .cd{font-size:16px}
 .hv-dark{background:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1.5px) 0 0/24px 24px,linear-gradient(120deg,var(--ink) 0%,var(--ink-d) 100%)}
 .hv-dark .h2{color:#ffffff}
 .hv-dark .cert{background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
 .hv-dark .cert h3{color:#ffffff}
-.hv-dark .hv-code{color:#f4a9b6}
+.hv-dark .hv-code{background:rgba(255,255,255,.1);color:#f4a9b6}
+/* two columns are too narrow for a word like «одностороннього» below 720 px */
+@media (max-width:719px){
+  .ngrid.hv-cards{grid-template-columns:minmax(0,1fr)}
+}
 .hv-dark .cert .cd{color:#d3deea}
 .hv-split{grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-rows:auto 1fr;column-gap:64px;row-gap:24px}
 .hv-side{grid-row:1/span 2;position:relative;min-height:440px;margin:0;border-radius:16px;overflow:hidden;background:var(--gray)}
@@ -2606,7 +2612,6 @@ main>.band-sec{padding-bottom:120px}
 .hv-benefits .bcard-icon{background:#ffffff}
 .hv-benefits b{display:block;margin-bottom:8px;font-size:24px;line-height:1.2;letter-spacing:-0.02em;color:var(--ink)}
 @media (max-width:1180px){
-  .ngrid.hv-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:900px){
   .hv-split{grid-template-columns:minmax(0,1fr)}
@@ -2617,7 +2622,6 @@ main>.band-sec{padding-bottom:120px}
 @media (max-width:600px){
   .ngrid.hv-cards{grid-template-columns:minmax(0,1fr)}
   .hv-cards .cert{padding:16px}
-  .hv-code{font-size:40px}
   .hv-side{min-height:200px}
   .hv-benefits li{padding:16px}
   .hv-benefits b{font-size:20px}
