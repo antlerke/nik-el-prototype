@@ -1,11 +1,12 @@
 @font-face{font-family:'Geologica';font-style:normal;font-weight:300 800;font-display:swap;src:url(../../assets/58ce8622-Geologica-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
 @font-face{font-family:'Geologica';font-style:normal;font-weight:300 800;font-display:swap;src:url(../../assets/129ad3ba-Geologica-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-/* Sizes are in rem (1rem = 16 px at the browser's default). Computers, 1181 px and wider, draw the whole site at 85 %
-   (client feedback 19.11: «все завелике»; Anna chose 85 %): the root size is 85 % of the browser's. Tablets and phones keep
-   100 %. Hairlines and small offsets (up to 2.5 px) stay in px, so they stay sharp. tools-for-ai/px-to-rem.cjs did the conversion */
+/* Sizes are in rem (1rem = 16 px at the browser's default). Computers, 1181 px and wider, draw the whole site at 90 %
+   (client feedback 19.11: «все завелике»; Anna chose 85 %, then 90 %: at 85 % some text was too small): the root size is
+   90 % of the browser's. Tablets and phones keep 100 %. Hairlines and small offsets (up to 2.5 px) stay in px, so they stay
+   sharp. tools-for-ai/px-to-rem.cjs did the conversion */
 html{font-size:100%}
 @media (min-width:1181px){
-  html{font-size:85%}
+  html{font-size:90%}
 }
 /* icons sized in the markup (width and height attributes) follow the same scale; any class rule for an icon still wins */
 :where(svg[width="12"][height="12"]){width:.75rem;height:.75rem}
