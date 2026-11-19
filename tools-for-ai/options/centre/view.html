@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Випробувальний центр — варіант</title>
+<!-- One look of the first grey section of «Центр оцінки відповідності» (as committed before the 19.11 feedback, step 4),
+     drawn with the site's own style.css. ?look=now|A|B|C|D|E|F|G|H|I|J — the switcher (index.html) puts it in a frame. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../v/04-11/style.css">
+<style>body{margin:0;background:#ffffff}</style>
+<style id="look"></style>
+</head>
+<body>
+<!-- the site sets its font and text colour on this wrapper (shell.js), not in style.css -->
+<div style="font-family: Geologica, sans-serif; color: var(--text); background: #ffffff; overflow-x: clip">
+<main id="main">
+<section class="sec on-paper">
+  <div class="wrap text-rows">
+    <div class="about-cols"><h2 class="h2">Випробувальний центр</h2><div class="art"><p>Наш випробувальний центр <b class="kw">акредитований</b> Національним агентством з акредитації України на відповідність ДСТУ&nbsp;EN&nbsp;ISO/IEC&nbsp;17025:2019 у сфері випробувань лічильників електричної енергії та програмного забезпечення засобів вимірювальної техніки.</p><p>Це означає, що результати наших випробувань мають офіційно визнану достовірність.</p><p>Ми випробовуємо <b class="kw">не лише власну продукцію</b>. До нас звертаються виробники, імпортери й дистриб’ютори лічильників, органи з оцінки відповідності та розробники програмного забезпечення для засобів вимірювальної техніки.</p></div></div>
+    <div class="about-cols"><h2 class="h2">Атестат про акредитацію</h2><div class="art"><div class="accr"><div class="accr-top"><span class="accr-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h4"></path></svg></span><div><span class="accr-lab">Номер атестата</span><b class="accr-no">202502</b></div><div class="accr-until"><span class="accr-lab">Чинний до</span><b>29 вересня 2031 року</b></div></div><dl class="accr-kv"><div><dt>Орган з акредитації</dt><dd>Національне агентство з акредитації України (НААУ)</dd></div><div><dt>Стандарт</dt><dd>ДСТУ EN ISO/IEC 17025:2019</dd></div><div><dt>Дата реєстрації</dt><dd>30 вересня 2026 року</dd></div><div><dt>Сфера</dt><dd>Лічильники електричної енергії та програмне забезпечення засобів вимірювальної техніки</dd></div><div><dt>Додаток</dt><dd>Сфера акредитації на 19 аркушах</dd></div></dl></div><p>НААУ — підписант Угоди EA MLA та Угоди Global ACI MRA у сфері «Випробування». Тому наші протоколи видаються в системі акредитації, визнаній на європейському та міжнародному рівнях.</p><p>Чинність атестата можна перевірити у відкритому реєстрі НААУ [посилання на запис у реєстрі].</p></div></div>
+    <div class="split-list">
+      <div>
+        <div class="shead"><div><h2 class="h2">Неупередженість — не обіцянка, а процедура</h2></div></div>
+        <p class="lead flow-lead">Вимоги ДСТУ&nbsp;EN&nbsp;ISO/IEC&nbsp;17025:2019 щодо неупередженості та конфіденційності є предметом акредитаційної оцінки. На практиці це означає чотири речі.</p>
+      </div>
+      <ol class="nrows">
+        <li><b>01</b><div><h3>Окремий статус</h3><p>Центр відокремлений від виробничих підрозділів</p></div></li>
+        <li><b>02</b><div><h3>NDA до початку</h3><p>Угода підписується перед передачею зразків</p></div></li>
+        <li><b>03</b><div><h3>Знеособлення</h3><p>Зразки маркуються внутрішніми кодами</p></div></li>
+        <li class="dark"><b>04</b><div><h3>Усі необхідні документи</h3><p>Надаємо верифіковані підтвердження щодо якості усіх наших випробувань та простежуваності</p></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+</main>
+</div>
+<script>
+const DARK = 'linear-gradient(120deg,var(--ink) 0%,var(--ink-d) 100%)';
+const DOTS = 'radial-gradient(rgba(255,255,255,.09) 1px,transparent 1.5px) 0 0/24px 24px';
+const CARD = '0 0 0 1px var(--line),0 12px 32px -24px rgba(19,56,93,.28)';
+const sec = document.querySelector('main section');
+const cols = [...sec.querySelectorAll('.about-cols')];
+const b = cols.find((x) => x.querySelector('.h2').textContent.startsWith('Випробувальний центр'));
+const a = cols.find((x) => x.querySelector('.h2').textContent.startsWith('Атестат'));
+const h2 = b.querySelector('.h2'), art = b.querySelector('.art'), P = [...art.querySelectorAll('p')];
+const aArt = a.querySelector('.art'), card = aArt.querySelector('.accr'), notes = [...aArt.querySelectorAll(':scope > p')];
+const el = (tag, cls, kids = []) => { const e = document.createElement(tag); if (cls) e.className = cls; kids.forEach((k) => e.append(k)); return e; };
+const label = () => { const h = document.createElement('h3'); h.textContent = 'Атестат про акредитацію'; return h; };
+
+const LOOKS = {
+  now: () => '',
+  // A: the heading on top, the three paragraphs in two columns
+  A: () => { b.classList.add('lkA'); return `
+.about-cols.lkA{grid-template-columns:minmax(0,1fr);gap:24px;align-items:start}
+.lkA .art{display:grid;grid-template-columns:1fr 1fr;column-gap:48px;row-gap:16px}
+.lkA .art p{margin:0}
+.lkA .art p:first-child{grid-row:1/span 2}
+@media (max-width:900px){ .lkA .art{grid-template-columns:1fr} .lkA .art p:first-child{grid-row:auto} }`; },
+  // B: the key sentence big under the heading, the details on the right
+  B: () => { b.classList.add('lkB'); const l = el('div', '', [h2, P[1]]); P[1].className = 'lkB-lead'; b.prepend(l); return `
+.about-cols.lkB{align-items:start}
+.lkB-lead{margin:24px 0 0;font-size:28px;line-height:1.35;font-weight:500;letter-spacing:-0.01em;color:var(--ink)}
+@media (max-width:600px){ .lkB-lead{font-size:22px} }`; },
+  // C: each paragraph in its own card
+  C: () => { b.classList.add('lkC'); return `
+.about-cols.lkC{grid-template-columns:minmax(0,1fr);gap:32px;align-items:start}
+.lkC .art{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.lkC .art p{margin:0;padding:28px;border-radius:24px;background:#ffffff;box-shadow:${CARD};font-size:17px}
+@media (max-width:900px){ .lkC .art{grid-template-columns:1fr} }`; },
+  // D: the centre and the certificate as one block: the card on the left, the text on the right (the text first on phones)
+  D: () => { b.classList.add('lkD'); const acc = el('div', 'lkD-accr', [label(), aArt]); b.append(el('div', 'lkD-cols', [art, acc])); a.remove(); return `
+.about-cols.lkD{grid-template-columns:minmax(0,1fr);gap:40px}
+.lkD-cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.lkD-cols>.art{grid-column:2;grid-row:1}
+.lkD-accr{grid-column:1;grid-row:1}
+.lkD-accr h3{margin:0 0 16px;font-size:24px;line-height:1.2;letter-spacing:-0.02em;color:var(--ink)}
+.lkD-accr .art{font-size:17px}
+@media (max-width:900px){ .lkD-cols{grid-template-columns:1fr;gap:40px} .lkD-cols>.art,.lkD-accr{grid-column:1;grid-row:auto} }
+@media (max-width:600px){ .about-cols.lkD{gap:24px} .lkD-accr h3{font-size:20px} }`; },
+  // E: two panels: dark with the key sentence, white with the details
+  E: () => { b.classList.add('lkE'); P[1].className = 'lkE-dark'; b.append(el('div', 'lkE-pair', [P[1], art])); return `
+.about-cols.lkE{grid-template-columns:minmax(0,1fr);gap:32px;align-items:start}
+.lkE-pair{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px;align-items:stretch}
+.lkE-dark{display:flex;align-items:flex-end;margin:0;padding:40px;border-radius:24px;background:${DARK};font-size:28px;line-height:1.35;font-weight:500;color:#ffffff}
+.lkE .art{margin:0;padding:40px;border-radius:24px;background:#ffffff;box-shadow:${CARD};font-size:18px}
+@media (max-width:900px){ .lkE-pair{grid-template-columns:1fr} .lkE-dark{font-size:22px;padding:24px} .lkE .art{padding:24px} }`; },
+  // F: the key sentence in a pink frame under the heading
+  F: () => { b.classList.add('lkF'); P[1].className = 'lkF-q'; b.prepend(el('div', '', [h2, P[1]])); return `
+.about-cols.lkF{align-items:start}
+.lkF-q{margin:32px 0 0;padding:24px;border-radius:16px;background:var(--red-a);box-shadow:inset 0 0 0 1px var(--red-b);font-size:22px;line-height:1.45;font-weight:500;color:var(--ink)}
+@media (max-width:600px){ .lkF-q{font-size:18px;padding:16px} }`; },
+  // G (new): the key sentence as the headline of the block, «Випробувальний центр» as a small label above it,
+  //          the details in two columns under it; the certificate below as it is
+  G: () => { b.classList.add('lkG'); P[1].className = 'lkG-big'; b.innerHTML = ''; b.append(h2, P[1], el('div', 'lkG-det', [P[0], P[2]])); return `
+.about-cols.lkG{display:block}
+.lkG .h2{margin:0;font-family:var(--mono);font-size:14px;line-height:1.4;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--red-t)}
+.lkG-big{max-width:24ch;margin:16px 0 0;font-size:clamp(32px,3.6vw,52px);line-height:1.08;font-weight:700;letter-spacing:-0.035em;color:var(--ink);text-wrap:balance}
+.lkG-det{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:40px;font-size:18px;line-height:1.6;color:var(--text)}
+.lkG-det p{margin:0}
+@media (max-width:900px){ .lkG-det{grid-template-columns:1fr;gap:16px;margin-top:24px;font-size:17px} }`; },
+  // H (new): the certificate in the middle as the centrepiece, the text on both sides of it
+  H: () => { b.classList.add('lkH'); a.remove(); const grid = el('div', 'lkH-grid', [el('div', 'lkH-l', [P[0], P[1]]), el('div', 'lkH-m', [label(), card, ...notes]), el('div', 'lkH-r', [P[2]])]); b.innerHTML = ''; b.append(h2, grid); return `
+.about-cols.lkH{grid-template-columns:minmax(0,1fr);gap:40px}
+.lkH-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr) minmax(0,1fr);gap:40px;align-items:start}
+.lkH-l p,.lkH-r p{margin:0 0 16px;font-size:18px;line-height:1.6;color:var(--text)}
+.lkH-l p:nth-child(2){font-size:22px;line-height:1.4;font-weight:500;color:var(--ink)}
+.lkH-m h3{margin:0 0 16px;font-size:24px;line-height:1.2;letter-spacing:-0.02em;color:var(--ink)}
+.lkH-m .accr{box-shadow:0 0 0 1px var(--line),0 32px 64px -32px rgba(19,56,93,.45)}
+.lkH-m .accr-top{grid-template-columns:auto minmax(0,1fr);row-gap:16px}
+.lkH-m .accr-until{grid-column:1/-1;text-align:left}
+.lkH-m>p{margin:16px 0 0;font-size:15px;line-height:1.5;color:var(--muted)}
+@media (max-width:1180px){ .lkH-grid{grid-template-columns:1fr 1fr} .lkH-l{grid-column:1;grid-row:1} .lkH-r{grid-column:1;grid-row:2} .lkH-m{grid-column:2;grid-row:1/span 2} }
+@media (max-width:900px){ .lkH-grid{grid-template-columns:1fr;gap:24px} .lkH-l,.lkH-r,.lkH-m{grid-column:1;grid-row:auto} }`; },
+  // I (new): the text in three columns, then the certificate as one wide document across the page (number and dates on the
+  //          left, the fields in three columns on the right), its two notes under it
+  I: () => { b.classList.add('lkI'); a.remove(); P[1].classList.add('lkI-key'); b.innerHTML = ''; b.append(h2, el('div', 'lkI-txt', P), el('div', 'lkI-doc', [label(), card]), el('div', 'lkI-notes', notes)); return `
+.about-cols.lkI{grid-template-columns:minmax(0,1fr);gap:40px}
+.lkI-txt{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}
+.lkI-txt p{margin:0;font-size:18px;line-height:1.6;color:var(--text)}
+.lkI-txt .lkI-key{font-size:22px;line-height:1.4;font-weight:500;color:var(--ink)}
+.lkI-doc h3{margin:0 0 16px;font-size:24px;line-height:1.2;letter-spacing:-0.02em;color:var(--ink)}
+.lkI .accr{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);column-gap:40px;align-items:start;padding:40px}
+.lkI .accr-top{grid-template-columns:auto minmax(0,1fr);row-gap:20px;align-self:stretch;align-content:start;padding:0 40px 0 0;border-bottom:0;border-right:1px solid var(--line)}
+.lkI .accr-until{grid-column:1/-1;text-align:left}
+.lkI .accr-kv{grid-template-columns:repeat(3,minmax(0,1fr));margin:0}
+.lkI-notes{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:-16px}
+.lkI-notes p{margin:0;font-size:15px;line-height:1.5;color:var(--muted)}
+@media (max-width:1180px){ .lkI .accr{grid-template-columns:1fr} .lkI .accr-top{padding:0 0 24px;border-right:0;border-bottom:1px solid var(--line)} .lkI .accr-kv{grid-template-columns:1fr 1fr;margin-top:24px} }
+@media (max-width:900px){ .lkI-txt{grid-template-columns:1fr;gap:16px} .lkI-notes{grid-template-columns:1fr;gap:12px;margin-top:0} }
+@media (max-width:600px){ .lkI .accr{padding:20px} .lkI .accr-kv{grid-template-columns:1fr} }`; },
+  // J (new): the centre and the certificate on one dark panel inside the column: heading and key sentence on the left, the
+  //          details on the right, the white certificate below as a document on the dark
+  J: () => { b.classList.add('lkJ'); a.remove(); P[1].className = 'lkJ-big'; const top = el('div', 'lkJ-top', [el('div', '', [h2, P[1]]), el('div', 'lkJ-r', [P[0], P[2]])]); const bottom = el('div', 'lkJ-bottom', [el('div', '', [label(), card]), el('div', 'lkJ-notes', notes)]); b.innerHTML = ''; b.append(el('div', 'lkJ-panel', [top, bottom])); return `
+.about-cols.lkJ{display:block}
+.lkJ-panel{padding:56px;border-radius:28px;background:${DOTS},${DARK};box-shadow:0 40px 80px -32px rgba(19,56,93,.6)}
+.lkJ-top{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.lkJ .h2{margin:0;color:#ffffff}
+.lkJ-big{margin:24px 0 0;font-size:28px;line-height:1.35;font-weight:500;color:#f4a9b6}
+.lkJ-r p{margin:0 0 16px;font-size:18px;line-height:1.6;color:#d3deea}
+.lkJ .kw{color:#ffffff}
+.lkJ-bottom{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:40px;margin-top:48px;align-items:end}
+.lkJ-bottom h3{margin:0 0 16px;font-size:24px;line-height:1.2;color:#ffffff}
+.lkJ-notes p{margin:16px 0 0;font-size:15px;line-height:1.5;color:#b9c6d4}
+@media (max-width:900px){ .lkJ-panel{padding:32px} .lkJ-top,.lkJ-bottom{grid-template-columns:1fr;gap:24px} .lkJ-big{font-size:22px} }
+@media (max-width:600px){ .lkJ-panel{padding:24px 16px;border-radius:22px} }`; },
+};
+const look = new URLSearchParams(location.search).get('look') || 'now';
+document.getElementById('look').textContent = (LOOKS[look] || LOOKS.now)();
+// tell the switcher how tall the page is, so the frame shows it whole
+const report = () => parent.postMessage({ h: document.documentElement.scrollHeight }, '*');
+addEventListener('load', report); new ResizeObserver(report).observe(document.body);
+</script>
+</body>
+</html>
