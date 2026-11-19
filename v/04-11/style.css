@@ -3024,3 +3024,9 @@ main>.band-sec{padding-bottom:120px}
   .ct-side{min-height:200px}
   .art p.ct-iso{padding:16px;font-size:16px}
 }
+/* Contract, phones: the advantages hold only a title, so the icon goes beside it (as «Чому НІК-ЕЛЕКТРОНІКА» on the career page) */
+@media (max-width:719px){
+  .trio .service{flex-direction:row;align-items:center;gap:16px;padding:16px}
+  .trio .service .ct-icon{width:48px;height:48px}
+  .trio .service .ct-icon+h3{margin-top:0;font-size:20px}
+}
