@@ -2460,8 +2460,12 @@ main>.band-sec{padding-bottom:7.5rem}
 }
 /* Heading and lead on the left, the points as numbered rows on the right (conformity: «Неупередженість…») */
 .split-list{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:4rem;align-items:start}
-.nrows{list-style:none;margin:1rem 0 0;padding:0;border-top:1px solid var(--line)}
+.nrows{list-style:none;margin:1rem 0 0;padding:0}
 .nrows li{display:grid;grid-template-columns:5.5rem minmax(0,1fr);gap:1.5rem;padding:1.75rem 0;border-bottom:1px solid var(--line)}
+/* lines only between the rows (Anna, 19.11): none above the first row, none between the last plain row and the dark one;
+   the first number starts level with the lead beside it */
+.nrows li:first-child{padding-top:0}
+.nrows li:has(+.dark){border-bottom:0}
 .nrows b{font-size:3rem;line-height:1;font-weight:800;letter-spacing:-0.04em;color:var(--red);font-variant-numeric:tabular-nums}
 .nrows h3{margin:0;font-size:1.5rem;line-height:1.2;letter-spacing:-0.02em;color:var(--ink)}
 .nrows p{margin:.5rem 0 0;font-size:1.0625rem;line-height:1.5;color:var(--text)}
@@ -3096,10 +3100,21 @@ main>.band-sec{padding-bottom:7.5rem}
 .kw{font-weight:600;color:var(--ink)}
 
 /* Client feedback 19.11: «Неупередженість — не обіцянка, а процедура» moved up into the section with the testing centre and
-   the accreditation certificate; as the third block there it keeps the same space above as the blocks before it */
-.text-rows>.split-list{margin-top:4rem}
+   the accreditation certificate; as the third block there it keeps the same space above as the blocks before it.
+   Anna 19.11: its heading stands across the whole width, on one line like «Випробувальний центр» above (in the narrow left
+   column it broke onto three lines and looked bigger than the section's title); the lead and the numbered points are
+   under it, side by side, with the same space under the heading as in the block above */
+.text-rows>.cf-head{margin-top:4rem}
+.cf-head+.split-list{margin-top:2.5rem}
+.cf-head+.split-list .flow-lead{margin-top:0}
+@media (min-width:901px){
+  .cf-head+.split-list .nrows{margin-top:0}
+}
 @media (max-width:900px){
-  .text-rows>.split-list{margin-top:2.5rem}
+  .text-rows>.cf-head{margin-top:2.5rem}
+}
+@media (max-width:600px){
+  .cf-head+.split-list{margin-top:1.5rem}
 }
 
 /* Client feedback 19.11 — the four tiles at the top of conformity («29», «Welmec», «2031», «EA MLA») built the same way:
@@ -3111,13 +3126,14 @@ main>.band-sec{padding-bottom:7.5rem}
 .ftile.dark>p{grid-column:2;grid-row:2}
 
 /* Client feedback 19.11 — «Випробувальний центр» and «Атестат про акредитацію» as one block (Anna chose option I):
-   the heading, the centre's text in three columns (the middle sentence, what accreditation means, larger and darker),
+   the heading, the centre's text in three columns (the middle sentence, what accreditation means, darker and a little
+   bolder, at the same size as its neighbours — Anna 19.11: larger looked uneven),
    then the certificate as one wide document across the page — number and «valid until» on the left, the fields in three
    columns on the right — and its two notes under it */
 .about-cols.cf-centre{grid-template-columns:minmax(0,1fr);gap:2.5rem}
 .cf-txt{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2.5rem}
 .cf-txt p{margin:0;font-size:1.125rem;line-height:1.6;color:var(--text)}
-.cf-txt .cf-key{font-size:1.375rem;line-height:1.4;font-weight:500;color:var(--ink)}
+.cf-txt .cf-key{font-weight:500;color:var(--ink)}
 .cf-doc h3{margin:0 0 1rem;font-size:1.5rem;line-height:1.2;letter-spacing:-0.02em;color:var(--ink)}
 .cf-doc .accr{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);column-gap:2.5rem;align-items:start;padding:2.5rem}
 .cf-doc .accr-top{grid-template-columns:auto minmax(0,1fr);row-gap:1.25rem;align-self:stretch;align-content:start;padding:0 2.5rem 0 0;border-bottom:0;border-right:1px solid var(--line)}
@@ -3137,7 +3153,6 @@ main>.band-sec{padding-bottom:7.5rem}
 @media (max-width:600px){
   .about-cols.cf-centre{gap:1.5rem}
   .cf-txt p{font-size:1.0625rem}
-  .cf-txt .cf-key{font-size:1.25rem}
   .cf-doc h3{font-size:1.25rem}
   .cf-doc .accr{padding:1.25rem}
   .cf-doc .accr-kv{grid-template-columns:minmax(0,1fr)}
