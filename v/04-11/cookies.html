@@ -31,16 +31,17 @@
 </section>
 
 <div class="wrap pbody">
-  <div class="agrid left">
+  <div class="agrid left lg-has-toc">
+    <nav class="lg-toc" aria-label="Зміст"><p class="lg-toc-t">Зміст</p><ol><li><a href="#s1" class="{{tc.s1}}">Які cookie ми використовуємо</a></li><li><a href="#s2" class="{{tc.s2}}">Перелік cookie</a></li><li><a href="#s3" class="{{tc.s3}}">Як змінити вибір</a></li><li><a href="#s4" class="{{tc.s4}}">Персональні дані</a></li></ol></nav>
     <article class="art">
       <p>Cookie&nbsp;— це невеликі текстові файли, які сайт зберігає у вашому браузері. Вони допомагають сайту працювати і запам’ятовувати ваші налаштування.</p>
 
-      <h2>Які cookie ми використовуємо</h2>
+      <h2 id="s1">Які cookie ми використовуємо</h2>
       <p><b>Необхідні.</b> Потрібні для роботи сайту: запам’ятовують мову і ваш вибір щодо cookie, підтримують вхід до особистого кабінету, захищають форми від спаму. Їх не можна вимкнути: без них сайт працюватиме некоректно.</p>
       <p><b>Аналітичні.</b> Показують, які сторінки відвідують і як користуються сайтом. Ми дивимося на загальну статистику, а не на дії окремої людини. Вмикаються лише за вашою згодою.</p>
       <p><b>Сторонні сервіси.</b> Карта Google&nbsp;Maps на сторінках контактів і відео YouTube на головній можуть встановлювати власні cookie. Ми завантажуємо їх лише після вашої згоди.</p>
 
-      <h2>Перелік cookie</h2>
+      <h2 id="s2">Перелік cookie</h2>
       <!-- one table per category; under each name, in grey, who sets the cookie -->
       <h3>Необхідні</h3>
       <table class="dtable fixed">
@@ -67,11 +68,11 @@
         </tbody>
       </table>
 
-      <h2>Як змінити вибір</h2>
+      <h2 id="s3">Як змінити вибір</h2>
       <p>Змінити вибір можна будь-коли через посилання «<a href="#" onClick="{{openCookie}}">Налаштування cookie</a>» у футері сайту.</p>
       <p>Також cookie можна видалити або заблокувати в налаштуваннях браузера. Якщо заблокувати необхідні cookie, частина сайту може не працювати.</p>
 
-      <h2>Персональні дані</h2>
+      <h2 id="s4">Персональні дані</h2>
       <p>Як ми обробляємо дані, зібрані за допомогою cookie, описано в <a href="privacy.html">Політиці конфіденційності</a>.</p>
     </article>
   </div>
@@ -84,10 +85,26 @@ window.DC_BLOBS = {};
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { cookie: true, menu: false };
+    this.state = { cookie: true, menu: false, sec: 's1' };
+    this.spyTimer = setTimeout(() => this.initSpy(), 300);
+  }
+  // contents: the section whose heading has passed a third of the screen is the current one, while scrolling too
+  initSpy() {
+    let queued = false;
+    const spy = () => {
+      queued = false;
+      let cur = 's1';
+      document.querySelectorAll('.art h2[id]').forEach((h) => { if (h.getBoundingClientRect().top < window.innerHeight * 0.3) cur = h.id; });
+      if (cur !== this.state.sec) this.setState({ sec: cur });
+    };
+    window.addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(spy); } }, { passive: true });
+    spy();
   }
   renderVals() {
-    return this.base(this.state);
+    const tc = {};
+    for (let i = 1; i <= 4; i++) tc['s' + i] = '';
+    tc[this.state.sec] = 'on';
+    return Object.assign(this.base(this.state), { tc });
   }
 }
 

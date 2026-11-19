@@ -6,7 +6,7 @@ window.SHELL = {
 <a href="#main" class="skip">Перейти до змісту</a>
 <header class="hd">
   <div class="wrap">
-    <a href="index.html" aria-label="НІК-ЕЛЕКТРОНІКА — на головну" style="display: flex"><img src="../../assets/4acb50f3-nik-logo.svg" alt="НІК-ЕЛЕКТРОНІКА — на головну" style="height: 34px; width: auto; display: block; position: relative; top: -6px"></a>
+    <a href="index.html" aria-label="НІК-ЕЛЕКТРОНІКА — на головну" style="display: flex"><img src="../../assets/4acb50f3-nik-logo.svg" alt="НІК-ЕЛЕКТРОНІКА — на головну" style="height: 2.125rem; width: auto; display: block; position: relative; top: -.375rem"></a>
     <nav aria-label="Головне меню" style="flex: 1 1 auto">
       <ul class="menu">
         <sc-for list="{{menu}}" as="m" hint-placeholder-count="4">
@@ -20,7 +20,7 @@ window.SHELL = {
       </ul>
     </nav>
     <a href="documents.html" class="docs"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg>Електронні документи</a>
-    <div style="display: flex; align-items: center; gap: 6px">
+    <div style="display: flex; align-items: center; gap: .375rem">
       <button class="icon burger" type="button" aria-label="{{menuLabel}}" aria-expanded="{{menuExp}}" aria-controls="mnav" onClick="{{toggleMenu}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="{{burgerPath}}"></path></svg></button>
       <button type="button" class="icon hs-btn" aria-label="{{hsLabel}}" title="{{hsLabel}}" aria-expanded="{{hsExp}}" aria-controls="hsearch" onClick="{{toggleSearch}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><sc-if value="{{hsShut}}" hint-placeholder-val="{{true}}"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></sc-if><sc-if value="{{hsOpen}}" hint-placeholder-val="{{false}}"><path d="M6 6l12 12M18 6 6 18" stroke-linecap="round"></path></sc-if></svg></button>
       <a href="#" class="icon" aria-label="Увійти в особистий кабінет" title="Увійти в особистий кабінет"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></a>
@@ -58,7 +58,7 @@ window.SHELL = {
 </sc-if>`,
   bottom: `<footer class="ft">
   <div class="wrap">
-    <div class="ftop"><img src="../../assets/0fb4110e-nik-logo-white.svg" alt="НІК-ЕЛЕКТРОНІКА" style="height: 64px; width: auto; display: block"></div>
+    <div class="ftop"><img src="../../assets/0fb4110e-nik-logo-white.svg" alt="НІК-ЕЛЕКТРОНІКА" style="height: 4rem; width: auto; display: block"></div>
     <div class="fcols">
       <div><b>Контакти</b><span>Тел./факс:<br><a href="tel:+380444980619" class="num">+380 (44) 498-06-19</a></span><a href="mailto:info@nikel.com.ua">info@nikel.com.ua</a><span>Пн–Пт, 8:00–17:00</span></div>
       <div><b>Ми в соцмережах</b><a href="https://www.linkedin.com/company/nik-el-ua/" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/nik.elektronika" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/nik.elektronika.ua" target="_blank" rel="noopener">Facebook</a><a href="https://www.youtube.com/@nik-elektronika" target="_blank" rel="noopener">YouTube</a></div>

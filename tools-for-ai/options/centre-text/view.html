@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Випробувальний центр — текст</title>
+<!-- One arrangement of the three paragraphs under «Випробувальний центр» on «Центр оцінки відповідності» (Anna, 19.11: the
+     three columns look uneven). The block is taken from the current conformity.html and drawn with the site's style.css; only
+     the text part changes. ?look=now|K|L|M|N — the switcher (index.html) puts it in a frame. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../v/04-11/style.css">
+<style>body{margin:0;background:#ffffff}</style>
+<style id="look"></style>
+</head>
+<body>
+<!-- the site sets its font and text colour on this wrapper (shell.js), not in style.css -->
+<div style="font-family: Geologica, sans-serif; color: var(--text); background: #ffffff; overflow-x: clip">
+<main id="main"><section class="sec on-paper"><div class="wrap text-rows" id="slot"></div></section></main>
+</div>
+<script>
+const el = (tag, cls, kids = []) => { const e = document.createElement(tag); if (cls) e.className = cls; kids.forEach((k) => e.append(k)); return e; };
+const LOOKS = {
+  now: () => '',
+  // K: two columns — the first paragraph and «Це означає…» (its conclusion) on the left, «Ми випробовуємо…» on the right;
+  //    the same two columns as the two notes under the certificate
+  K: (t, P) => { t.classList.add('lkK'); t.prepend(el('div', 'lkK-l', [P[0], P[1]])); return `
+.cf-txt.lkK{grid-template-columns:repeat(2,minmax(0,1fr))}
+.lkK-l p+p{margin-top:1rem}
+@media (max-width:900px){ .cf-txt.lkK{grid-template-columns:minmax(0,1fr)} }`; },
+  // L: one column, the three paragraphs one under another, as running text
+  L: (t) => { t.classList.add('lkL'); return `
+.cf-txt.lkL{display:block;max-width:46rem}
+.lkL p+p{margin-top:1rem}`; },
+  // M: text and card — the first two paragraphs on the left, «Ми випробовуємо не лише власну продукцію…» (who comes to us) in a
+  //    white card on the right
+  M: (t, P) => { t.classList.add('lkM'); t.innerHTML = ''; t.append(el('div', 'lkM-l', [P[0], P[1]]), el('div', 'lkM-card', [P[2]])); return `
+.cf-txt.lkM{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:4rem;align-items:start}
+.lkM-l p+p{margin-top:1rem}
+.lkM-card{padding:2rem;border-radius:1rem;background:#ffffff;box-shadow:0 0 0 1px var(--line),0 .75rem 2rem -1.5rem rgba(19,56,93,.28)}
+@media (max-width:900px){ .cf-txt.lkM{grid-template-columns:minmax(0,1fr);gap:1.5rem} }
+@media (max-width:600px){ .lkM-card{padding:1.25rem} }`; },
+  // N: lead and details — the first two paragraphs as the block's lead (the size of the page's other leads) on the left, the
+  //    third at the body size on the right
+  N: (t, P) => { t.classList.add('lkN'); t.innerHTML = ''; t.append(el('div', 'lkN-l', [P[0], P[1]]), P[2]); return `
+.cf-txt.lkN{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:4rem;align-items:start}
+.lkN-l p{font-size:clamp(1.25rem,1.6vw,1.4375rem);line-height:1.5;color:#36434f}
+.lkN-l p+p{margin-top:1rem}
+.lkN-l .cf-key{color:var(--ink)}
+@media (max-width:900px){ .cf-txt.lkN{grid-template-columns:minmax(0,1fr);gap:1rem} }
+@media (max-width:600px){ .lkN-l p{font-size:1.125rem} }`; },
+};
+const look = new URLSearchParams(location.search).get('look') || 'now';
+// the block as it is on the site now: from the page's template
+fetch('../../../v/04-11/conformity.html').then((r) => r.text()).then((src) => {
+  const tpl = new DOMParser().parseFromString(src, 'text/html').getElementById('tpl').textContent;
+  const page = new DOMParser().parseFromString(tpl, 'text/html');
+  document.getElementById('slot').append(document.importNode(page.querySelector('.cf-centre'), true));
+  const t = document.querySelector('.cf-txt');
+  document.getElementById('look').textContent = (LOOKS[look] || LOOKS.now)(t, [...t.querySelectorAll(':scope > p')]);
+  document.body.dataset.ready = '1';
+});
+// tell the switcher how tall the page is, so the frame shows it whole
+const report = () => parent.postMessage({ h: document.documentElement.scrollHeight }, '*');
+addEventListener('load', report); new ResizeObserver(report).observe(document.body);
+</script>
+</body>
+</html>
