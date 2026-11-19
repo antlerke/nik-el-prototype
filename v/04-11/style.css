@@ -2425,6 +2425,18 @@ main>.band-sec{padding-bottom:120px}
 @media (max-width:719px){
   .ngrid.case-mosaic{grid-template-columns:minmax(0,1fr)}
 }
+/* in one column the dark call card is no longer a tile of the mosaic but the call that ends the page: it takes the look
+   of the grey call that ends the other pages (Anna, 19.11: «картка, два рядочки і одразу кнопка»); with the card's 16 px gap
+   the button sits 32 px under the heading, as there */
+@media (max-width:719px){
+  .case.case-call{margin-top:40px;border-radius:28px;background:var(--paper);box-shadow:inset 0 0 0 1px var(--line)}
+  .case.case-call h2{margin-top:16px;font-size:36px;line-height:1.04;letter-spacing:-0.04em;color:var(--ink)}
+  .case.case-call .btn{margin-top:16px}
+}
+@media (max-width:600px){
+  .case.case-call{margin-top:24px;border-radius:22px}
+  .case.case-call h2{font-size:26px;line-height:1.02}
+}
 @media (max-width:600px){
   .case-cover{min-height:460px}
   .case-cover h2{font-size:28px}
