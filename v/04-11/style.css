@@ -3210,3 +3210,9 @@ main>.band-sec{padding-bottom:7.5rem}
   .hv-pic-top .cert>h3,.hv-pic-side .cert>h3{margin-top:1rem}
   .hv-pic-top .cert>.cd,.hv-pic-side .cert>.cd{margin-bottom:1rem}
 }
+/* «Впровадження АСКОЕ»: one wide photo under the four steps (client feedback 23.11, Anna chose B) */
+.ak-wide{position:relative;margin:3rem 0 0;aspect-ratio:21/8;border-radius:1rem;overflow:hidden;background:var(--gray)}
+.ak-wide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@media (max-width:900px){
+  .ak-wide{margin-top:2rem;aspect-ratio:16/9}
+}
