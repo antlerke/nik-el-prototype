@@ -76,6 +76,7 @@ a.st:hover { text-decoration: underline; }
 <p class="date">Стан на 11.11.2026. Натисніть назву, щоб відкрити сторінку.</p>
 <div class="tabs" role="tablist" aria-label="Розділи">
   <button type="button" role="tab" id="tab-pages" aria-controls="pages" aria-selected="true">Усі сторінки</button>
+  <button type="button" role="tab" id="tab-feedback-2311" aria-controls="feedback-2311" aria-selected="false">Фідбек 23.11</button>
   <button type="button" role="tab" id="tab-feedback" aria-controls="feedback" aria-selected="false">Фідбек 19.11</button>
   <button type="button" role="tab" id="tab-changes" aria-controls="changes" aria-selected="false">Зміни</button>
   <button type="button" role="tab" id="tab-need" aria-controls="need" aria-selected="false">Що бракує</button>
@@ -160,6 +161,31 @@ a.st:hover { text-decoration: underline; }
 </ul>
 </section>
 
+<section id="feedback-2311" role="tabpanel" aria-labelledby="tab-feedback-2311">
+<h2>Фідбек 23.11 — що перевірити</h2>
+<p class="why">Компанія попросила місця для фото та логотипів, які потім можна буде міняти в адмінці. Відкрийте сторінку й перевірте, чи так. Фото поки тимчасові — справжні потрібні від компанії (див. «Що бракує»).</p>
+<div class="fb">
+<h3><a href="hv.html">Високовольтні мережі</a></h3>
+<ol>
+  <li><b>«Низька напруга»</b> — у кожній з 4 карток фото зверху на всю ширину картки.</li>
+  <li><b>«Середня напруга»</b> на темній смузі — у кожній з 4 карток фото зліва, текст справа. На планшеті й телефоні фото зверху.</li>
+</ol>
+<h3><a href="askoe.html">Впровадження АСКОЕ</a></h3>
+<ol>
+  <li><b>«Що входить у послугу»</b> — під 4 кроками одне широке фото.</li>
+</ol>
+<h3><a href="software.html">Програмне забезпечення</a></h3>
+<ol>
+  <li><b>Логотипи</b> — ліворуч від назви кожної програми квадрат з логотипом. Є лише NIK Space, у решти напис «логотип» — місце для майбутнього логотипа.</li>
+</ol>
+<h3><a href="career.html">Кар’єра</a></h3>
+<ol>
+  <li><b>«Кого ми шукаємо»</b> — під заголовком фото, текст праворуч від нього починається на рівні верху фото.</li>
+  <li><b>Фото</b> такої самої ширини, як фото біля «Ми пропонуємо» вище.</li>
+</ol>
+</div>
+</section>
+
 <section id="feedback" role="tabpanel" aria-labelledby="tab-feedback">
 <h2>Фідбек 19.11 — що перевірити</h2>
 <p class="why">Відкрийте сторінку й перевірте, чи так. Масштаб браузера — 100 % (Ctrl 0).</p>
@@ -185,6 +211,18 @@ a.st:hover { text-decoration: underline; }
 </section>
 
 <section id="changes" role="tabpanel" aria-labelledby="tab-changes">
+<h2>23.11.2026 — зміни</h2>
+<p class="why">За відгуком компанії додали місця для фото та логотипів, які потім можна буде міняти в адмінці. Поки там тимчасові фото, справжні потрібні від компанії (див. «Що бракує»).</p>
+<table class="changes">
+  <thead><tr><th>Сторінка</th><th>Що змінилося</th></tr></thead>
+  <tbody>
+    <tr><td><a href="hv.html">Високовольтні мережі</a></td><td>Фото в кожній з 8 карток обладнання: у «Низькій напрузі» — зверху на всю ширину картки, у «Середній напрузі» на темній смузі — зліва від тексту. На планшеті й телефоні фото завжди зверху</td></tr>
+    <tr><td><a href="askoe.html">Впровадження АСКОЕ</a></td><td>Під 4 кроками «Що входить у послугу» — одне широке фото</td></tr>
+    <tr><td><a href="software.html">Програмне забезпечення</a></td><td>Ліворуч від назви кожної програми — квадратний логотип. Поки є лише логотип NIK Space, у решти — порожнє місце з написом «логотип»</td></tr>
+    <tr><td><a href="career.html">Кар'єра</a></td><td>Під заголовком «Кого ми шукаємо» — фото, текст праворуч від нього. Блок має ті самі колонки, що й «Ми пропонуємо» вище, тому обидва фото однакової ширини</td></tr>
+  </tbody>
+</table>
+
 <h2>19.11.2026 — зміни</h2>
 <p class="why">Сторінки виглядали однаково, тому ми змінили вигляд блоків. Тексти не змінювали: усі слова як у ТЗ.</p>
 <table class="changes">
@@ -224,7 +262,7 @@ a.st:hover { text-decoration: underline; }
 <section id="need" role="tabpanel" aria-labelledby="tab-need">
 <h2>Що саме бракує</h2>
 <ul class="need">
-  <li id="need-photos">Фото <span class="why">— на всіх сторінках зараз тимчасові фото з наявних матеріалів, тому ті самі повторюються: лабораторія, виробнича лінія, панорама Києва. Потрібні справжні фото виробництва, лабораторії та обладнання.</span></li>
+  <li id="need-photos">Фото <span class="why">— на всіх сторінках зараз тимчасові фото з наявних матеріалів, тому ті самі повторюються: лабораторія, виробнича лінія, панорама Києва. Потрібні справжні фото виробництва, лабораторії та обладнання. З 23.11 також: «Високовольтні мережі» — по одному фото на кожен вид обладнання (ГРЩ, ВРП, АВР, ЩО-90, КСО, КРУ, КТП, ШРЗА, 8 фото); «Впровадження АСКОЕ» — одне широке фото з об’єкта (лічильники, монтаж); «Кар’єра» — одне фото людей за роботою для блоку «Кого ми шукаємо».</span></li>
   <li id="need-index"><a href="index.html">Головна</a>
     <ul class="why">
       <li>Перший екран: за ТЗ заголовок і опис мають лежати поверх великого фото, за схемою (вайрфреймом) замовника. Схеми в нас немає, тому зараз текст стоїть поруч із фото приладу.</li>
@@ -233,7 +271,7 @@ a.st:hover { text-decoration: underline; }
   </li>
   <li id="need-hv"><a href="hv.html">Високовольтні мережі</a> <span class="why">— у переліку є пункт «Гарантія та сервіс», але без пояснення: у ТЗ лише назва. Потрібне одне-два речення. Фото обладнання теж немає: зараз там нічна панорама Києва, як на головній і в «Послугах».</span></li>
   <li id="need-repair"><a href="repair.html">Ремонт лічильників</a> <span class="why">— у ТЗ біля пункту «Перевірка після ремонту» стоїть «[уточнити: чи так]». Компанія має підтвердити, що так і є.</span></li>
-  <li id="need-software"><a href="software.html">Програмне забезпечення</a> <span class="why">— у картках AGSM GURU і NIK BT-DLMS замість опису стоїть «[уточнити]». Потрібне одне речення про кожну програму. Також перевірити: UNIK — програма для Windows, а стоїть серед вебплатформ. Для візуалу на сторінці потрібні скриншоти: екрани NovaSys, NIK Space, UNIK, AGSM GURU і застосунків NIK-Surfer та NIK BT-DLMS (по одному головному екрану, без даних клієнтів).</span></li>
+  <li id="need-software"><a href="software.html">Програмне забезпечення</a> <span class="why">— у картках AGSM GURU і NIK BT-DLMS замість опису стоїть «[уточнити]». Потрібне одне речення про кожну програму. Також перевірити: UNIK — програма для Windows, а стоїть серед вебплатформ. Для візуалу на сторінці потрібні скриншоти: екрани NovaSys, NIK Space, UNIK, AGSM GURU і застосунків NIK-Surfer та NIK BT-DLMS (по одному головному екрану, без даних клієнтів). З 23.11 також логотипи: NovaSys, UNIK, AGSM GURU, NIK-Surfer, NIK BT-DLMS (NIK Space вже є) — у SVG або PNG з прозорим фоном, бо на темній смузі білий фон буде видно як білий квадрат.</span></li>
   <li id="need-history"><a href="history.html">Історія компанії</a> <span class="why">— у події 2009 року написано «запускаємо нові напрямки: [уточнити, які]». Потрібні назви цих напрямів.</span></li>
   <li id="need-culture"><a href="culture.html">Корпоративна культура</a> <span class="why">— у галереї зараз фото виробництва, а за задумом там мають бути люди. Потрібні 5 фото команди.</span></li>
   <li id="need-conformity"><a href="conformity.html">Центр оцінки відповідності</a> <span class="why">— у ТЗ двічі написано «28 видів випробувань» і один раз «29». Треба знати правильне число. Ще три питання: чи потрібен підпис під плиткою «Welmec»; де на сторінці має стояти «Політика щодо дитячої праці»; текст «Навіщо лічильнику випробування» повторює вступ до кроків — чи лишати обидва. Плитка «Welmec» угорі сторінки без підпису (у ТЗ його немає), тому виглядає порожньою поруч із «29», «2031» і «EA MLA»: потрібен короткий підпис, 3–6 слів, як «рік, до якого чинний атестат про акредитацію».</span></li>
@@ -248,7 +286,7 @@ a.st:hover { text-decoration: underline; }
 </section>
 </main>
 <script>
-// tabs: one part of the page at a time. The address keeps the open part (#pages, #changes, #need),
+// tabs: one part of the page at a time. The address keeps the open part (#pages, #feedback-2311, #changes, #need…),
 // and a link to an item in «Що бракує» (#need-…) opens that tab and scrolls to the item, which :target highlights
 (() => {
   const tabs = [...document.querySelectorAll('[role=tab]')];
