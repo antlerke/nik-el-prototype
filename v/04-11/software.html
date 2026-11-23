@@ -33,31 +33,20 @@
   <div class="wrap">
     <div class="pgroup">
       <div class="art"><h2>Веб-платформи</h2></div>
-      <div class="ngrid pair">
-        <sc-for list="{{web}}" as="c" hint-placeholder-count="4">
-          <article class="case">
-            <div class="bd">
-              <div class="sw-head"><sc-if value="{{c.logo}}" hint-placeholder-val="{{true}}"><span class="sw-logo"><img src="{{c.logo}}" alt=""></span></sc-if><sc-if value="{{c.noLogo}}" hint-placeholder-val="{{false}}"><span class="sw-logo sw-slot">логотип</span></sc-if><h3>{{c.t}}</h3></div>
-              <p class="cd">{{c.d}}</p>
-              <a href="#" class="btn btn-line">Детальніше<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-            </div>
-          </article>
+      <div class="ngrid sw-grid">
+        <a href="#" class="card sw-card sw-lead"><span class="sw-lead-txt"><span class="ctop"><span class="tag sw-tag"><img src="{{lead.runsIcon}}" alt="">{{lead.runs}}</span></span><span class="cimg sw-lead-pic"><img class="flat" src="{{lead.img}}" alt="{{lead.t}}"></span><img class="sw-lead-logo" src="{{lead.logo}}" alt="{{lead.t}}"><span class="ct sw-lead-name">{{lead.t}}</span><span class="cd">{{lead.d}}</span><span class="cgo"><span class="cgo-in">Детальніше<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span></span><span class="sw-shot"><span class="sw-win"><span class="sw-bar"><i></i><i></i><i></i></span><img src="{{lead.shot}}" alt="Екран {{lead.t}}: будинки та лічильники оператора"></span></span></a>
+        <sc-for list="{{web}}" as="c" hint-placeholder-count="3">
+          <a href="#" class="card sw-card"><span class="ctop"><span class="tag sw-tag"><img src="{{c.runsIcon}}" alt="">{{c.runs}}</span></span><span class="cimg"><sc-if value="{{c.img}}" hint-placeholder-val="{{true}}"><img class="{{c.k}}" src="{{c.img}}" alt="{{c.t}}"></sc-if><sc-if value="{{c.noImg}}" hint-placeholder-val="{{false}}"><span class="sw-ic"><img src="{{c.icon}}" alt=""></span></sc-if></span><span class="ct">{{c.t}}</span><span class="cd">{{c.d}}</span><span class="cgo"><span class="cgo-in">Детальніше<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span></a>
         </sc-for>
       </div>
     </div>
   </div>
-  <section class="pgroup-dark">
+  <section class="pgroup-dark sw-apps">
     <div class="wrap pgroup">
       <div class="art"><h2>Мобільні застосунки</h2></div>
       <div class="ngrid pair">
         <sc-for list="{{apps}}" as="c" hint-placeholder-count="2">
-          <article class="case">
-            <div class="bd">
-              <div class="sw-head"><sc-if value="{{c.logo}}" hint-placeholder-val="{{true}}"><span class="sw-logo"><img src="{{c.logo}}" alt=""></span></sc-if><sc-if value="{{c.noLogo}}" hint-placeholder-val="{{false}}"><span class="sw-logo sw-slot">логотип</span></sc-if><h3>{{c.t}}</h3></div>
-              <p class="cd">{{c.d}}</p>
-              <a href="#" class="btn btn-line">Детальніше<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-            </div>
-          </article>
+          <a href="#" class="card sw-card"><span class="ctop"><span class="tag sw-tag"><img src="{{c.runsIcon}}" alt="">{{c.runs}}</span></span><span class="cimg"><sc-if value="{{c.img}}" hint-placeholder-val="{{true}}"><img class="{{c.k}}" src="{{c.img}}" alt="{{c.t}}"></sc-if><sc-if value="{{c.noImg}}" hint-placeholder-val="{{false}}"><span class="sw-ic"><img src="{{c.icon}}" alt=""></span></sc-if></span><span class="ct">{{c.t}}</span><span class="cd">{{c.d}}</span><span class="cgo"><span class="cgo-in">Детальніше<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></span></a>
         </sc-for>
       </div>
     </div>
@@ -81,18 +70,37 @@ class Component extends DCLogic {
     this.state = { cookie: true, menu: false };
   }
   renderVals() {
-    // product logos: only NIK Space has one so far; the rest show an empty slot until the client sends theirs
-    const LOGOS = { 'NIK Space': '../../assets/fdc858a8-p-space.jpg' };
-    // names may hold a no-break space (NIK Space), so look them up with plain spaces
-    const withLogo = (list) => list.map((c) => { const logo = LOGOS[c.t.split(String.fromCharCode(160)).join(' ')] || ''; return Object.assign({}, c, { logo, noLogo: !logo }); });
-    return Object.assign(this.base(this.state), {
-      web: withLogo([
+    // Pictures for now come from the current site nik-el.com: the NovaSyS and UNIK boxes, the NIK Space logo, the
+    // NIK-Surfer module and the NIK Space screen (page 5 of nik-el.com/elfinder/NIK-Space.pdf; the live site needs a screenshot
+    // without real data). k: cut = cut-out with a shadow, flat = picture on white.
+    // A product without a picture shows an icon of what it does; the tag says where the program runs.
+    const WEB_LIST = [
         { t: 'NovaSyS', d: 'Автоматизована система контролю та обліку енергоресурсів від виробника лічильників NIK. Сама збирає дані з лічильників, перевіряє їх і перетворює на облік, баланси та звіти. Дві модифікації — для енергопостачання і для промисловості.' },
         { t: 'NIK Space', d: 'Комплексна система віддаленого збору показань лічильників для енергокомпаній та ОСББ. Оптимізує обслуговування будинку, заощаджує споживачам час і зменшує витрати.' },
         { t: 'UNIK', d: 'Програма для Windows, через яку налаштовують і зчитують лічильники NIK на місці встановлення. До оптичного порту лічильника вона підключається через оптичну головку OP-03.' },
         { t: 'AGSM GURU', d: '[уточнити]' }
-      ]),
-      apps: withLogo([
+      ];
+    const A = '../../assets/';
+    const icon = (p) => 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#c8102e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + p + '</svg>');
+    const PICS = {
+      'NovaSyS': { img: A + 'e4d2525b-novasys-box.png', k: 'cut' },
+      'NIK Space': { img: A + 'fdc858a8-p-space.jpg', k: 'flat', logo: A + '3a1d27e6-nik-space-logo-tight.png', shot: A + 'e98e11ea-space-screen.jpg' },
+      'UNIK': { img: A + '4e49b42c-unik-box.png', k: 'cut', runs: 'Windows' },
+      'AGSM GURU': { icon: icon('<path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 20V4"/>') },
+      'NIK-Surfer': { img: A + 'ac6c1211-nik-surfer.jpg', k: 'flat', runs: 'Мобільний' },
+      'NIK BT-DLMS': { icon: icon('<path d="m7 7 10 10-5 5V2l5 5L7 17"/>'), runs: 'Мобільний' }
+    };
+    // the tag's icon: globe = web, window = Windows, phone = mobile (Anna chose T1, 24.11)
+    const ink = (p) => 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#13385d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + p + '</svg>');
+    const RUN_ICON = { 'Веб': ink('<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>'), 'Windows': ink('<rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18M8 21h8"/>'), 'Мобільний': ink('<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/>') };
+    // names may hold a no-break space (NIK Space), so look them up with plain spaces
+    const plain = (t) => t.split(String.fromCharCode(160)).join(' ');
+    const withPic = (list) => list.map((c) => { const p = PICS[plain(c.t)] || {}; const o = Object.assign({ runs: 'Веб', img: '', k: '', icon: '' }, c, p, { noImg: !p.img }); o.runsIcon = RUN_ICON[o.runs]; return o; });
+    const web = withPic(WEB_LIST), lead = web.find((c) => plain(c.t) === 'NIK Space');
+    return Object.assign(this.base(this.state), {
+      lead,
+      web: web.filter((c) => c !== lead),
+      apps: withPic([
         { t: 'NIK-Surfer', d: 'Застосунок для збору показань лічильників по радіоканалу wM-Bus у парі з апаратним RF-to-USB модулем NIK-Surfer.' },
         { t: 'NIK BT-DLMS', d: '[уточнити]' }
       ])

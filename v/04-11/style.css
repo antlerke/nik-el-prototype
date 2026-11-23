@@ -3234,16 +3234,49 @@ main>.band-sec{padding-bottom:7.5rem}
 @media (max-width:600px){
   .cr-who-pic{height:12.5rem}
 }
-/* «Програмне забезпечення»: a small square product logo left of the name (client feedback 23.11, Anna chose A).
-   The logo file is pinned inside the box with a margin, so any shape fits whole; a product without a logo shows an empty slot.
-   Logos should come as SVG or PNG with a transparent background (a white JPG would show as a white square on the dark block) */
-.sw-head{display:flex;align-items:center;gap:1.25rem}
-.sw-logo{position:relative;display:grid;place-items:center;flex:none;width:4rem;height:4rem;border-radius:.75rem;overflow:hidden;background:#ffffff;box-shadow:0 0 0 1px var(--line)}
-.sw-logo img{position:absolute;inset:.375rem;width:calc(100% - .75rem);height:calc(100% - .75rem);object-fit:contain}
-.sw-slot{background:none;box-shadow:inset 0 0 0 1.5px #c3ccd6;font-family:var(--mono);font-size:.625rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.pgroup-dark .sw-slot{background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3);color:#b9c6d4}
-@media (max-width:600px){
-  .sw-head{gap:1rem}
-  .sw-logo{width:3rem;height:3rem}
-  .sw-slot{font-size:.5rem;letter-spacing:0}
+/* «Програмне забезпечення» (client feedback 23.11 «add product logos»; Anna chose L of tools-for-ai/options/software, 24.11):
+   the catalog's product card (.card, .cimg, .ct, .cd, .cgo) for every program — the tag says where it runs, the panel shows
+   its picture (for now from the company's current site) or, without one, a big icon of what it does. NIK Space leads as one
+   wide card: logo, text, and its screen in a browser window. The apps sit on the light band: white cards on the dark band
+   read as a dark frame. Logos and pictures should come as SVG or PNG with a transparent background */
+.ngrid.sw-grid{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:none}
+.card.sw-card{box-shadow:0 0 0 1px var(--line),0 .75rem 2rem -1.5rem rgba(19,56,93,.28)}
+.sw-card .cd{margin-top:.5rem}
+.sw-card .cgo{margin-top:1rem;background:#ffffff;box-shadow:inset 0 0 0 1px var(--line)}
+.sw-card .cimg img.cut{max-width:90%;max-height:96%}
+.sw-ic{display:grid;place-items:center;width:6rem;height:6rem;border-radius:50%;background:#ffffff;box-shadow:0 .75rem 2rem -1rem rgba(19,56,93,.35)}
+.sw-ic img{width:2.75rem;height:2.75rem}
+.card.sw-lead{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:2.5rem;padding:2rem}
+/* the text column runs from the top of the picture panel to its bottom: tag, logo and text at the top, the button on the bottom;
+   the logo file is cut to the mark, so its left edge meets the text */
+.sw-lead-txt{display:flex;flex-direction:column}
+.sw-lead-logo{display:block;width:auto;height:4.5rem;margin-top:1.5rem;align-self:flex-start;mix-blend-mode:multiply}
+.sw-lead .cd{flex:0 0 auto;margin-top:1.25rem;font-size:1.125rem}
+.sw-lead .cgo{margin-top:auto}
+.sw-lead .cd{margin-bottom:1.75rem}  /* at least this much between the text and the button */
+.tag.sw-tag{display:inline-flex;align-items:center;gap:.375rem}
+.sw-tag img{width:.875rem;height:.875rem}
+.sw-lead-pic,.sw-lead-name{display:none}
+.sw-shot{display:flex;align-items:center;padding:2rem;border-radius:1rem;background:linear-gradient(180deg,var(--paper) 0%,var(--gray) 100%)}
+.sw-win{width:100%;border-radius:.75rem;overflow:hidden;background:#ffffff;box-shadow:0 0 0 1px var(--line),0 1.5rem 3rem -1.5rem rgba(19,56,93,.35)}
+.sw-bar{display:flex;gap:.375rem;padding:.75rem 1rem;background:var(--paper);border-bottom:1px solid var(--line)}
+.sw-bar i{width:.625rem;height:.625rem;border-radius:50%;background:#c3ccd6}
+.sw-win img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:left top}
+.pgroup-dark.sw-apps{background:var(--paper)}
+.sw-apps .art h2{color:var(--ink)}
+@media (hover:hover) and (pointer:fine){
+  /* the catalog's hover turns the button dark with white text; keep that over the white button above */
+  .sw-card:hover .cgo{background:var(--ink);box-shadow:none;color:#ffffff}
+}
+@media (max-width:900px){
+  .ngrid.sw-grid{grid-template-columns:minmax(0,1fr)}
+  /* one column: the lead card is built like the others (tag, picture panel with the logo, text, button);
+     the screen would be too small to read, so it only shows on computers */
+  .card.sw-lead{display:flex;flex-direction:column;padding:1rem}
+  .sw-shot,.sw-lead-logo{display:none}
+  .sw-lead-pic{display:flex}
+  .sw-lead-name{display:block}
+  .sw-lead .cd{margin-top:.5rem;font-size:1rem}  /* the same text size as the other cards here */
+  .sw-lead .cd{margin-bottom:0}
+  .sw-lead .cgo{margin-top:1.25rem}  /* one column: the button follows the text, as in the other cards */
 }
