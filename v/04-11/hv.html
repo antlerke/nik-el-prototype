@@ -31,9 +31,9 @@
 
 <div class="wrap pbody">
   <div class="shead"><div><h2 class="h2">Низька напруга: силовий розподіл 0,4&nbsp;кВ</h2></div></div>
-  <div class="ngrid pair hv-cards">
+  <div class="ngrid pair hv-cards hv-pic-top">
     <sc-for list="{{low}}" as="c" hint-placeholder-count="4">
-      <article class="cert"><h3><span class="hv-code">{{c.code}}</span> <span class="hv-name">{{c.name}}</span></h3><p class="cd">{{c.d}}</p></article>
+      <article class="cert"><figure class="stu-pic"><img src="{{c.img}}" alt=""></figure><h3><span class="hv-code">{{c.code}}</span> <span class="hv-name">{{c.name}}</span></h3><p class="cd">{{c.d}}</p></article>
     </sc-for>
   </div>
 </div>
@@ -41,9 +41,9 @@
 <section class="sec hv-dark">
   <div class="wrap">
     <div class="shead"><div><h2 class="h2">Середня напруга: комплектні розподільчі пристрої 6–10–35&nbsp;кВ</h2></div></div>
-    <div class="ngrid pair hv-cards">
+    <div class="ngrid pair hv-cards hv-pic-side">
       <sc-for list="{{mid}}" as="c" hint-placeholder-count="4">
-        <article class="cert"><h3><span class="hv-code">{{c.code}}</span> <span class="hv-name">{{c.name}}</span></h3><p class="cd">{{c.d}}</p></article>
+        <article class="cert"><figure class="stu-pic"><img src="{{c.img}}" alt=""></figure><h3><span class="hv-code">{{c.code}}</span> <span class="hv-name">{{c.name}}</span></h3><p class="cd">{{c.d}}</p></article>
       </sc-for>
     </div>
   </div>
@@ -74,20 +74,22 @@ class Component extends DCLogic {
   }
   renderVals() {
     // each title is «letters — name»: the letters become the card headline
-    const split = (list) => list.map(({ t, d }) => { const [code, name] = t.split(' — '); return { code, name, d }; });
+    // stand-in photos until the client sends real ones, one per card
+    const pics = ['5a730fd2-hero-1.webp', 'c0704521-prod-molding.jpg', '2d5e93a9-c-robot.jpg', '91d9cc8d-c-automation.jpg', 'c78a58cc-news-audit.jpg', '1695fc08-c-tampo.jpg', '6bad89e8-hero-2.webp', 'e3a26a87-c-calibration.jpg'];
+    const split = (list, from) => list.map(({ t, d }, i) => { const [code, name] = t.split(' — '); return { code, name, d, img: '../../assets/' + pics[from + i] }; });
     return Object.assign(this.base(this.state), {
       low: split([
         { t: 'ГРЩ — головні розподільчі щити', d: 'Проєктуємо та збираємо щити на струми до 4000 А. Завдяки власному цеху обробки міді та алюмінію ошиновка витримує високі струми короткого замикання.' },
         { t: 'ВРП — вступно-розподільчі пристрої', d: 'Надійні комутаційні апарати та інтелектуальні прилади обліку власного виробництва в одному корпусі. Адаптовані під вимоги операторів систем розподілу, що пришвидшує здачу об’єкта в експлуатацію.' },
         { t: 'АВР — автоматичне введення резерву', d: 'Реагує на просідання або зникнення напруги за час до 0,1 с. Інтегруємо логіку керування генераторами та системами накопичення енергії прямо в силовий контур.' },
         { t: 'ЩО-90 — панелі розподілу', d: 'Для комплектування РУ-0,4 кВ у міських і промислових ТП. Жорстка зварна конструкція, продумана ошиновка та зручний доступ для обслуговування. Швидко адаптуємо під типові та нестандартні схеми.' }
-      ]),
+      ], 0),
       mid: split([
         { t: 'КСО — камери збірні одностороннього обслуговування', d: 'Для швидкого монтажу в обмежених просторах блочних підстанцій. Жорсткі корпуси власного виробництва не деформуються під час транспортування.' },
         { t: 'КРУ — комплектні розподільчі пристрої', d: 'Кожна комірка розділена на ізольовані металеві відсіки (кабельний, релейний, шинний, викотний), що локалізує будь-яку внутрішню аварію. Рішення для підприємств, де безперервність технологічного процесу критична.' },
         { t: 'КТП — комплектні трансформаторні підстанції', d: 'Проєктуємо та поставляємо КТП у металевому корпусі. Ви отримуєте протестований на заводі вузол з комерційним обліком на лічильниках NIK.' },
         { t: 'ШРЗА — шафи релейного захисту та автоматики', d: 'Захист ліній, трансформаторів і двигунів на базі мікропроцесорних терміналів. Робимо енергію видимою, керованою та прогнозованою.' }
-      ])
+      ], 4)
     });
   }
 }

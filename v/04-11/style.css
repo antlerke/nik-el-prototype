@@ -3187,3 +3187,26 @@ main>.band-sec{padding-bottom:7.5rem}
 }
 /* «Згода на обробку даних»: the title stands over the text column in the middle */
 .narrow.lg-center{max-width:45rem;margin-left:auto;margin-right:auto}
+/* «Високовольтні мережі»: a photo in every equipment card (client feedback 23.11, Anna chose G).
+   Light section: the photo across the top of the card, as «Студентам»; dark section: the photo on the left, text on the right */
+.hv-pic-top .cert{padding:0;overflow:hidden}
+.hv-pic-top .cert>h3,.hv-pic-top .cert>.cd{margin-left:2rem;margin-right:2rem}
+.hv-pic-top .cert>h3{margin-top:1.5rem}
+.hv-pic-top .cert>.cd{margin-bottom:2rem}
+.hv-pic-top .stu-pic{aspect-ratio:16/9}
+.hv-pic-side .cert{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);grid-template-rows:auto 1fr;column-gap:1.5rem;padding:0;overflow:hidden}
+.hv-pic-side .stu-pic{grid-row:1/span 2;aspect-ratio:auto;min-height:100%}
+.hv-pic-side .cert>h3{margin:1.75rem 1.75rem 0 0}
+.hv-pic-side .cert>.cd{margin:1rem 1.75rem 1.75rem 0}
+@media (max-width:1180px){
+  .hv-pic-side .cert{display:flex}
+  .hv-pic-side .stu-pic{grid-row:auto;aspect-ratio:16/9;min-height:0}
+  .hv-pic-side .cert>h3,.hv-pic-side .cert>.cd{margin-left:2rem;margin-right:2rem}
+  .hv-pic-side .cert>h3{margin-top:1.5rem}
+  .hv-pic-side .cert>.cd{margin-bottom:2rem}
+}
+@media (max-width:600px){
+  .hv-pic-top .cert>h3,.hv-pic-top .cert>.cd,.hv-pic-side .cert>h3,.hv-pic-side .cert>.cd{margin-left:1rem;margin-right:1rem}
+  .hv-pic-top .cert>h3,.hv-pic-side .cert>h3{margin-top:1rem}
+  .hv-pic-top .cert>.cd,.hv-pic-side .cert>.cd{margin-bottom:1rem}
+}
