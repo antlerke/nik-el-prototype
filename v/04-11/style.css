@@ -3228,3 +3228,16 @@ main>.band-sec{padding-bottom:7.5rem}
   .cr-who>.h2,.cr-who>.art,.cr-who-pic{grid-column:1;grid-row:auto}
   .cr-who-pic{aspect-ratio:16/9}
 }
+/* «Програмне забезпечення»: a small square product logo left of the name (client feedback 23.11, Anna chose A).
+   The logo file is pinned inside the box with a margin, so any shape fits whole; a product without a logo shows an empty slot.
+   Logos should come as SVG or PNG with a transparent background (a white JPG would show as a white square on the dark block) */
+.sw-head{display:flex;align-items:center;gap:1.25rem}
+.sw-logo{position:relative;display:grid;place-items:center;flex:none;width:4rem;height:4rem;border-radius:.75rem;overflow:hidden;background:#ffffff;box-shadow:0 0 0 1px var(--line)}
+.sw-logo img{position:absolute;inset:.375rem;width:calc(100% - .75rem);height:calc(100% - .75rem);object-fit:contain}
+.sw-slot{background:none;box-shadow:inset 0 0 0 1.5px #c3ccd6;font-family:var(--mono);font-size:.625rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.pgroup-dark .sw-slot{background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3);color:#b9c6d4}
+@media (max-width:600px){
+  .sw-head{gap:1rem}
+  .sw-logo{width:3rem;height:3rem}
+  .sw-slot{font-size:.5rem;letter-spacing:0}
+}

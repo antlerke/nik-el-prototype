@@ -37,7 +37,7 @@
         <sc-for list="{{web}}" as="c" hint-placeholder-count="4">
           <article class="case">
             <div class="bd">
-              <h3>{{c.t}}</h3>
+              <div class="sw-head"><sc-if value="{{c.logo}}" hint-placeholder-val="{{true}}"><span class="sw-logo"><img src="{{c.logo}}" alt=""></span></sc-if><sc-if value="{{c.noLogo}}" hint-placeholder-val="{{false}}"><span class="sw-logo sw-slot">логотип</span></sc-if><h3>{{c.t}}</h3></div>
               <p class="cd">{{c.d}}</p>
               <a href="#" class="btn btn-line">Детальніше<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
             </div>
@@ -53,7 +53,7 @@
         <sc-for list="{{apps}}" as="c" hint-placeholder-count="2">
           <article class="case">
             <div class="bd">
-              <h3>{{c.t}}</h3>
+              <div class="sw-head"><sc-if value="{{c.logo}}" hint-placeholder-val="{{true}}"><span class="sw-logo"><img src="{{c.logo}}" alt=""></span></sc-if><sc-if value="{{c.noLogo}}" hint-placeholder-val="{{false}}"><span class="sw-logo sw-slot">логотип</span></sc-if><h3>{{c.t}}</h3></div>
               <p class="cd">{{c.d}}</p>
               <a href="#" class="btn btn-line">Детальніше<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
             </div>
@@ -81,17 +81,21 @@ class Component extends DCLogic {
     this.state = { cookie: true, menu: false };
   }
   renderVals() {
+    // product logos: only NIK Space has one so far; the rest show an empty slot until the client sends theirs
+    const LOGOS = { 'NIK Space': '../../assets/fdc858a8-p-space.jpg' };
+    // names may hold a no-break space (NIK Space), so look them up with plain spaces
+    const withLogo = (list) => list.map((c) => { const logo = LOGOS[c.t.split(String.fromCharCode(160)).join(' ')] || ''; return Object.assign({}, c, { logo, noLogo: !logo }); });
     return Object.assign(this.base(this.state), {
-      web: [
+      web: withLogo([
         { t: 'NovaSyS', d: 'Автоматизована система контролю та обліку енергоресурсів від виробника лічильників NIK. Сама збирає дані з лічильників, перевіряє їх і перетворює на облік, баланси та звіти. Дві модифікації — для енергопостачання і для промисловості.' },
         { t: 'NIK Space', d: 'Комплексна система віддаленого збору показань лічильників для енергокомпаній та ОСББ. Оптимізує обслуговування будинку, заощаджує споживачам час і зменшує витрати.' },
         { t: 'UNIK', d: 'Програма для Windows, через яку налаштовують і зчитують лічильники NIK на місці встановлення. До оптичного порту лічильника вона підключається через оптичну головку OP-03.' },
         { t: 'AGSM GURU', d: '[уточнити]' }
-      ],
-      apps: [
+      ]),
+      apps: withLogo([
         { t: 'NIK-Surfer', d: 'Застосунок для збору показань лічильників по радіоканалу wM-Bus у парі з апаратним RF-to-USB модулем NIK-Surfer.' },
         { t: 'NIK BT-DLMS', d: '[уточнити]' }
-      ]
+      ])
     });
   }
 }
