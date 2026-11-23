@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Програмне забезпечення — варіант</title>
+<!-- One look of where product logos go on «Програмне забезпечення» (client feedback 23.11: «add product logos there in
+     the future»). The page below the site header, as committed, drawn with the site's own style.css.
+     ?look=now|A|B|C|D|E — the switcher (index.html) puts it in a frame. Only NIK Space has a real logo (assets/);
+     the others show an empty logo slot until the client sends theirs. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../v/04-11/style.css">
+<style>
+body{margin:0;background:#ffffff}
+/* the logo itself: a real file, or an empty slot that says so */
+/* the image is pinned inside the box with a margin (--pad), so a big logo file always fits whole */
+.lg{position:relative;display:grid;place-items:center;flex:none;overflow:hidden;background:#ffffff;--pad:.375rem}
+.lg img{position:absolute;inset:var(--pad);width:calc(100% - 2*var(--pad));height:calc(100% - 2*var(--pad));object-fit:contain}
+.lkB .lg,.lkE .lg{--pad:1.5rem}
+.lkC .lg{--pad:0px}
+.lg.slot{box-shadow:inset 0 0 0 1.5px #c3ccd6;font-family:var(--mono);font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.pgroup-dark .lg.slot{background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3);color:#b9c6d4}
+/* A — a small square logo left of the name */
+.lkA .lg{width:4rem;height:4rem;border-radius:.75rem;box-shadow:0 0 0 1px var(--line)}
+.lkA .lg.slot{box-shadow:inset 0 0 0 1.5px #c3ccd6;font-size:.625rem}
+.lkA .pgroup-dark .lg.slot{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3)}
+.lkA-head{display:flex;align-items:center;gap:1.25rem}
+/* B — a logo panel across the top of the card, as a product photo would be */
+.lkB .lg{height:10rem;border-bottom:1px solid var(--line)}
+.lkB .pgroup-dark .lg{border-bottom-color:rgba(255,255,255,.16)}
+.lkB .lg.slot{box-shadow:none;border-bottom:1.5px dashed #c3ccd6}
+/* C — the logo is the heading: the name stays only for screen readers and search */
+.lkC .lg{width:10rem;height:5rem;justify-content:start;place-items:center start;background:none}
+.lkC .lg img{object-position:left center}
+.lkC .lg.slot{border-radius:.5rem;place-items:center;justify-content:center}
+.lkC h3{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+/* D — a small logo in the top right corner, name and text as now */
+.lkD .case{position:relative}
+.lkD .lg{position:absolute;top:1.75rem;right:1.75rem;width:4.5rem;height:4.5rem;border-radius:.75rem;box-shadow:0 0 0 1px var(--line)}
+.lkD .lg.slot{box-shadow:inset 0 0 0 1.5px #c3ccd6;font-size:.625rem}
+.lkD .pgroup-dark .lg.slot{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3)}
+.lkD .case .bd{padding-right:7.75rem}
+/* E — a tall logo panel on the left of the card, text on the right */
+.lkE .case{flex-direction:row}
+.lkE .lg{width:38%;border-right:1px solid var(--line)}
+.lkE .pgroup-dark .lg{border-right-color:rgba(255,255,255,.16)}
+.lkE .lg.slot{box-shadow:none;border-right:1.5px dashed #c3ccd6}
+@media (max-width:600px){
+  .lkA .lg{width:3rem;height:3rem}
+  .lkB .lg{height:7.5rem}
+  .lkD .lg{top:1rem;right:1rem;width:3.5rem;height:3.5rem}
+  .lkD .case .bd{padding-right:5.5rem}
+  .lkE .case{flex-direction:column}
+  .lkE .lg{width:auto;height:7.5rem;border-right:0;border-bottom:1px solid var(--line)}
+  .lkE .lg.slot{border-right:0;border-bottom:1.5px dashed #c3ccd6}
+}
+</style>
+</head>
+<body>
+<!-- the site sets its font and text colour on this wrapper (shell.js), not in style.css -->
+<div id="root" style="font-family: Geologica, sans-serif; color: var(--text); background: #ffffff; overflow-x: clip"></div>
+<script>
+const look = new URLSearchParams(location.search).get('look') || 'now';
+const LOGO = { 'NIK Space': '../../../assets/fdc858a8-p-space.jpg' };
+const WEB = [
+  ['NovaSyS', 'Автоматизована система контролю та обліку енергоресурсів від виробника лічильників NIK. Сама збирає дані з лічильників, перевіряє їх і перетворює на облік, баланси та звіти. Дві модифікації — для енергопостачання і для промисловості.'],
+  ['NIK Space', 'Комплексна система віддаленого збору показань лічильників для енергокомпаній та ОСББ. Оптимізує обслуговування будинку, заощаджує споживачам час і зменшує витрати.'],
+  ['UNIK', 'Програма для Windows, через яку налаштовують і зчитують лічильники NIK на місці встановлення. До оптичного порту лічильника вона підключається через оптичну головку OP-03.'],
+  ['AGSM GURU', '[уточнити]'],
+];
+const APPS = [
+  ['NIK-Surfer', 'Застосунок для збору показань лічильників по радіоканалу wM-Bus у парі з апаратним RF-to-USB модулем NIK-Surfer.'],
+  ['NIK BT-DLMS', '[уточнити]'],
+];
+const btn = `<a class="btn btn-line">Детальніше<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>`;
+const logo = (t) => LOGO[t] ? `<span class="lg"><img src="${LOGO[t]}" alt="${t}"></span>` : `<span class="lg slot">логотип</span>`;
+const card = ([t, d]) => {
+  if (look === 'now') return `<article class="case"><div class="bd"><h3>${t}</h3><p class="cd">${d}</p>${btn}</div></article>`;
+  if (look === 'A') return `<article class="case"><div class="bd"><div class="lkA-head">${logo(t)}<h3>${t}</h3></div><p class="cd">${d}</p>${btn}</div></article>`;
+  if (look === 'C') return `<article class="case"><div class="bd">${logo(t)}<h3>${t}</h3><p class="cd">${d}</p>${btn}</div></article>`;
+  if (look === 'D') return `<article class="case">${logo(t)}<div class="bd"><h3>${t}</h3><p class="cd">${d}</p>${btn}</div></article>`;
+  return `<article class="case">${logo(t)}<div class="bd"><h3>${t}</h3><p class="cd">${d}</p>${btn}</div></article>`; // B, E
+};
+document.getElementById('root').innerHTML = `<main id="main" class="lk${look}">
+<section class="phead"><div class="wrap">
+  <nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a>Головна</a></li><li><a>Каталог</a></li><li><span aria-current="page">Програмне забезпечення</span></li></ol></nav>
+  <h1>АСКОЕ та Програмне забезпечення</h1>
+  <p class="lead">Програмне забезпечення NIK для збору, обробки та аналізу даних із приладів обліку. Ми розробляємо його самі, тому воно повністю сумісне з лічильниками та контролерами NIK.</p>
+  <div class="tabs"><a>Продукти</a><a>Послуги</a><a aria-current="page">Програмне забезпечення</a></div>
+</div></section>
+<div class="pbody">
+  <div class="wrap"><div class="pgroup"><div class="art"><h2>Веб-платформи</h2></div><div class="ngrid pair">${WEB.map(card).join('')}</div></div></div>
+  <section class="pgroup-dark"><div class="wrap pgroup"><div class="art"><h2>Мобільні застосунки</h2></div><div class="ngrid pair">${APPS.map(card).join('')}</div></div></section>
+</div>
+<div style="height:4rem"></div>
+</main>`;
+// tell the switcher how tall the page is, so the frame shows it whole
+const report = () => parent.postMessage({ h: document.documentElement.scrollHeight }, '*');
+addEventListener('load', report); new ResizeObserver(report).observe(document.body);
+</script>
+</body>
+</html>

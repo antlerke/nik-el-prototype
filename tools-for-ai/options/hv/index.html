@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Високовольтні мережі — фото, варіанти</title>
+<!-- Switcher for Anna: where photos go on «Високовольтні мережі» (client feedback 23.11), in a frame
+<style>
+  :root{--ink:#13385d;--red:#c8102e;--line:#dde3e9;--paper:#f4f6f8}
+  body{margin:0;font:15px/1.45 system-ui,sans-serif;color:#1d2833;background:#cfd4da}
+  header{position:sticky;top:0;z-index:2;padding:12px 16px;background:#ffffff;box-shadow:0 1px 0 var(--line)}
+  h1{margin:0 0 8px;font-size:16px;color:var(--ink)}
+  .row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .row+.row{margin-top:8px}
+  .row span{margin-right:4px;font-size:13px;color:#59636e}
+  button{min-height:36px;padding:0 14px;border:0;border-radius:8px;background:var(--paper);box-shadow:inset 0 0 0 1px var(--line);font:600 14px system-ui,sans-serif;color:var(--ink);cursor:pointer}
+  button[aria-pressed="true"]{background:var(--ink);box-shadow:none;color:#ffffff}
+  button.new{box-shadow:inset 0 0 0 1.5px var(--red)}
+  button.new[aria-pressed="true"]{background:var(--red)}
+  #desc{margin:10px 0 0;max-width:900px;color:#36434f}
+  .stage{display:flex;justify-content:center;padding:16px}
+  iframe{display:block;border:0;background:#ffffff;box-shadow:0 8px 24px -12px rgba(0,0,0,.35)}
+</style>
+</head>
+<body>
+<header>
+  <h1>«Високовольтні мережі» — де показати фото (фото поки заглушки)</h1>
+  <div class="row" id="looks"><span>Варіант:</span></div>
+  <div class="row" id="widths"><span>Ширина:</span></div>
+  <p id="desc"></p>
+</header>
+<div class="stage"><iframe id="f" title="Варіант" scrolling="no"></iframe></div>
+<script>
+const LOOKS = [
+  ['now', 'Зараз', 'Як на сайті: картки без фото.'],
+  ['A', 'A', 'Фото зверху в кожній картці, на всю її ширину (як на «Студентам»). 8 фото — по одному на вид обладнання.'],
+  ['B', 'B', 'Фото ліворуч у кожній картці, текст праворуч — картки майже не стають вищими. На телефоні фото зверху.'],
+  ['C', 'C', 'Фото — це вся картка, текст поверх нього знизу на темному затемненні (як «Розділи» на «Кар’єрі»).'],
+  ['D', 'D', 'Картки без змін, одне велике фото в шапці сторінки праворуч від тексту.'],
+  ['E', 'E', 'Картки без змін, смуга з 4 фото між «Низькою» і «Середньою напругою».'],
+  ['F', 'F', 'Одне велике фото на кожен розділ: фото ліворуч, 4 картки стовпчиком праворуч. Всього 2 фото.'],
+  ['G', 'G — A + B', '«Низька напруга» — фото зверху в картці (як A), «Середня напруга» на темному — фото ліворуч у картці (як B).', 1],
+];
+const WIDTHS = [['1440', 'Комп’ютер 1440'], ['1000', 'Ноутбук / планшет 1000'], ['700', 'Планшет 700'], ['390', 'Телефон 390']];
+const f = document.getElementById('f'), desc = document.getElementById('desc');
+const state = { look: 'now', w: '1440' };
+try { Object.assign(state, JSON.parse(localStorage.getItem('hv-options') || '{}')); } catch (e) {}
+const show = () => {
+  f.style.width = state.w + 'px';
+  f.src = 'view.html?look=' + state.look;
+  document.querySelectorAll('#looks button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.k === state.look));
+  document.querySelectorAll('#widths button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.k === state.w));
+  desc.textContent = LOOKS.find((l) => l[0] === state.look)[2];
+  try { localStorage.setItem('hv-options', JSON.stringify(state)); } catch (e) {}
+};
+const add = (row, k, text, key, isNew) => { const b = document.createElement('button'); b.type = 'button'; b.dataset.k = k; b.textContent = text; if (isNew) b.className = 'new'; b.onclick = () => { state[key] = k; show(); }; document.getElementById(row).append(b); };
+LOOKS.forEach(([k, t, , n]) => add('looks', k, t, 'look', n));
+WIDTHS.forEach(([k, t]) => add('widths', k, t, 'w'));
+addEventListener('message', (e) => { if (e.data && e.data.h) f.style.height = e.data.h + 'px'; });
+addEventListener('keydown', (e) => { const i = LOOKS.findIndex((l) => l[0] === state.look); if (e.key === 'ArrowRight' && i < LOOKS.length - 1) { state.look = LOOKS[i + 1][0]; show(); } if (e.key === 'ArrowLeft' && i > 0) { state.look = LOOKS[i - 1][0]; show(); } });
+show();
+</script>
+</body>
+</html>

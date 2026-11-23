@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Впровадження АСКОЕ — варіант</title>
+<!-- One look of where photos go on «Впровадження АСКОЕ» (client feedback 23.11: «can we add photos there?»): the page
+     below the site header, as committed, drawn with the site's own style.css. ?look=now|A|B|C|D|E|F|G (G = C + F) — the switcher
+     (index.html) puts it in a frame. Photos are stand-ins from assets/ until the client sends real ones. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../v/04-11/style.css">
+<style>
+body{margin:0;background:#ffffff}
+.ph{position:relative;margin:0;border-radius:1rem;overflow:hidden;background:var(--gray)}
+.ph img,.art .ph img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover;border-radius:0}
+.art figure.ph{margin:0}
+/* A — the steps go down the right beside a photo (as «Розробка на замовлення»); the dark last step needs light text */
+.cu-split .nums li:last-child span{color:#dbe4ee}
+/* B — steps in a row as now, one wide photo under them */
+.lkB-wide{aspect-ratio:21/8;margin-top:3rem}
+/* C — a photo over every step; the dashed line between the circles goes, the photo already ties them */
+.lkC .ak-road .nums li .ph{order:-1;aspect-ratio:4/3;width:100%}
+.lkC .ak-road .nums li::after{display:none}
+/* D — one photo in the page head, right of the text */
+.lkD-head{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:4rem;align-items:center}
+.lkD-head .ph{align-self:stretch;min-height:22rem}
+/* E — in NovaSys the photo fills the left column, the 98 % card sits on it at the bottom */
+.lkE-photo{display:flex;flex-direction:column;justify-content:flex-end;min-height:34rem;padding:1.25rem}
+.lkE-photo .ak-statbox{position:relative;z-index:1;margin-top:auto}
+.lkE .ak-nova .feat{align-self:start}
+.ak-nova .art .lkE-photo{margin:0;align-self:stretch}
+.ak-nova .art .lkE-photo>img{position:absolute;inset:0;width:100%;height:100%;max-width:none;margin:0;border-radius:0;object-fit:cover}
+/* F — the closing band gets a photo on its right */
+.lkF .band{flex-wrap:nowrap;align-items:stretch;padding-right:1rem}
+.lkF .band>div{align-self:center}
+.lkF .band .ph{flex:0 0 26rem;min-height:18rem}
+@media (max-width:900px){
+  .lkC .ak-road .nums li{flex-direction:column}
+  .lkC .ak-road .nums li .ph{aspect-ratio:16/9}
+  .lkD-head{grid-template-columns:minmax(0,1fr)}
+  .lkD-head .ph{min-height:0;aspect-ratio:16/9;margin-top:2rem}
+  .lkB-wide{aspect-ratio:16/9;margin-top:2rem}
+  .lkF .band{flex-direction:column;padding-right:2rem}
+  .lkF .band .ph{flex:none;min-height:0;aspect-ratio:16/9;order:-1}
+}
+@media (max-width:600px){
+  .lkE-photo{min-height:26rem;padding:.75rem}
+}
+</style>
+</head>
+<body>
+<!-- the site sets its font and text colour on this wrapper (shell.js), not in style.css -->
+<div id="root" style="font-family: Geologica, sans-serif; color: var(--text); background: #ffffff; overflow-x: clip"></div>
+<script>
+const P = (f) => '../../../assets/' + f;
+const ph = (f, cls = '') => `<figure class="ph ${cls}"><img src="${P(f)}" alt=""></figure>`;
+const look = new URLSearchParams(location.search).get('look') || 'now';
+// G = C + F: a photo over every step and one in the closing band
+const has = (k) => look === k || (look === 'G' && (k === 'C' || k === 'F'));
+
+const headText = `<nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a>Головна</a></li><li><a>Каталог</a></li><li><a>Послуги</a></li><li><span aria-current="page">Впровадження АСКОЕ</span></li></ol></nav>
+    <h1>Впровадження АСКОЕ</h1>
+    <p class="lead">Передача даних між лічильниками та контролерами збору даних з NovaSys відбувається через <b class="kw">PLC</b> (лінії електроживлення), <b class="kw">RF</b> (радіоканал) або <b class="kw">RS-485</b>.</p>
+    <p class="lead">Від контролера до сервера&nbsp;— мережа мобільного оператора або <b class="kw">Ethernet</b>.</p>`;
+const head = look === 'D' ? `<div class="lkD-head"><div>${headText}</div>${ph('6bad89e8-hero-2.webp')}</div>` : headText;
+
+const STEPS = [
+  ['Аудит.', 'Діагностика технічного стану приладів обліку та мереж передачі даних.', 'c78a58cc-news-audit.jpg'],
+  ['Проєктування.', 'Розробка проєкту AMI-системи під ваш об’єкт.', 'de1ec571-role-engineer.webp'],
+  ['Монтаж.', 'Встановлення багатотарифних лічильників і їх параметризація, налаштування передачі даних різними каналами зв’язку, переведення споживачів на тариф із диференціацією за часом доби.', '91d9cc8d-c-automation.jpg'],
+  ['Сервіс.', 'Обслуговування чинних і нових AMI-систем, подальша підтримка сервісного центру.', 'e3a26a87-c-calibration.jpg'],
+];
+const steps = `<ol class="nums">${STEPS.map(([b, t, f]) => `<li>${has('C') ? ph(f) : ''}<span><b>${b}</b> ${t}</span></li>`).join('')}</ol>`;
+const road = look === 'A'
+  ? `<div class="about-cols cu-split"><figure class="cu-photo"><img src="${P('6bad89e8-hero-2.webp')}" alt=""></figure><h2 class="h2">Що входить у послугу</h2><div class="art">${steps}</div></div>`
+  : `<div class="about-cols ak-road"><h2 class="h2">Що входить у послугу</h2><div class="art">${steps}</div></div>${look === 'B' ? ph('6bad89e8-hero-2.webp', 'lkB-wide') : ''}`;
+
+const stat = `<p class="ak-statbox"><small class="ak-pre">Понад</small><b class="ak-num">98%</b> <span class="ak-rest">первинних даних збирається з першої спроби,<br><b class="kw">100%</b>&nbsp;— з&nbsp;наступних ітерацій, без втрат даних</span></p>`;
+const feat = `<ul class="feat"><li><span>Необмежене масштабування системи</span></li><li><span>Сумісність зі смарт-лічильниками інших брендів</span></li><li><span>Мобільний додаток</span></li><li><span>Рішення «під ключ» з індивідуальним налаштуванням</span></li><li><span>Сервісна та технічна підтримка безпосередньо від виробника</span></li></ul>`;
+const nova = look === 'E'
+  ? `<figure class="ph lkE-photo"><img src="${P('e3a26a87-c-calibration.jpg')}" alt="">${stat}</figure>${feat}`
+  : stat + feat;
+
+const btn = `<a class="btn btn-red">Зв'язатися з ТОВ&nbsp;«НІК»<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>`;
+const bandPhoto = has('F') ? ph('c78a58cc-news-audit.jpg') : '';
+
+document.getElementById('root').innerHTML = `<main id="main" class="lk${look}${look === 'G' ? ' lkC lkF' : ''}">
+<section class="phead"><div class="wrap">${head}</div></section>
+<div class="wrap pbody text-rows">${road}</div>
+<section class="sec ak-dark"><div class="wrap">
+  <div class="about-cols ak-nova"><h2 class="h2">АСКОЕ NovaSys</h2><div class="art">${nova}</div></div>
+</div></section>
+<section class="wrap band-sec"><div class="band">
+  <div><span class="kick">ВАЖЛИВО</span><h2>Послугу надає офіційний дистриб’ютор NIK — ТОВ&nbsp;«НІК»</h2><p>Він <b class="kw">проєктує, монтує та обслуговує</b> системи автоматизованого обліку (AMI) для житлових і промислових об’єктів на базі лічильників, контролерів збору даних і програмного забезпечення NovaSys.</p>${has('F') ? btn : ''}</div>
+  ${has('F') ? '' : btn}
+  ${bandPhoto}
+</div></section>
+<div style="height:4rem"></div>
+</main>`;
+
+// tell the switcher how tall the page is, so the frame shows it whole
+const report = () => parent.postMessage({ h: document.documentElement.scrollHeight }, '*');
+addEventListener('load', report); new ResizeObserver(report).observe(document.body);
+</script>
+</body>
+</html>

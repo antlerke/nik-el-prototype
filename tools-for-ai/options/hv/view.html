@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Високовольтні мережі — варіант</title>
+<!-- One look of where photos go on «Високовольтні мережі» (client feedback 23.11: «can we add photos there?»):
+     the page head and both card sections, drawn with the site's own style.css. ?look=now|A|B|C|D|E|F|G (G = A for the low cards, B for the mid ones) — the switcher
+     (index.html) puts it in a frame. Photos are stand-ins from assets/ until the client sends real ones. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../v/04-11/style.css">
+<style>
+body{margin:0;background:#ffffff}
+/* A — photo across the top of each card, edge to edge (as «Студентам», places to work) */
+.lkA .cert{padding:0;overflow:hidden}
+.lkA .cert>h3,.lkA .cert>.cd{margin-left:2rem;margin-right:2rem}
+.lkA .cert>h3{margin-top:1.5rem}
+.lkA .cert>.cd{margin-bottom:2rem}
+.lkA .stu-pic{aspect-ratio:16/9}
+/* B — small photo on the left of each card, text on the right */
+.lkB .cert{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);grid-template-rows:auto 1fr;column-gap:1.5rem;padding:0;overflow:hidden}
+.lkB .stu-pic{grid-row:1/span 2;aspect-ratio:auto;min-height:100%}
+.lkB .cert>h3{margin:1.75rem 1.75rem 0 0}
+.lkB .cert>.cd{margin:1rem 1.75rem 1.75rem 0}
+/* C — the photo is the card: text over it at the bottom, as the «Розділи» tiles on «Кар’єра» */
+.lkC .cert{position:relative;justify-content:flex-end;min-height:25rem;padding:2rem;overflow:hidden;background:var(--ink-d);box-shadow:none}
+.lkC .stu-pic{position:absolute;inset:0;aspect-ratio:auto}
+.lkC .cert::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,42,71,.1) 0%,rgba(13,42,71,.2) 30%,rgba(13,42,71,.94) 72%)}
+.lkC .cert>h3,.lkC .cert>.cd{position:relative;z-index:1}
+.lkC .cert>h3{margin-top:auto}
+.lkC .cert>.cd{flex:0 0 auto}
+.lkC .cert h3{color:#ffffff}
+.lkC .cert .cd{color:#e3eaf2}
+.lkC .hv-code{background:rgba(255,255,255,.14);color:#ffffff}
+/* D — one large photo in the page head, right of the text */
+.lkD-head{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:4rem;align-items:center}
+.lkD-head figure{position:relative;margin:0;min-height:26rem;align-self:stretch;border-radius:1rem;overflow:hidden;background:var(--gray)}
+.lkD-head img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* E — a strip of four photos between the two card sections */
+.lkE-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin-top:4rem}
+.lkE-strip figure{position:relative;margin:0;aspect-ratio:4/3;border-radius:1rem;overflow:hidden;background:var(--gray)}
+.lkE-strip img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* F — one photo per section beside its cards, which stack in one column */
+.lkF-row{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:1.5rem;margin-top:3rem}
+.lkF-row .ngrid{margin-top:0;grid-template-columns:minmax(0,1fr)}
+.lkF-row figure{position:relative;margin:0;min-height:30rem;border-radius:1.5rem;overflow:hidden;background:var(--gray)}
+.lkF-row img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@media (max-width:900px){
+  .lkB .cert{grid-template-columns:minmax(0,1fr);column-gap:0}
+  .lkB .stu-pic{grid-row:auto;aspect-ratio:16/9;min-height:0}
+  .lkB .cert>h3,.lkB .cert>.cd{margin-left:1.5rem;margin-right:1.5rem}
+  .lkB .cert>h3{margin-top:1.5rem}
+  .lkD-head{grid-template-columns:minmax(0,1fr)}
+  .lkD-head figure{min-height:0;aspect-ratio:16/9;margin-top:2rem}
+  .lkE-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .lkF-row{grid-template-columns:minmax(0,1fr)}
+  .lkF-row figure{min-height:0;aspect-ratio:16/9;height:auto}
+}
+@media (max-width:600px){
+  .lkA .cert>h3,.lkA .cert>.cd,.lkB .cert>h3,.lkB .cert>.cd{margin-left:1rem;margin-right:1rem}
+  .lkA .cert>h3,.lkB .cert>h3{margin-top:1rem}
+  .lkA .cert>.cd,.lkB .cert>.cd{margin-bottom:1rem}
+  .lkC .cert{min-height:22rem;padding:1rem}
+  .lkE-strip{gap:.5rem;margin-top:2.5rem}
+}
+</style>
+</head>
+<body>
+<!-- the site sets its font and text colour on this wrapper (shell.js), not in style.css -->
+<div id="root" style="font-family: Geologica, sans-serif; color: var(--text); background: #ffffff; overflow-x: clip"></div>
+<script>
+const LOW = [
+  ['ГРЩ', 'головні розподільчі щити', 'Проєктуємо та збираємо щити на струми до 4000 А. Завдяки власному цеху обробки міді та алюмінію ошиновка витримує високі струми короткого замикання.'],
+  ['ВРП', 'вступно-розподільчі пристрої', 'Надійні комутаційні апарати та інтелектуальні прилади обліку власного виробництва в одному корпусі. Адаптовані під вимоги операторів систем розподілу, що пришвидшує здачу об’єкта в експлуатацію.'],
+  ['АВР', 'автоматичне введення резерву', 'Реагує на просідання або зникнення напруги за час до 0,1 с. Інтегруємо логіку керування генераторами та системами накопичення енергії прямо в силовий контур.'],
+  ['ЩО-90', 'панелі розподілу', 'Для комплектування РУ-0,4 кВ у міських і промислових ТП. Жорстка зварна конструкція, продумана ошиновка та зручний доступ для обслуговування. Швидко адаптуємо під типові та нестандартні схеми.'],
+];
+const MID = [
+  ['КСО', 'камери збірні одностороннього обслуговування', 'Для швидкого монтажу в обмежених просторах блочних підстанцій. Жорсткі корпуси власного виробництва не деформуються під час транспортування.'],
+  ['КРУ', 'комплектні розподільчі пристрої', 'Кожна комірка розділена на ізольовані металеві відсіки (кабельний, релейний, шинний, викотний), що локалізує будь-яку внутрішню аварію. Рішення для підприємств, де безперервність технологічного процесу критична.'],
+  ['КТП', 'комплектні трансформаторні підстанції', 'Проєктуємо та поставляємо КТП у металевому корпусі. Ви отримуєте протестований на заводі вузол з комерційним обліком на лічильниках NIK.'],
+  ['ШРЗА', 'шафи релейного захисту та автоматики', 'Захист ліній, трансформаторів і двигунів на базі мікропроцесорних терміналів. Робимо енергію видимою, керованою та прогнозованою.'],
+];
+// stand-in photos, one per card (low 0–3, mid 4–7), plus two for the per-section look
+const PICS = ['5a730fd2-hero-1.webp', 'c0704521-prod-molding.jpg', '2d5e93a9-c-robot.jpg', '91d9cc8d-c-automation.jpg', 'c78a58cc-news-audit.jpg', '1695fc08-c-tampo.jpg', '6bad89e8-hero-2.webp', 'e3a26a87-c-calibration.jpg'].map((f) => '../../../assets/' + f);
+const pic = (src, cls = 'stu-pic') => `<figure class="${cls}"><img src="${src}" alt=""></figure>`;
+
+const look = new URLSearchParams(location.search).get('look') || 'now';
+const cardPhoto = ['A', 'B', 'C', 'G'].includes(look);
+const cards = (list, from) => list.map(([code, name, d], i) =>
+  `<article class="cert">${cardPhoto ? pic(PICS[from + i]) : ''}<h3><span class="hv-code">${code}</span> <span class="hv-name">${name}</span></h3><p class="cd">${d}</p></article>`).join('');
+const grid = (list, from) => `<div class="ngrid pair hv-cards">${cards(list, from)}</div>`;
+const block = (list, from, photo) => look === 'F' ? `<div class="lkF-row">${pic(PICS[photo], '')}${grid(list, from)}</div>` : grid(list, from);
+
+const headText = `<nav aria-label="Навігаційний ланцюжок"><ol class="crumbs"><li><a>Головна</a></li><li><a>Каталог</a></li><li><a>Послуги</a></li><li><span aria-current="page">Високовольтні мережі</span></li></ol></nav>
+    <h1>Обладнання та реконструкція електромереж 0,4–35&nbsp;кВ</h1>
+    <p class="lead">Енергетичний інжиніринг <b class="kw">повного циклу</b>: від інтелектуального обліку до безпечного розподілу та резерву.</p>
+    <p class="lead">Беремо на себе проєктування, виробництво металоконструкцій і ошиновки, збирання та здачу об’єктів <b class="kw">«під ключ»</b> для класів напруги від 0,4 до 35&nbsp;кВ і вище. У шафах і підстанціях встановлено лічильники NIK власного виробництва.</p>`;
+const head = look === 'D'
+  ? `<div class="lkD-head"><div>${headText}</div>${pic(PICS[6], '')}</div>`
+  : headText;
+const strip = look === 'E' ? `<div class="lkE-strip">${[0, 3, 5, 7].map((i) => pic(PICS[i], '')).join('')}</div>` : '';
+
+document.getElementById('root').innerHTML = `<main id="main" class="lk${look}">
+<section class="phead"><div class="wrap">${head}</div></section>
+<div class="wrap pbody${look === 'G' ? ' lkA' : ''}">
+  <div class="shead"><div><h2 class="h2">Низька напруга: силовий розподіл 0,4&nbsp;кВ</h2></div></div>
+  ${block(LOW, 0, 0)}
+  ${strip}
+</div>
+<section class="sec hv-dark${look === 'G' ? ' lkB' : ''}"><div class="wrap">
+  <div class="shead"><div><h2 class="h2">Середня напруга: комплектні розподільчі пристрої 6–10–35&nbsp;кВ</h2></div></div>
+  ${block(MID, 4, 6)}
+</div></section>
+</main>`;
+
+// tell the switcher how tall the page is, so the frame shows it whole
+const report = () => parent.postMessage({ h: document.documentElement.scrollHeight }, '*');
+addEventListener('load', report); new ResizeObserver(report).observe(document.body);
+</script>
+</body>
+</html>
