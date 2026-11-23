@@ -3216,17 +3216,23 @@ main>.band-sec{padding-bottom:7.5rem}
 @media (max-width:900px){
   .ak-wide{margin-top:2rem;aspect-ratio:16/9}
 }
-/* «Кар’єра»: a photo under «Кого ми шукаємо», where the left column was empty (client feedback 23.11, Anna chose B) */
-.cr-who{grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-rows:auto 1fr;column-gap:4rem;row-gap:1.5rem}
-.cr-who>.h2{grid-column:1;grid-row:1}
-/* the text starts level with the top of the photo, under the heading line (Anna: lower than the heading) */
-.cr-who>.art{grid-column:2;grid-row:2}
-.cr-who-pic{grid-column:1;grid-row:2;position:relative;margin:0;aspect-ratio:4/3;border-radius:1rem;overflow:hidden;background:var(--gray)}
+/* «Кар’єра»: «Кого ми шукаємо» with a photo (client feedback 23.11). Zigzag with «Ми пропонуємо» above (Anna chose Z, 24.11):
+   the heading always sits over its own text, the photo swaps sides — here the text is on the left, the photo on the right,
+   in the mirrored 7:5 columns, so both photos are the same width. Phones: photo, heading, text, as the block above */
+.cr-who{grid-template-columns:minmax(0,7fr) minmax(0,5fr);grid-template-rows:auto 1fr;column-gap:4rem;row-gap:1.5rem}
+.cr-who>.h2{grid-column:1;grid-row:1;margin:0}
+.cr-who>.art{grid-column:1;grid-row:2}
+.cr-who-pic{grid-column:2;grid-row:1/span 2;position:relative;margin:0;aspect-ratio:4/3;border-radius:1rem;overflow:hidden;background:var(--gray)}
 .cr-who-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 @media (max-width:900px){
   .cr-who{grid-template-columns:minmax(0,1fr)}
-  .cr-who>.h2,.cr-who>.art,.cr-who-pic{grid-column:1;grid-row:auto}
-  .cr-who-pic{aspect-ratio:16/9}
+  /* the same height as the photo of «Ми пропонуємо» (.cr-side) at these widths */
+  .cr-who-pic{grid-column:1;grid-row:1;aspect-ratio:auto;height:16.25rem}
+  .cr-who>.h2{grid-column:1;grid-row:2}
+  .cr-who>.art{grid-column:1;grid-row:3}
+}
+@media (max-width:600px){
+  .cr-who-pic{height:12.5rem}
 }
 /* «Програмне забезпечення»: a small square product logo left of the name (client feedback 23.11, Anna chose A).
    The logo file is pinned inside the box with a margin, so any shape fits whole; a product without a logo shows an empty slot.
