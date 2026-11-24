@@ -157,6 +157,7 @@
       <sc-for list="{{steps}}" as="st" hint-placeholder-count="5">
         <li><div class="ph"><img src="{{st.img}}" alt="{{st.alt}}"></div><div class="lb"><b>{{st.no}}</b>{{st.t}}</div></li>
       </sc-for>
+      <li><div class="ph svc">Гарантійне й післягарантійне обслуговування, ремонт і консультації інженерів.</div><div class="lb"><b>06</b>Сервісний центр</div></li>
     </ol>
     <a href="about.html" class="btn btn-line about-more">Дізнатися більше<svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
   </div>
@@ -188,6 +189,7 @@
       <span class="kick on-dark">Відеоекскурсія виробництвом</span>
       <h2 id="h-vid">Відео про компанію</h2>
       <p>Як створюються прилади NIK: від SMT-лінії та лиття корпусів до повірки на власному обладнанні.</p>
+      <div class="vrow"><span>SMT-монтаж</span><span>Лиття корпусів</span><span>Роботизоване складання</span><span>Акредитований випробувальний центр</span></div>
     </div>
   </div>
 </section>
@@ -214,6 +216,9 @@
         <span class="mname ph" aria-hidden="true"><span class="mlogo"><span class="mlab">[Назва партнера]</span></span></span>
         <span class="mname ph" aria-hidden="true"><span class="mlogo"><span class="mlab">[Назва партнера]</span></span></span>
         <span class="mname ph" aria-hidden="true"><span class="mlogo"><span class="mlab">[Назва партнера]</span></span></span>
+    </div>
+    <div class="mrow rev">
+      <sc-for list="{{segs}}" as="g" hint-placeholder-count="2"><span class="mseg"><sc-for list="{{g}}" as="x" hint-placeholder-count="6"><span>{{x}}</span></sc-for></span></sc-for>
     </div>
   </div>
 </section>
@@ -272,6 +277,7 @@
           <i><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></i>
           <h3 style="margin: 1.5rem 0 0; font-size: 2.25rem; letter-spacing: -0.03em; color: #13385d">Дякуємо</h3>
           <p style="margin: .875rem auto 0; max-width: 40ch; font-size: 1.125rem; line-height: 1.55; color: #36434f">Ми отримали ваш запит і зв'яжемося з вами протягом 1 робочого дня.</p>
+          <button class="btn btn-line" style="margin-top: 1.75rem" onClick="{{again}}">Надіслати ще один запит</button>
         </div>
       </sc-if>
     </div>
@@ -511,6 +517,7 @@ class Component extends DCLogic {
       { img: B + 'b0c9e39c494a2b3c5aefa9e72d40c1db', alt: 'Харківобленерго' },
       { label: '[Назва партнера]', ph: 1 }, { label: '[Назва партнера]', ph: 1 }, { label: '[Назва партнера]', ph: 1 }
     ];
+    const seg = ['Оператори систем розподілу', 'Державні установи', 'Муніципальні підприємства', 'Девелопери', 'Промислові підприємства', 'Дистриб’ютори в ЄС та Азії'];
     const marquee = names.concat(names).map((n) => ({ img: n.img || '', alt: n.alt || '', label: n.label || '', cls: 'mname' + (n.ph ? ' ph' : '') }));
 
     // key figures: count up with ease-out, columns start one after another
@@ -538,13 +545,14 @@ class Component extends DCLogic {
       vidCls: 'vbox' + (s.vid ? '' : ' paused'), vidLabel: s.vid ? 'Зупинити відео' : 'Відтворити відео', vidText: s.vid ? 'Пауза' : 'Відтворити',
       vidIcon: s.vid ? 'M7 5h4v14H7zM13 5h4v14h-4z' : 'M8 5v14l11-7z',
       toggleVid: () => this.setState({ vid: !s.vid }),
-      marquee,
+      marquee, segs: [seg, seg],
       news: [
         { cls: 'nc big', d: '26.08.2026', tag: 'Компанія', tagCls: tagR, t: 'Звіт незалежного аудитора щодо фінансової звітності за 2025 рік', img: B + 'c0704521db1416ec66e4d8545678ba60' },
         { cls: 'nc sm', d: '05.11.2024', tag: 'Партнерство', tagCls: tagN, t: 'НІК-ЕЛЕКТРОНІКА подовжила членство в ICC', img: B + '64d3854c808afc98f555fddf056f74b8' },
         { cls: 'nc sm', d: '01.02.2023', tag: 'Сертифікація', tagCls: tagN, t: 'Успішно пройшли ресертифікацію за ISO 27001', img: B + '4ee835b35f0ce1c5b4662a723809ed42' }
       ].map((n) => ({ ...n, iso: n.d.split('.').reverse().join('-') })),
       notSent: !s.sent, sent: s.sent, failed: s.failed, formCls: s.tried ? 'tried' : '',
+      again: () => this.setState({ sent: false, tried: false }),
       // phone: digits only, grouped as 67 123 45 67 (+380 is fixed in front)
       telFmt: (e) => { const d = e.target.value.replace(/\D/g, '').slice(0, 9); e.target.value = [d.slice(0, 2), d.slice(2, 5), d.slice(5, 7), d.slice(7, 9)].filter(Boolean).join(' '); },
       submit: (e) => { e.preventDefault(); const f = e.currentTarget; this.markForm(f); if (!f.checkValidity()) { f.oninput = f.onchange = () => this.markForm(f); this.setState({ tried: true }); const bad = f.querySelector(':invalid'); if (bad) bad.focus(); return; } if (new URLSearchParams(location.search).has('fail')) { this.setState({ failed: true }); return; } this.setState({ sent: true, failed: false }); },

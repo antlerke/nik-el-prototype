@@ -50,6 +50,15 @@
   </div>
   </sc-if>
 </div>
+
+<sc-if value="{{hasVacs}}" hint-placeholder-val="{{true}}">
+<section class="wrap band-sec">
+  <div class="band">
+    <div><span class="kick">Резюме</span><h2>Не знайшли свою вакансію?</h2><p>Надішліть резюме — ми зв’яжемося, коли з’явиться відповідна посада.</p></div>
+    <a href="{{resume}}" class="btn btn-red">Надіслати резюме<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+  </div>
+</section>
+</sc-if>
 </main>
 <shell-bottom></shell-bottom>
 </script>

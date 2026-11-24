@@ -263,7 +263,7 @@ a{color:var(--ink)}
 .cyc>div:last-child .btn{margin-top:0 !important;flex:0 0 auto}
 .hl{display:block;white-space:nowrap}
 .cyc p{margin:0;font-size:clamp(1.25rem,1.6vw,1.4375rem);line-height:1.55;color:var(--text)}
-.steps{list-style:none;margin:3.5rem 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.75rem;counter-reset:st}
+.steps{list-style:none;margin:3.5rem 0 0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:.75rem;counter-reset:st}
 .steps li{position:relative;display:flex;flex-direction:column;gap:.875rem}
 .steps .ph{aspect-ratio:4/5;overflow:hidden;background:var(--gray)}
 .steps .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s var(--out)}
@@ -2228,11 +2228,6 @@ main>.band-sec{padding-bottom:7.5rem}
 /* Home hero: long slide labels need two columns where the text column is narrow */
 @media (min-width:901px) and (max-width:1300px){
   .idx{grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem 1.5rem}
-}
-/* Home, five photos: on a phone the last one takes the whole row */
-@media (max-width:600px){
-  .steps li:last-child{grid-column:1/-1}
-  .steps li:last-child .ph{aspect-ratio:16/9}
 }
 
 /* Contact form: any field that is wrong shows its message; a filled-in field with a wrong value says why, an empty one asks to fill it */
