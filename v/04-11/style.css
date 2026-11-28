@@ -3175,6 +3175,20 @@ main>.band-sec{padding-bottom:7.5rem}
 /* News article (Anna, 28.11): wider text (55rem) from the left edge; with the contents the row is 55 + 4 + 17 = 76rem, the full width */
 .agrid.wide{grid-template-columns:minmax(0,55rem)}
 .agrid.wide.lg-has-toc{grid-template-columns:minmax(0,55rem) minmax(0,17rem);column-gap:4rem}
+/* TEMPORARY for the client call (28.11), article.html: option B (text across the full width, no contents) and the bar that
+   switches A/B. Dashed, so it reads as a tool, not part of the site; while it is there, the cookie panel is hidden. Remove after the choice */
+.agrid.full{grid-template-columns:minmax(0,1fr)}
+.agrid.full .lg-toc{display:none}
+.cmp{position:fixed;left:50%;bottom:1rem;z-index:60;transform:translateX(-50%);display:flex;align-items:center;gap:.375rem;padding:.375rem .375rem .375rem 1rem;border:2px dashed var(--red);border-radius:62.5rem;background:#ffffff;box-shadow:0 1rem 2.5rem rgba(10,32,56,.2);white-space:nowrap}
+body:has(.cmp) .cookie{display:none}
+.cmp-t{margin-right:.375rem;font-family:var(--mono);font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--red)}
+.cmp button{min-height:2.5rem;padding:0 1rem;border:0;border-radius:62.5rem;background:var(--paper);font:inherit;font-size:.9375rem;font-weight:600;color:var(--ink);cursor:pointer}
+.cmp button[aria-pressed="true"]{background:var(--ink);color:#ffffff}
+@media (max-width:600px){
+  .cmp{padding-left:.375rem}
+  .cmp-t{display:none}
+  .cmp button{padding:0 .75rem;font-size:.875rem}
+}
 .art h2[id]{scroll-margin-top:7.5rem}
 @media (max-width:1180px){
   .agrid.lg-has-toc{grid-template-columns:minmax(0,45rem)}
