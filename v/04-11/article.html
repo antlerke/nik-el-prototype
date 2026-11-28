@@ -34,14 +34,18 @@
 
 <div class="wrap pbody">
   <div class="acover"><img src="../../assets/4ee835b3-h-2023.webp" alt="Лічильники NIK на тлі карти Європи"></div>
-  <div class="agrid">
+  <!-- For developers: show the contents (nav.lg-toc + class lg-has-toc) only when the news has 3 or more subheadings (h2).
+       With fewer, leave both out: the text stays 55rem from the left edge and the right side stays empty. -->
+  <div class="agrid wide left lg-has-toc">
+    <nav class="lg-toc" aria-label="Зміст"><p class="lg-toc-t">Зміст</p><ol><li><a href="#s1" class="{{tc.s1}}">Що означає сертифікат</a></li><li><a href="#s2" class="{{tc.s2}}">Як підтверджується сертифікат</a></li></ol></nav>
     <article class="art">
       <p>НІК-ЕЛЕКТРОНІКА успішно пройшла ресертифікаційний аудит системи управління інформаційною безпекою на відповідність стандарту ISO/IEC&nbsp;27001.</p>
-      <h2>Що означає сертифікат</h2>
+      <h2 id="s1">Що означає сертифікат</h2>
       <p>ISO/IEC&nbsp;27001 — міжнародний стандарт, який визначає вимоги до системи управління інформаційною безпекою: як організація оцінює ризики, захищає дані та контролює доступ до них.</p>
       <ul class="feat"><li>Захист даних, які лічильники передають у системи АСКОЕ</li><li>Контроль доступу до програмного забезпечення та інфраструктури</li><li>Регулярний перегляд ризиків і процедур</li></ul>
       <blockquote>Для операторів систем розподілу це додаткова гарантія, що дані обліку обробляються за міжнародними правилами.</blockquote>
       <figure><img src="../../assets/2ccf31fa-news-expo.jpg" alt="Лічильник NIK 2300"><figcaption>Лічильники NIK передають дані в системи АСКОЕ операторів</figcaption></figure>
+      <h2 id="s2">Як підтверджується сертифікат</h2>
       <p>Сертифікат підтверджується регулярними наглядовими аудитами. Копію сертифіката можна отримати за запитом.</p>
     </article>
   </div>
@@ -72,7 +76,20 @@ window.DC_BLOBS = {"64d3854c808afc98f555fddf056f74b8":"../../assets/64d3854c-h-2
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { cookie: true, menu: false };
+    this.state = { cookie: true, menu: false, sec: 's1' };
+    this.spyTimer = setTimeout(() => this.initSpy(), 300);
+  }
+  // contents: the section whose heading has passed a third of the screen is the current one (as on privacy.html)
+  initSpy() {
+    let queued = false;
+    const spy = () => {
+      queued = false;
+      let cur = 's1';
+      document.querySelectorAll('.art h2[id]').forEach((h) => { if (h.getBoundingClientRect().top < window.innerHeight * 0.3) cur = h.id; });
+      if (cur !== this.state.sec) this.setState({ sec: cur });
+    };
+    window.addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(spy); } }, { passive: true });
+    spy();
   }
   renderVals() {
     const s = this.state;
@@ -82,7 +99,9 @@ class Component extends DCLogic {
       { d: '10.12.2021', c: 'Сертифікація', t: 'Лічильник 7021 сертифіковано', img: 'ea5a942ba9f38ea4590615924d2a72ed' },
       { d: '08.12.2020', c: 'Сертифікація', t: 'Сертифікат експертизи типу для KC-\u206002', img: 'cf8e2f1dd66b397312a466e40c80f839' }
     ].map((n) => ({ ...n, iso: n.d.split('.').reverse().join('-'), img: B + n.img, tagCls: 'tag' }));
-    return Object.assign(this.base(s), { list });
+    const tc = { s1: '', s2: '' };
+    tc[s.sec] = 'on';
+    return Object.assign(this.base(s), { list, tc });
   }
 }
 

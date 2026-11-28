@@ -3172,9 +3172,13 @@ main>.band-sec{padding-bottom:7.5rem}
 .lg-toc a{display:block;margin-left:-1px;padding:.5rem 0 .5rem 1rem;border-left:2px solid transparent;font-size:.9375rem;line-height:1.35;color:var(--muted);text-decoration:none}
 .lg-toc a:hover{color:var(--ink)}
 .lg-toc a.on{border-left-color:var(--red);font-weight:600;color:var(--ink)}
+/* News article (Anna, 28.11): wider text (55rem) from the left edge; with the contents the row is 55 + 4 + 17 = 76rem, the full width */
+.agrid.wide{grid-template-columns:minmax(0,55rem)}
+.agrid.wide.lg-has-toc{grid-template-columns:minmax(0,55rem) minmax(0,17rem);column-gap:4rem}
 .art h2[id]{scroll-margin-top:7.5rem}
 @media (max-width:1180px){
   .agrid.lg-has-toc{grid-template-columns:minmax(0,45rem)}
+  .agrid.wide.lg-has-toc{grid-template-columns:minmax(0,55rem)}
   .lg-has-toc>.art,.lg-has-toc>.lg-toc{grid-column:1;grid-row:auto}
   .lg-toc{position:static;max-height:none;margin-bottom:2.5rem;padding:1.5rem;border-radius:1.5rem;background:var(--paper)}
   .lg-toc ol{border-left:0;columns:2;column-gap:2rem}
