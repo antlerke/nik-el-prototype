@@ -3184,10 +3184,15 @@ body:has(.cmp) .cookie{display:none}
 .cmp-t{margin-right:.375rem;font-family:var(--mono);font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--red)}
 .cmp button{min-height:2.5rem;padding:0 1rem;border:0;border-radius:62.5rem;background:var(--paper);font:inherit;font-size:.9375rem;font-weight:600;color:var(--ink);cursor:pointer}
 .cmp button[aria-pressed="true"]{background:var(--ink);color:#ffffff}
+.cmp .cmp-x{display:flex;align-items:center;justify-content:center;width:2.5rem;padding:0;background:transparent;color:var(--muted)}
+.cmp .cmp-x:hover{background:var(--paper);color:var(--ink)}
+/* hidden with the cross: the element stays (so the cookie panel stays hidden too) until the page is reloaded */
+.cmp.off{display:none}
 @media (max-width:600px){
   .cmp{padding-left:.375rem}
   .cmp-t{display:none}
   .cmp button{padding:0 .75rem;font-size:.875rem}
+  .cmp .cmp-x{width:2.5rem;padding:0}
 }
 .art h2[id]{scroll-margin-top:7.5rem}
 @media (max-width:1180px){

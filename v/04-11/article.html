@@ -36,8 +36,8 @@
   <div class="acover"><img src="../../assets/4ee835b3-h-2023.webp" alt="Лічильники NIK на тлі карти Європи"></div>
   <!-- For developers: show the contents (nav.lg-toc + class lg-has-toc) only when the news has 3 or more subheadings (h2).
        With fewer, leave both out: the text stays 55rem from the left edge and the right side stays empty.
-       TEMPORARY for the client call (28.11): the bar «Тимчасово: порівняння» at the bottom switches A (text + contents) and
-       B (text across the full width, no contents). Remove the bar, .cmp in style.css and agridCls once a variant is chosen. -->
+       TEMPORARY for the client call (28.11): the bar «Тимчасово: порівняння» at the bottom switches A (text across the full width, no contents;
+       shown first) and B (text + contents). The cross hides the bar until the page is reloaded; the chosen variant stays. Remove the bar, .cmp in style.css and agridCls once a variant is chosen. -->
   <div class="{{agridCls}}">
     <nav class="lg-toc" aria-label="Зміст"><p class="lg-toc-t">Зміст</p><ol><li><a href="#s1" class="{{tc.s1}}">Що таке трансформатор струму</a></li><li><a href="#s2" class="{{tc.s2}}">Як він влаштований</a></li><li><a href="#s3" class="{{tc.s3}}">Де застосовується</a></li><li><a href="#s4" class="{{tc.s4}}">Відповідність стандартам</a></li><li><a href="#s5" class="{{tc.s5}}">Технічні характеристики</a></li><li><a href="#s6" class="{{tc.s6}}">Як позначати при замовленні</a></li></ol></nav>
     <article class="art">
@@ -66,7 +66,7 @@
     </article>
   </div>
 </div>
-<div class="cmp" role="group" aria-label="Тимчасово: порівняння варіантів"><span class="cmp-t">Тимчасово: порівняння</span><button type="button" aria-pressed="{{vA}}" onClick="{{pickA}}">A · Зміст справа</button><button type="button" aria-pressed="{{vB}}" onClick="{{pickB}}">B · На всю ширину</button></div>
+<div class="{{cmpCls}}" role="group" aria-label="Тимчасово: порівняння варіантів"><span class="cmp-t">Тимчасово: порівняння</span><button type="button" aria-pressed="{{vA}}" onClick="{{pickA}}">A · На всю ширину</button><button type="button" aria-pressed="{{vB}}" onClick="{{pickB}}">B · Зміст справа</button><button type="button" class="cmp-x" aria-label="Сховати перемикач" title="Сховати (з’явиться знову після оновлення сторінки)" onClick="{{hideCmp}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></div>
 
 <section class="sec on-paper" aria-labelledby="h-news">
   <div class="wrap">
@@ -93,7 +93,7 @@ window.DC_BLOBS = {"64d3854c808afc98f555fddf056f74b8":"../../assets/64d3854c-h-2
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { cookie: true, menu: false, sec: 's1', v: 'A' };
+    this.state = { cookie: true, menu: false, sec: 's1', v: 'A', cmp: true };
     this.spyTimer = setTimeout(() => this.initSpy(), 300);
   }
   // contents: the section whose heading has passed a third of the screen is the current one (as on privacy.html)
@@ -119,8 +119,8 @@ class Component extends DCLogic {
     const tc = { s1: '', s2: '', s3: '', s4: '', s5: '', s6: '' };
     tc[s.sec] = 'on';
     // temporary A/B for the client call, see the comment above the article
-    const agridCls = s.v === 'A' ? 'agrid wide left lg-has-toc' : 'agrid full';
-    const ab = { agridCls, vA: String(s.v === 'A'), vB: String(s.v === 'B'), pickA: () => this.setState({ v: 'A' }), pickB: () => this.setState({ v: 'B' }) };
+    const agridCls = s.v === 'A' ? 'agrid full' : 'agrid wide left lg-has-toc';
+    const ab = { agridCls, vA: String(s.v === 'A'), vB: String(s.v === 'B'), pickA: () => this.setState({ v: 'A' }), pickB: () => this.setState({ v: 'B' }), cmpCls: s.cmp ? 'cmp' : 'cmp off', hideCmp: () => this.setState({ cmp: false }) };
     return Object.assign(this.base(s), { list, tc }, ab);
   }
 }
